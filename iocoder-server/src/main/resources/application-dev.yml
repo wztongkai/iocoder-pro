@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/wk_boot?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false
+    username: ENC(m+BZX+EBD6+btxApA5P/K3NDgT79fYAO7bBSYkJGhufdDfTP7taK27f9SQwcDQ9X)
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+iocoder:
+  # 图片验证码
+  captcha:
+    enable: true
+
+
+
