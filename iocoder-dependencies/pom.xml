@@ -14,7 +14,9 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <!-- 项目版本 -->
         <revision>1.0-SNAPSHOT</revision>
+        <!-- maven 插件 -->
         <spring-boot-maven-plugin.version>2.7.0</spring-boot-maven-plugin.version>
         <!-- 统一依赖管理 -->
         <spring-boot.version>2.6.8</spring-boot.version>
