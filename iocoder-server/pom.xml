@@ -18,6 +18,12 @@
             <artifactId>iocoder-framework</artifactId>
             <version>${revision}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.iocoder</groupId>
+            <artifactId>iocoder-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
     </dependencies>
 
 

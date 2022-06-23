@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false
     username: ENC(m+BZX+EBD6+btxApA5P/K3NDgT79fYAO7bBSYkJGhufdDfTP7taK27f9SQwcDQ9X)
-    password:
+    password: VLi+HMmBYkMRyDKQio780cJWYS60aUDp9QigW9LC5ma4z1M75BBVTFzjj6FTxB79
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 

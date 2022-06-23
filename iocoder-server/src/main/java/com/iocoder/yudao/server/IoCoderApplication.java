@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2022/6/20
  */
 @SuppressWarnings("SpringComponentScan")
-@SpringBootApplication(scanBasePackages = {"com.iocoder.yudao.module.system.api","com.iocoder.yudao.module"})
+@SpringBootApplication(scanBasePackages={"com.iocoder.yudao"})
 @MapperScan(value = "com.iocoder.yudao.module.system.mapper")
 public class IoCoderApplication {
 
