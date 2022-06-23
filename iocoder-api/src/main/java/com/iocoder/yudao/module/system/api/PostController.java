@@ -1,4 +1,4 @@
-package com.iocoder.yudao.api.controller;
+package com.iocoder.yudao.module.system.api;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

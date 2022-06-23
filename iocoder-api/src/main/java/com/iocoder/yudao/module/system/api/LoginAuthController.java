@@ -1,4 +1,4 @@
-package com.iocoder.yudao.api.controller;
+package com.iocoder.yudao.module.system.api;
 
 import io.swagger.annotations.Api;
 import org.springframework.validation.annotation.Validated;
