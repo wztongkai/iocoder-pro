@@ -1,16 +1,16 @@
 package com.iocoder.yudao.module.system.api;
 
 
-import com.iocoder.yudao.commons.core.domain.CommonResult;
-import com.iocoder.yudao.commons.core.domain.PageResult;
-import com.iocoder.yudao.commons.utils.BeanUtil;
-import com.iocoder.yudao.commons.utils.convert.CollConvertUtils;
-import com.iocoder.yudao.system.domain.DeptDO;
-import com.iocoder.yudao.commons.core.domain.UserDO;
-import com.iocoder.yudao.system.service.DeptService;
-import com.iocoder.yudao.system.service.UserService;
-import com.iocoder.yudao.system.vo.user.UserPageItemRespVO;
-import com.iocoder.yudao.system.vo.user.UserPageQueryRequestVo;
+import com.iocoder.yudao.module.commons.core.domain.CommonResult;
+import com.iocoder.yudao.module.commons.core.domain.PageResult;
+import com.iocoder.yudao.module.commons.utils.BeanUtil;
+import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
+import com.iocoder.yudao.module.system.domain.DeptDO;
+import com.iocoder.yudao.module.commons.core.domain.UserDO;
+import com.iocoder.yudao.module.system.service.DeptService;
+import com.iocoder.yudao.module.system.service.UserService;
+import com.iocoder.yudao.module.system.vo.user.UserPageItemRespVO;
+import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
@@ -26,7 +26,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import static com.iocoder.yudao.commons.core.domain.CommonResult.success;
+import static com.iocoder.yudao.module.commons.core.domain.CommonResult.success;
 
 /**
  * <p>

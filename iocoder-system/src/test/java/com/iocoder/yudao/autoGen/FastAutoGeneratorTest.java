@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import com.iocoder.yudao.commons.core.domain.BaseEntity;
-import com.iocoder.yudao.commons.core.mapper.BaseMapperX;
+import com.iocoder.yudao.module.commons.core.domain.BaseEntity;
+import com.iocoder.yudao.module.commons.core.mapper.BaseMapperX;
 
 import java.util.HashMap;
 
