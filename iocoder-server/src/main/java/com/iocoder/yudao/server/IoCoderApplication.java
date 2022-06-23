@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author wu kai
  * @date 2022/6/20
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.iocoder.yudao.framework","com.iocoder.yudao.commons","com.iocoder.yudao.system"})
 @MapperScan(value = "com.iocoder.yudao.system.mapper")
 public class IoCoderApplication {
 

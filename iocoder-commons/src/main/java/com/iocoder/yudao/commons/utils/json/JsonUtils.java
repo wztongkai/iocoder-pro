@@ -143,8 +143,5 @@ public class JsonUtils {
         }
     }
 
-    public static boolean isJson(String text) {
-        return JSONUtil.isJson(text);
-    }
 
 }

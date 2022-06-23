@@ -53,7 +53,7 @@ public class Knife4jConfig {
     private ApiInfo createApiInfo() {
         return new ApiInfoBuilder()
                 // api文档的标题属性:会在api文档中相应显示
-                .title("wkBoot系统在线接口文档")
+                .title("iocoder系统在线接口文档")
                 // api文档描述属性:会在api文档中相应显示
                 .description("描述:展示系统中的接口信息")
                 // 作者信息
