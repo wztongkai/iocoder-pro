@@ -7,7 +7,9 @@ import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
+import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.service.DeptService;
+import com.iocoder.yudao.module.system.service.PostService;
 import com.iocoder.yudao.module.system.service.UserService;
 import com.iocoder.yudao.module.system.vo.user.UserPageItemRespVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
@@ -48,6 +50,9 @@ public class UserController {
     @Resource
     DeptService deptService;
 
+    @Resource
+    PostService postService;
+
     @GetMapping("/getUserPage")
     @ApiOperation("获得用户分页列表")
     public CommonResult<PageResult<UserPageItemRespVO>> getUserPage(@Valid UserPageQueryRequestVo requestVo){
@@ -68,6 +73,9 @@ public class UserController {
             DeptDO deptDO = deptInfoMap.get(userInfo.getDeptId());
             BeanUtil.copyProperties(deptDO,uDept);
             userPageItemRespVO.setDept(uDept);
+            String[] postIds = userInfo.getPostIds().split(",");
+            List<PostDO> postList = postService.getSimplePosts(postIds);
+            userPageItemRespVO.setPostList(postList);
             userList.add(userPageItemRespVO);
         });
         return success(new PageResult<>(userList, pageResult.getTotal()));

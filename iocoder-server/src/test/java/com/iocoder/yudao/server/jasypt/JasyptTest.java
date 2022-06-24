@@ -1,5 +1,6 @@
 package com.iocoder.yudao.server.jasypt;
 
+
 import com.iocoder.yudao.server.IoCoderApplication;
 import com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor;
 import org.jasypt.encryption.StringEncryptor;

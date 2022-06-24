@@ -2,7 +2,6 @@ package com.iocoder.yudao.module.commons.core.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.iocoder.yudao.module.commons.core.Json.JsonLongSetTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -10,7 +9,6 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 /**
  * <p>
@@ -50,8 +48,7 @@ public class UserDO extends BaseEntity {
     private Long deptId;
 
     @ApiModelProperty("岗位编号数组")
-    @TableField(typeHandler = JsonLongSetTypeHandler.class)
-    private Set<Long> postIds;
+    private String postIds;
 
     @ApiModelProperty("用户邮箱")
     @TableField("email")

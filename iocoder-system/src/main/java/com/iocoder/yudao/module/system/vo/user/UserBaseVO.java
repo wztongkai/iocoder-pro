@@ -8,7 +8,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 /**
  * 用户 Base VO，提供给添加、修改、详细的子 VO 使用
@@ -33,7 +32,9 @@ public class UserBaseVO {
     private Long deptId;
 
     @ApiModelProperty(value = "岗位编号数组", example = "1")
-    private Set<Long> postIds;
+    private String postIds;
+
+
 
     @ApiModelProperty(value = "用户邮箱", example = "2580211264@qq.com")
     @Email(message = "邮箱格式不正确")

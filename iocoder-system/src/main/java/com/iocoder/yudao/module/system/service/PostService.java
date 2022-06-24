@@ -1,7 +1,9 @@
 package com.iocoder.yudao.module.system.service;
 
-import com.iocoder.yudao.module.system.domain.PostDO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.iocoder.yudao.module.system.domain.PostDO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface PostService extends IService<PostDO> {
 
+    /**
+     * 获取指定编号的岗位列表
+     * @param postIds 岗位编号
+     * @return 岗位信息列表
+     */
+    List<PostDO> getSimplePosts(String[] postIds);
 }

@@ -2,12 +2,6 @@ package com.iocoder.yudao.module.framework.config.web.auth.service.impl;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.iocoder.yudao.module.framework.config.web.auth.dto.LoginLogCreateReqDTO;
-import com.iocoder.yudao.module.framework.config.web.auth.service.CaptchaService;
-import com.iocoder.yudao.module.framework.config.web.auth.service.LoginAuthService;
-import com.iocoder.yudao.module.framework.config.web.auth.service.LoginLogService;
-import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
-import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
 import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
@@ -25,6 +19,13 @@ import com.iocoder.yudao.module.commons.utils.ServletUtils;
 import com.iocoder.yudao.module.commons.utils.monitor.TracerUtils;
 import com.iocoder.yudao.module.commons.utils.validation.ValidationUtils;
 import com.iocoder.yudao.module.framework.config.security.web.service.JwtTokenService;
+import com.iocoder.yudao.module.framework.config.web.auth.dto.LoginLogCreateReqDTO;
+import com.iocoder.yudao.module.framework.config.web.auth.service.CaptchaService;
+import com.iocoder.yudao.module.framework.config.web.auth.service.LoginAuthService;
+import com.iocoder.yudao.module.framework.config.web.auth.service.LoginLogService;
+import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
+import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
+import com.iocoder.yudao.module.system.service.PostService;
 import com.iocoder.yudao.module.system.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -62,6 +63,9 @@ public class LoginAuthServiceImpl implements LoginAuthService {
 
     @Resource
     UserService userService;
+
+    @Resource
+    PostService postService;
 
     @Resource
     AuthenticationManager authenticationManager;
@@ -169,6 +173,7 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         this.createLoginLog(userId, username, LoginLogTypeEnum.LOGIN_USERNAME, LoginResultEnum.SUCCESS);
 
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+
         // 构建返回结果
         String token = jwtTokenService.createToken(loginUser);
 

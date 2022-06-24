@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -65,6 +66,11 @@ public class LoginUser implements UserDetails {
      * 权限列表
      */
     private Set<String> permissions;
+
+    /**
+     * 岗位信息列表
+     */
+    private List<PostVo> postVoList;
 
     /**
      * 用户信息
