@@ -1,8 +1,8 @@
 package com.iocoder.yudao.module.auth.api;
 
-import com.iocoder.yudao.module.auth.service.LoginAuthService;
-import com.iocoder.yudao.module.auth.vo.AuthLoginReqVO;
-import com.iocoder.yudao.module.auth.vo.AuthLoginRespVO;
+import com.iocoder.yudao.module.framework.config.web.auth.service.LoginAuthService;
+import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
+import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

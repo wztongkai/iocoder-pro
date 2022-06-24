@@ -1,7 +1,7 @@
-package com.iocoder.yudao.module.auth.service;
+package com.iocoder.yudao.module.framework.config.web.auth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.iocoder.yudao.module.auth.dto.LoginLogCreateReqDTO;
+import com.iocoder.yudao.module.framework.config.web.auth.dto.LoginLogCreateReqDTO;
 import com.iocoder.yudao.module.system.domain.LoginLogDO;
 
 import javax.validation.Valid;

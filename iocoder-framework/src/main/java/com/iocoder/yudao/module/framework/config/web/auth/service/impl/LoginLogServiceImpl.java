@@ -1,10 +1,10 @@
-package com.iocoder.yudao.module.auth.service.impl;
+package com.iocoder.yudao.module.framework.config.web.auth.service.impl;
 
-import com.iocoder.yudao.module.auth.dto.LoginLogCreateReqDTO;
+import com.iocoder.yudao.module.framework.config.web.auth.dto.LoginLogCreateReqDTO;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.domain.LoginLogDO;
 import com.iocoder.yudao.module.system.mapper.LoginLogMapper;
-import com.iocoder.yudao.module.auth.service.LoginLogService;
+import com.iocoder.yudao.module.framework.config.web.auth.service.LoginLogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

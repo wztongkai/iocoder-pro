@@ -29,9 +29,6 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-  main:
-    allow-circular-references: true
-
   application:
     name: iocoder
 
@@ -91,13 +88,13 @@ spring:
   # redis 配置
   redis:
     # 地址
-    host: localhost
+    host: 10.7.142.156
     # 端口，默认为6379
     port: 6379
     # 数据库索引
-    database: 0
+    database: 3
     # 密码
-    password:
+    password: 123456
     # 连接超时时间
     timeout: 10s
     jedis:

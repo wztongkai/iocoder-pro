@@ -2,6 +2,7 @@ package com.iocoder.yudao.module.commons.core.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.iocoder.yudao.module.commons.core.Json.JsonLongSetTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -9,19 +10,20 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
  * <p>
  * 用户信息表
  * </p>
- *
+ * 使用MP  JsonLongSetTypeHandler转换器时，tablename中必须加上autoResultMap = true  否则查询时该字段为空
  * @author wu kai
  * @since 2022-06-22
  */
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("system_user")
+@TableName(value = "system_user", autoResultMap = true)
 @ApiModel(value = "UserDO对象", description = "用户信息表")
 public class UserDO extends BaseEntity {
 
@@ -48,8 +50,8 @@ public class UserDO extends BaseEntity {
     private Long deptId;
 
     @ApiModelProperty("岗位编号数组")
-    @TableField("post_ids")
-    private String postIds;
+    @TableField(typeHandler = JsonLongSetTypeHandler.class)
+    private Set<Long> postIds;
 
     @ApiModelProperty("用户邮箱")
     @TableField("email")

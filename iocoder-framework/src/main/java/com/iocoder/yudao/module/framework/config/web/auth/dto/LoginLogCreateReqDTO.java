@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.auth.dto;
+package com.iocoder.yudao.module.framework.config.web.auth.dto;
 
 import lombok.Data;
 

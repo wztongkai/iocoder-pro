@@ -1,4 +1,6 @@
-package com.iocoder.yudao.module.auth.service;
+package com.iocoder.yudao.module.framework.config.web.auth.service;
+
+import com.iocoder.yudao.module.framework.config.web.auth.vo.CaptchaImageRespVO;
 
 /**
  * 验证码接口
@@ -18,4 +20,12 @@ public interface CaptchaService {
      * @param uuid 验证码编号
      */
     void deleteCaptchaCode(String uuid);
+
+    /**
+     * 获得验证码图片
+     *
+     * @return 验证码图片
+     */
+    CaptchaImageRespVO getCaptchaImage();
+
 }

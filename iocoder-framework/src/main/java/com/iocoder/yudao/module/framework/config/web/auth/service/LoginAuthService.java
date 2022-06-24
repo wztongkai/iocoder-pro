@@ -1,7 +1,7 @@
-package com.iocoder.yudao.module.auth.service;
+package com.iocoder.yudao.module.framework.config.web.auth.service;
 
-import com.iocoder.yudao.module.auth.vo.AuthLoginReqVO;
-import com.iocoder.yudao.module.auth.vo.AuthLoginRespVO;
+import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
+import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
 
 import javax.validation.Valid;
 

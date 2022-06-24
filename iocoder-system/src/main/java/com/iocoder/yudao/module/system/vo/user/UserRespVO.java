@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.system.vo.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @ApiModel("管理后台 - 用户信息 Response VO")
 @Data
@@ -26,9 +27,11 @@ public class UserRespVO extends UserBaseVO {
     private String loginIp;
 
     @ApiModelProperty(value = "最后登录时间", required = true, example = "时间戳格式")
-    private Date loginDate;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private LocalDateTime loginDate;
 
     @ApiModelProperty(value = "创建时间", required = true, example = "时间戳格式")
-    private Date createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private LocalDateTime createTime;
 
 }

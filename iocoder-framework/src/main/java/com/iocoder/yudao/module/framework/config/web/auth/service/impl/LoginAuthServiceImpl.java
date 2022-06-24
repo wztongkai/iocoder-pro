@@ -1,13 +1,13 @@
-package com.iocoder.yudao.module.auth.service.impl;
+package com.iocoder.yudao.module.framework.config.web.auth.service.impl;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.iocoder.yudao.module.auth.dto.LoginLogCreateReqDTO;
-import com.iocoder.yudao.module.auth.service.CaptchaService;
-import com.iocoder.yudao.module.auth.service.LoginAuthService;
-import com.iocoder.yudao.module.auth.service.LoginLogService;
-import com.iocoder.yudao.module.auth.vo.AuthLoginReqVO;
-import com.iocoder.yudao.module.auth.vo.AuthLoginRespVO;
+import com.iocoder.yudao.module.framework.config.web.auth.dto.LoginLogCreateReqDTO;
+import com.iocoder.yudao.module.framework.config.web.auth.service.CaptchaService;
+import com.iocoder.yudao.module.framework.config.web.auth.service.LoginAuthService;
+import com.iocoder.yudao.module.framework.config.web.auth.service.LoginLogService;
+import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
+import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
 import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
