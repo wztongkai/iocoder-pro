@@ -32,7 +32,7 @@ public class UserBaseVO {
     private Long deptId;
 
     @ApiModelProperty(value = "岗位编号数组", example = "1")
-    private String postIds;
+    private String[] postIds;
 
 
 
