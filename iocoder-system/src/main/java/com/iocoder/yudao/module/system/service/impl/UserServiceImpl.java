@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
@@ -10,6 +11,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -29,5 +31,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     public PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
 
         return baseMapper.selectUserList(requestVo, deptService.getDeptCondition(requestVo.getDeptId()));
+    }
+
+    @Override
+    public void updateUserLogin(Long userId, String loginIp) {
+        baseMapper.update(null, new LambdaUpdateWrapper<UserDO>()
+                .set(UserDO::getLoginIp, loginIp)
+                .set(UserDO::getLoginDate, LocalDate.now())
+                .eq(UserDO::getId, userId)
+        );
     }
 }

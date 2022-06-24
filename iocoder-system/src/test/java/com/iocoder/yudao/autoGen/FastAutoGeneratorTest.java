@@ -42,7 +42,7 @@ public class FastAutoGeneratorTest {
         // controller 和 mapperXml 的生成路径
         HashMap<OutputFile, String> pathMap = new HashMap<>();
         pathMap.put(OutputFile.mapperXml,projectPath+"/"+GlobalModelName+"/src/main/resources/mapper/"+modelName);
-        pathMap.put(OutputFile.controller,projectPath+"/"+ApiModelName+"/src/main/java/com/iocoder/yudao/api/controller");
+        pathMap.put(OutputFile.controller,projectPath+"/"+ApiModelName+"/src/main/java/com/iocoder/yudao/module/system/api/controller");
         // 生成策略配置
         FastAutoGenerator.create(jdbcUrl, username, password)
                 .globalConfig(builder -> {
@@ -55,7 +55,7 @@ public class FastAutoGeneratorTest {
                             .outputDir(projectPath + "/" + GlobalModelName + "/src/main/java"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
-                    builder.parent("com.iocoder.yudao.system") // 设置父包名
+                    builder.parent("com.iocoder.yudao.module.system") // 设置父包名
                             .entity("domain")
                             .service("service")
                             .mapper("mapper")

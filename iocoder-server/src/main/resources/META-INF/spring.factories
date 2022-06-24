@@ -1,2 +1,0 @@
-#org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-#        com.iocoder.yudao.module.framework.config.BeanScanConfig

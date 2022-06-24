@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.commons.utils;
 
+import cn.hutool.extra.servlet.ServletUtil;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -94,5 +95,24 @@ public class ServletUtils {
      */
     public static void setLoginUserId(ServletRequest request, Long userId) {
         request.setAttribute(REQUEST_ATTRIBUTE_LOGIN_USER_ID, userId);
+    }
+
+    /**
+     * @param request 请求
+     * @return ua
+     */
+    public static String getUserAgent(HttpServletRequest request) {
+        String ua = request.getHeader("User-Agent");
+        return ua != null ? ua : "";
+    }
+
+    public static String getUserAgent() {
+        HttpServletRequest request = getRequest();
+        return getUserAgent(request);
+    }
+
+    public static String getClientIP() {
+        HttpServletRequest request = getRequest();
+        return ServletUtil.getClientIP(request);
     }
 }

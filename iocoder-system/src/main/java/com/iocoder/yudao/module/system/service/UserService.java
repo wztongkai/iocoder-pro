@@ -17,8 +17,18 @@ public interface UserService extends IService<UserDO> {
 
     /**
      * 根据条件分页查询用户列表
+     *
      * @param requestVo 用户信息
      * @return 用户信息集合
      */
     PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo);
+
+
+    /**
+     * 修改用户登录信息
+     *
+     * @param userId  用户编号
+     * @param loginIp 登录ip
+     */
+    void updateUserLogin(Long userId, String loginIp);
 }

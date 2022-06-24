@@ -22,6 +22,11 @@
             <artifactId>iocoder-commons</artifactId>
             <version>${revision}</version>
         </dependency>
+        <dependency>
+            <groupId>com.iocoder</groupId>
+            <artifactId>iocoder-framework</artifactId>
+            <version>${revision}</version>
+        </dependency>
     </dependencies>
 
 </project>

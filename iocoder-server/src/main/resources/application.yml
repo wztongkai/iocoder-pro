@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8888
 
 iocoder:
   # 名称
@@ -20,16 +20,17 @@ iocoder:
     width: 160
     height: 60
 
-logging:
-  level:
-    org.springframework.web: INFO
-    com.wkboot: DEBUG
-  file:
-    path: logs/
 
 spring:
   profiles:
     active: dev
+  # 解决 springboot 2.6.x 整合 knife4j 3.0.x 依赖冲突 (启动报错：Failed to start bean 'documentationPluginsBootstrapper')
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  main:
+    allow-circular-references: true
 
   application:
     name: iocoder
@@ -46,10 +47,6 @@ spring:
       # 热部署开关
       enabled: true
 
-  # 解决 springboot 2.6.x 整合 knife4j 3.0.x 依赖冲突 (启动报错：Failed to start bean 'documentationPluginsBootstrapper')
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
 
   # 数据源
   datasource:
@@ -110,6 +107,13 @@ spring:
         max-idle: 10      # 连接池中的最大空闲连接
         min-idle: 5       # 连接池中的最小空闲连接
 
+logging:
+  level:
+    org.springframework.web: INFO
+    com.iocoder: DEBUG
+  file:
+    path: ${iocoder.profile}/${spring.application.name}
+
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*.xml
   # 以下配置均有默认值,可以不设置
@@ -130,7 +134,10 @@ mybatis-plus:
 # 配置加密密钥
 jasypt:
   encryptor:
-    password: wztongkai
+    property:
+      prefix: JASYPT_WK(    # 加密前缀
+      suffix: )             # 加密后缀
+    password: strangegirl   # 加密秘钥
 
 # Swagger配置
 swagger:

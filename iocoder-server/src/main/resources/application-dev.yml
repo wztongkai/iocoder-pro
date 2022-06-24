@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false
-    username: ENC(m+BZX+EBD6+btxApA5P/K3NDgT79fYAO7bBSYkJGhufdDfTP7taK27f9SQwcDQ9X)
-    password: VLi+HMmBYkMRyDKQio780cJWYS60aUDp9QigW9LC5ma4z1M75BBVTFzjj6FTxB79
+    username: JASYPT_WK(xtW9Y1ih+n3oywwoWStlVze6vXJQMaCP1hvoLDH3QTBO/VgkUgxwrZGeHkL0xCl1)
+    password: JASYPT_WK(HQLokyEhKUJyUZOZ1areJW6VTse/cq4ceKNVkzIHTPbbmj6fLnyFe9Jcc+vnV/21)
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 
