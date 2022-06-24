@@ -3,23 +3,22 @@ package com.iocoder.yudao.module.system.api;
 
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
+import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
-import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.service.DeptService;
 import com.iocoder.yudao.module.system.service.PostService;
 import com.iocoder.yudao.module.system.service.UserService;
+import com.iocoder.yudao.module.system.vo.user.UserCreateReqVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageItemRespVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -79,5 +78,12 @@ public class UserController {
             userList.add(userPageItemRespVO);
         });
         return success(new PageResult<>(userList, pageResult.getTotal()));
+    }
+
+    @PostMapping("/create")
+    @ApiOperation("新增用户")
+    public CommonResult<Long> createUser(@Valid @RequestBody UserCreateReqVO reqVO) {
+        Long id = userService.createUser(reqVO);
+        return success(id);
     }
 }

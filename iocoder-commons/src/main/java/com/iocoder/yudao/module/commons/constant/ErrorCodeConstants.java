@@ -18,9 +18,10 @@ public interface ErrorCodeConstants {
         ErrorCode USER_MOBILE_EXISTS = new ErrorCode(1002003001, "手机号已经存在");
         ErrorCode USER_EMAIL_EXISTS = new ErrorCode(1002003002, "邮箱已经存在");
         ErrorCode USER_NOT_EXISTS = new ErrorCode(1002003003, "用户不存在");
-        ErrorCode USER_IMPORT_LIST_IS_EMPTY = new ErrorCode(1002003004, "导入用户数据不能为空！");
-        ErrorCode USER_PASSWORD_FAILED = new ErrorCode(1002003005, "用户密码校验失败");
-        ErrorCode USER_IS_DISABLE = new ErrorCode(1002003006, "名字为【{}】的用户已被禁用");
+        ErrorCode USER_EXISTS = new ErrorCode(1002003004, "用户不存在");
+        ErrorCode USER_IMPORT_LIST_IS_EMPTY = new ErrorCode(1002003005, "导入用户数据不能为空！");
+        ErrorCode USER_PASSWORD_FAILED = new ErrorCode(1002003006, "用户密码校验失败");
+        ErrorCode USER_IS_DISABLE = new ErrorCode(1002003007, "名字为【{}】的用户已被禁用");
     }
 
     interface DeptErrorCode {

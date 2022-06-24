@@ -3,6 +3,7 @@ package com.iocoder.yudao.module.system.service;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.iocoder.yudao.module.system.vo.user.UserCreateReqVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
 
 /**
@@ -31,4 +32,11 @@ public interface UserService extends IService<UserDO> {
      * @param loginIp 登录ip
      */
     void updateUserLogin(Long userId, String loginIp);
+
+    /**
+     * 创建用户
+     * @param reqVO 用户信息
+     * @return 用户编号
+     */
+    Long createUser(UserCreateReqVO reqVO);
 }
