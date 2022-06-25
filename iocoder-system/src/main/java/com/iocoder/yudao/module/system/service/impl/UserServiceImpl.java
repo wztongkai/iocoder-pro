@@ -10,13 +10,13 @@ import com.iocoder.yudao.module.commons.enums.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
+import com.iocoder.yudao.module.system.domain.DeptDO;
+import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.domain.UserDeptDO;
 import com.iocoder.yudao.module.system.domain.UserPostDO;
 import com.iocoder.yudao.module.system.mapper.UserMapper;
 import com.iocoder.yudao.module.system.service.*;
-import com.iocoder.yudao.module.system.vo.user.UserCreateReqVO;
-import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
-import com.iocoder.yudao.module.system.vo.user.UserUpdateReqVO;
+import com.iocoder.yudao.module.system.vo.user.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
@@ -29,10 +29,7 @@ import javax.annotation.Resource;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.UserErrorCode.*;
@@ -63,6 +60,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
 
     @Resource
     UserPostService userPostService;
+
+    @Resource
+    UserService userService;
 
     @Override
     public PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
@@ -123,6 +123,80 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         updateUserPostInfo(reqVO);
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteUser(Long userId) {
+        // 校验用户存在
+        checkUserExist(userId);
+        // 删除用户基本信息
+        userService.removeById(userId);
+        // 删除用户部门信息
+        userDeptService.remove(new LambdaUpdateWrapper<UserDeptDO>()
+                .in(UserDeptDO::getUserId, userId)
+        );
+        // 删除用户岗位信息
+        userPostService.remove(new LambdaUpdateWrapper<UserPostDO>()
+                .in(UserPostDO::getUserId, userId)
+        );
+    }
+
+    @Override
+    public void updateUserPassword(Long userId, String password) {
+        // 校验用户存在
+        checkUserExist(userId);
+        // 更新密码
+        UserDO updateObj = new UserDO();
+        updateObj.setId(userId);
+        updateObj.setPassword(passwordEncoder.encode(password));
+        userService.updateById(updateObj);
+    }
+
+    @Override
+    public void updateUserStatus(Long userId, Integer status) {
+        // 校验用户存在
+        checkUserExist(userId);
+        // 更新密码
+        UserDO updateObj = new UserDO();
+        updateObj.setId(userId);
+        updateObj.setStatus(status);
+        userService.updateById(updateObj);
+    }
+
+    @Override
+    public List<UserSimpleRespVO> getUsersByStatus(Integer status) {
+        List<UserDO> userList = baseMapper.selectList(new LambdaQueryWrapperX<UserDO>()
+                .eqIfPresent(UserDO::getStatus, status)
+                .orderByDesc(UserDO::getCreateTime)
+        );
+        List<UserSimpleRespVO> simpleRespList = new ArrayList<>();
+        BeanUtil.copyListProperties(userList,simpleRespList,UserSimpleRespVO.class);
+        return simpleRespList;
+    }
+
+    @Override
+    public UserRespVO getUserInfo(Long userId) {
+        // 校验用户存在
+        checkUserExist(userId);
+        // 查询用户基本信息
+        UserDO userDO = baseMapper.selectById(userId);
+        if(ObjectUtils.isEmpty(userDO)){
+            return null;
+        }
+        UserRespVO userRespVO = new UserRespVO();
+        BeanUtil.copyProperties(userDO,userRespVO);
+        // 查询用户部门信息
+        List<DeptDO> userDeptInfoList = userDeptService.selectDeptInfoByUserId(userId);
+        if(CollectionUtils.isNotEmpty(userDeptInfoList)){
+            userRespVO.setUserDeptInfoList(userDeptInfoList);
+        }
+        // 查询用户岗位信息
+        List<PostDO> userPostInfoList = userPostService.selectPostInfoByUserId(userId);
+        if(CollectionUtils.isNotEmpty(userPostInfoList)){
+            userRespVO.setUserPostInfoList(userPostInfoList);
+        }
+        return userRespVO;
+    }
+
 
     /**
      * 修改用户部门信息
@@ -155,6 +229,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
 
     /**
      * 修改用户岗位信息
+     *
      * @param reqVO 用户信息
      */
     private void updateUserPostInfo(UserUpdateReqVO reqVO) {
@@ -186,7 +261,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
                                      List<Long> deptIds, List<Long> postIds
     ) {
         // 校验用户是否存在
-        checkUserIdExist(id);
+        checkUserExist(id);
         // 校验用户名是否唯一
         checkUsernameUnique(id, username);
         // 校验手机号唯一
@@ -204,7 +279,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
      *
      * @param id 用户编号
      */
-    public void checkUserIdExist(Long id) {
+    public void checkUserExist(Long id) {
         if (id == null) {
             return;
         }

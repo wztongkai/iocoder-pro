@@ -4,17 +4,16 @@ package com.iocoder.yudao.module.system.api;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
+import com.iocoder.yudao.module.commons.enums.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.service.UserDeptService;
 import com.iocoder.yudao.module.system.service.UserPostService;
 import com.iocoder.yudao.module.system.service.UserService;
-import com.iocoder.yudao.module.system.vo.user.UserCreateReqVO;
-import com.iocoder.yudao.module.system.vo.user.UserPageItemRespVO;
-import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
-import com.iocoder.yudao.module.system.vo.user.UserUpdateReqVO;
+import com.iocoder.yudao.module.system.vo.user.*;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
@@ -87,4 +86,42 @@ public class UserController {
         userService.updateUser(reqVO);
         return success(true);
     }
+
+    @DeleteMapping("/delete")
+    @ApiOperation("删除用户")
+    @ApiImplicitParam(name = "id", value = "用户", required = true, example = "1540614322441457665", dataTypeClass = Long.class)
+    public CommonResult<Boolean> deleteUser(@RequestParam("id") Long id) {
+        userService.deleteUser(id);
+        return success(true);
+    }
+
+    @PutMapping("/update-password")
+    @ApiOperation("重置用户密码")
+    public CommonResult<Boolean> updateUserPassword(@Valid @RequestBody UserUpdatePasswordReqVO reqVO) {
+        userService.updateUserPassword(reqVO.getId(), reqVO.getPassword());
+        return success(true);
+    }
+
+    @PutMapping("/update-status")
+    @ApiOperation("修改用户状态")
+    public CommonResult<Boolean> updateUserStatus(@Valid @RequestBody UserUpdateStatusReqVO reqVO) {
+        userService.updateUserStatus(reqVO.getId(), reqVO.getStatus());
+        return success(true);
+    }
+
+    @GetMapping("/list-all-simple")
+    @ApiOperation(value = "获取用户精简信息列表", notes = "只包含被开启的用户，主要用于前端的下拉选项")
+    public CommonResult<List<UserSimpleRespVO>> getSimpleUsers() {
+        // 获用户门列表，只要开启状态的
+        List<UserSimpleRespVO> list = userService.getUsersByStatus(CommonStatusEnum.ENABLE.getStatus());
+        return success(list);
+    }
+
+    @GetMapping("/getUserInfo")
+    @ApiOperation("获得用户详情")
+    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1540614322441457665", dataTypeClass = Long.class)
+    public CommonResult<UserRespVO> getUserInfo(@RequestParam("id") Long id) {
+        return success(userService.getUserInfo(id));
+    }
+
 }

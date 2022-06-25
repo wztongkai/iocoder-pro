@@ -1,6 +1,8 @@
 package com.iocoder.yudao.module.system.vo.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.iocoder.yudao.module.system.domain.DeptDO;
+import com.iocoder.yudao.module.system.domain.PostDO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @ApiModel("管理后台 - 用户信息 Response VO")
 @Data
@@ -33,5 +36,11 @@ public class UserRespVO extends UserBaseVO {
     @ApiModelProperty(value = "创建时间", required = true, example = "时间戳格式")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private LocalDateTime createTime;
+
+    @ApiModelProperty(value = "用户部门信息集合")
+    private List<DeptDO> userDeptInfoList;
+
+    @ApiModelProperty(value = "用户岗位信息集合")
+    private List<PostDO> userPostInfoList;
 
 }
