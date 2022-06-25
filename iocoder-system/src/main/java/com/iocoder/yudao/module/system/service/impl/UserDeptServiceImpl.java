@@ -9,6 +9,7 @@ import com.iocoder.yudao.module.system.mapper.UserDeptMapper;
 import com.iocoder.yudao.module.system.service.DeptService;
 import com.iocoder.yudao.module.system.service.UserDeptService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ import java.util.Set;
  * @since 2022-06-25
  */
 @Service
+@Slf4j
 public class UserDeptServiceImpl extends ServiceImpl<UserDeptMapper, UserDeptDO> implements UserDeptService {
 
     @Resource
@@ -38,7 +40,7 @@ public class UserDeptServiceImpl extends ServiceImpl<UserDeptMapper, UserDeptDO>
                 .eqIfPresent(UserDeptDO::getUserId, userId)
                 .orderByDesc(UserDeptDO::getCreateTime)
         );
-        if(CollectionUtils.isEmpty(userDeptList)){
+        if (CollectionUtils.isEmpty(userDeptList)) {
             return Collections.emptyList();
         }
         // 获取部门编号集合

@@ -46,9 +46,6 @@ public class UserController {
     UserService userService;
 
     @Resource
-    DeptService deptService;
-
-    @Resource
     UserPostService userPostService;
 
     @Resource
@@ -57,22 +54,22 @@ public class UserController {
 
     @GetMapping("/getUserPage")
     @ApiOperation("获得用户分页列表")
-    public CommonResult<PageResult<UserPageItemRespVO>> getUserPage(@Valid UserPageQueryRequestVo requestVo){
+    public CommonResult<PageResult<UserPageItemRespVO>> getUserPage(@Valid UserPageQueryRequestVo requestVo) {
         // 获得用户分页列表
         PageResult<UserDO> pageResult = userService.selectUserList(requestVo);
-        if(CollectionUtils.isEmpty(pageResult.getList())){
+        if (CollectionUtils.isEmpty(pageResult.getList())) {
             return success(new PageResult<>(pageResult.getTotal()));
         }
         // 获取用户其他信息
         List<UserPageItemRespVO> userList = new ArrayList<>(pageResult.getList().size());
         pageResult.getList().forEach(userInfo -> {
             UserPageItemRespVO userPageItemRespVO = new UserPageItemRespVO();
-            BeanUtil.copyProperties(userInfo,userPageItemRespVO);
+            BeanUtil.copyProperties(userInfo, userPageItemRespVO);
             // 获取用户所有部门信息
-            List<DeptDO> userDeptList =  userDeptService.selectDeptInfoByUserId(userInfo.getId());
+            List<DeptDO> userDeptList = userDeptService.selectDeptInfoByUserId(userInfo.getId());
             userPageItemRespVO.setDeptList(userDeptList);
             // 获取用户所有岗位信息
-            List<PostDO> userPostList =  userPostService.selectPostInfoByUserId(userInfo.getId());
+            List<PostDO> userPostList = userPostService.selectPostInfoByUserId(userInfo.getId());
             userPageItemRespVO.setPostList(userPostList);
             userList.add(userPageItemRespVO);
         });
@@ -82,7 +79,6 @@ public class UserController {
     @PostMapping("/create")
     @ApiOperation("新增用户")
     public CommonResult<Long> createUser(@Valid @RequestBody UserCreateReqVO reqVO) {
-        Long id = userService.createUser(reqVO);
-        return success(id);
+        return success(userService.createUser(reqVO));
     }
 }

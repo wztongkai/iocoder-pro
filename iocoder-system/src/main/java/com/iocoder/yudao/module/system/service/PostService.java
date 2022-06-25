@@ -24,11 +24,12 @@ public interface PostService extends IService<PostDO> {
 
     /**
      * 查询岗位信息集合
+     *
      * @param postId 岗位编号集合
      * @return 岗位信息集合
      */
-    default List<PostDO> getPostInfoMap(Set<Long> postId){
-        if(CollectionUtils.isEmpty(postId)){
+    default List<PostDO> getPostInfoMap(Set<Long> postId) {
+        if (CollectionUtils.isEmpty(postId)) {
             return Collections.emptyList();
         }
         return getSimplePostInfos(postId);
@@ -36,8 +37,16 @@ public interface PostService extends IService<PostDO> {
 
     /**
      * 查询岗位信息集合
+     *
      * @param postId 岗位编号集合
      * @return 岗位信息集合
      */
     List<PostDO> getSimplePostInfos(Set<Long> postId);
+
+    /**
+     * 校验岗位是否处于开启状态
+     *
+     * @param postIds 岗位编号集合
+     */
+    void validPosts(List<Long> postIds);
 }

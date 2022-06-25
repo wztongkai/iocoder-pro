@@ -28,6 +28,9 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  # 允许循环依赖
+  main:
+    allow-circular-references: true
 
   application:
     name: iocoder

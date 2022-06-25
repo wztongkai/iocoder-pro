@@ -9,6 +9,7 @@ import com.iocoder.yudao.module.system.mapper.UserPostMapper;
 import com.iocoder.yudao.module.system.service.PostService;
 import com.iocoder.yudao.module.system.service.UserPostService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ import java.util.Set;
  * @since 2022-06-22
  */
 @Service
+@Slf4j
 public class UserPostServiceImpl extends ServiceImpl<UserPostMapper, UserPostDO> implements UserPostService {
 
     @Resource
@@ -39,7 +41,7 @@ public class UserPostServiceImpl extends ServiceImpl<UserPostMapper, UserPostDO>
                 .eqIfPresent(UserPostDO::getUserId, userId)
                 .orderByDesc(UserPostDO::getCreateTime)
         );
-        if(CollectionUtils.isEmpty(userPostList)){
+        if (CollectionUtils.isEmpty(userPostList)) {
             return Collections.emptyList();
         }
         // 获取岗位编号集合

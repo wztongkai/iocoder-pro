@@ -19,6 +19,7 @@ public interface UserPostService extends IService<UserPostDO> {
 
     /**
      * 查询用户的岗位信息集合
+     *
      * @param userId 用户编号
      * @return 用户岗位信息集合
      */

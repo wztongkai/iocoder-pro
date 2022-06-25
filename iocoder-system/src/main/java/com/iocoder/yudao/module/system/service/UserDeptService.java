@@ -18,6 +18,7 @@ public interface UserDeptService extends IService<UserDeptDO> {
 
     /**
      * 查询用户的部门信息集合
+     *
      * @param userId 用户编号
      * @return 用户部门信息集合
      */

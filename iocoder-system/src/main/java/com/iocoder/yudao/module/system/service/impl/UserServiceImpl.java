@@ -1,22 +1,38 @@
 package com.iocoder.yudao.module.system.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
+import com.iocoder.yudao.module.commons.enums.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
+import com.iocoder.yudao.module.commons.utils.BeanUtil;
+import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
+import com.iocoder.yudao.module.system.domain.UserDeptDO;
+import com.iocoder.yudao.module.system.domain.UserPostDO;
+import com.iocoder.yudao.module.system.mapper.UserDeptMapper;
 import com.iocoder.yudao.module.system.mapper.UserMapper;
-import com.iocoder.yudao.module.system.service.DeptService;
-import com.iocoder.yudao.module.system.service.UserService;
+import com.iocoder.yudao.module.system.mapper.UserPostMapper;
+import com.iocoder.yudao.module.system.service.*;
 import com.iocoder.yudao.module.system.vo.user.UserCreateReqVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
-import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.UserErrorCode.USER_NOT_EXISTS;
+import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.UserErrorCode.*;
 
 /**
  * <p>
@@ -27,10 +43,23 @@ import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.UserE
  * @since 2022-06-22
  */
 @Service
+@Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements UserService {
 
     @Resource
     DeptService deptService;
+
+    @Resource
+    PostService postService;
+
+    @Resource
+    PasswordEncoder passwordEncoder;
+
+    @Resource
+    UserDeptService userDeptService;
+
+    @Resource
+    UserPostService userPostService;
 
     @Override
     public PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
@@ -48,27 +77,132 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Long createUser(UserCreateReqVO reqVO) {
-        checkCreateOrUpdate(null,reqVO.getUsername(),reqVO.getMobile());
-        return null;
+        // 参数校验
+        checkCreateOrUpdate(null, reqVO.getUsername(), reqVO.getMobile(), reqVO.getEmail(), reqVO.getDeptIds(),
+                reqVO.getPostIds());
+        // 插入用户基本信息
+        UserDO userDO = new UserDO();
+        BeanUtil.copyProperties(reqVO, userDO);
+        userDO.setStatus(CommonStatusEnum.ENABLE.getStatus());
+        userDO.setPassword(passwordEncoder.encode(reqVO.getPassword()));
+        baseMapper.insert(userDO);
+        // 插入部门信息
+        if (CollectionUtils.isNotEmpty(reqVO.getDeptIds())) {
+            reqVO.getDeptIds().forEach(deptId -> {
+                userDeptService.save(new UserDeptDO().setUserId(userDO.getId()).setDeptId(deptId));
+            });
+        }
+        // 插入岗位信息
+        if (CollectionUtils.isNotEmpty(reqVO.getPostIds())) {
+            reqVO.getPostIds().forEach(postId -> {
+                userPostService.save(new UserPostDO().setUserId(userDO.getId()).setPostId(postId));
+            });
+        }
+        return userDO.getId();
     }
 
-    private void checkCreateOrUpdate(Long id, String username, String mobile) {
+    private void checkCreateOrUpdate(Long id, String username,
+                                     String mobile,
+                                     @Email(message = "邮箱格式不正确") @Size(max = 50, message = "邮箱长度不能超过 50 个字符") String email,
+                                     List<Long> deptIds, List<Long> postIds
+    ) {
         // 校验用户是否存在
         checkUserIdExist(id);
+        // 校验用户名是否唯一
+        checkUsernameUnique(id, username);
+        // 校验手机号唯一
+        checkMobileUnique(id, mobile);
+        // 校验邮箱唯一
+        checkEmailUnique(id, email);
+        // 校验部门是否开启
+        deptService.validDepts(deptIds);
+        // 校验岗位是否开启
+        postService.validPosts(postIds);
     }
 
     /**
      * 校验用户是否存在
-     * @param id
+     *
+     * @param id 用户编号
      */
-    private void checkUserIdExist(Long id) {
-        if(id == null){
+    public void checkUserIdExist(Long id) {
+        if (id == null) {
             return;
         }
         UserDO userDO = baseMapper.selectById(id);
-        if(ObjectUtils.isEmpty(userDO)){
+        if (ObjectUtils.isEmpty(userDO)) {
             throw ServiceExceptionUtil.exception(USER_NOT_EXISTS);
+        }
+    }
+
+    /**
+     * 校验用户名是否唯一
+     *
+     * @param id       用户编号
+     * @param username 用户名
+     */
+    public void checkUsernameUnique(Long id, String username) {
+        if (StringUtils.isBlank(username)) {
+            return;
+        }
+        UserDO user = baseMapper.selectOne(new LambdaQueryWrapperX<UserDO>()
+                .eqIfPresent(UserDO::getUsername, username)
+                .orderByDesc(UserDO::getCreateTime)
+                .last("limit 1")
+        );
+        if (ObjectUtils.isEmpty(user)) {
+            return;
+        }
+        if (!user.getId().equals(id)) {
+            throw ServiceExceptionUtil.exception(USER_USERNAME_EXISTS);
+        }
+    }
+
+    /**
+     * 校验手机号是否唯一
+     *
+     * @param id     用户编号
+     * @param mobile 手机号
+     */
+    public void checkMobileUnique(Long id, String mobile) {
+        if (StringUtils.isBlank(mobile)) {
+            return;
+        }
+        UserDO user = baseMapper.selectOne(new LambdaQueryWrapperX<UserDO>()
+                .eqIfPresent(UserDO::getMobile, mobile)
+                .orderByDesc(UserDO::getCreateTime)
+                .last("limit 1")
+        );
+        if (ObjectUtils.isEmpty(user)) {
+            return;
+        }
+        if (!user.getId().equals(id)) {
+            throw ServiceExceptionUtil.exception(USER_MOBILE_EXISTS);
+        }
+    }
+
+    /**
+     * 校验邮箱是否唯一
+     *
+     * @param id    用户编号
+     * @param email 邮箱
+     */
+    public void checkEmailUnique(Long id, String email) {
+        if (StringUtils.isBlank(email)) {
+            return;
+        }
+        UserDO user = baseMapper.selectOne(new LambdaQueryWrapperX<UserDO>()
+                .eqIfPresent(UserDO::getEmail, email)
+                .orderByDesc(UserDO::getCreateTime)
+                .last("limit 1")
+        );
+        if (ObjectUtils.isEmpty(user)) {
+            return;
+        }
+        if (!user.getId().equals(id)) {
+            throw ServiceExceptionUtil.exception(USER_EMAIL_EXISTS);
         }
     }
 

@@ -44,4 +44,10 @@ public interface DeptService extends IService<DeptDO> {
      * @return 部门Map
      */
     List<DeptDO> getSimpleDepts(Collection<Long> deptIds);
+
+    /**
+     * 校验部门状态是否喂已开启
+     * @param deptIds 部门编号集合
+     */
+    void validDepts(List<Long> deptIds);
 }
