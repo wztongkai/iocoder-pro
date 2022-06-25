@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
  * 用户信息表
  * </p>
  * 使用MP  JsonLongSetTypeHandler转换器时，tablename中必须加上autoResultMap = true  否则查询时该字段为空
+ *
  * @author wu kai
  * @since 2022-06-22
  */
@@ -46,9 +47,6 @@ public class UserDO extends BaseEntity {
     @ApiModelProperty("部门ID")
     @TableField("dept_id")
     private Long deptId;
-
-    @ApiModelProperty("岗位编号数组")
-    private String postIds;
 
     @ApiModelProperty("用户邮箱")
     @TableField("email")

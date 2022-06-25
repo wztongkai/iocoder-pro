@@ -8,8 +8,10 @@ import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
+import com.iocoder.yudao.module.system.mapper.UserPostMapper;
 import com.iocoder.yudao.module.system.service.DeptService;
 import com.iocoder.yudao.module.system.service.PostService;
+import com.iocoder.yudao.module.system.service.UserPostService;
 import com.iocoder.yudao.module.system.service.UserService;
 import com.iocoder.yudao.module.system.vo.user.UserCreateReqVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageItemRespVO;
@@ -50,7 +52,8 @@ public class UserController {
     DeptService deptService;
 
     @Resource
-    PostService postService;
+    UserPostService userPostService;
+
 
     @GetMapping("/getUserPage")
     @ApiOperation("获得用户分页列表")
@@ -72,9 +75,9 @@ public class UserController {
             DeptDO deptDO = deptInfoMap.get(userInfo.getDeptId());
             BeanUtil.copyProperties(deptDO,uDept);
             userPageItemRespVO.setDept(uDept);
-            String[] postIds = userInfo.getPostIds().split(",");
-            List<PostDO> postList = postService.getSimplePosts(postIds);
-            userPageItemRespVO.setPostList(postList);
+            // 获取用户所有岗位信息
+            List<PostDO> userPostList =  userPostService.selectPostInfoByUserId(userInfo.getId());
+            userPageItemRespVO.setPostList(userPostList);
             userList.add(userPageItemRespVO);
         });
         return success(new PageResult<>(userList, pageResult.getTotal()));

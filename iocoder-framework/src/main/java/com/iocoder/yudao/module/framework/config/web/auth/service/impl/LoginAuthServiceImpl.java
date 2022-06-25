@@ -5,6 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
+import com.iocoder.yudao.module.commons.core.domain.PostVo;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.core.redis.RedisCache;
 import com.iocoder.yudao.module.commons.enums.CommonStatusEnum;
@@ -14,6 +15,7 @@ import com.iocoder.yudao.module.commons.enums.UserTypeEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceException;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.exception.UserPasswordNotMatchException;
+import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.SecurityUtils;
 import com.iocoder.yudao.module.commons.utils.ServletUtils;
 import com.iocoder.yudao.module.commons.utils.monitor.TracerUtils;
@@ -25,7 +27,9 @@ import com.iocoder.yudao.module.framework.config.web.auth.service.LoginAuthServi
 import com.iocoder.yudao.module.framework.config.web.auth.service.LoginLogService;
 import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
 import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
+import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.service.PostService;
+import com.iocoder.yudao.module.system.service.UserPostService;
 import com.iocoder.yudao.module.system.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,6 +40,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.validation.Validator;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.AuthCode.*;
@@ -65,7 +71,7 @@ public class LoginAuthServiceImpl implements LoginAuthService {
     UserService userService;
 
     @Resource
-    PostService postService;
+    UserPostService userPostService;
 
     @Resource
     AuthenticationManager authenticationManager;
@@ -171,12 +177,16 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         }
         // 插入登陆日志
         this.createLoginLog(userId, username, LoginLogTypeEnum.LOGIN_USERNAME, LoginResultEnum.SUCCESS);
-
+        // 获取用户信息
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
-
-        // 构建返回结果
+        // 获取用户岗位信息
+        List<PostDO> userPostList = userPostService.selectPostInfoByUserId(loginUser.getUserId());
+        List<PostVo> postInfoList = new ArrayList<>();
+        BeanUtil.copyListProperties(userPostList, postInfoList, PostVo.class);
+        loginUser.setPostVoList(postInfoList);
+        // 创建token
         String token = jwtTokenService.createToken(loginUser);
-
+        // 构建返回结果
         return AuthLoginRespVO.builder().userId(userId).accessToken(token).refreshToken(IdUtil.fastSimpleUUID()).build();
     }
 

@@ -2,6 +2,7 @@ package com.iocoder.yudao.module.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
+import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.mapper.PostMapper;
 import com.iocoder.yudao.module.system.service.PostService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -22,14 +24,14 @@ import java.util.List;
 @Service
 public class PostServiceImpl extends ServiceImpl<PostMapper, PostDO> implements PostService {
 
+
     @Override
-    public List<PostDO> getSimplePosts(String[] postIds) {
-        List<PostDO> doList = baseMapper.selectList(new LambdaQueryWrapperX<PostDO>()
-                .inIfPresent(PostDO::getId,postIds)
-        );
-        if(CollectionUtils.isEmpty(doList)){
+    public List<PostDO> getSimplePostInfos(Set<Long> postId) {
+        // 根据岗位编号批量获取岗位信息集合
+        List<PostDO> postList = baseMapper.selectBatchIds(postId);
+        if(CollectionUtils.isEmpty(postList)){
             return Collections.emptyList();
         }
-        return doList;
+        return postList;
     }
 }
