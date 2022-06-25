@@ -31,12 +31,11 @@ public interface DeptService extends IService<DeptDO> {
      * @param deptIds 部门编号数组
      * @return 部门信息Map
      */
-    default Map<Long, DeptDO> getDeptInfoMap(Collection<Long> deptIds){
+    default List<DeptDO> getDeptInfoMap(Collection<Long> deptIds){
         if(CollectionUtils.isEmpty(deptIds)){
-            return Collections.emptyMap();
+            return Collections.emptyList();
         }
-        List<DeptDO> deptInfoList = getSimpleDepts(deptIds);
-        return CollConvertUtils.convertMap(deptInfoList,DeptDO::getId);
+        return getSimpleDepts(deptIds);
     }
 
     /**

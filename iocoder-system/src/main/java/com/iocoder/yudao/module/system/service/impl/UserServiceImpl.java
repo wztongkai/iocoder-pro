@@ -35,7 +35,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     @Override
     public PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
 
-        return baseMapper.selectUserList(requestVo, deptService.getDeptCondition(requestVo.getDeptId()));
+        return baseMapper.selectUserList(requestVo);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.iocoder.yudao.module.commons.core.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 岗位信息表
+ *
  * </p>
  *
  * @author wu kai
@@ -18,29 +19,37 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-public class PostVo extends BaseEntity {
+public class DeptVo extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("岗位编码")
-    @TableField("code")
-    private String code;
-
-    @ApiModelProperty("岗位名称")
+    @ApiModelProperty("部门名称")
     @TableField("name")
     private String name;
+
+    @ApiModelProperty("父部门id")
+    @TableField("parent_id")
+    private Long parentId;
 
     @ApiModelProperty("显示顺序")
     @TableField("sort")
     private Integer sort;
 
-    @ApiModelProperty("状态（0正常 1停用）")
+    @ApiModelProperty("负责人")
+    @TableField("leader_user_id")
+    private Long leaderUserId;
+
+    @ApiModelProperty("联系电话")
+    @TableField("phone")
+    private String phone;
+
+    @ApiModelProperty("邮箱")
+    @TableField("email")
+    private String email;
+
+    @ApiModelProperty("部门状态（0正常 1停用）")
     @TableField("status")
     private Integer status;
-
-    @ApiModelProperty("备注")
-    @TableField("remark")
-    private String remark;
 
 
 }

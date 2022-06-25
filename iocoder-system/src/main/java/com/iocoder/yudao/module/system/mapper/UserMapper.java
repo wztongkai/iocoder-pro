@@ -20,14 +20,13 @@ import java.util.Set;
 @Mapper
 public interface UserMapper extends BaseMapperX<UserDO> {
 
-    default PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo, Set<Long> deptIds) {
+    default PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
 
         return selectPage(requestVo, new LambdaQueryWrapperX<UserDO>()
                 .likeIfPresent(UserDO::getUsername, requestVo.getUsername())
                 .likeIfPresent(UserDO::getMobile, requestVo.getMobile())
                 .eqIfPresent(UserDO::getStatus, requestVo.getStatus())
                 .betweenIfPresent(UserDO::getCreateTime, requestVo.getBeginTime(), requestVo.getEndTime())
-                .inIfPresent(UserDO::getDeptId, deptIds)
                 .orderByDesc(UserDO::getCreateTime)
         );
     }

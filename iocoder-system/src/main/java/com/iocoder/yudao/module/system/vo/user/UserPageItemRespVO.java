@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.system.vo.user;
 
+import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,22 +18,9 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class UserPageItemRespVO extends UserRespVO {
 
-    /**
-     * 所在部门
-     */
-    private DeptDO dept;
+    @ApiModelProperty(value = "部门信息列表")
+    private List<DeptDO> deptList;
 
-    @ApiModel("部门")
-    @Data
-    public static class DeptDO {
-
-        @ApiModelProperty(value = "部门编号", required = true, example = "1")
-        private Long id;
-
-        @ApiModelProperty(value = "部门名称", required = true, example = "研发部")
-        private String name;
-
-    }
     @ApiModelProperty(value = "岗位信息列表")
     private List<PostDO> postList;
 

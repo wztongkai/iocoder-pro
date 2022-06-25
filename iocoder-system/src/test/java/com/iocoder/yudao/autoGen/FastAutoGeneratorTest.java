@@ -28,13 +28,13 @@ public class FastAutoGeneratorTest {
         // 业务模块名
         String modelName = "system";
         // 表名
-        String[] tableNames = {"system_dept", "system_post", "system_role", "system_user", "system_user_post", "system_user_role", "system_login_log", "system_operate_log"};
+        String[] tableNames = {"system_user_dept"};
 
         // 数据库连接信息
         String jdbcUrl = "jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone" +
                 "=GMT&useSSL=false";
         String username = "root";
-        String password = "123456";
+        String password = "";
         // 作者信息
         String author = "wu kai";
 
@@ -42,7 +42,7 @@ public class FastAutoGeneratorTest {
         // controller 和 mapperXml 的生成路径
         HashMap<OutputFile, String> pathMap = new HashMap<>();
         pathMap.put(OutputFile.mapperXml,projectPath+"/"+GlobalModelName+"/src/main/resources/mapper/"+modelName);
-        pathMap.put(OutputFile.controller,projectPath+"/"+ApiModelName+"/src/main/java/com/iocoder/yudao/module/system/api/controller");
+        pathMap.put(OutputFile.controller,projectPath+"/"+ApiModelName+"/src/main/java/com/iocoder/yudao/module/system/api");
         // 生成策略配置
         FastAutoGenerator.create(jdbcUrl, username, password)
                 .globalConfig(builder -> {

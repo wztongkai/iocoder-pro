@@ -44,10 +44,6 @@ public class UserDO extends BaseEntity {
     @TableField("remark")
     private String remark;
 
-    @ApiModelProperty("部门ID")
-    @TableField("dept_id")
-    private Long deptId;
-
     @ApiModelProperty("用户邮箱")
     @TableField("email")
     private String email;

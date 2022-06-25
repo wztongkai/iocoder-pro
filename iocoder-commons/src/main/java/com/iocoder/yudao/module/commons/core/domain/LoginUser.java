@@ -23,11 +23,6 @@ public class LoginUser implements UserDetails {
     private Long userId;
 
     /**
-     * 部门ID
-     */
-    private Long deptId;
-
-    /**
      * 用户唯一标识
      */
     private String token;
@@ -73,6 +68,11 @@ public class LoginUser implements UserDetails {
     private List<PostVo> postVoList;
 
     /**
+     * 部门信息列表
+     */
+    private List<DeptVo> deptVoList;
+
+    /**
      * 用户信息
      */
     private UserDO user;
@@ -80,9 +80,8 @@ public class LoginUser implements UserDetails {
     public LoginUser() {
     }
 
-    public LoginUser(Long userId, Long deptId, UserDO userDO) {
+    public LoginUser(Long userId, UserDO userDO) {
         this.userId = userId;
-        this.deptId = deptId;
         this.user = userDO;
     }
 

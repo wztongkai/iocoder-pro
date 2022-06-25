@@ -37,6 +37,7 @@ public class UserPostServiceImpl extends ServiceImpl<UserPostMapper, UserPostDO>
         // 根据用户编号查询用户岗位信息
         List<UserPostDO> userPostList = baseMapper.selectList(new LambdaQueryWrapperX<UserPostDO>()
                 .eqIfPresent(UserPostDO::getUserId, userId)
+                .orderByDesc(UserPostDO::getCreateTime)
         );
         if(CollectionUtils.isEmpty(userPostList)){
             return Collections.emptyList();

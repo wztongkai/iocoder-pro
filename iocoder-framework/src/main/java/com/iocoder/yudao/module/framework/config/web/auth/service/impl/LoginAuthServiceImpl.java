@@ -4,6 +4,7 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
+import com.iocoder.yudao.module.commons.core.domain.DeptVo;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
 import com.iocoder.yudao.module.commons.core.domain.PostVo;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
@@ -27,8 +28,10 @@ import com.iocoder.yudao.module.framework.config.web.auth.service.LoginAuthServi
 import com.iocoder.yudao.module.framework.config.web.auth.service.LoginLogService;
 import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
 import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
+import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.service.PostService;
+import com.iocoder.yudao.module.system.service.UserDeptService;
 import com.iocoder.yudao.module.system.service.UserPostService;
 import com.iocoder.yudao.module.system.service.UserService;
 import org.apache.commons.lang3.StringUtils;
@@ -72,6 +75,9 @@ public class LoginAuthServiceImpl implements LoginAuthService {
 
     @Resource
     UserPostService userPostService;
+
+    @Resource
+    UserDeptService userDeptService;
 
     @Resource
     AuthenticationManager authenticationManager;
@@ -177,8 +183,13 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         }
         // 插入登陆日志
         this.createLoginLog(userId, username, LoginLogTypeEnum.LOGIN_USERNAME, LoginResultEnum.SUCCESS);
-        // 获取用户信息
+        // 获取用户基本信息
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+        // 获取用户部门信息
+        List<DeptDO> userDeptList = userDeptService.selectDeptInfoByUserId(loginUser.getUserId());
+        List<DeptVo> deptInfoList = new ArrayList<>();
+        BeanUtil.copyListProperties(userDeptList, deptInfoList, DeptVo.class);
+        loginUser.setDeptVoList(deptInfoList);
         // 获取用户岗位信息
         List<PostDO> userPostList = userPostService.selectPostInfoByUserId(loginUser.getUserId());
         List<PostVo> postInfoList = new ArrayList<>();

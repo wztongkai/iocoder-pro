@@ -38,11 +38,11 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
 
     @Override
     public List<DeptDO> getSimpleDepts(Collection<Long> deptIds) {
-        List<DeptDO> batchIds = baseMapper.selectBatchIds(deptIds);
-        if(CollectionUtils.isEmpty(batchIds)){
+        List<DeptDO> deptInfoList = baseMapper.selectBatchIds(deptIds);
+        if(CollectionUtils.isEmpty(deptInfoList)){
             return Collections.emptyList();
         }
-        return batchIds;
+        return deptInfoList;
     }
 
     /**

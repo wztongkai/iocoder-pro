@@ -9,10 +9,7 @@ import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.mapper.UserPostMapper;
-import com.iocoder.yudao.module.system.service.DeptService;
-import com.iocoder.yudao.module.system.service.PostService;
-import com.iocoder.yudao.module.system.service.UserPostService;
-import com.iocoder.yudao.module.system.service.UserService;
+import com.iocoder.yudao.module.system.service.*;
 import com.iocoder.yudao.module.system.vo.user.UserCreateReqVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageItemRespVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
@@ -54,6 +51,9 @@ public class UserController {
     @Resource
     UserPostService userPostService;
 
+    @Resource
+    UserDeptService userDeptService;
+
 
     @GetMapping("/getUserPage")
     @ApiOperation("获得用户分页列表")
@@ -63,18 +63,14 @@ public class UserController {
         if(CollectionUtils.isEmpty(pageResult.getList())){
             return success(new PageResult<>(pageResult.getTotal()));
         }
-        // 获取所有部门id
-        Collection<Long> deptIds = CollConvertUtils.convertSet(pageResult.getList(), UserDO::getDeptId);
-        // 获取部门信息
-        Map<Long,DeptDO> deptInfoMap = deptService.getDeptInfoMap(deptIds);
+        // 获取用户其他信息
         List<UserPageItemRespVO> userList = new ArrayList<>(pageResult.getList().size());
         pageResult.getList().forEach(userInfo -> {
             UserPageItemRespVO userPageItemRespVO = new UserPageItemRespVO();
             BeanUtil.copyProperties(userInfo,userPageItemRespVO);
-            UserPageItemRespVO.DeptDO uDept = new UserPageItemRespVO.DeptDO();
-            DeptDO deptDO = deptInfoMap.get(userInfo.getDeptId());
-            BeanUtil.copyProperties(deptDO,uDept);
-            userPageItemRespVO.setDept(uDept);
+            // 获取用户所有部门信息
+            List<DeptDO> userDeptList =  userDeptService.selectDeptInfoByUserId(userInfo.getId());
+            userPageItemRespVO.setDeptList(userDeptList);
             // 获取用户所有岗位信息
             List<PostDO> userPostList =  userPostService.selectPostInfoByUserId(userInfo.getId());
             userPageItemRespVO.setPostList(userPostList);

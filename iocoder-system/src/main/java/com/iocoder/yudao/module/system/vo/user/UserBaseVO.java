@@ -28,14 +28,6 @@ public class UserBaseVO {
     @ApiModelProperty(value = "备注")
     private String remark;
 
-    @ApiModelProperty(value = "部门ID")
-    private Long deptId;
-
-    @ApiModelProperty(value = "岗位编号数组", example = "1")
-    private String[] postIds;
-
-
-
     @ApiModelProperty(value = "用户邮箱", example = "2580211264@qq.com")
     @Email(message = "邮箱格式不正确")
     @Size(max = 50, message = "邮箱长度不能超过 50 个字符")

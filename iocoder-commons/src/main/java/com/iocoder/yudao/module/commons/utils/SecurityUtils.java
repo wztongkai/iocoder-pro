@@ -1,12 +1,15 @@
 package com.iocoder.yudao.module.commons.utils;
 
 
+import com.iocoder.yudao.module.commons.core.domain.DeptVo;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
 import com.iocoder.yudao.module.commons.exception.ServiceException;
 import com.iocoder.yudao.module.commons.utils.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.List;
 
 /**
  * @Author: kai wu
@@ -25,11 +28,11 @@ public class SecurityUtils {
     }
 
     /**
-     * 获取部门ID
+     * 获取部门编号数组
      **/
-    public static Long getDeptId() {
+    public static List<DeptVo> getDeptId() {
         try {
-            return getLoginUser().getDeptId();
+            return getLoginUser().getDeptVoList();
         } catch (Exception e) {
             throw new ServiceException("获取部门ID异常", HttpStatus.UNAUTHORIZED);
         }
