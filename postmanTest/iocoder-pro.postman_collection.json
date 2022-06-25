@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "9fa1792c-cfb5-4d89-bf1b-82e6d6c8fd46",
+		"name": "iocoder-pro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12538427"
+	},
+	"item": [
+		{
+			"name": "登录",
+			"item": [
+				{
+					"name": "生成验证码",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/captchaImage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"captchaImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "登录获取token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin123\",\r\n    \"code\":\"40\",\r\n    \"uuid\":\"2320d60d3f4d404f8ae6e06fa2633f14\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "用户管理",
+			"item": [
+				{
+					"name": "获取用户列表",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3NzY5YWE1LWFiZWMtNGUwOS1iNzlhLTg4OTRlOGY1NWRkMCJ9.GbWc54IUzJXQ4yZQA9rGpz2YEBHpU1R-mrVc49AiyMe4Yxx6Ggj6Ccyqz9IBDBVG1DRkVBcNc4B1a653RJs61w",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"\",\r\n    \"mobile\":\"\",\r\n    \"status\":\"\",\r\n    \"beginTime\":\"\",\r\n    \"endTime\":\"\",\r\n    \"deptId\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/system/user/getUserPage",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"getUserPage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "新增用户",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3NzY5YWE1LWFiZWMtNGUwOS1iNzlhLTg4OTRlOGY1NWRkMCJ9.GbWc54IUzJXQ4yZQA9rGpz2YEBHpU1R-mrVc49AiyMe4Yxx6Ggj6Ccyqz9IBDBVG1DRkVBcNc4B1a653RJs61w",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"ztongkai\",\r\n    \"nickname\":\"吴凯\",\r\n    \"email\":\"2580211264@qq.com\",\r\n    \"mobile\":\"13121022995\",\r\n    \"sex\":1,\r\n    \"avatar\":\"\",\r\n    \"password\":\"123456\",\r\n    \"deptIds\":[100],\r\n    \"postIds\":[1]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/system/user/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "编辑用户",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3NzY5YWE1LWFiZWMtNGUwOS1iNzlhLTg4OTRlOGY1NWRkMCJ9.GbWc54IUzJXQ4yZQA9rGpz2YEBHpU1R-mrVc49AiyMe4Yxx6Ggj6Ccyqz9IBDBVG1DRkVBcNc4B1a653RJs61w",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"1540614322441457665\",\r\n    \"username\":\"ztongkai\",\r\n    \"nickname\":\"吴凯\",\r\n    \"email\":\"2580211264@qq.com\",\r\n    \"mobile\":\"13121022995\",\r\n    \"sex\":1,\r\n    \"avatar\":\"\",\r\n    \"deptIds\":[100,101,102],\r\n    \"postIds\":[1,2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/system/user/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除用户",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3NzY5YWE1LWFiZWMtNGUwOS1iNzlhLTg4OTRlOGY1NWRkMCJ9.GbWc54IUzJXQ4yZQA9rGpz2YEBHpU1R-mrVc49AiyMe4Yxx6Ggj6Ccyqz9IBDBVG1DRkVBcNc4B1a653RJs61w",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/system/user/delete?id=1540614322441457665",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1540614322441457665"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改用户密码",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3NzY5YWE1LWFiZWMtNGUwOS1iNzlhLTg4OTRlOGY1NWRkMCJ9.GbWc54IUzJXQ4yZQA9rGpz2YEBHpU1R-mrVc49AiyMe4Yxx6Ggj6Ccyqz9IBDBVG1DRkVBcNc4B1a653RJs61w",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"1540614322441457665\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/system/user/update-password",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改用户状态",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3NzY5YWE1LWFiZWMtNGUwOS1iNzlhLTg4OTRlOGY1NWRkMCJ9.GbWc54IUzJXQ4yZQA9rGpz2YEBHpU1R-mrVc49AiyMe4Yxx6Ggj6Ccyqz9IBDBVG1DRkVBcNc4B1a653RJs61w",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"1540614322441457665\",\n    \"status\":0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/system/user/update-status",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"update-status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户精简信息列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3NzY5YWE1LWFiZWMtNGUwOS1iNzlhLTg4OTRlOGY1NWRkMCJ9.GbWc54IUzJXQ4yZQA9rGpz2YEBHpU1R-mrVc49AiyMe4Yxx6Ggj6Ccyqz9IBDBVG1DRkVBcNc4B1a653RJs61w",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/system/user/list-all-simple",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"list-all-simple"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获得用户详情",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3NzY5YWE1LWFiZWMtNGUwOS1iNzlhLTg4OTRlOGY1NWRkMCJ9.GbWc54IUzJXQ4yZQA9rGpz2YEBHpU1R-mrVc49AiyMe4Yxx6Ggj6Ccyqz9IBDBVG1DRkVBcNc4B1a653RJs61w",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/system/user/getUserInfo?id=1540614322441457665",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"getUserInfo"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1540614322441457665"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
