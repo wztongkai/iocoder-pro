@@ -1,6 +1,6 @@
 package com.iocoder.yudao.module.system.service.impl;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
@@ -12,12 +12,11 @@ import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.UserDeptDO;
 import com.iocoder.yudao.module.system.domain.UserPostDO;
-import com.iocoder.yudao.module.system.mapper.UserDeptMapper;
 import com.iocoder.yudao.module.system.mapper.UserMapper;
-import com.iocoder.yudao.module.system.mapper.UserPostMapper;
 import com.iocoder.yudao.module.system.service.*;
 import com.iocoder.yudao.module.system.vo.user.UserCreateReqVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
+import com.iocoder.yudao.module.system.vo.user.UserUpdateReqVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
@@ -30,7 +29,11 @@ import javax.annotation.Resource;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.UserErrorCode.*;
 
@@ -101,6 +104,80 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
             });
         }
         return userDO.getId();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateUser(UserUpdateReqVO reqVO) {
+        // 参数校验
+        checkCreateOrUpdate(reqVO.getId(), reqVO.getUsername(), reqVO.getMobile(), reqVO.getEmail(), reqVO.getDeptIds(),
+                reqVO.getPostIds());
+
+        // 修改用户基本信息
+        UserDO userDO = new UserDO();
+        BeanUtil.copyProperties(reqVO, userDO);
+        baseMapper.updateById(userDO);
+        // 修改用户部门信息
+        updateUserDeptInfo(reqVO);
+        // 修改用户岗位信息
+        updateUserPostInfo(reqVO);
+    }
+
+
+    /**
+     * 修改用户部门信息
+     *
+     * @param reqVO 用户信息
+     */
+    private void updateUserDeptInfo(UserUpdateReqVO reqVO) {
+
+        Set<Long> dbDeptIds = CollConvertUtils.convertSet(userDeptService.selectUserDeptListByUserId(reqVO.getId()),
+                UserDeptDO::getDeptId);
+        // 计算新增和删除的部门编号
+        Set<Long> deptIds = reqVO.getDeptIds().stream().filter(Objects::nonNull).collect(Collectors.toSet());
+        Collection<Long> createDeptIds = CollUtil.subtract(deptIds, dbDeptIds);
+        Collection<Long> deleteDeptIds = CollUtil.subtract(dbDeptIds, deptIds);
+        // 执行新增和删除
+        if (CollectionUtils.isNotEmpty(createDeptIds)) {
+            createDeptIds.forEach(deptId -> {
+                userDeptService.save(new UserDeptDO().setUserId(reqVO.getId()).setDeptId(deptId));
+            });
+        }
+        if (CollectionUtils.isNotEmpty(deleteDeptIds)) {
+            deleteDeptIds.forEach(deptId -> {
+                userDeptService.remove(new LambdaUpdateWrapper<UserDeptDO>()
+                        .eq(UserDeptDO::getUserId, reqVO.getId())
+                        .in(UserDeptDO::getDeptId, deptId)
+                );
+            });
+        }
+    }
+
+    /**
+     * 修改用户岗位信息
+     * @param reqVO 用户信息
+     */
+    private void updateUserPostInfo(UserUpdateReqVO reqVO) {
+        Set<Long> dbPostIds = CollConvertUtils.convertSet(userPostService.selectUserPostListByUserId(reqVO.getId()),
+                UserPostDO::getPostId);
+        // 计算新增和删除的岗位编号
+        Set<Long> postIds = reqVO.getPostIds().stream().filter(Objects::nonNull).collect(Collectors.toSet());
+        Collection<Long> createPostIds = CollUtil.subtract(postIds, dbPostIds);
+        Collection<Long> deletePostIds = CollUtil.subtract(dbPostIds, postIds);
+        // 执行新增和删除
+        if (CollectionUtils.isNotEmpty(createPostIds)) {
+            createPostIds.forEach(postId -> {
+                userPostService.save(new UserPostDO().setUserId(reqVO.getId()).setPostId(postId));
+            });
+        }
+        if (CollectionUtils.isNotEmpty(deletePostIds)) {
+            deletePostIds.forEach(deptId -> {
+                userPostService.remove(new LambdaUpdateWrapper<UserPostDO>()
+                        .eq(UserPostDO::getUserId, reqVO.getId())
+                        .in(UserPostDO::getPostId, deptId)
+                );
+            });
+        }
     }
 
     private void checkCreateOrUpdate(Long id, String username,

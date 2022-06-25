@@ -1,14 +1,13 @@
 package com.iocoder.yudao.module.system.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.UserDeptDO;
-import com.iocoder.yudao.module.system.domain.UserPostDO;
 import com.iocoder.yudao.module.system.mapper.UserDeptMapper;
 import com.iocoder.yudao.module.system.service.DeptService;
 import com.iocoder.yudao.module.system.service.UserDeptService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -47,5 +46,12 @@ public class UserDeptServiceImpl extends ServiceImpl<UserDeptMapper, UserDeptDO>
         Set<Long> deptId = CollConvertUtils.convertSet(userDeptList, UserDeptDO::getDeptId);
         // 根据部门编号集合获取对应的部门信息
         return deptService.getDeptInfoMap(deptId);
+    }
+
+    @Override
+    public List<UserDeptDO> selectUserDeptListByUserId(Long userId) {
+        return baseMapper.selectList(new LambdaQueryWrapperX<UserDeptDO>()
+                .eqIfPresent(UserDeptDO::getUserId, userId)
+        );
     }
 }

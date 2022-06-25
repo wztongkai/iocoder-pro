@@ -1,11 +1,10 @@
 package com.iocoder.yudao.module.system.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.domain.UserPostDO;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -24,4 +23,11 @@ public interface UserPostService extends IService<UserPostDO> {
      * @return 用户岗位信息集合
      */
     List<PostDO> selectPostInfoByUserId(Long userId);
+
+    /**
+     * 查询用户岗位
+     * @param userId 用户编号
+     * @return 岗位信息
+     */
+    List<UserPostDO> selectUserPostListByUserId(Long userId);
 }

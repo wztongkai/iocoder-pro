@@ -3,7 +3,6 @@ package com.iocoder.yudao.module.commons.core.mybatis;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.iocoder.yudao.module.commons.core.domain.BaseEntity;
 import com.iocoder.yudao.module.commons.utils.SecurityUtils;
-import com.iocoder.yudao.module.commons.utils.ServletUtils;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +36,7 @@ public class AutoFillMetaInfoHandler implements MetaObjectHandler {
                 baseEntity.setUpdateTime(LocalDateTime.now());
             }
 
-            Long userId = SecurityUtils.getUserId();
+            Long userId = SecurityUtils.getLoginUserId();
             // 当前登录用户不为空，创建人为空，则当前登录用户为创建人
             if (Objects.nonNull(userId) && Objects.isNull(baseEntity.getCreator())) {
                 baseEntity.setCreator(userId.toString());
@@ -48,8 +47,6 @@ public class AutoFillMetaInfoHandler implements MetaObjectHandler {
             }
 
         }
-//        this.setFieldValByName(BaseEntity.Fields.createTime, LocalDateTime.now(), metaObject);
-//        this.setFieldValByName(BaseEntity.Fields.updateTime, LocalDateTime.now(), metaObject);
     }
 
     /**

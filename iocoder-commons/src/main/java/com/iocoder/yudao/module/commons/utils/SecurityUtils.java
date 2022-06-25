@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author: kai wu
@@ -25,6 +26,19 @@ public class SecurityUtils {
         } catch (Exception e) {
             throw new ServiceException("获取用户ID异常", HttpStatus.UNAUTHORIZED);
         }
+    }
+
+    /**
+     * 获取登陆用户id
+     *
+     * @return 用户ID
+     */
+    public static Long getLoginUserId() {
+        if (!Objects.equals(getAuthentication().getPrincipal(), "anonymousUser")) {
+            LoginUser loginUser = (LoginUser) getAuthentication().getPrincipal();
+            return loginUser.getUserId();
+        }
+        return null;
     }
 
     /**

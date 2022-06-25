@@ -5,6 +5,7 @@ import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.system.vo.user.UserCreateReqVO;
 import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
+import com.iocoder.yudao.module.system.vo.user.UserUpdateReqVO;
 
 /**
  * <p>
@@ -40,4 +41,10 @@ public interface UserService extends IService<UserDO> {
      * @return 用户编号
      */
     Long createUser(UserCreateReqVO reqVO);
+
+    /**
+     * 修改用户
+     * @param reqVO 用户信息
+     */
+    void updateUser(UserUpdateReqVO reqVO);
 }

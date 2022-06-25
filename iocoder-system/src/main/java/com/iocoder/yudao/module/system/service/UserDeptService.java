@@ -1,8 +1,8 @@
 package com.iocoder.yudao.module.system.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.UserDeptDO;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 
@@ -23,4 +23,6 @@ public interface UserDeptService extends IService<UserDeptDO> {
      * @return 用户部门信息集合
      */
     List<DeptDO> selectDeptInfoByUserId(Long userId);
+
+    List<UserDeptDO> selectUserDeptListByUserId(Long userId);
 }

@@ -1,14 +1,13 @@
 package com.iocoder.yudao.module.system.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
-import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.domain.UserPostDO;
 import com.iocoder.yudao.module.system.mapper.UserPostMapper;
 import com.iocoder.yudao.module.system.service.PostService;
 import com.iocoder.yudao.module.system.service.UserPostService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -48,5 +46,12 @@ public class UserPostServiceImpl extends ServiceImpl<UserPostMapper, UserPostDO>
         Set<Long> postId = CollConvertUtils.convertSet(userPostList, UserPostDO::getPostId);
         // 根据岗位编号集合获取对应的岗位信息
         return postService.getPostInfoMap(postId);
+    }
+
+    @Override
+    public List<UserPostDO> selectUserPostListByUserId(Long userId) {
+        return baseMapper.selectList(new LambdaQueryWrapperX<UserPostDO>()
+                .eq(UserPostDO::getUserId,userId)
+        );
     }
 }
