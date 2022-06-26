@@ -17,6 +17,8 @@ import com.iocoder.yudao.module.system.domain.UserPostDO;
 import com.iocoder.yudao.module.system.mapper.UserMapper;
 import com.iocoder.yudao.module.system.service.*;
 import com.iocoder.yudao.module.system.vo.user.*;
+import com.iocoder.yudao.module.system.vo.user.profile.UserProfileUpdatePasswordReqVO;
+import com.iocoder.yudao.module.system.vo.user.profile.UserProfileUpdateReqVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
@@ -28,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -152,6 +155,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     }
 
     @Override
+    public void updateUserPassword(Long id, UserProfileUpdatePasswordReqVO reqVO) {
+        // 校验旧密码密码
+        checkOldPassword(id, reqVO.getOldPassword());
+        // 旧密码校验通过，执行修改
+        UserDO updateObj = new UserDO();
+        updateObj.setId(id);
+        updateObj.setPassword(passwordEncoder.encode(reqVO.getNewPassword()));
+        userService.updateById(updateObj);
+    }
+
+    @Override
     public void updateUserStatus(Long userId, Integer status) {
         // 校验用户存在
         checkUserExist(userId);
@@ -169,7 +183,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
                 .orderByDesc(UserDO::getCreateTime)
         );
         List<UserSimpleRespVO> simpleRespList = new ArrayList<>();
-        BeanUtil.copyListProperties(userList,simpleRespList,UserSimpleRespVO.class);
+        BeanUtil.copyListProperties(userList, simpleRespList, UserSimpleRespVO.class);
         return simpleRespList;
     }
 
@@ -179,22 +193,44 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         checkUserExist(userId);
         // 查询用户基本信息
         UserDO userDO = baseMapper.selectById(userId);
-        if(ObjectUtils.isEmpty(userDO)){
+        if (ObjectUtils.isEmpty(userDO)) {
             return null;
         }
         UserRespVO userRespVO = new UserRespVO();
-        BeanUtil.copyProperties(userDO,userRespVO);
+        BeanUtil.copyProperties(userDO, userRespVO);
         // 查询用户部门信息
         List<DeptDO> userDeptInfoList = userDeptService.selectDeptInfoByUserId(userId);
-        if(CollectionUtils.isNotEmpty(userDeptInfoList)){
+        if (CollectionUtils.isNotEmpty(userDeptInfoList)) {
             userRespVO.setUserDeptInfoList(userDeptInfoList);
         }
         // 查询用户岗位信息
         List<PostDO> userPostInfoList = userPostService.selectPostInfoByUserId(userId);
-        if(CollectionUtils.isNotEmpty(userPostInfoList)){
+        if (CollectionUtils.isNotEmpty(userPostInfoList)) {
             userRespVO.setUserPostInfoList(userPostInfoList);
         }
         return userRespVO;
+    }
+
+    @Override
+    public void updateUserProfile(Long loginUserId, UserProfileUpdateReqVO reqVO) {
+        // 校验用户存在
+        checkUserExist(loginUserId);
+        // 校验手机号唯一
+        checkMobileUnique(loginUserId, reqVO.getMobile());
+        // 校验邮箱唯一
+        checkEmailUnique(loginUserId, reqVO.getEmail());
+        UserDO userDO = new UserDO();
+        BeanUtil.copyProperties(reqVO, userDO);
+        userDO.setId(loginUserId);
+        // 校验通过，更新用户信息
+        baseMapper.updateById(userDO);
+    }
+
+    @Override
+    public String updateUserAvatar(Long loginUserId, InputStream avatarFile) {
+        // 校验用户存在
+        checkUserExist(loginUserId);
+        return null;
     }
 
 
@@ -355,6 +391,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         }
         if (!user.getId().equals(id)) {
             throw ServiceExceptionUtil.exception(USER_EMAIL_EXISTS);
+        }
+    }
+
+    /**
+     * 校验旧密码
+     *
+     * @param id          用户 id
+     * @param oldPassword 旧密码
+     */
+    public void checkOldPassword(Long id, String oldPassword) {
+        UserDO user = baseMapper.selectById(id);
+        if (ObjectUtils.isEmpty(user)) {
+            throw ServiceExceptionUtil.exception(USER_NOT_EXISTS);
+        }
+        if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
+            throw ServiceExceptionUtil.exception(USER_PASSWORD_FAILED);
         }
     }
 

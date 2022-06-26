@@ -1,15 +1,17 @@
 package com.iocoder.yudao.module.system.service;
 
-import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
-import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.iocoder.yudao.module.system.domain.DeptDO;
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wu kai
@@ -31,8 +33,8 @@ public interface DeptService extends IService<DeptDO> {
      * @param deptIds 部门编号数组
      * @return 部门信息Map
      */
-    default List<DeptDO> getDeptInfoMap(Collection<Long> deptIds){
-        if(CollectionUtils.isEmpty(deptIds)){
+    default List<DeptDO> getDeptInfoMap(Collection<Long> deptIds) {
+        if (CollectionUtils.isEmpty(deptIds)) {
             return Collections.emptyList();
         }
         return getSimpleDepts(deptIds);
@@ -40,6 +42,7 @@ public interface DeptService extends IService<DeptDO> {
 
     /**
      * 获取指定编号的部门列表
+     *
      * @param deptIds 部门编号数组
      * @return 部门Map
      */
@@ -47,6 +50,7 @@ public interface DeptService extends IService<DeptDO> {
 
     /**
      * 校验部门状态是否喂已开启
+     *
      * @param deptIds 部门编号集合
      */
     void validDepts(List<Long> deptIds);

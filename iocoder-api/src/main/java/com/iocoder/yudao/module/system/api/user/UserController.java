@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.system.api;
+package com.iocoder.yudao.module.system.api.user;
 
 
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;

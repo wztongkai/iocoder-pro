@@ -1,10 +1,14 @@
 package com.iocoder.yudao.module.system.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.system.vo.user.*;
+import com.iocoder.yudao.module.system.vo.user.profile.UserProfileUpdatePasswordReqVO;
+import com.iocoder.yudao.module.system.vo.user.profile.UserProfileUpdateReqVO;
 
+import javax.validation.Valid;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -65,7 +69,16 @@ public interface UserService extends IService<UserDO> {
     void updateUserPassword(Long userId, String password);
 
     /**
+     * 修改用户个人密码
+     *
+     * @param id    用户编号
+     * @param reqVO 更新用户个人密码
+     */
+    void updateUserPassword(Long id, @Valid UserProfileUpdatePasswordReqVO reqVO);
+
+    /**
      * 修改用户状态
+     *
      * @param userId 用户编号
      * @param status 状态
      */
@@ -73,6 +86,7 @@ public interface UserService extends IService<UserDO> {
 
     /**
      * 获取启用状态的用户信息
+     *
      * @param status 状态
      * @return 用户信息列表
      */
@@ -80,8 +94,25 @@ public interface UserService extends IService<UserDO> {
 
     /**
      * 查询用户详情
+     *
      * @param userId 用户编号
      * @return 用户详情
      */
     UserRespVO getUserInfo(Long userId);
+
+    /**
+     * 修改用户个人信息
+     *
+     * @param loginUserId 用户编号
+     * @param reqVO       用户个人信息
+     */
+    void updateUserProfile(Long loginUserId, UserProfileUpdateReqVO reqVO);
+
+    /**
+     * 更新用户头像
+     *
+     * @param loginUserId  用户 id
+     * @param avatarFile 头像文件
+     */
+    String updateUserAvatar(Long loginUserId, InputStream avatarFile);
 }
