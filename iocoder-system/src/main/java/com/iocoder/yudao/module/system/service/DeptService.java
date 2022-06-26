@@ -2,6 +2,10 @@ package com.iocoder.yudao.module.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.system.domain.DeptDO;
+import com.iocoder.yudao.module.system.vo.dept.DeptCreateReqVO;
+import com.iocoder.yudao.module.system.vo.dept.DeptListReqVO;
+import com.iocoder.yudao.module.system.vo.dept.DeptRespVO;
+import com.iocoder.yudao.module.system.vo.dept.DeptUpdateReqVO;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.Collection;
@@ -49,9 +53,47 @@ public interface DeptService extends IService<DeptDO> {
     List<DeptDO> getSimpleDepts(Collection<Long> deptIds);
 
     /**
-     * 校验部门状态是否喂已开启
+     * 筛选部门列表
+     *
+     * @param reqVO 筛选条件请求 VO
+     * @return 部门列表
+     */
+    List<DeptRespVO> getSimpleDepts(DeptListReqVO reqVO);
+
+    /**
+     * 校验部门状态是否已开启
      *
      * @param deptIds 部门编号集合
      */
     void validDepts(List<Long> deptIds);
+
+    /**
+     * 创建部门
+     *
+     * @param createReqVO 部门信息
+     * @return 部门编号
+     */
+    Long createDept(DeptCreateReqVO createReqVO);
+
+    /**
+     * 修改部门信息
+     *
+     * @param updateReqVO 部门信息
+     */
+    void updateDept(DeptUpdateReqVO updateReqVO);
+
+    /**
+     * 删除部门
+     *
+     * @param id 部门编号
+     */
+    void deleteDept(Long id);
+
+    /**
+     * 获取部门详情
+     *
+     * @param id 部门编号
+     * @return 部门详细信息
+     */
+    DeptRespVO getDeptInfo(Long id);
 }

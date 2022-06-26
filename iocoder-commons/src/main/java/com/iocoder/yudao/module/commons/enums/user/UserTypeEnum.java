@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.commons.enums;
+package com.iocoder.yudao.module.commons.enums.user;
 
 import cn.hutool.core.util.ArrayUtil;
 import com.iocoder.yudao.module.commons.core.IntArrayValuable;

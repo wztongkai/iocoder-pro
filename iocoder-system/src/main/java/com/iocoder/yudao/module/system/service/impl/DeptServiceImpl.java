@@ -2,20 +2,26 @@ package com.iocoder.yudao.module.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.iocoder.yudao.module.commons.enums.CommonStatusEnum;
+import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
+import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
+import com.iocoder.yudao.module.commons.enums.dept.DeptIdEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
+import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.mapper.DeptMapper;
 import com.iocoder.yudao.module.system.service.DeptService;
+import com.iocoder.yudao.module.system.vo.dept.DeptCreateReqVO;
+import com.iocoder.yudao.module.system.vo.dept.DeptListReqVO;
+import com.iocoder.yudao.module.system.vo.dept.DeptRespVO;
+import com.iocoder.yudao.module.system.vo.dept.DeptUpdateReqVO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.DeptErrorCode.DEPT_NOT_ENABLE;
-import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.DeptErrorCode.DEPT_NOT_FOUND;
+import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.DeptErrorCode.*;
 
 /**
  * <p>
@@ -52,6 +58,14 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
     }
 
     @Override
+    public List<DeptRespVO> getSimpleDepts(DeptListReqVO reqVO) {
+        List<DeptDO> simpleDepts = baseMapper.getSimpleDepts(reqVO);
+        ArrayList<DeptRespVO> deptInfoList = new ArrayList<>();
+        BeanUtil.copyListProperties(simpleDepts, deptInfoList, DeptRespVO.class);
+        return deptInfoList;
+    }
+
+    @Override
     public void validDepts(List<Long> deptIds) {
         if (CollectionUtils.isEmpty(deptIds)) {
             return;
@@ -70,6 +84,60 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
                 throw ServiceExceptionUtil.exception(DEPT_NOT_ENABLE, dept.getName());
             }
         });
+    }
+
+    @Override
+    public Long createDept(DeptCreateReqVO createReqVO) {
+        // 添加部门是父部门编号为空，默认为顶级部门
+        if (createReqVO.getParentId() == null) {
+            createReqVO.setParentId(DeptIdEnum.ROOT.getId());
+        }
+        // 校验参数
+        checkCreateOrUpdate(null, createReqVO.getParentId(), createReqVO.getName());
+        // 校验通过，添加部门
+        DeptDO deptDO = new DeptDO();
+        BeanUtil.copyProperties(createReqVO, deptDO);
+        baseMapper.insert(deptDO);
+        return deptDO.getId();
+    }
+
+    @Override
+    public void updateDept(DeptUpdateReqVO updateReqVO) {
+        // 部门是父部门编号为空，默认为顶级部门
+        if (updateReqVO.getParentId() == null) {
+            updateReqVO.setParentId(DeptIdEnum.ROOT.getId());
+        }
+        // 校验参数
+        checkCreateOrUpdate(updateReqVO.getId(), updateReqVO.getParentId(), updateReqVO.getName());
+        // 校验通过，更新部门信息
+        DeptDO deptDO = new DeptDO();
+        BeanUtil.copyProperties(updateReqVO, deptDO);
+        baseMapper.updateById(deptDO);
+    }
+
+    @Override
+    public void deleteDept(Long id) {
+        // 校验是否存在
+        checkDeptExists(id);
+        // 校验是否有子部门
+        Long aLong = baseMapper.selectCount(new LambdaQueryWrapperX<DeptDO>()
+                .eqIfPresent(DeptDO::getParentId, id)
+        );
+        if (aLong > 0) {
+            throw ServiceExceptionUtil.exception(DEPT_EXITS_CHILDREN);
+        }
+        // 校验通过，删除
+        baseMapper.deleteById(id);
+    }
+
+    @Override
+    public DeptRespVO getDeptInfo(Long id) {
+        // 校验是否存在
+        checkDeptExists(id);
+        DeptDO deptDO = baseMapper.selectById(id);
+        DeptRespVO deptRespVO = new DeptRespVO();
+        BeanUtil.copyProperties(deptDO, deptRespVO);
+        return deptRespVO;
     }
 
     /**
@@ -111,5 +179,82 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
 
         // 继续递归
         depts.forEach(dept -> this.getDeptsByParentIdFromTable(result, dept.getId(), recursiveCount - 1));
+    }
+
+    /**
+     * 校验参数有效性
+     *
+     * @param id       部门编号
+     * @param parentId 父部门编号
+     * @param name     部门名称
+     */
+    private void checkCreateOrUpdate(Long id, Long parentId, String name) {
+        // 校验部门是否存在
+        checkDeptExists(id);
+        // 校验父部门
+        checkParentDeptEnable(id, parentId);
+        // 校验部门名是否唯一
+        checkDeptNameUnique(id, parentId, name);
+    }
+
+    /**
+     * 校验部门是否存在
+     *
+     * @param id 部门编号
+     */
+    private void checkDeptExists(Long id) {
+        if (id == null) {
+            return;
+        }
+        DeptDO dept = baseMapper.selectById(id);
+        if (dept == null) {
+            throw ServiceExceptionUtil.exception(DEPT_NOT_FOUND);
+        }
+    }
+
+    /**
+     * 校验父部门
+     *
+     * @param id       部门编号
+     * @param parentId 父部门编号
+     */
+    private void checkParentDeptEnable(Long id, Long parentId) {
+        if (parentId == null || DeptIdEnum.ROOT.getId().equals(parentId)) {
+            return;
+        }
+        // 不能设置自己为父部门
+        if (parentId.equals(id)) {
+            throw ServiceExceptionUtil.exception(DEPT_PARENT_ERROR);
+        }
+        // 父部门不存在
+        DeptDO dept = baseMapper.selectById(parentId);
+        if (ObjectUtils.isEmpty(dept)) {
+            throw ServiceExceptionUtil.exception(DEPT_PARENT_NOT_EXITS);
+        }
+        // 父部门被禁用
+        if (!CommonStatusEnum.ENABLE.getStatus().equals(dept.getStatus())) {
+            throw ServiceExceptionUtil.exception(DEPT_NOT_ENABLE);
+        }
+    }
+
+    /**
+     * 校验部门名是否唯一
+     *
+     * @param id       部门编号
+     * @param parentId 父部门编号
+     * @param name     部门名称
+     */
+    private void checkDeptNameUnique(Long id, Long parentId, String name) {
+        DeptDO deptDO = baseMapper.selectOne(new LambdaQueryWrapperX<DeptDO>()
+                .eqIfPresent(DeptDO::getParentId, parentId)
+                .eqIfPresent(DeptDO::getName, name)
+                .orderByDesc(DeptDO::getCreateTime).last("limit 1")
+        );
+        if (ObjectUtils.isEmpty(deptDO)) {
+            return;
+        }
+        if (!deptDO.getId().equals(id)) {
+            throw ServiceExceptionUtil.exception(DEPT_NAME_DUPLICATE);
+        }
     }
 }

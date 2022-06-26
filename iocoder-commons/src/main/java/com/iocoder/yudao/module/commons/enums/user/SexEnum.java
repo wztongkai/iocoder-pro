@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.commons.enums;
+package com.iocoder.yudao.module.commons.enums.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

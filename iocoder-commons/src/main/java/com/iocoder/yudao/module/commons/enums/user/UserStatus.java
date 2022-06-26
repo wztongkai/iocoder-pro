@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.commons.enums;
+package com.iocoder.yudao.module.commons.enums.user;
 
 /**
  * 用户状态

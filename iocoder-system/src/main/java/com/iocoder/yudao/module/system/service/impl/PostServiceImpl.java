@@ -1,11 +1,9 @@
 package com.iocoder.yudao.module.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
-import com.iocoder.yudao.module.commons.enums.CommonStatusEnum;
+import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
-import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.mapper.PostMapper;
 import com.iocoder.yudao.module.system.service.PostService;
@@ -19,8 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.DeptErrorCode.DEPT_NOT_ENABLE;
-import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.DeptErrorCode.DEPT_NOT_FOUND;
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.PostErrorCode.POST_NOT_ENABLE;
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.PostErrorCode.POST_NOT_FOUND;
 

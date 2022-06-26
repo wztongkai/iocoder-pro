@@ -4,7 +4,7 @@ package com.iocoder.yudao.module.framework.config.security.web.service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
-import com.iocoder.yudao.module.commons.enums.UserStatus;
+import com.iocoder.yudao.module.commons.enums.user.UserStatus;
 import com.iocoder.yudao.module.commons.exception.ServiceException;
 import com.iocoder.yudao.module.commons.utils.StringUtils;
 import com.iocoder.yudao.module.system.service.UserService;
