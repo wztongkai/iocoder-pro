@@ -72,7 +72,7 @@ public class JwtTokenService {
      */
     public void setLoginUser(LoginUser loginUser) {
         if (StringUtils.isNotNull(loginUser) && StringUtils.isNotEmpty(loginUser.getToken())) {
-            this.refreshToken(loginUser);
+            refreshToken(loginUser);
         }
     }
 
@@ -82,7 +82,7 @@ public class JwtTokenService {
     public void delLoginUser(String token) {
         if (StringUtils.isNotEmpty(token)) {
             String userKey = this.getTokenKey(token);
-            this.redisCache.deleteObject(userKey);
+            redisCache.deleteObject(userKey);
         }
     }
 
@@ -100,7 +100,7 @@ public class JwtTokenService {
 
         Map<String, Object> claims = new HashMap<>();
         claims.put(Constants.LOGIN_USER_KEY, token);
-        return this.getToken(claims);
+        return getToken(claims);
     }
 
     /**

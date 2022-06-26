@@ -8,10 +8,12 @@ iocoder:
   version: 1.0-SNAPSHOT
   # 版权年份
   copyrightYear: 2022
-  profile: /Users/wukai/IdeaProjects/iocoder-pro/logs
+  # 文件上传路径
+  profile: /Users/wukai/IdeaProjects/iocoder-pro/upload
+  # 日志输出路径
+  logfile: /Users/wukai/IdeaProjects/iocoder-pro/logs
   # 获取ip地址开关
   addressEnabled: false
-
   # 验证码类型 math 数组计算 char 字符验证
   captchaType: math
 
@@ -112,7 +114,7 @@ logging:
     org.springframework.web: INFO
     com.iocoder: DEBUG
   file:
-    path: ${iocoder.profile}/${spring.application.name}
+    path: ${iocoder.logfile}/${spring.application.name}
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*.xml

@@ -30,7 +30,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -227,10 +226,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     }
 
     @Override
-    public String updateUserAvatar(Long loginUserId, InputStream avatarFile) {
+    public boolean updateUserAvatar(Long loginUserId, String avatar) {
         // 校验用户存在
         checkUserExist(loginUserId);
-        return null;
+        // 更新密码
+        UserDO updateObj = new UserDO();
+        updateObj.setId(loginUserId);
+        updateObj.setAvatar(avatar);
+        return baseMapper.updateById(updateObj) > 0;
     }
 
 

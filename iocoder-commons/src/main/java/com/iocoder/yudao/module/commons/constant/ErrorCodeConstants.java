@@ -55,6 +55,7 @@ public interface ErrorCodeConstants {
         ErrorCode FILE_PATH_EXISTS = new ErrorCode(1001003000, "文件路径已存在");
         ErrorCode FILE_NOT_EXISTS = new ErrorCode(1001003001, "文件不存在");
         ErrorCode FILE_IS_EMPTY = new ErrorCode(1001003002, "文件为空");
+        ErrorCode FILE_UPDATE_EXCEPTION = new ErrorCode(1001003003, "图片上传异常，请联系管理员");
     }
 
 

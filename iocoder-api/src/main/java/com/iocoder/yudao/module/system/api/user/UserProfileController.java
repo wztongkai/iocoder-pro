@@ -1,9 +1,13 @@
 package com.iocoder.yudao.module.system.api.user;
 
+import com.iocoder.yudao.module.commons.config.iocoderConfig.IocoderConfig;
 import com.iocoder.yudao.module.commons.core.domain.*;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
+import com.iocoder.yudao.module.commons.utils.file.FileUploadUtils;
+import com.iocoder.yudao.module.commons.utils.file.MimeTypeUtils;
+import com.iocoder.yudao.module.framework.config.security.web.service.JwtTokenService;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.service.DeptService;
@@ -25,12 +29,15 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
-import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.FileErrorCode.FILE_IS_EMPTY;
+import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.FileErrorCode.*;
+import static com.iocoder.yudao.module.commons.core.domain.CommonResult.error;
 import static com.iocoder.yudao.module.commons.core.domain.CommonResult.success;
 import static com.iocoder.yudao.module.commons.utils.SecurityUtils.getLoginUser;
 import static com.iocoder.yudao.module.commons.utils.SecurityUtils.getLoginUserId;
 
 /**
+ * 用户个人中心相关接口
+ *
  * @Author: kai wu
  * @Date: 2022/6/26 14:27
  */
@@ -49,6 +56,9 @@ public class UserProfileController {
 
     @Resource
     UserService userService;
+
+    @Resource
+    JwtTokenService jwtTokenService;
 
     @GetMapping("/getUserProfile")
     @ApiOperation("获得登录用户信息")
@@ -93,7 +103,14 @@ public class UserProfileController {
         if (file.isEmpty()) {
             throw ServiceExceptionUtil.exception(FILE_IS_EMPTY);
         }
-        String avatar = userService.updateUserAvatar(getLoginUserId(), file.getInputStream());
-        return success(avatar);
+        String avatar = FileUploadUtils.upload(IocoderConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION);
+        LoginUser loginUser = getLoginUser();
+        if (userService.updateUserAvatar(loginUser.getUserId(), avatar)) {
+            // 更新缓存用户头像
+            loginUser.getUser().setAvatar(avatar);
+            jwtTokenService.setLoginUser(loginUser);
+            return success(avatar);
+        }
+        return error(FILE_UPDATE_EXCEPTION);
     }
 }

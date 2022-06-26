@@ -8,7 +8,6 @@ import com.iocoder.yudao.module.system.vo.user.profile.UserProfileUpdatePassword
 import com.iocoder.yudao.module.system.vo.user.profile.UserProfileUpdateReqVO;
 
 import javax.validation.Valid;
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -112,7 +111,7 @@ public interface UserService extends IService<UserDO> {
      * 更新用户头像
      *
      * @param loginUserId  用户 id
-     * @param avatarFile 头像文件
+     * @param avatar 头像地址
      */
-    String updateUserAvatar(Long loginUserId, InputStream avatarFile);
+    boolean updateUserAvatar(Long loginUserId, String avatar);
 }
