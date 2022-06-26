@@ -35,7 +35,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin123\",\r\n    \"code\":\"40\",\r\n    \"uuid\":\"2320d60d3f4d404f8ae6e06fa2633f14\"\r\n}",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin123\",\r\n    \"code\":\"6\",\r\n    \"uuid\":\"9af086906a3c48d7baabb7b7588294a5\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -323,6 +323,147 @@
 									"key": "id",
 									"value": "1540614322441457665"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "用户中心",
+			"item": [
+				{
+					"name": "获取登陆用户信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3Nzk0OTA1LTYyZGQtNGE5YS04ZWFlLTRkMjk5ZGVkZjQ4NSJ9.sYbm6f0uGjCdSHmZaEodR8temtVLLQSLt-nfdw-UjWxuzXNEUxKMaoznK1f0pgSaIfa74ow1nrgjI_dfgU5lCw",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/system/user/profile/getUserProfile",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"profile",
+								"getUserProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改用户个人信息",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3Nzk0OTA1LTYyZGQtNGE5YS04ZWFlLTRkMjk5ZGVkZjQ4NSJ9.sYbm6f0uGjCdSHmZaEodR8temtVLLQSLt-nfdw-UjWxuzXNEUxKMaoznK1f0pgSaIfa74ow1nrgjI_dfgU5lCw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nickname\":\"iocoder\",\r\n    \"email\":\"wukai2580211264@qq.com\",\r\n    \"mobile\":\"13240909321\",\r\n    \"sex\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/system/user/profile/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"profile",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改用户个人密码",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3Nzk0OTA1LTYyZGQtNGE5YS04ZWFlLTRkMjk5ZGVkZjQ4NSJ9.sYbm6f0uGjCdSHmZaEodR8temtVLLQSLt-nfdw-UjWxuzXNEUxKMaoznK1f0pgSaIfa74ow1nrgjI_dfgU5lCw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\":\"123456\",\r\n    \"newPassword\":\"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/system/user/profile/update-password",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"profile",
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "上传用户个人头像",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjU3Nzk0OTA1LTYyZGQtNGE5YS04ZWFlLTRkMjk5ZGVkZjQ4NSJ9.sYbm6f0uGjCdSHmZaEodR8temtVLLQSLt-nfdw-UjWxuzXNEUxKMaoznK1f0pgSaIfa74ow1nrgjI_dfgU5lCw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatarFile",
+									"type": "file",
+									"src": "/Users/wukai/Pictures/图拍呢.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8888/system/user/profile/update-avatar",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"profile",
+								"update-avatar"
 							]
 						}
 					},
