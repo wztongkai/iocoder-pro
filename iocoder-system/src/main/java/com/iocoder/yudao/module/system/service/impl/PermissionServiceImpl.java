@@ -69,10 +69,7 @@ public class PermissionServiceImpl implements PermissionService {
         // 执行新增操作
         if (CollectionUtil.isNotEmpty(createMenuIds)) {
             createMenuIds.forEach(menuId -> {
-                RoleMenuDO roleMenuDO = new RoleMenuDO();
-                roleMenuDO.setMenuId(menuId);
-                roleMenuDO.setRoleId(roleId);
-                roleMenuMapper.insert(roleMenuDO);
+                roleMenuMapper.insert(new RoleMenuDO().setMenuId(menuId).setRoleId(roleId));
             });
         }
         // 执行删除操作
