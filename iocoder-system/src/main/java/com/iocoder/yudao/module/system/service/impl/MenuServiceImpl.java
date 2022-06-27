@@ -95,6 +95,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
     }
 
     @Override
+    public List<MenuDO> getMenus() {
+        return baseMapper.selectList();
+    }
+
+    @Override
     public MenuRespVO getMenuInfo(Long menuId) {
         MenuDO menuDO = baseMapper.selectById(menuId);
         if (ObjectUtils.isEmpty(menuDO)) {

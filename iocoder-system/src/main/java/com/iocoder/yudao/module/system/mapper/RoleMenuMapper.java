@@ -1,8 +1,11 @@
 package com.iocoder.yudao.module.system.mapper;
 
-import com.iocoder.yudao.module.system.domain.RoleMenuDO;
+import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.mapper.BaseMapperX;
+import com.iocoder.yudao.module.system.domain.RoleMenuDO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RoleMenuMapper extends BaseMapperX<RoleMenuDO> {
 
+    default List<RoleMenuDO> selectListByRoleId(Long roleId) {
+        return selectList(new LambdaQueryWrapperX<RoleMenuDO>()
+                .eq(RoleMenuDO::getRoleId ,roleId)
+        );
+    }
 }

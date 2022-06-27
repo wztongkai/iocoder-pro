@@ -50,6 +50,13 @@ public interface MenuService extends IService<MenuDO> {
     List<MenuRespVO> getMenus(MenuListReqVO reqVO);
 
     /**
+     * 获得所有菜单列表
+     *
+     * @return 菜单列表
+     */
+    List<MenuDO> getMenus();
+
+    /**
      * 获取菜单详情
      *
      * @param menuId 菜单编号
