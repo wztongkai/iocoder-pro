@@ -1,7 +1,11 @@
 package com.iocoder.yudao.module.system.mapper;
 
-import com.iocoder.yudao.module.system.domain.RoleDO;
+import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
+import com.iocoder.yudao.module.commons.core.domain.BaseEntity;
+import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.mapper.BaseMapperX;
+import com.iocoder.yudao.module.system.domain.RoleDO;
+import com.iocoder.yudao.module.system.vo.role.RolePageReqVO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -15,4 +19,12 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RoleMapper extends BaseMapperX<RoleDO> {
 
+    default PageResult<RoleDO> getRolePage(RolePageReqVO reqVO) {
+        return selectPage(reqVO, new LambdaQueryWrapperX<RoleDO>()
+                .likeIfPresent(RoleDO::getName, reqVO.getName())
+                .likeIfPresent(RoleDO::getCode, reqVO.getCode())
+                .eqIfPresent(RoleDO::getStatus, reqVO.getStatus())
+                .betweenIfPresent(BaseEntity::getCreateTime, reqVO.getBeginTime(), reqVO.getEndTime())
+                .orderByDesc(RoleDO::getId));
+    }
 }

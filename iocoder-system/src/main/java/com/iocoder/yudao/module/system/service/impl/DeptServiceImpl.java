@@ -11,10 +11,7 @@ import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.mapper.DeptMapper;
 import com.iocoder.yudao.module.system.service.DeptService;
-import com.iocoder.yudao.module.system.vo.dept.DeptCreateReqVO;
-import com.iocoder.yudao.module.system.vo.dept.DeptListReqVO;
-import com.iocoder.yudao.module.system.vo.dept.DeptRespVO;
-import com.iocoder.yudao.module.system.vo.dept.DeptUpdateReqVO;
+import com.iocoder.yudao.module.system.vo.dept.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
@@ -138,6 +135,16 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         DeptRespVO deptRespVO = new DeptRespVO();
         BeanUtil.copyProperties(deptDO, deptRespVO);
         return deptRespVO;
+    }
+
+    @Override
+    public void updateDeptStatus(DeptUpdateStatusReqVO updateStatusReqVO) {
+        // 校验是否存在
+        checkDeptExists(updateStatusReqVO.getId());
+        // 校验通过，执行更新
+        DeptDO deptDO = new DeptDO();
+        BeanUtil.copyProperties(updateStatusReqVO,deptDO);
+        baseMapper.updateById(deptDO);
     }
 
     /**

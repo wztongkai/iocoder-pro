@@ -2,10 +2,7 @@ package com.iocoder.yudao.module.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.system.domain.DeptDO;
-import com.iocoder.yudao.module.system.vo.dept.DeptCreateReqVO;
-import com.iocoder.yudao.module.system.vo.dept.DeptListReqVO;
-import com.iocoder.yudao.module.system.vo.dept.DeptRespVO;
-import com.iocoder.yudao.module.system.vo.dept.DeptUpdateReqVO;
+import com.iocoder.yudao.module.system.vo.dept.*;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.Collection;
@@ -96,4 +93,10 @@ public interface DeptService extends IService<DeptDO> {
      * @return 部门详细信息
      */
     DeptRespVO getDeptInfo(Long id);
+
+    /**
+     * 更新部门状态
+     * @param updateStatusReqVO 部门状态更新信息
+     */
+    void updateDeptStatus(DeptUpdateStatusReqVO updateStatusReqVO);
 }

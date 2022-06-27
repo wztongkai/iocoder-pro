@@ -49,6 +49,13 @@ public class DeptController {
         return success(true);
     }
 
+    @PutMapping("/update-status")
+    @ApiOperation("修改部门状态")
+    public CommonResult<Boolean> updateRoleStatus(@Valid @RequestBody DeptUpdateStatusReqVO updateStatusReqVO) {
+        deptService.updateDeptStatus(updateStatusReqVO);
+        return success(true);
+    }
+
     @DeleteMapping("delete")
     @ApiOperation("删除部门")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)
