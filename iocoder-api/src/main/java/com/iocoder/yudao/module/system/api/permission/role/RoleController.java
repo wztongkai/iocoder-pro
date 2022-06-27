@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.system.api.role;
+package com.iocoder.yudao.module.system.api.permission.role;
 
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
@@ -6,7 +6,7 @@ import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.domain.RoleDO;
 import com.iocoder.yudao.module.system.service.RoleService;
-import com.iocoder.yudao.module.system.vo.role.*;
+import com.iocoder.yudao.module.system.vo.permission.role.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -22,8 +22,12 @@ import java.util.List;
 import static com.iocoder.yudao.module.commons.core.domain.CommonResult.success;
 
 /**
+ * <p>
+ * 角色信息表 前端控制器
+ * </p>
+ *
  * @author wu kai
- * @date 2022/6/27
+ * @since 2022-06-27
  */
 
 @Api(tags = "管理后台 - 角色管理")
@@ -33,7 +37,7 @@ import static com.iocoder.yudao.module.commons.core.domain.CommonResult.success;
 public class RoleController {
 
     @Resource
-    private RoleService roleService;
+    RoleService roleService;
 
     @PostMapping("/create")
     @ApiOperation("创建角色")

@@ -5,7 +5,7 @@ import com.iocoder.yudao.module.commons.core.domain.BaseEntity;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.mapper.BaseMapperX;
 import com.iocoder.yudao.module.system.domain.RoleDO;
-import com.iocoder.yudao.module.system.vo.role.RolePageReqVO;
+import com.iocoder.yudao.module.system.vo.permission.role.RolePageReqVO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

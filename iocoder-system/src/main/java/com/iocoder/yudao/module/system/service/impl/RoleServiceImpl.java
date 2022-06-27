@@ -11,7 +11,7 @@ import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.domain.RoleDO;
 import com.iocoder.yudao.module.system.mapper.RoleMapper;
 import com.iocoder.yudao.module.system.service.RoleService;
-import com.iocoder.yudao.module.system.vo.role.*;
+import com.iocoder.yudao.module.system.vo.permission.role.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;

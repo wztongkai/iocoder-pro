@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.system.vo.role;
+package com.iocoder.yudao.module.system.vo.permission.role;
 
 import com.iocoder.yudao.module.commons.core.domain.PageParam;
 import io.swagger.annotations.ApiModel;

@@ -3,7 +3,7 @@ package com.iocoder.yudao.module.system.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.system.domain.RoleDO;
-import com.iocoder.yudao.module.system.vo.role.*;
+import com.iocoder.yudao.module.system.vo.permission.role.*;
 import org.springframework.lang.Nullable;
 
 import java.util.Collection;

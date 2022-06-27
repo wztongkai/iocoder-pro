@@ -28,13 +28,13 @@ public class FastAutoGeneratorTest {
         // 业务模块名
         String modelName = "system";
         // 表名
-        String[] tableNames = {"system_user_dept"};
+        String[] tableNames = {"system_menu","system_role_menu"};
 
         // 数据库连接信息
         String jdbcUrl = "jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone" +
                 "=GMT&useSSL=false";
         String username = "root";
-        String password = "";
+        String password = "123456";
         // 作者信息
         String author = "wu kai";
 

@@ -1,0 +1,20 @@
+package com.iocoder.yudao.module.commons.enums.menu;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+/**
+ * Menu 编号枚举
+ */
+@Getter
+@AllArgsConstructor
+public enum MenuIdEnum {
+
+    /**
+     * 根节点
+     */
+    ROOT(0L);
+
+    private final Long id;
+
+}

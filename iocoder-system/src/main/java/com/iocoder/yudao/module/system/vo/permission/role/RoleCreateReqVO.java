@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.system.vo.role;
+package com.iocoder.yudao.module.system.vo.permission.role;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
