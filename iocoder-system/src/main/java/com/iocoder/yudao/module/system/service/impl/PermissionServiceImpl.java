@@ -3,7 +3,10 @@ package com.iocoder.yudao.module.system.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.iocoder.yudao.module.commons.core.domain.LoginUser;
 import com.iocoder.yudao.module.commons.enums.role.RoleCodeEnum;
+import com.iocoder.yudao.module.commons.utils.SecurityUtils;
+import com.iocoder.yudao.module.commons.utils.StringUtils;
 import com.iocoder.yudao.module.system.domain.MenuDO;
 import com.iocoder.yudao.module.system.domain.RoleMenuDO;
 import com.iocoder.yudao.module.system.domain.UserRoleDO;
@@ -13,10 +16,9 @@ import com.iocoder.yudao.module.system.service.MenuService;
 import com.iocoder.yudao.module.system.service.PermissionService;
 import com.iocoder.yudao.module.system.service.RoleService;
 import com.iocoder.yudao.module.system.vo.permission.role.RoleRespVO;
-import io.swagger.annotations.Api;
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Collection;
@@ -30,10 +32,12 @@ import static com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils.co
  * @author wu kai
  * @date 2022/6/27
  */
-@Api(tags = "管理后台 - 权限")
-@RestController
-@RequestMapping("/system/permission")
+@Service("ss")
 public class PermissionServiceImpl implements PermissionService {
+
+    /** 所有权限标识 */
+    private static final String ALL_PERMISSION = "*:*:*";
+
     @Resource
     RoleService roleService;
 
@@ -106,5 +110,22 @@ public class PermissionServiceImpl implements PermissionService {
                 );
             });
         }
+    }
+
+    /**
+     * 验证用户是否具有操作权限
+     * @param hasPermission 权限标识
+     * @return 验证结果
+     */
+    public boolean hasPermission(String hasPermission){
+        if (StringUtils.isEmpty(hasPermission)){
+            return false;
+        }
+        LoginUser loginUser = SecurityUtils.getLoginUser();
+        if(ObjectUtils.isEmpty(loginUser) && CollectionUtils.isEmpty(loginUser.getPermissions())){
+            return false;
+        }
+        Set<String> permissions = loginUser.getPermissions();
+        return permissions.contains(ALL_PERMISSION) || permissions.contains(StringUtils.trim(hasPermission));
     }
 }
