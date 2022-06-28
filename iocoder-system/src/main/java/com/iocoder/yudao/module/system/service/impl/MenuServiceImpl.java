@@ -6,6 +6,7 @@ import com.iocoder.yudao.module.commons.enums.menu.MenuIdEnum;
 import com.iocoder.yudao.module.commons.enums.menu.MenuTypeEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
+import com.iocoder.yudao.module.commons.utils.StringUtils;
 import com.iocoder.yudao.module.system.domain.MenuDO;
 import com.iocoder.yudao.module.system.mapper.MenuMapper;
 import com.iocoder.yudao.module.system.service.MenuService;
@@ -16,8 +17,7 @@ import com.iocoder.yudao.module.system.vo.permission.menu.MenuUpdateReqVO;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.MenuErrorCode.*;
 import static com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil.exception;
@@ -108,6 +108,18 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
         MenuRespVO menuRespVO = new MenuRespVO();
         BeanUtil.copyProperties(menuDO, menuRespVO);
         return menuRespVO;
+    }
+
+    @Override
+    public Set<String> selectMenuPermByUserId(Long userId) {
+        List<String> permission = baseMapper.selectMenuPermsByUserId(userId);
+        Set<String> permsSet = new HashSet<>();
+        for (String perm : permission){
+            if (StringUtils.isNotEmpty(perm)){
+                permsSet.addAll(Arrays.asList(perm.trim().split(",")));
+            }
+        }
+        return permsSet;
     }
 
     /**

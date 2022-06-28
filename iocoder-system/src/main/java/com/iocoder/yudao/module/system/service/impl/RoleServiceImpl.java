@@ -17,9 +17,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.RoleErrorCode.*;
 import static com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil.exception;
@@ -106,6 +104,14 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleDO> implements 
         );
     }
 
+    @Override
+    public List<RoleDO> getSimpleRoleInfos(Set<Long> roleId) {
+        List<RoleDO> roleList = baseMapper.selectBatchIds(roleId);
+        if (CollectionUtils.isEmpty(roleList)) {
+            return Collections.emptyList();
+        }
+        return roleList;
+    }
 
 
     /**

@@ -73,6 +73,11 @@ public class LoginUser implements UserDetails {
     private List<DeptVo> deptVoList;
 
     /**
+     * 角色信息列表
+     */
+    private List<RoleVO> roleVoList;
+
+    /**
      * 用户信息
      */
     private UserDO user;

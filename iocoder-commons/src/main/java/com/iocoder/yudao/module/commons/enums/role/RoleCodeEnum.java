@@ -12,8 +12,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public enum RoleCodeEnum {
 
-    SUPER_ADMIN("super_admin", "超级管理员"),
-    ;
+    SUPER_ADMIN("super_admin", "超级管理员");
 
     /**
      * 角色编码

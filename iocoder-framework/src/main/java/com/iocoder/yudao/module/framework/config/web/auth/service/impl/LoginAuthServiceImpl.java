@@ -4,10 +4,7 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
-import com.iocoder.yudao.module.commons.core.domain.DeptVo;
-import com.iocoder.yudao.module.commons.core.domain.LoginUser;
-import com.iocoder.yudao.module.commons.core.domain.PostVo;
-import com.iocoder.yudao.module.commons.core.domain.UserDO;
+import com.iocoder.yudao.module.commons.core.domain.*;
 import com.iocoder.yudao.module.commons.core.redis.RedisCache;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.enums.login.LoginLogTypeEnum;
@@ -30,9 +27,8 @@ import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
 import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
-import com.iocoder.yudao.module.system.service.UserDeptService;
-import com.iocoder.yudao.module.system.service.UserPostService;
-import com.iocoder.yudao.module.system.service.UserService;
+import com.iocoder.yudao.module.system.domain.RoleDO;
+import com.iocoder.yudao.module.system.service.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -42,11 +38,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.validation.Validator;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.AuthCode.*;
+import static com.iocoder.yudao.module.commons.enums.role.RoleCodeEnum.SUPER_ADMIN;
 
 /**
  * 登录认证接口
@@ -79,7 +74,16 @@ public class LoginAuthServiceImpl implements LoginAuthService {
     UserDeptService userDeptService;
 
     @Resource
+    UserRoleService userRoleService;
+
+    @Resource
+    PermissionService permissionService;
+
+    @Resource
     AuthenticationManager authenticationManager;
+
+    @Resource
+    MenuService menuService;
 
     @Resource
     JwtTokenService jwtTokenService;
@@ -173,9 +177,11 @@ public class LoginAuthServiceImpl implements LoginAuthService {
             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (Exception e) {
             if (e instanceof BadCredentialsException) {
+                // 插入失败日志 -- 账号密码不正确
                 this.createLoginLog(userId, username, LoginLogTypeEnum.LOGIN_USERNAME, LoginResultEnum.BAD_CREDENTIALS);
                 throw new UserPasswordNotMatchException();
             } else {
+                // 插入失败日志
                 this.createLoginLog(userId, username, LoginLogTypeEnum.LOGIN_USERNAME, LoginResultEnum.UNKNOWN_ERROR);
                 throw new ServiceException(e.getMessage());
             }
@@ -184,16 +190,36 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         this.createLoginLog(userId, username, LoginLogTypeEnum.LOGIN_USERNAME, LoginResultEnum.SUCCESS);
         // 获取用户基本信息
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+
         // 获取用户部门信息
         List<DeptDO> userDeptList = userDeptService.selectDeptInfoByUserId(loginUser.getUserId());
         List<DeptVo> deptInfoList = new ArrayList<>();
         BeanUtil.copyListProperties(userDeptList, deptInfoList, DeptVo.class);
         loginUser.setDeptVoList(deptInfoList);
+
         // 获取用户岗位信息
         List<PostDO> userPostList = userPostService.selectPostInfoByUserId(loginUser.getUserId());
         List<PostVo> postInfoList = new ArrayList<>();
         BeanUtil.copyListProperties(userPostList, postInfoList, PostVo.class);
         loginUser.setPostVoList(postInfoList);
+
+        // 获取用户角色信息
+        List<RoleDO> userRoleList = userRoleService.selectRoleInfoByUserId(loginUser.getUserId());
+        List<RoleVO> roleInfoList = new ArrayList<>();
+        BeanUtil.copyListProperties(userRoleList, roleInfoList, RoleVO.class);
+        loginUser.setRoleVoList(roleInfoList);
+
+        // 获取用户权限信息
+        // 用户的是否拥有超级管理员的角色
+        Set<String> permissions = new HashSet<String>();
+        boolean flag = userRoleList.stream().anyMatch(roleDO -> roleDO.getCode().equals(SUPER_ADMIN.getCode()));
+        if (flag) {
+            permissions.add("*:*:*");
+        } else {
+            permissions.addAll(menuService.selectMenuPermByUserId(loginUser.getUserId()));
+        }
+        loginUser.setPermissions(permissions);
+
         // 创建token
         String token = jwtTokenService.createToken(loginUser);
         // 构建返回结果

@@ -8,6 +8,7 @@ import com.iocoder.yudao.module.system.vo.permission.menu.MenuRespVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuUpdateReqVO;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -63,4 +64,11 @@ public interface MenuService extends IService<MenuDO> {
      * @return 菜单详情
      */
     MenuRespVO getMenuInfo(Long menuId);
+
+    /**
+     * 根据用户编号查询权限
+     * @param userId 用户编号
+     * @return 权限列表
+     */
+    Set<String> selectMenuPermByUserId(Long userId);
 }

@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.system.domain.RoleDO;
 import com.iocoder.yudao.module.system.vo.permission.role.*;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.lang.Nullable;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -73,5 +76,25 @@ public interface RoleService extends IService<RoleDO> {
     List<RoleDO> getRoles(@Nullable Collection<Integer> statuses);
 
 
+    /**
+     * 查询角色信息集合
+     *
+     * @param roleId 角色编号集合
+     * @return 角色信息集合
+     */
+    default List<RoleDO> getRoleInfoList(Set<Long> roleId) {
+        if (CollectionUtils.isEmpty(roleId)) {
+            return Collections.emptyList();
+        }
+        // 获取角色信息集合
+        return getSimpleRoleInfos(roleId);
+    }
 
+    /**
+     * 获取角色信息集合
+     *
+     * @param roleId 角色编号数组
+     * @return 角色信息集合
+     */
+    List<RoleDO> getSimpleRoleInfos(Set<Long> roleId);
 }

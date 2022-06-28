@@ -30,4 +30,6 @@ public interface MenuMapper extends BaseMapperX<MenuDO> {
                 .orderByDesc(MenuDO::getSort)
         );
     }
+
+    List<String> selectMenuPermsByUserId(Long userId);
 }
