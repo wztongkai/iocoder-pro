@@ -16,6 +16,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +51,7 @@ public class UserController {
     UserDeptService userDeptService;
 
 
+    @PreAuthorize("@ss.hasPermission('system:user:list')")
     @GetMapping("/getUserPage")
     @ApiOperation("获得用户分页列表")
     public CommonResult<PageResult<UserPageItemRespVO>> getUserPage(@Valid UserPageQueryRequestVo requestVo) {
@@ -74,12 +76,14 @@ public class UserController {
         return success(new PageResult<>(userList, pageResult.getTotal()));
     }
 
+    @PreAuthorize("@ss.hasPermission('system:user:create')")
     @PostMapping("/create")
     @ApiOperation("新增用户")
     public CommonResult<Long> createUser(@Valid @RequestBody UserCreateReqVO reqVO) {
         return success(userService.createUser(reqVO));
     }
 
+    @PreAuthorize("@ss.hasPermission('system:user:update')")
     @PutMapping("update")
     @ApiOperation("修改用户")
     public CommonResult<Boolean> updateUser(@Valid @RequestBody UserUpdateReqVO reqVO) {
@@ -87,6 +91,7 @@ public class UserController {
         return success(true);
     }
 
+    @PreAuthorize("@ss.hasPermission('system:user:delete')")
     @DeleteMapping("/delete")
     @ApiOperation("删除用户")
     @ApiImplicitParam(name = "id", value = "用户", required = true, example = "1540614322441457665", dataTypeClass = Long.class)
@@ -95,6 +100,7 @@ public class UserController {
         return success(true);
     }
 
+    @PreAuthorize("@ss.hasPermission('system:user:update-password')")
     @PutMapping("/update-password")
     @ApiOperation("重置用户密码")
     public CommonResult<Boolean> updateUserPassword(@Valid @RequestBody UserUpdatePasswordReqVO reqVO) {
@@ -102,6 +108,7 @@ public class UserController {
         return success(true);
     }
 
+    @PreAuthorize("@ss.hasPermission('system:user:update')")
     @PutMapping("/update-status")
     @ApiOperation("修改用户状态")
     public CommonResult<Boolean> updateUserStatus(@Valid @RequestBody UserUpdateStatusReqVO reqVO) {
@@ -117,6 +124,7 @@ public class UserController {
         return success(list);
     }
 
+    @PreAuthorize("@ss.hasPermission('system:user:query')")
     @GetMapping("/getUserInfo")
     @ApiOperation("获得用户详情")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1540614322441457665", dataTypeClass = Long.class)

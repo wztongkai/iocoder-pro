@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @Author: kai wu
@@ -60,7 +59,7 @@ public class LoginUser implements UserDetails {
     /**
      * 权限列表
      */
-    private Set<String> permissions;
+    private List<String> permissions;
 
     /**
      * 岗位信息列表

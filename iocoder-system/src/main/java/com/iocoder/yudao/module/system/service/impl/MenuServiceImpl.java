@@ -111,9 +111,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
     }
 
     @Override
-    public Set<String> selectMenuPermByUserId(Long userId) {
+    public List<String> selectMenuPermByUserId(Long userId) {
         List<String> permission = baseMapper.selectMenuPermsByUserId(userId);
-        Set<String> permsSet = new HashSet<>();
+        List<String> permsSet = new ArrayList<>();
         for (String perm : permission){
             if (StringUtils.isNotEmpty(perm)){
                 permsSet.addAll(Arrays.asList(perm.trim().split(",")));

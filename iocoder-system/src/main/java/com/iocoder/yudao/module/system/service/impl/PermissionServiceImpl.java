@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import static com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils.convertSet;
@@ -125,7 +126,7 @@ public class PermissionServiceImpl implements PermissionService {
         if(ObjectUtils.isEmpty(loginUser) && CollectionUtils.isEmpty(loginUser.getPermissions())){
             return false;
         }
-        Set<String> permissions = loginUser.getPermissions();
+        List<String> permissions = loginUser.getPermissions();
         return permissions.contains(ALL_PERMISSION) || permissions.contains(StringUtils.trim(hasPermission));
     }
 }

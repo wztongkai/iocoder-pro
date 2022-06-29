@@ -10,10 +10,7 @@ import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
-import com.iocoder.yudao.module.system.domain.DeptDO;
-import com.iocoder.yudao.module.system.domain.PostDO;
-import com.iocoder.yudao.module.system.domain.UserDeptDO;
-import com.iocoder.yudao.module.system.domain.UserPostDO;
+import com.iocoder.yudao.module.system.domain.*;
 import com.iocoder.yudao.module.system.mapper.UserMapper;
 import com.iocoder.yudao.module.system.service.*;
 import com.iocoder.yudao.module.system.vo.user.*;
@@ -62,6 +59,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
 
     @Resource
     UserPostService userPostService;
+
+    @Resource
+    UserRoleService userRoleService;
 
     @Resource
     UserService userService;
@@ -200,12 +200,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         // 查询用户部门信息
         List<DeptDO> userDeptInfoList = userDeptService.selectDeptInfoByUserId(userId);
         if (CollectionUtils.isNotEmpty(userDeptInfoList)) {
-            userRespVO.setUserDeptInfoList(userDeptInfoList);
+            userRespVO.setDeptList(userDeptInfoList);
         }
         // 查询用户岗位信息
         List<PostDO> userPostInfoList = userPostService.selectPostInfoByUserId(userId);
         if (CollectionUtils.isNotEmpty(userPostInfoList)) {
-            userRespVO.setUserPostInfoList(userPostInfoList);
+            userRespVO.setPostList(userPostInfoList);
+        }
+        // 查询用户角色信息
+        List<RoleDO> userRoleInfoList = userRoleService.selectRoleInfoByUserId(userId);
+        if (CollectionUtils.isNotEmpty(userRoleInfoList)) {
+            userRespVO.setRoleList(userRoleInfoList);
         }
         return userRespVO;
     }

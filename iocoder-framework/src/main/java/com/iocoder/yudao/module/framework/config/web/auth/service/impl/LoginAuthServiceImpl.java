@@ -211,7 +211,7 @@ public class LoginAuthServiceImpl implements LoginAuthService {
 
         // 获取用户权限信息
         // 用户的是否拥有超级管理员的角色
-        Set<String> permissions = new HashSet<String>();
+        List<String> permissions = new ArrayList<>();
         boolean flag = userRoleList.stream().anyMatch(roleDO -> roleDO.getCode().equals(SUPER_ADMIN.getCode()));
         if (flag) {
             permissions.add("*:*:*");

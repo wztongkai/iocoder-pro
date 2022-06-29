@@ -3,6 +3,7 @@ package com.iocoder.yudao.module.system.vo.user;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
+import com.iocoder.yudao.module.system.domain.RoleDO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -37,10 +38,13 @@ public class UserRespVO extends UserBaseVO {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "用户部门信息集合")
-    private List<DeptDO> userDeptInfoList;
+    @ApiModelProperty(value = "部门信息列表")
+    private List<DeptDO> deptList;
 
-    @ApiModelProperty(value = "用户岗位信息集合")
-    private List<PostDO> userPostInfoList;
+    @ApiModelProperty(value = "岗位信息列表")
+    private List<PostDO> postList;
+
+    @ApiModelProperty(value = "角色信息列表")
+    private List<RoleDO> roleList;
 
 }

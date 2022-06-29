@@ -3,11 +3,22 @@
 <mapper namespace="com.iocoder.yudao.module.system.mapper.MenuMapper">
 
     <select id="selectMenuPermsByUserId" parameterType="Long" resultType="java.lang.String">
-            select distinct m.permission
-            from sys_menu m
-                     left join sys_role_menu rm on m.menu_id = rm.menu_id
-                     left join sys_user_role ur on rm.role_id = ur.role_id
-                     left join sys_role r on r.role_id = ur.role_id
-            where m.status = '0' and r.status = '0' and ur.user_id = #{userId}
+        SELECT
+           DISTINCT m.permission
+        FROM
+            system_menu m
+        LEFT JOIN
+            system_role_menu rm
+            ON m.id = rm.menu_id
+        LEFT JOIN
+            system_user_role ur
+            ON rm.role_id = ur.role_id
+        LEFT JOIN
+            system_role r
+            ON r.id = ur.role_id
+        WHERE
+            m.status = '0'
+            AND r.status = '0'
+            AND ur.user_id = #{userId}
     </select>
 </mapper>

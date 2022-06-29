@@ -1,14 +1,13 @@
 package com.iocoder.yudao.module.system.service;
 
-import com.iocoder.yudao.module.system.domain.MenuDO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.iocoder.yudao.module.system.domain.MenuDO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuCreateReqVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuListReqVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuRespVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuUpdateReqVO;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * <p>
@@ -70,5 +69,5 @@ public interface MenuService extends IService<MenuDO> {
      * @param userId 用户编号
      * @return 权限列表
      */
-    Set<String> selectMenuPermByUserId(Long userId);
+    List<String> selectMenuPermByUserId(Long userId);
 }
