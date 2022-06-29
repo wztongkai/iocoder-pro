@@ -1,6 +1,8 @@
 package com.iocoder.yudao.module.system.api.permission;
 
+import com.iocoder.yudao.module.commons.annotation.Log;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
+import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.system.service.PermissionService;
 import com.iocoder.yudao.module.system.vo.permission.PermissionAllotRoleMenuReqVO;
 import com.iocoder.yudao.module.system.vo.permission.PermissionAllotUserRoleReqVO;
@@ -19,7 +21,7 @@ import static com.iocoder.yudao.module.commons.core.domain.CommonResult.success;
  * 权限 controller 接口
  *
  * @author wu kai
- * @date 2022/6/27
+ * @since 2022/6/27
  */
 @Api(tags = "管理后台 - 权限")
 @RestController
@@ -36,6 +38,7 @@ public class PermissionController {
         return success(permissionService.getRoleMenuIds(roleId));
     }
 
+    @Log(title = "权限管理", businessType = BusinessType.GRANT)
     @PostMapping("/allot-role-menu")
     @ApiOperation("给角色分配菜单")
     public CommonResult<Boolean> assignRoleMenu(@Validated @RequestBody PermissionAllotRoleMenuReqVO reqVO) {
@@ -44,6 +47,7 @@ public class PermissionController {
         return success(true);
     }
 
+    @Log(title = "权限管理", businessType = BusinessType.GRANT)
     @ApiOperation("给用户分配角色")
     @PostMapping("/allot-user-role")
     public CommonResult<Boolean> assignUserRole(@Validated @RequestBody PermissionAllotUserRoleReqVO reqVO) {

@@ -1,7 +1,9 @@
 package com.iocoder.yudao.module.system.api.permission.role;
 
+import com.iocoder.yudao.module.commons.annotation.Log;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
+import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.domain.RoleDO;
@@ -39,12 +41,14 @@ public class RoleController {
     @Resource
     RoleService roleService;
 
+    @Log(title = "角色管理", businessType = BusinessType.INSERT)
     @PostMapping("/create")
     @ApiOperation("创建角色")
     public CommonResult<Long> createRole(@Valid @RequestBody RoleCreateReqVO createReqVO) {
         return success(roleService.createRole(createReqVO));
     }
 
+    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
     @PutMapping("/update")
     @ApiOperation("修改角色")
     public CommonResult<Boolean> updateRole(@Valid @RequestBody RoleUpdateReqVO updateReqVO) {
@@ -52,6 +56,7 @@ public class RoleController {
         return success(true);
     }
 
+    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
     @PutMapping("/update-status")
     @ApiOperation("修改角色状态")
     public CommonResult<Boolean> updateRoleStatus(@Valid @RequestBody RoleUpdateStatusReqVO updateStatusReqVO) {
@@ -59,6 +64,7 @@ public class RoleController {
         return success(true);
     }
 
+    @Log(title = "角色管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/delete")
     @ApiOperation("删除角色")
     @ApiImplicitParam(name = "id", value = "角色编号", required = true, example = "1024", dataTypeClass = Long.class)

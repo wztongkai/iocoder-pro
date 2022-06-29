@@ -3,13 +3,13 @@ package com.iocoder.yudao.module.system.domain;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.iocoder.yudao.module.commons.core.domain.BaseEntity;
-
-import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -28,10 +28,6 @@ public class OperateLogDO extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("链路追踪编号")
-    @TableField("trace_id")
-    private String traceId;
-
     @ApiModelProperty("用户编号")
     @TableField("user_id")
     private Long userId;
@@ -44,21 +40,9 @@ public class OperateLogDO extends BaseEntity {
     @TableField("module")
     private String module;
 
-    @ApiModelProperty("操作名")
-    @TableField("name")
-    private String name;
-
     @ApiModelProperty("操作分类")
     @TableField("type")
-    private Long type;
-
-    @ApiModelProperty("操作内容")
-    @TableField("content")
-    private String content;
-
-    @ApiModelProperty("拓展字段")
-    @TableField("exts")
-    private String exts;
+    private String type;
 
     @ApiModelProperty("请求方法名")
     @TableField("request_method")
@@ -103,6 +87,10 @@ public class OperateLogDO extends BaseEntity {
     @ApiModelProperty("结果数据")
     @TableField("result_data")
     private String resultData;
+
+    @ApiModelProperty("错误信息")
+    @TableField("error_msg")
+    private String errorMsg;
 
 
 }

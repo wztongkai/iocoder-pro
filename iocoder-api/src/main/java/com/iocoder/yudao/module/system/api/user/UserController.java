@@ -1,9 +1,11 @@
 package com.iocoder.yudao.module.system.api.user;
 
 
+import com.iocoder.yudao.module.commons.annotation.Log;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
+import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.domain.DeptDO;
@@ -76,6 +78,7 @@ public class UserController {
         return success(new PageResult<>(userList, pageResult.getTotal()));
     }
 
+    @Log(title = "用户管理",businessType = BusinessType.INSERT)
     @PreAuthorize("@ss.hasPermission('system:user:create')")
     @PostMapping("/create")
     @ApiOperation("新增用户")
@@ -83,6 +86,7 @@ public class UserController {
         return success(userService.createUser(reqVO));
     }
 
+    @Log(title = "用户管理",businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermission('system:user:update')")
     @PutMapping("update")
     @ApiOperation("修改用户")
@@ -91,6 +95,7 @@ public class UserController {
         return success(true);
     }
 
+    @Log(title = "用户管理",businessType = BusinessType.DELETE)
     @PreAuthorize("@ss.hasPermission('system:user:delete')")
     @DeleteMapping("/delete")
     @ApiOperation("删除用户")
@@ -100,6 +105,7 @@ public class UserController {
         return success(true);
     }
 
+    @Log(title = "用户管理",businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermission('system:user:update-password')")
     @PutMapping("/update-password")
     @ApiOperation("重置用户密码")
@@ -108,6 +114,7 @@ public class UserController {
         return success(true);
     }
 
+    @Log(title = "用户管理",businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermission('system:user:update')")
     @PutMapping("/update-status")
     @ApiOperation("修改用户状态")

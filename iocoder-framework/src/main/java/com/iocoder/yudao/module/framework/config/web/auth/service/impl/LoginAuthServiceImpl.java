@@ -47,7 +47,7 @@ import static com.iocoder.yudao.module.commons.enums.role.RoleCodeEnum.SUPER_ADM
  * 登录认证接口
  *
  * @author wu kai
- * @date 2022/6/24
+ * @since  2022/6/24
  */
 @Service
 public class LoginAuthServiceImpl implements LoginAuthService {
@@ -75,9 +75,6 @@ public class LoginAuthServiceImpl implements LoginAuthService {
 
     @Resource
     UserRoleService userRoleService;
-
-    @Resource
-    PermissionService permissionService;
 
     @Resource
     AuthenticationManager authenticationManager;
@@ -172,7 +169,7 @@ public class LoginAuthServiceImpl implements LoginAuthService {
      */
     private AuthLoginRespVO createTokenAfterLoginSuccess(Long userId, String username, String password) {
         // 用户验证
-        Authentication authentication = null;
+        Authentication authentication;
         try {
             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (Exception e) {
@@ -241,7 +238,7 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         reqDTO.setLogType(logTypeEnum.getType());
         reqDTO.setTraceId(TracerUtils.getTraceId());
         reqDTO.setUserId(userId);
-        reqDTO.setUserType(UserTypeEnum.ADMIN.getValue());
+        reqDTO.setUserType(UserTypeEnum.MANAGE.getValue());
         reqDTO.setUsername(username);
         reqDTO.setUserAgent(ServletUtils.getUserAgent());
         reqDTO.setUserIp(ServletUtils.getClientIP());

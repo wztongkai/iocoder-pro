@@ -1,7 +1,9 @@
 package com.iocoder.yudao.module.system.api.user;
 
+import com.iocoder.yudao.module.commons.annotation.Log;
 import com.iocoder.yudao.module.commons.config.iocoderConfig.IocoderConfig;
 import com.iocoder.yudao.module.commons.core.domain.*;
+import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
@@ -83,6 +85,7 @@ public class UserProfileController {
         return success(profileRespVO);
     }
 
+    @Log(title = "用户中心",businessType = BusinessType.UPDATE)
     @PutMapping("/update")
     @ApiOperation("修改用户个人信息")
     public CommonResult<Boolean> updateUserProfile(@Valid @RequestBody UserProfileUpdateReqVO reqVO) {
@@ -90,6 +93,7 @@ public class UserProfileController {
         return success(true);
     }
 
+    @Log(title = "用户中心",businessType = BusinessType.UPDATE)
     @PutMapping("/update-password")
     @ApiOperation("修改用户个人密码")
     public CommonResult<Boolean> updateUserProfilePassword(@Valid @RequestBody UserProfileUpdatePasswordReqVO reqVO) {
@@ -97,6 +101,7 @@ public class UserProfileController {
         return success(true);
     }
 
+    @Log(title = "用户中心",businessType = BusinessType.UPLOAD)
     @PutMapping("/update-avatar")
     @ApiOperation("上传用户个人头像")
     public CommonResult<String> updateUserAvatar(@RequestParam("avatarFile") MultipartFile file) throws Exception {

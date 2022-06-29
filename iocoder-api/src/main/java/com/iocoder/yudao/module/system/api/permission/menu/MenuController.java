@@ -1,6 +1,8 @@
 package com.iocoder.yudao.module.system.api.permission.menu;
 
+import com.iocoder.yudao.module.commons.annotation.Log;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
+import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.service.MenuService;
@@ -19,8 +21,12 @@ import java.util.List;
 import static com.iocoder.yudao.module.commons.core.domain.CommonResult.success;
 
 /**
+ * <p>
+ * 菜单信息表 前端控制器
+ * </p>
+ *
  * @author wu kai
- * @date 2022/6/27
+ * @since 2022/6/27
  */
 @Api(tags = "管理后台 - 菜单管理")
 @RestController
@@ -31,6 +37,7 @@ public class MenuController {
     @Resource
     MenuService menuService;
 
+    @Log(title = "菜单管理", businessType = BusinessType.INSERT)
     @PostMapping("/create")
     @ApiOperation("创建菜单")
     public CommonResult<Long> createMenu(@Valid @RequestBody MenuCreateReqVO createReqVO) {
@@ -38,6 +45,7 @@ public class MenuController {
         return success(menuId);
     }
 
+    @Log(title = "菜单管理", businessType = BusinessType.UPDATE)
     @PutMapping("/update")
     @ApiOperation("编辑菜单")
     public CommonResult<Boolean> updateMenu(@Valid @RequestBody MenuUpdateReqVO updateReqVO) {
@@ -45,6 +53,7 @@ public class MenuController {
         return success(true);
     }
 
+    @Log(title = "菜单管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/delete")
     @ApiOperation("删除菜单")
     @ApiImplicitParam(name = "id", value = "角色编号", required = true, example = "1024", dataTypeClass = Long.class)

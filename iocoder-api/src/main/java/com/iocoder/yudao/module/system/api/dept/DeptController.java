@@ -1,7 +1,9 @@
 package com.iocoder.yudao.module.system.api.dept;
 
 
+import com.iocoder.yudao.module.commons.annotation.Log;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
+import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.service.DeptService;
@@ -36,12 +38,14 @@ public class DeptController {
     @Resource
     DeptService deptService;
 
+    @Log(title = "部门管理",businessType = BusinessType.INSERT)
     @PostMapping("create")
     @ApiOperation("创建部门")
     public CommonResult<Long> createDept(@Valid @RequestBody DeptCreateReqVO reqVO) {
         return success(deptService.createDept(reqVO));
     }
 
+    @Log(title = "部门管理",businessType = BusinessType.UPDATE)
     @PutMapping("update")
     @ApiOperation("更新部门")
     public CommonResult<Boolean> updateDept(@Valid @RequestBody DeptUpdateReqVO reqVO) {
@@ -49,6 +53,7 @@ public class DeptController {
         return success(true);
     }
 
+    @Log(title = "部门管理",businessType = BusinessType.UPDATE)
     @PutMapping("/update-status")
     @ApiOperation("修改部门状态")
     public CommonResult<Boolean> updateRoleStatus(@Valid @RequestBody DeptUpdateStatusReqVO updateStatusReqVO) {
@@ -56,6 +61,7 @@ public class DeptController {
         return success(true);
     }
 
+    @Log(title = "部门管理",businessType = BusinessType.DELETE)
     @DeleteMapping("delete")
     @ApiOperation("删除部门")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)

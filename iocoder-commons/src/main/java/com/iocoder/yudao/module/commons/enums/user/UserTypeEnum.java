@@ -14,7 +14,10 @@ import java.util.Arrays;
 @Getter
 public enum UserTypeEnum implements IntArrayValuable {
 
-    ADMIN(2, "管理员");
+
+    MANAGE(1, "后台用户"),
+
+    OTHER(2,"其他");
 
     public static final int[] ARRAYS = Arrays.stream(values()).mapToInt(UserTypeEnum::getValue).toArray();
 
