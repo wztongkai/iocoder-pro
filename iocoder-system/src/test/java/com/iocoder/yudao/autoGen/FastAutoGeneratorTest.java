@@ -28,7 +28,7 @@ public class FastAutoGeneratorTest {
         // 业务模块名
         String modelName = "system";
         // 表名
-        String[] tableNames = {"system_menu","system_role_menu"};
+        String[] tableNames = {"system_dict_data","system_dict_type"};
 
         // 数据库连接信息
         String jdbcUrl = "jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone" +
