@@ -81,7 +81,6 @@ public class RoleController {
         return success(true);
     }
 
-
     @GetMapping("/get-role-info")
     @ApiOperation("获取角色详情")
     @ApiImplicitParam(name = "id", value = "角色编号", required = true, example = "1024", dataTypeClass = Long.class)
