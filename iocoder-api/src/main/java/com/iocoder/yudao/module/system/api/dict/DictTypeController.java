@@ -3,11 +3,10 @@ package com.iocoder.yudao.module.system.api.dict;
 
 import com.iocoder.yudao.module.commons.annotation.Log;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
+import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.system.service.DictTypeService;
-import com.iocoder.yudao.module.system.vo.dict.type.DictTypeBatchDeleteReqVO;
-import com.iocoder.yudao.module.system.vo.dict.type.DictTypeCreateReqVO;
-import com.iocoder.yudao.module.system.vo.dict.type.DictTypeUpdateReqVO;
+import com.iocoder.yudao.module.system.vo.dict.type.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 import static com.iocoder.yudao.module.commons.core.domain.CommonResult.success;
 
@@ -71,6 +71,28 @@ public class DictTypeController {
     public CommonResult<Boolean> deleteDictTypeBatch(@Valid @RequestBody DictTypeBatchDeleteReqVO batchDeleteReqVO){
         dictTypeService.deleteDictTypeBatch(batchDeleteReqVO);
         return success(true);
+    }
+
+    @ApiOperation("/获得字典类型的分页列表")
+    @GetMapping("/page")
+    @PreAuthorize("@ss.hasPermission('system:dict:query')")
+    public CommonResult<PageResult<DictTypeRespVO>> pageDictTypes(@Valid DictTypePageReqVO reqVO) {
+        return success(dictTypeService.getDictTypePage(reqVO));
+    }
+
+    @GetMapping("/list-all-simple")
+    @ApiOperation(value = "获得全部字典类型列表", notes = "包括开启 + 禁用的字典类型，主要用于前端的下拉选项")
+    public CommonResult<List<DictTypeSimpleRespVO>> listSimpleDictTypes() {
+        List<DictTypeSimpleRespVO> list = dictTypeService.getDictTypeList();
+        return success(list);
+    }
+
+    @ApiOperation("/查询字典类型详细")
+    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)
+    @GetMapping(value = "/get")
+    @PreAuthorize("@ss.hasPermission('system:dict:query')")
+    public CommonResult<DictTypeRespVO> getDictType(@RequestParam("id") Long id) {
+        return success(dictTypeService.getDictType(id));
     }
 
 }

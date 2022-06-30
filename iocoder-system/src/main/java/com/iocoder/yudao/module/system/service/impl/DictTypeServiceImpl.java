@@ -3,20 +3,21 @@ package com.iocoder.yudao.module.system.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
+import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.domain.DictDataDO;
 import com.iocoder.yudao.module.system.domain.DictTypeDO;
 import com.iocoder.yudao.module.system.mapper.DictDataMapper;
 import com.iocoder.yudao.module.system.mapper.DictTypeMapper;
 import com.iocoder.yudao.module.system.service.DictTypeService;
-import com.iocoder.yudao.module.system.vo.dict.type.DictTypeBatchDeleteReqVO;
-import com.iocoder.yudao.module.system.vo.dict.type.DictTypeCreateReqVO;
-import com.iocoder.yudao.module.system.vo.dict.type.DictTypeUpdateReqVO;
+import com.iocoder.yudao.module.system.vo.dict.type.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.DictErrorCode.*;
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.REQ_ARGS_NOT_NULL;
@@ -76,10 +77,34 @@ public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictTypeDO>
 
     @Override
     public void deleteDictTypeBatch(DictTypeBatchDeleteReqVO batchDeleteReqVO) {
-        if(CollectionUtils.isEmpty(batchDeleteReqVO.getDictTypeIds())){
+        if (CollectionUtils.isEmpty(batchDeleteReqVO.getDictTypeIds())) {
             throw exception(REQ_ARGS_NOT_NULL);
         }
         batchDeleteReqVO.getDictTypeIds().forEach(this::deleteDictType);
+    }
+
+    @Override
+    public PageResult<DictTypeRespVO> getDictTypePage(DictTypePageReqVO pageReqVO) {
+        PageResult<DictTypeDO> pageResult = baseMapper.selectDictTypePage(pageReqVO);
+        List<DictTypeRespVO> voArrayList = new ArrayList<>();
+        BeanUtil.copyListProperties(pageResult.getList(), voArrayList, DictTypeRespVO.class);
+        return new PageResult<>(voArrayList, pageResult.getTotal());
+    }
+
+    @Override
+    public List<DictTypeSimpleRespVO> getDictTypeList() {
+        List<DictTypeDO> dictTypeList = baseMapper.selectList();
+        List<DictTypeSimpleRespVO> voArrayList = new ArrayList<>();
+        BeanUtil.copyListProperties(dictTypeList, voArrayList, DictTypeSimpleRespVO.class);
+        return voArrayList;
+    }
+
+    @Override
+    public DictTypeRespVO getDictType(Long dictTypeId) {
+        DictTypeDO dictTypeDO = baseMapper.selectById(dictTypeId);
+        DictTypeRespVO dictTypeRespVO = new DictTypeRespVO();
+        BeanUtil.copyProperties(dictTypeDO, dictTypeRespVO);
+        return dictTypeRespVO;
     }
 
     private void checkCreateOrUpdate(Long id, String name, String type) {
