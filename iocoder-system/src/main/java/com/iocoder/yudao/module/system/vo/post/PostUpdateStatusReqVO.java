@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.system.vo.dept;
+package com.iocoder.yudao.module.system.vo.post;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -6,12 +6,12 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
-@ApiModel("管理后台 - 部门更新状态 Request VO")
+@ApiModel("管理后台 - 岗位更新状态 Request VO")
 @Data
-public class DeptUpdateStatusReqVO {
+public class PostUpdateStatusReqVO {
 
-    @ApiModelProperty(value = "部门编号", required = true, example = "1024")
-    @NotNull(message = "部门编号不能为空")
+    @ApiModelProperty(value = "岗位编号", required = true, example = "1024")
+    @NotNull(message = "岗位编号不能为空")
     private Long id;
 
     @ApiModelProperty(value = "状态", required = true, example = "1", notes = "见 CommonStatusEnum 枚举")

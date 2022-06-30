@@ -105,6 +105,15 @@ public class UserController {
         return success(true);
     }
 
+    @Log(title = "用户管理",businessType = BusinessType.DELETE)
+    @PreAuthorize("@ss.hasPermission('system:user:delete')")
+    @DeleteMapping("/delete-user-batch")
+    @ApiOperation("批量删除用户")
+    public CommonResult<Boolean> deleteUserBatch(@Valid @RequestBody UserBatchDeleteReqVO batchDeleteReqVO){
+        userService.deleteUserBatch(batchDeleteReqVO);
+        return success(true);
+    }
+
     @Log(title = "用户管理",businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermission('system:user:update-password')")
     @PutMapping("/update-password")

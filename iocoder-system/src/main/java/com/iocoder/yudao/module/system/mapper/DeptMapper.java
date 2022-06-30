@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author wu kai
@@ -19,6 +19,11 @@ import java.util.List;
 @Mapper
 public interface DeptMapper extends BaseMapperX<DeptDO> {
 
+    /**
+     * 筛选部门列表
+     * @param reqVO 筛选信息
+     * @return 列表信息
+     */
     default List<DeptDO> getSimpleDepts(DeptListReqVO reqVO) {
         return selectList(new LambdaQueryWrapperX<DeptDO>()
                 .likeIfPresent(DeptDO::getName, reqVO.getName())

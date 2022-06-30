@@ -11,6 +11,7 @@ import com.iocoder.yudao.module.system.vo.dept.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +40,7 @@ public class DeptController {
     DeptService deptService;
 
     @Log(title = "部门管理",businessType = BusinessType.INSERT)
+    @PreAuthorize("@ss.hasPermission('system:dept:create')")
     @PostMapping("create")
     @ApiOperation("创建部门")
     public CommonResult<Long> createDept(@Valid @RequestBody DeptCreateReqVO reqVO) {
@@ -46,6 +48,7 @@ public class DeptController {
     }
 
     @Log(title = "部门管理",businessType = BusinessType.UPDATE)
+    @PreAuthorize("@ss.hasPermission('system:dept:update')")
     @PutMapping("update")
     @ApiOperation("更新部门")
     public CommonResult<Boolean> updateDept(@Valid @RequestBody DeptUpdateReqVO reqVO) {
@@ -54,14 +57,16 @@ public class DeptController {
     }
 
     @Log(title = "部门管理",businessType = BusinessType.UPDATE)
+    @PreAuthorize("@ss.hasPermission('system:dept:update-status')")
     @PutMapping("/update-status")
     @ApiOperation("修改部门状态")
-    public CommonResult<Boolean> updateRoleStatus(@Valid @RequestBody DeptUpdateStatusReqVO updateStatusReqVO) {
+    public CommonResult<Boolean> updateDeptStatus(@Valid @RequestBody DeptUpdateStatusReqVO updateStatusReqVO) {
         deptService.updateDeptStatus(updateStatusReqVO);
         return success(true);
     }
 
     @Log(title = "部门管理",businessType = BusinessType.DELETE)
+    @PreAuthorize("@ss.hasPermission('system:dept:delete')")
     @DeleteMapping("delete")
     @ApiOperation("删除部门")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)
@@ -70,6 +75,7 @@ public class DeptController {
         return success(true);
     }
 
+    @PreAuthorize("@ss.hasPermission('system:dept:list')")
     @GetMapping("/list")
     @ApiOperation("获取部门列表")
     public CommonResult<List<DeptRespVO>> listDepts(DeptListReqVO reqVO) {

@@ -10,6 +10,8 @@ import com.iocoder.yudao.module.commons.exception.ErrorCode;
  * @date 2022/6/16
  */
 public interface ErrorCodeConstants {
+
+    ErrorCode REQ_ARGS_NOT_NULL = new ErrorCode(1001001000, "请求参数不能为空");
     /**
      * 用户错误码
      */
@@ -74,6 +76,10 @@ public interface ErrorCodeConstants {
         ErrorCode MENU_NOT_EXISTS = new ErrorCode(1002001003, "菜单不存在");
         ErrorCode MENU_EXISTS_CHILDREN = new ErrorCode(1002001004, "存在子菜单，无法删除");
         ErrorCode MENU_PARENT_NOT_DIR_OR_MENU = new ErrorCode(1002001005, "父菜单的类型必须是目录或者菜单");
+    }
+
+    interface LogErrorCode{
+        ErrorCode LOG_NOT_FOUND = new ErrorCode(1002006000, "日志信息不存在");
     }
 
 

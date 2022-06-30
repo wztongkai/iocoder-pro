@@ -1,6 +1,7 @@
 package com.iocoder.yudao.module.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
@@ -9,13 +10,17 @@ import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
+import com.iocoder.yudao.module.system.domain.UserDeptDO;
 import com.iocoder.yudao.module.system.mapper.DeptMapper;
 import com.iocoder.yudao.module.system.service.DeptService;
+import com.iocoder.yudao.module.system.service.UserDeptService;
 import com.iocoder.yudao.module.system.vo.dept.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.DeptErrorCode.*;
@@ -30,6 +35,9 @@ import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.DeptE
  */
 @Service
 public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements DeptService {
+
+    @Resource
+    UserDeptService userDeptService;
 
     @Override
     public Set<Long> getDeptCondition(Long deptId) {
@@ -57,7 +65,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
     @Override
     public List<DeptRespVO> getSimpleDepts(DeptListReqVO reqVO) {
         List<DeptDO> simpleDepts = baseMapper.getSimpleDepts(reqVO);
-        ArrayList<DeptRespVO> deptInfoList = new ArrayList<>();
+        List<DeptRespVO> deptInfoList = new ArrayList<>();
         BeanUtil.copyListProperties(simpleDepts, deptInfoList, DeptRespVO.class);
         return deptInfoList;
     }
@@ -113,6 +121,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void deleteDept(Long id) {
         // 校验是否存在
         checkDeptExists(id);
@@ -125,6 +134,10 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         }
         // 校验通过，删除
         baseMapper.deleteById(id);
+        // 删除关联信息
+        userDeptService.remove(new LambdaUpdateWrapper<UserDeptDO>()
+                .eq(UserDeptDO::getDeptId, id)
+        );
     }
 
     @Override
@@ -143,7 +156,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         checkDeptExists(updateStatusReqVO.getId());
         // 校验通过，执行更新
         DeptDO deptDO = new DeptDO();
-        BeanUtil.copyProperties(updateStatusReqVO,deptDO);
+        BeanUtil.copyProperties(updateStatusReqVO, deptDO);
         baseMapper.updateById(deptDO);
     }
 
@@ -214,7 +227,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
             return;
         }
         DeptDO dept = baseMapper.selectById(id);
-        if (dept == null) {
+        if (ObjectUtils.isEmpty(dept)) {
             throw ServiceExceptionUtil.exception(DEPT_NOT_FOUND);
         }
     }

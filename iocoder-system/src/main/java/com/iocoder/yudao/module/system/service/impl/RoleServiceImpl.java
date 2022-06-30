@@ -1,24 +1,33 @@
 package com.iocoder.yudao.module.system.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.enums.role.DataScopeEnum;
 import com.iocoder.yudao.module.commons.enums.role.RoleTypeEnum;
+import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.system.domain.RoleDO;
+import com.iocoder.yudao.module.system.domain.RoleMenuDO;
+import com.iocoder.yudao.module.system.domain.UserRoleDO;
 import com.iocoder.yudao.module.system.mapper.RoleMapper;
+import com.iocoder.yudao.module.system.service.RoleMenuService;
 import com.iocoder.yudao.module.system.service.RoleService;
+import com.iocoder.yudao.module.system.service.UserRoleService;
 import com.iocoder.yudao.module.system.vo.permission.role.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.*;
 
+import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.REQ_ARGS_NOT_NULL;
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.RoleErrorCode.*;
 import static com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil.exception;
 
@@ -32,6 +41,12 @@ import static com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil.ex
  */
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleDO> implements RoleService {
+
+    @Resource
+    RoleMenuService roleMenuService;
+
+    @Resource
+    UserRoleService userRoleService;
 
     @Override
     public Long createRole(RoleCreateReqVO createReqVO) {
@@ -71,11 +86,29 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleDO> implements 
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void deleteRole(Long roleId) {
         // 校验是否为系统内置角色
         checkUpdateRoleIsSystem(roleId);
         // 校验通过，执行删除
         baseMapper.deleteById(roleId);
+        // 删除角色菜单
+        roleMenuService.remove(new LambdaUpdateWrapper<RoleMenuDO>()
+                .eq(RoleMenuDO::getRoleId, roleId)
+        );
+        // 删除用户角色
+        userRoleService.remove(new LambdaUpdateWrapper<UserRoleDO>()
+                .eq(UserRoleDO::getRoleId, roleId)
+        );
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteRoleBatch(RoleBatchDeleteReqVO batchDeleteReqVO) {
+        if(CollectionUtils.isEmpty(batchDeleteReqVO.getRoleIds())){
+            throw ServiceExceptionUtil.exception(REQ_ARGS_NOT_NULL);
+        }
+        batchDeleteReqVO.getRoleIds().forEach(this::deleteRole);
     }
 
     @Override

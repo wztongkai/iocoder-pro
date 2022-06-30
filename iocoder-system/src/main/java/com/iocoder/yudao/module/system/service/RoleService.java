@@ -52,6 +52,12 @@ public interface RoleService extends IService<RoleDO> {
     void deleteRole(Long roleId);
 
     /**
+     * 批量删除角色
+     * @param batchDeleteReqVO 角色编号集合
+     */
+    void deleteRoleBatch(RoleBatchDeleteReqVO batchDeleteReqVO);
+
+    /**
      * 获取角色详情
      *
      * @param roleId 角色编号

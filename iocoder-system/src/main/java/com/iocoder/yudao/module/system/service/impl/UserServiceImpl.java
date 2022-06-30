@@ -31,6 +31,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.REQ_ARGS_NOT_NULL;
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.UserErrorCode.*;
 
 /**
@@ -143,6 +144,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteUserBatch(UserBatchDeleteReqVO batchDeleteReqVO) {
+        if (CollectionUtils.isEmpty(batchDeleteReqVO.getUserIds())) {
+            throw ServiceExceptionUtil.exception(REQ_ARGS_NOT_NULL);
+        }
+        batchDeleteReqVO.getUserIds().forEach(this::deleteUser);
+    }
+
+    @Override
     public void updateUserPassword(Long userId, String password) {
         // 校验用户存在
         checkUserExist(userId);
@@ -239,6 +249,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         updateObj.setId(loginUserId);
         updateObj.setAvatar(avatar);
         return baseMapper.updateById(updateObj) > 0;
+    }
+
+    @Override
+    public List<UserDO> selectUserByNickName(String userNickname) {
+        return baseMapper.selectList(new LambdaQueryWrapperX<UserDO>()
+                .likeIfPresent(UserDO::getNickname, userNickname)
+        );
     }
 
 

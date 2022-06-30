@@ -73,6 +73,15 @@ public class RoleController {
         return success(true);
     }
 
+    @Log(title = "角色管理", businessType = BusinessType.DELETE)
+    @DeleteMapping("/delete-role-batch")
+    @ApiOperation("删除角色")
+    public CommonResult<Boolean> deleteRoleBatch(@Valid @RequestBody RoleBatchDeleteReqVO batchDeleteReqVO){
+        roleService.deleteRoleBatch(batchDeleteReqVO);
+        return success(true);
+    }
+
+
     @GetMapping("/get-role-info")
     @ApiOperation("获取角色详情")
     @ApiImplicitParam(name = "id", value = "角色编号", required = true, example = "1024", dataTypeClass = Long.class)

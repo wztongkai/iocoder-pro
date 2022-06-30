@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.enums.menu.MenuIdEnum;
@@ -8,15 +9,19 @@ import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.StringUtils;
 import com.iocoder.yudao.module.system.domain.MenuDO;
+import com.iocoder.yudao.module.system.domain.RoleMenuDO;
 import com.iocoder.yudao.module.system.mapper.MenuMapper;
 import com.iocoder.yudao.module.system.service.MenuService;
+import com.iocoder.yudao.module.system.service.RoleMenuService;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuCreateReqVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuListReqVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuRespVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuUpdateReqVO;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.MenuErrorCode.*;
@@ -32,6 +37,9 @@ import static com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil.ex
  */
 @Service
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements MenuService {
+
+    @Resource
+    RoleMenuService roleMenuService;
 
     @Override
     public Long createMenu(MenuCreateReqVO createReqVO) {
@@ -69,6 +77,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void deleteMenu(Long menuId) {
         // 判断菜单是否存在
         if (ObjectUtils.isEmpty(baseMapper.selectById(menuId))) {
@@ -83,7 +92,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
         }
         // 校验通过，删除菜单
         baseMapper.deleteById(menuId);
-        // TODO : 删除角色的权限
+        // 删除角色的权限
+        roleMenuService.remove(new LambdaUpdateWrapper<RoleMenuDO>()
+                .eq(RoleMenuDO::getMenuId, menuId)
+        );
     }
 
     @Override
@@ -114,8 +126,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
     public List<String> selectMenuPermByUserId(Long userId) {
         List<String> permission = baseMapper.selectMenuPermsByUserId(userId);
         List<String> permsSet = new ArrayList<>();
-        for (String perm : permission){
-            if (StringUtils.isNotEmpty(perm)){
+        for (String perm : permission) {
+            if (StringUtils.isNotEmpty(perm)) {
                 permsSet.addAll(Arrays.asList(perm.trim().split(",")));
             }
         }

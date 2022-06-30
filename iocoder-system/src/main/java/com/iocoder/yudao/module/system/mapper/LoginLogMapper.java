@@ -1,8 +1,13 @@
 package com.iocoder.yudao.module.system.mapper;
 
-import com.iocoder.yudao.module.system.domain.LoginLogDO;
+import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
+import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.mapper.BaseMapperX;
+import com.iocoder.yudao.module.commons.enums.login.LoginResultEnum;
+import com.iocoder.yudao.module.system.domain.LoginLogDO;
+import com.iocoder.yudao.module.system.vo.logs.loginlog.LoginLogPageReqVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * <p>
@@ -15,4 +20,30 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface LoginLogMapper extends BaseMapperX<LoginLogDO> {
 
+    /**
+     * 分页查询登录日志
+     *
+     * @param pageReqVO 筛选条件
+     * @return 日志列表
+     */
+    default PageResult<LoginLogDO> selectLoginLogPage(LoginLogPageReqVO pageReqVO) {
+
+        LambdaQueryWrapperX<LoginLogDO> queryWrapperX = new LambdaQueryWrapperX<LoginLogDO>()
+                .likeIfPresent(LoginLogDO::getUserId, pageReqVO.getUserIp())
+                .likeIfPresent(LoginLogDO::getUsername, pageReqVO.getUsername())
+                .betweenIfPresent(LoginLogDO::getCreateTime, pageReqVO.getBeginTime(), pageReqVO.getEndTime());
+        if (Boolean.TRUE.equals(pageReqVO.getStatus())) {
+            queryWrapperX.eq(LoginLogDO::getResult, LoginResultEnum.SUCCESS.getResult());
+        } else {
+            queryWrapperX.gt(LoginLogDO::getResult, LoginResultEnum.SUCCESS.getResult());
+        }
+        queryWrapperX.orderByDesc(LoginLogDO::getCreateTime);
+        return selectPage(pageReqVO, queryWrapperX);
+    }
+
+    /**
+     * 清空登录日志表
+     */
+    @Update("truncate table system_login_log")
+    void truncateLogs();
 }

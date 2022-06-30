@@ -60,6 +60,13 @@ public interface UserService extends IService<UserDO> {
     void deleteUser(Long userId);
 
     /**
+     * 用户批量删除
+     *
+     * @param batchDeleteReqVO 用户编号集合
+     */
+    void deleteUserBatch(UserBatchDeleteReqVO batchDeleteReqVO);
+
+    /**
      * 修改用户密码
      *
      * @param userId   用户编号
@@ -110,8 +117,16 @@ public interface UserService extends IService<UserDO> {
     /**
      * 更新用户头像
      *
-     * @param loginUserId  用户 id
-     * @param avatar 头像地址
+     * @param loginUserId 用户 id
+     * @param avatar      头像地址
      */
     boolean updateUserAvatar(Long loginUserId, String avatar);
+
+    /**
+     * 根据用户昵称模糊查询
+     *
+     * @param userNickname 用户昵称
+     * @return 用户列表
+     */
+    List<UserDO> selectUserByNickName(String userNickname);
 }
