@@ -10,6 +10,7 @@ import com.iocoder.yudao.module.commons.enums.user.UserTypeEnum;
 import com.iocoder.yudao.module.commons.utils.SecurityUtils;
 import com.iocoder.yudao.module.commons.utils.ServletUtils;
 import com.iocoder.yudao.module.commons.utils.StringUtils;
+import com.iocoder.yudao.module.commons.utils.ip.AddressUtils;
 import com.iocoder.yudao.module.commons.utils.ip.IpUtils;
 import com.iocoder.yudao.module.system.domain.OperateLogDO;
 import com.iocoder.yudao.module.system.mapper.OperateLogMapper;
@@ -161,7 +162,10 @@ public class LogAspect {
             // 操作时间
             operateLog.setStartTime(LocalDateTime.now());
             // 用户IP
-            operateLog.setUserIp(IpUtils.getIpAddr(ServletUtils.getRequest()));
+            String userIp = IpUtils.getIpAddr(ServletUtils.getRequest());
+            operateLog.setUserIp(userIp);
+            String userAddress = AddressUtils.getRealAddressByIP(userIp);
+            operateLog.setOperLocation(userAddress);
             // 请求结果码
             operateLog.setResultCode(code);
             // 结果提示

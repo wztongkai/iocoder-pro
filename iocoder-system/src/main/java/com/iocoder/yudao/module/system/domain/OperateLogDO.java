@@ -56,6 +56,9 @@ public class OperateLogDO extends BaseEntity {
     @TableField("user_ip")
     private String userIp;
 
+    @ApiModelProperty("操作地点")
+    private String operLocation;
+
     @ApiModelProperty("浏览器 UA")
     @TableField("user_agent")
     private String userAgent;

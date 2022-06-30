@@ -8,7 +8,7 @@ import com.iocoder.yudao.module.commons.utils.StringUtils;
 /**
  * 基础异常
  *
- * @author ruoyi
+ * @author wu kai
  */
 public class BaseException extends RuntimeException {
     private static final long serialVersionUID = 1L;
