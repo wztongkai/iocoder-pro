@@ -5,34 +5,33 @@
 参考ruoyi-vue、ruoyi-vue-pro搭建
 
 #### 软件架构
-软件架构说明
+
+| 项目                     | 说明              |
+|------------------------|-----------------|
+| `iocoder-dependencies` | Maven 依赖版本管理    |
+| `iocoder-framework`    | Java 框架拓展       |
+| `iocoder-server`       | 启动系统服务          |
+| `iocoder-system`       | 系统功能的 Module 模块 |
+| `iocoder-api`          | 系统接口模块          |
+| `iocoder-commons`      | 公共模块            |
 
 
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
-#### 参与贡献
+1、克隆代码
+    使用 [IDEA](https://www.jetbrains.com/idea/) 克隆 [https://gitee.com/wztongkai/iocoder-pro.git ](https://gitee.com/wztongkai/iocoder-pro.git) 仓库的最新代码
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+2、初始化MySQL
+    创建名为 ``iocoder-pro`` 数据库，并执行 ``sql`` 目录下的 ``iocoder-pro.sql`` 文件
 
+3、修改 [jasypt](http://www.jasypt.org/) 加密配置信息 (修改前缀、后缀以及加密秘钥)
 
-#### 特技
+3、执行 ``iocoder-server`` 模块 ``test`` 下的 ``JasyptTest`` 文件 中的 test()方法，生成数据库账号密码的加密字符串
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+4、修改 ``application-dev.yml`` 配置文件中用户名、密码 (使用第三步生成的加密字符串替换 username、password  JASYPT_WK() 中的字符串)
+
+5、修改 ``application.yml`` 配置文件中的 redis 配置信息
+
+6、运行 ``iocoder-server`` 模块中启动类 ``IoCoderApplication.java`` 启动服务 
