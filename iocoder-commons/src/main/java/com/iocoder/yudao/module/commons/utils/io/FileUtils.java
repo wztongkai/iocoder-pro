@@ -3,6 +3,7 @@ package com.iocoder.yudao.module.commons.utils.io;
 import cn.hutool.core.io.FileUtil;
 import com.iocoder.yudao.module.commons.utils.uuid.IdUtils;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 
@@ -12,6 +13,7 @@ import java.io.File;
  * @author wu kai
  * @date 2022/6/14
  */
+@Slf4j
 public class FileUtils {
     /**
      * 创建临时文件
@@ -56,5 +58,17 @@ public class FileUtils {
         // 标记 JVM 退出时，自动删除
         file.deleteOnExit();
         return file;
+    }
+
+    /**
+     * 创建目录
+     * @param fileDir 目录地址
+     */
+    public static void createFileDir(String fileDir) {
+        File dir = new File(fileDir);
+        if (!dir.exists()) {
+            log.info("文件目录{}不存在,目录创建中!", fileDir);
+            dir.mkdirs();
+        }
     }
 }
