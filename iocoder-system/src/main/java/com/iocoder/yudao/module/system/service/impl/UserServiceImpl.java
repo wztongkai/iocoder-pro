@@ -68,6 +68,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     UserService userService;
 
     @Override
+//    @DS("slave")
     public PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
 
         return baseMapper.selectUserList(requestVo);
