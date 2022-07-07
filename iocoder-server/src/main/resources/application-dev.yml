@@ -1,9 +1,9 @@
 spring:
   datasource:
     dynamic:
-      primary: master
+      primary: master  # 设置默认数据源
       strict: false
-      datasource:
+      datasource: # 配置动态数据源
         master:
           url: jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false
           username: JASYPT_WK(sIOzfZPQ1XC22k07YeGBm+02f7Q/k0AM9l7z+LuGhzn4rk15dmSVpD3LSAhp1GT9)
@@ -11,7 +11,7 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
         slave:
-          url: jdbc:mysql://localhost:3306/ruoyi-vue-pro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false
+          url: jdbc:mysql://localhost:3306/iocoder-pro-slave?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false
           username: JASYPT_WK(sIOzfZPQ1XC22k07YeGBm+02f7Q/k0AM9l7z+LuGhzn4rk15dmSVpD3LSAhp1GT9)
           password: JASYPT_WK(QK8gNe3sVYBlbJGA+fHIyhipaNNlPZFT7Xt0/9TPZOcbw2yv3+wH4FF/OcmSXQgS)
           driver-class-name: com.mysql.cj.jdbc.Driver
