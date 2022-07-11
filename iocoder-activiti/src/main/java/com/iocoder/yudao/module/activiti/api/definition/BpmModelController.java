@@ -33,7 +33,7 @@ public class BpmModelController {
 
 
     @Log(title = "流程模型",businessType = BusinessType.INSERT)
-    @PreAuthorize("@ss.hasPermission('bpm:model:update')")
+    @PreAuthorize("@ss.hasPermission('bpm:model:create')")
     @PostMapping("/createModel")
     @ApiOperation(value = "新建模型")
     public CommonResult<String> createModel(@Valid @RequestBody BpmModelCreateReqVO createRetVO) {
