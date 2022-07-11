@@ -20,7 +20,7 @@ public interface BpmModelService {
      * @param createReqVO 创建信息
      * @return 创建的流程模型的编号
      */
-    String createModel(@Valid BpmModelCreateReqVO createReqVO);
+    String createModel(@Valid BpmModelCreateReqVO createReqVO, String bpmnXml);
 
     /**
      * 获得流程模型
@@ -29,4 +29,12 @@ public interface BpmModelService {
      * @return 流程模型
      */
     BpmModelRespVO getModel(String id);
+
+    /**
+     * 部署流程模型
+     *
+     * @param id 流程模型编号
+     * @return
+     */
+    void deployModel(String id);
 }

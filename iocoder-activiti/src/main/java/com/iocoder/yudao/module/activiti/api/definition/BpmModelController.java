@@ -1,11 +1,14 @@
 package com.iocoder.yudao.module.activiti.api.definition;
 
 import com.iocoder.yudao.module.activiti.service.BpmModelService;
+import com.iocoder.yudao.module.activiti.vo.model.BpmModeImportReqVO;
 import com.iocoder.yudao.module.activiti.vo.model.BpmModelCreateReqVO;
 import com.iocoder.yudao.module.activiti.vo.model.BpmModelRespVO;
 import com.iocoder.yudao.module.commons.annotation.Log;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
 import com.iocoder.yudao.module.commons.enums.BusinessType;
+import com.iocoder.yudao.module.commons.utils.BeanUtil;
+import com.iocoder.yudao.module.commons.utils.io.IoUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.io.IOException;
 
 import static com.iocoder.yudao.module.commons.core.domain.CommonResult.success;
 
@@ -32,12 +36,23 @@ public class BpmModelController {
     BpmModelService bpmModelService;
 
 
-    @Log(title = "流程模型",businessType = BusinessType.INSERT)
+    @Log(title = "流程模型", businessType = BusinessType.INSERT)
     @PreAuthorize("@ss.hasPermission('bpm:model:create')")
     @PostMapping("/createModel")
     @ApiOperation(value = "新建模型")
     public CommonResult<String> createModel(@Valid @RequestBody BpmModelCreateReqVO createRetVO) {
-        return success(bpmModelService.createModel(createRetVO));
+        return success(bpmModelService.createModel(createRetVO, null));
+    }
+
+    @PostMapping("/import")
+    @ApiOperation(value = "导入模型")
+    @PreAuthorize("@ss.hasPermission('bpm:model:import')")
+    public CommonResult<String> importModel(@Valid BpmModeImportReqVO importReqVO) throws IOException {
+        BpmModelCreateReqVO bpmModelCreateReqVO = new BpmModelCreateReqVO();
+        BeanUtil.copyProperties(importReqVO, bpmModelCreateReqVO);
+        // 读取文件
+        String bpmnXml = IoUtils.readUtf8(importReqVO.getBpmnFile().getInputStream(), false);
+        return success(bpmModelService.createModel(bpmModelCreateReqVO, bpmnXml));
     }
 
     @GetMapping("/getModel")
@@ -47,6 +62,14 @@ public class BpmModelController {
     public CommonResult<BpmModelRespVO> getModel(@RequestParam("id") String id) {
         BpmModelRespVO model = bpmModelService.getModel(id);
         return success(model);
+    }
+
+    @PostMapping("/deployModel")
+    @ApiOperation("部署流程模型")
+    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = String.class)
+    public CommonResult<Boolean> deployModel(@RequestParam("id") String id) {
+        bpmModelService.deployModel(id);
+        return success(true);
     }
 
 

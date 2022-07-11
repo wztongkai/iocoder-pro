@@ -24,6 +24,9 @@ iocoder:
 
 
 spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
   profiles:
     active: dev
   # 解决 springboot 2.6.x 整合 knife4j 3.0.x 依赖冲突 (启动报错：Failed to start bean 'documentationPluginsBootstrapper')

@@ -97,6 +97,8 @@ public interface ErrorCodeConstants {
     }
 
     ErrorCode MODEL_KEY_EXISTS = new ErrorCode(1009002000, "已经存在流程标识为【{}】的流程");
+    ErrorCode MODEL_NOT_EXISTS = new ErrorCode(1009002001, "流程模型不存在");
+    ErrorCode MODEL_IMAGE_NOT_EXISTS = new ErrorCode(1009002002, "流程图不存在");
 
 
 }
