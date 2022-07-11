@@ -15,6 +15,7 @@
         <module>iocoder-system</module>
         <module>iocoder-commons</module>
         <module>iocoder-api</module>
+        <module>iocoder-activiti</module>
     </modules>
 
     <properties>

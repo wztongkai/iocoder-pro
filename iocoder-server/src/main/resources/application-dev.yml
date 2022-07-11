@@ -5,18 +5,28 @@ spring:
       strict: false
       datasource: # 配置动态数据源
         master:
-          url: jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false
+          url: jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false&nullCatalogMeansCurrent=true
           username: JASYPT_WK(sIOzfZPQ1XC22k07YeGBm+02f7Q/k0AM9l7z+LuGhzn4rk15dmSVpD3LSAhp1GT9)
           password: JASYPT_WK(QK8gNe3sVYBlbJGA+fHIyhipaNNlPZFT7Xt0/9TPZOcbw2yv3+wH4FF/OcmSXQgS)
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
         slave:
-          url: jdbc:mysql://localhost:3306/iocoder-pro-slave?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false
+          url: jdbc:mysql://localhost:3306/iocoder-pro-slave?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false&nullCatalogMeansCurrent=true
           username: JASYPT_WK(sIOzfZPQ1XC22k07YeGBm+02f7Q/k0AM9l7z+LuGhzn4rk15dmSVpD3LSAhp1GT9)
           password: JASYPT_WK(QK8gNe3sVYBlbJGA+fHIyhipaNNlPZFT7Xt0/9TPZOcbw2yv3+wH4FF/OcmSXQgS)
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
-
+  activiti:
+    # activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建
+    database-schema-update: false
+    # activiti7默认不生成历史信息表，开启历史表生成
+    db-history-used: true
+    # 保存历史数据的最高级别，除了会保存audit级别的数据外，还会保存其他全部流程相关的细节数据，包括一些流程参数等
+    history-level: full
+    # 关闭自动部署
+    check-process-definitions: false
+    # 关闭定时器
+    async-executor-activate: false
 iocoder:
   # 图片验证码
   captcha:

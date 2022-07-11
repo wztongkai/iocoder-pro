@@ -65,6 +65,8 @@
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <xmlworker.version>5.5.11</xmlworker.version>
         <!-- ===================== pdf 相关 end =======================-->
+        <!-- 工作流相关 -->
+        <activiti.version>7.1.0.M6</activiti.version>
     </properties>
 
 
@@ -309,6 +311,20 @@
                 <version>${xmlworker.version}</version>
             </dependency>
             <!-- ======================= PDF 相关  end ====================== -->
+            <!-- 工作流相关 start -->
+            <dependency>
+                <groupId>org.activiti.dependencies</groupId>
+                <artifactId>activiti-dependencies</artifactId>
+                <version>${activiti.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-spring-boot-starter</artifactId>
+                <version>${activiti.version}</version>
+            </dependency>
+            <!-- 工作流相关 end -->
+
         </dependencies>
     </dependencyManagement>
 
