@@ -27,6 +27,7 @@ spring:
   profiles:
     active: dev
   # 解决 springboot 2.6.x 整合 knife4j 3.0.x 依赖冲突 (启动报错：Failed to start bean 'documentationPluginsBootstrapper')
+  # 整合 activiti 后 需要在 Knife4jConfig.class 中添加 webEndpointServletHandlerMapping 方法
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
