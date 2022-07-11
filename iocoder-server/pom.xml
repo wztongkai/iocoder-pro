@@ -24,6 +24,12 @@
             <artifactId>iocoder-api</artifactId>
             <version>${revision}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.iocoder</groupId>
+            <artifactId>iocoder-activiti</artifactId>
+            <version>${revision}</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

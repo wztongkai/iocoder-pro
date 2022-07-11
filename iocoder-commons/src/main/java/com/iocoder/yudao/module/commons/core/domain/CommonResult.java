@@ -2,6 +2,7 @@ package com.iocoder.yudao.module.commons.core.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.iocoder.yudao.module.commons.constant.GlobalErrorCodeConstants;
 import com.iocoder.yudao.module.commons.exception.ErrorCode;
 import com.iocoder.yudao.module.commons.exception.ServiceException;
@@ -17,6 +18,7 @@ import java.util.Objects;
  * @param <T> 数据泛型
  */
 @Data
+@JsonInclude
 public class CommonResult<T> implements Serializable {
 
     /**

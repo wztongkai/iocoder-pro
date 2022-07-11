@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.iocoder</groupId>
-            <artifactId>iocoder-commons</artifactId>
+            <artifactId>iocoder-framework</artifactId>
             <version>${revision}</version>
         </dependency>
     </dependencies>

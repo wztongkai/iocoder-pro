@@ -96,5 +96,7 @@ public interface ErrorCodeConstants {
         ErrorCode DICT_TYPE_HAS_CHILDREN = new ErrorCode(1002006005, "无法删除，该字典类型还有字典数据");
     }
 
+    ErrorCode MODEL_KEY_EXISTS = new ErrorCode(1009002000, "已经存在流程标识为【{}】的流程");
+
 
 }
