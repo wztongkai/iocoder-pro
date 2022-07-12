@@ -3,14 +3,20 @@ package com.iocoder.yudao.module.activiti.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.iocoder.yudao.module.activiti.service.BpmProcessDefinitionService;
 import com.iocoder.yudao.module.activiti.vo.definition.BpmProcessDefinitionCreateReqVO;
+import com.iocoder.yudao.module.activiti.vo.definition.BpmProcessDefinitionListReqVO;
+import com.iocoder.yudao.module.activiti.vo.definition.BpmProcessDefinitionRespVO;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.impl.persistence.entity.SuspensionState;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -67,5 +73,30 @@ public class BpmProcessDefinitionServiceImpl implements BpmProcessDefinitionServ
             return;
         }
         log.error("[updateProcessDefinitionState][流程定义({}) 修改状态({})]", id, state);
+    }
+
+    @Override
+    public List<BpmProcessDefinitionRespVO> getProcessDefinitionList(BpmProcessDefinitionListReqVO listReqVO) {
+        // 查询流程定义列表
+        List<ProcessDefinition> processDefinitionList = repositoryService.createProcessDefinitionQuery()
+                .orderByProcessDefinitionKey().desc()
+                .list();
+        if(CollectionUtils.isEmpty(processDefinitionList)){
+            return Collections.emptyList();
+        }
+        List<BpmProcessDefinitionRespVO> respVOArrayList = new ArrayList<>();
+        processDefinitionList.forEach(processDefinition -> {
+            BpmProcessDefinitionRespVO respVO = BpmProcessDefinitionRespVO.builder()
+                    .id(processDefinition.getId())
+                    .name(processDefinition.getName())
+                    .key(processDefinition.getKey())
+                    .version(processDefinition.getVersion())
+                    .description(processDefinition.getDescription())
+                    .resourceName(processDefinition.getResourceName())
+                    .deploymentId(processDefinition.getDeploymentId())
+                    .build();
+            respVOArrayList.add(respVO);
+        });
+        return respVOArrayList;
     }
 }

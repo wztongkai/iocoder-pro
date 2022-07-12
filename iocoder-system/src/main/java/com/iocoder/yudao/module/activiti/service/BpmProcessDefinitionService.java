@@ -1,9 +1,12 @@
 package com.iocoder.yudao.module.activiti.service;
 
 import com.iocoder.yudao.module.activiti.vo.definition.BpmProcessDefinitionCreateReqVO;
+import com.iocoder.yudao.module.activiti.vo.definition.BpmProcessDefinitionListReqVO;
+import com.iocoder.yudao.module.activiti.vo.definition.BpmProcessDefinitionRespVO;
 import org.activiti.engine.repository.ProcessDefinition;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 流程定义
@@ -43,4 +46,11 @@ public interface BpmProcessDefinitionService {
      * @param state 状态
      */
     void updateProcessDefinitionState(String id, Integer state);
+
+    /**
+     * 获取流程定义列表
+     * @param listReqVO 获取条件
+     * @return 列表
+     */
+    List<BpmProcessDefinitionRespVO> getProcessDefinitionList(BpmProcessDefinitionListReqVO listReqVO);
 }

@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.activiti.vo.definition;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -10,17 +11,21 @@ import javax.validation.constraints.NotEmpty;
 @ApiModel("管理后台 - 流程定义 Response VO")
 @Data
 @Builder
+@JsonInclude
 public class BpmProcessDefinitionRespVO {
 
     @ApiModelProperty(value = "流程定义ID")
     private String id;
 
-    @ApiModelProperty(value = "流程定义版本")
-    private Integer version;
-
     @ApiModelProperty(value = "流程定义名称")
     @NotEmpty(message = "流程定义名称不能为空")
     private String name;
+
+    @ApiModelProperty(name = "流程定义Key")
+    private String key;
+
+    @ApiModelProperty(value = "流程定义版本")
+    private Integer version;
 
     @ApiModelProperty(value = "流程描述", example = "我是描述")
     private String description;
@@ -29,8 +34,6 @@ public class BpmProcessDefinitionRespVO {
     @NotEmpty(message = "流程分类不能为空")
     private String category;
 
-    @ApiModelProperty(name = "流程定义Key")
-    private String key;
 
     @ApiModelProperty(name = "流程定义资源名称")
     private String resourceName;
