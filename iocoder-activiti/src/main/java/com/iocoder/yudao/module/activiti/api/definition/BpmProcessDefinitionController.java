@@ -33,7 +33,7 @@ public class BpmProcessDefinitionController {
     @Resource
     BpmProcessDefinitionService processDefinitionService;
 
-    @GetMapping("/list")
+    @GetMapping("/get-process-definition-list")
     @ApiOperation(value = "获得流程定义列表")
     @PreAuthorize("@ss.hasPermission('bpm:process-definition:query')")
     public CommonResult<List<BpmProcessDefinitionRespVO>> getProcessDefinitionList(

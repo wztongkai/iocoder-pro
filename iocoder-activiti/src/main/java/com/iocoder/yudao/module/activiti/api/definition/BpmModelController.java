@@ -44,7 +44,7 @@ public class BpmModelController {
         return success(bpmModelService.createModel(createRetVO, null));
     }
 
-    @PostMapping("/import")
+    @PostMapping("/importModel")
     @ApiOperation(value = "导入模型")
     @PreAuthorize("@ss.hasPermission('bpm:model:import')")
     public CommonResult<String> importModel(@Valid BpmModeImportReqVO importReqVO) throws IOException {
