@@ -6,11 +6,14 @@ import com.iocoder.yudao.module.activiti.vo.definition.BpmProcessDefinitionCreat
 import com.iocoder.yudao.module.activiti.vo.definition.BpmProcessDefinitionListReqVO;
 import com.iocoder.yudao.module.activiti.vo.definition.BpmProcessDefinitionRespVO;
 import lombok.extern.slf4j.Slf4j;
+import org.activiti.bpmn.converter.BpmnXMLConverter;
+import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.impl.persistence.entity.SuspensionState;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -81,7 +84,7 @@ public class BpmProcessDefinitionServiceImpl implements BpmProcessDefinitionServ
         List<ProcessDefinition> processDefinitionList = repositoryService.createProcessDefinitionQuery()
                 .orderByProcessDefinitionKey().desc()
                 .list();
-        if(CollectionUtils.isEmpty(processDefinitionList)){
+        if (CollectionUtils.isEmpty(processDefinitionList)) {
             return Collections.emptyList();
         }
         List<BpmProcessDefinitionRespVO> respVOArrayList = new ArrayList<>();
@@ -98,5 +101,22 @@ public class BpmProcessDefinitionServiceImpl implements BpmProcessDefinitionServ
             respVOArrayList.add(respVO);
         });
         return respVOArrayList;
+    }
+
+    @Override
+    public String getProcessDefinitionBpmnXML(String id) {
+        BpmnModel bpmnModel = repositoryService.getBpmnModel(id);
+        if(ObjectUtils.isEmpty(bpmnModel)){
+            return null;
+        }
+        return StrUtil.utf8Str(getBpmnBytes(bpmnModel));
+    }
+
+    private byte[] getBpmnBytes(BpmnModel bpmnModel) {
+        if (bpmnModel == null) {
+            return new byte[0];
+        }
+        BpmnXMLConverter converter = new BpmnXMLConverter();
+        return converter.convertToXML(bpmnModel);
     }
 }

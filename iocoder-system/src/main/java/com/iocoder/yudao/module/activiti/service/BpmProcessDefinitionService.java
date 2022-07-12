@@ -53,4 +53,11 @@ public interface BpmProcessDefinitionService {
      * @return 列表
      */
     List<BpmProcessDefinitionRespVO> getProcessDefinitionList(BpmProcessDefinitionListReqVO listReqVO);
+
+    /**
+     * 获取流程定义bpmn
+     * @param id 流程定义编号
+     * @return bpmn
+     */
+    String getProcessDefinitionBpmnXML(String id);
 }

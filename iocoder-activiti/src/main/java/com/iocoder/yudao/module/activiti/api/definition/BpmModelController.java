@@ -57,7 +57,7 @@ public class BpmModelController {
 
     @GetMapping("/getModel")
     @ApiOperation("获得流程模型")
-    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = String.class)
+    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "990fc7a3-01c0-11ed-92b4-d89ef33ad32f", dataTypeClass = String.class)
     @PreAuthorize("@ss.hasPermission('bpm:model:query')")
     public CommonResult<BpmModelRespVO> getModel(@RequestParam("id") String id) {
         BpmModelRespVO model = bpmModelService.getModel(id);
@@ -66,7 +66,7 @@ public class BpmModelController {
 
     @PostMapping("/deployModel")
     @ApiOperation("部署流程模型")
-    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = String.class)
+    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "990fc7a3-01c0-11ed-92b4-d89ef33ad32f", dataTypeClass = String.class)
     public CommonResult<Boolean> deployModel(@RequestParam("id") String id) {
         bpmModelService.deployModel(id);
         return success(true);
