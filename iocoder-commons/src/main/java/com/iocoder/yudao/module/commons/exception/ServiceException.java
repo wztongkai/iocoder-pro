@@ -19,7 +19,7 @@ public final class ServiceException extends RuntimeException {
     private String message;
 
     /**
-     * 错误明细，内部调试错误
+     * 错误明细
      */
     private String detailMessage;
 
@@ -36,6 +36,11 @@ public final class ServiceException extends RuntimeException {
     public ServiceException(String message, Integer code) {
         this.message = message;
         this.code = code;
+    }
+
+    public ServiceException(String message ,String detailMessage){
+        this.message = message;
+        this.detailMessage = detailMessage;
     }
 
     public String getDetailMessage() {

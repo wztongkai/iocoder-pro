@@ -40,6 +40,13 @@ public interface BpmProcessDefinitionService {
     ProcessDefinition getProcessDefinition(String id);
 
     /**
+     * 根据流程定义 key 获取已激活的流程定义
+     * @param key 流程定义 key
+     * @return 流程定义
+     */
+    ProcessDefinition getActiveProcessDefinition(String key);
+
+    /**
      * 更新流程定义状态
      *
      * @param id 流程定义的编号

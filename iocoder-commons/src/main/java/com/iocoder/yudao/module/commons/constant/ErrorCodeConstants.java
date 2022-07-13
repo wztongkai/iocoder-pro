@@ -99,6 +99,9 @@ public interface ErrorCodeConstants {
     ErrorCode MODEL_KEY_EXISTS = new ErrorCode(1009002000, "已经存在流程标识为【{}】的流程");
     ErrorCode MODEL_NOT_EXISTS = new ErrorCode(1009002001, "流程模型不存在");
     ErrorCode MODEL_IMAGE_NOT_EXISTS = new ErrorCode(1009002002, "流程图不存在");
+    ErrorCode PROCESS_DEFINITION_NOT_EXISTS = new ErrorCode(1009003002, "流程定义不存在");
+    ErrorCode PROCESS_DEFINITION_IS_SUSPENDED = new ErrorCode(1009003003, "流程定义处于挂起状态");
+    ErrorCode PROCESS_DEFINITION_BPMN_MODEL_NOT_EXISTS = new ErrorCode(1009003004, "流程定义的模型不存在");
 
 
 }

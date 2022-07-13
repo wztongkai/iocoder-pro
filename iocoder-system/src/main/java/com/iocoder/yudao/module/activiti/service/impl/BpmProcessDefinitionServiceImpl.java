@@ -64,6 +64,11 @@ public class BpmProcessDefinitionServiceImpl implements BpmProcessDefinitionServ
     }
 
     @Override
+    public ProcessDefinition getActiveProcessDefinition(String key) {
+        return repositoryService.createProcessDefinitionQuery().processDefinitionKey(key).active().singleResult();
+    }
+
+    @Override
     public void updateProcessDefinitionState(String id, Integer state) {
         // 激活
         if (Objects.equals(SuspensionState.ACTIVE.getStateCode(), state)) {
