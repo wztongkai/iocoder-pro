@@ -50,18 +50,16 @@ public class ResourcesConfig implements WebMvcConfigurer {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
+        //允许所有域名进行跨域调用
+        config.addAllowedOriginPattern("*");//替换这个
+        //允许跨越发送cookie
         config.setAllowCredentials(true);
-        // 设置访问源请求头
-        config.addAllowedOrigin("*");
+        //放行全部原始头信息
         config.addAllowedHeader("*");
-        // 设置访问源请求方法
+        //允许所有请求方法跨域调用
         config.addAllowedMethod("*");
-        // 有效期 1800秒
-        config.setMaxAge(1800L);
-        // 添加映射路径，拦截一切请求
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
-        // 返回新的CorsFilter
         return new CorsFilter(source);
     }
 }
