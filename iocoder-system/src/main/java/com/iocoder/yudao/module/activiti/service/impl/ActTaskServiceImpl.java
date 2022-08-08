@@ -3,6 +3,7 @@ package com.iocoder.yudao.module.activiti.service.impl;
 import com.iocoder.yudao.module.activiti.dto.instance.ActProcessInstanceDTO;
 import com.iocoder.yudao.module.activiti.dto.task.ActTaskDTO;
 import com.iocoder.yudao.module.activiti.service.ActInstanceService;
+import com.iocoder.yudao.module.activiti.service.ActTaskService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.IdentityLink;
 import org.activiti.engine.task.Task;

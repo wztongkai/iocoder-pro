@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.system.service.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -7,6 +8,7 @@ import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.enums.role.DataScopeEnum;
+import com.iocoder.yudao.module.commons.enums.role.RoleCodeEnum;
 import com.iocoder.yudao.module.commons.enums.role.RoleTypeEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
@@ -144,6 +146,28 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleDO> implements 
             return Collections.emptyList();
         }
         return roleList;
+    }
+
+    @Override
+    public Set<String> selectRolePermissionByUserId(Long userId) {
+        List<RoleDO> roleList = userRoleService.selectRoleInfoByUserId(userId);
+        Set<String> permsSet = new HashSet<>();
+        for (RoleDO perm : roleList)
+        {
+            if (ObjectUtils.isNotEmpty(perm))
+            {
+                permsSet.addAll(Arrays.asList(perm.getCode().trim().split(",")));
+            }
+        }
+        return permsSet;
+    }
+
+    @Override
+    public boolean hasAnySuperAdmin(List<RoleDO> roleInfoList) {
+        if (CollectionUtil.isEmpty(roleInfoList)) {
+            return false;
+        }
+        return roleInfoList.stream().anyMatch(role -> RoleCodeEnum.isSuperAdmin(role.getCode()));
     }
 
 

@@ -103,4 +103,18 @@ public interface RoleService extends IService<RoleDO> {
      * @return 角色信息集合
      */
     List<RoleDO> getSimpleRoleInfos(Set<Long> roleId);
+
+    /**
+     * 根据用户编号获取角色权限信息
+     * @param userId 用户编号
+     * @return 权限列表
+     */
+    Set<String> selectRolePermissionByUserId(Long userId);
+
+    /**
+     * 判断是否包含管理员角色
+     * @param roleInfoList 角色列表
+     * @return 结果
+     */
+    boolean hasAnySuperAdmin(List<RoleDO> roleInfoList);
 }

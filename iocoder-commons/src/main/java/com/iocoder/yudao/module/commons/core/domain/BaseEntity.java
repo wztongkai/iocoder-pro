@@ -45,4 +45,15 @@ public class BaseEntity {
     @TableField("deleted")
     @TableLogic
     private Boolean deleted;
+
+
+    public boolean isAdmin()
+    {
+        return isAdmin(this.id);
+    }
+
+    public static boolean isAdmin(Long userId)
+    {
+        return userId != null && 1L == userId;
+    }
 }

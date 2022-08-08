@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.commons.utils.convert;
 
+import cn.hutool.core.collection.CollectionUtil;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.*;
@@ -11,10 +12,15 @@ import java.util.stream.Collectors;
 
 /**
  * 集合转换器
+ *
  * @author wu kai
  * @date 2022/6/17
  */
 public class CollConvertUtils {
+
+    public static boolean isAnyEmpty(Collection<?>... collections) {
+        return Arrays.stream(collections).anyMatch(CollectionUtil::isEmpty);
+    }
 
     public static <T, U> Set<U> convertSet(Collection<T> from, Function<T, U> func) {
         if (CollectionUtils.isEmpty(from)) {

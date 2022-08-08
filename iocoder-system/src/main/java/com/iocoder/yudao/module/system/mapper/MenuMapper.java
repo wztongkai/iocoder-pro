@@ -32,4 +32,8 @@ public interface MenuMapper extends BaseMapperX<MenuDO> {
     }
 
     List<String> selectMenuPermsByUserId(Long userId);
+
+    List<MenuDO> selectMenuTreeAll();
+
+    List<MenuDO> selectMenuTreeByUserId(Long userId);
 }

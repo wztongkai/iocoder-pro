@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.activiti.service.impl;
+package com.iocoder.yudao.module.activiti.service;
 
 import com.iocoder.yudao.module.activiti.dto.task.ActTaskDTO;
 

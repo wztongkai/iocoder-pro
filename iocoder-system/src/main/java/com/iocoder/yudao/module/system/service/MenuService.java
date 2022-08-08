@@ -8,6 +8,7 @@ import com.iocoder.yudao.module.system.vo.permission.menu.MenuRespVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuUpdateReqVO;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -70,4 +71,20 @@ public interface MenuService extends IService<MenuDO> {
      * @return 权限列表
      */
     List<String> selectMenuPermByUserId(Long userId);
+
+    /**
+     *获取目录和菜单类型，并且已开启的菜单
+     * @param menuTypes 菜单类型
+     * @param menuStatus 菜单状态（已开启）
+     * @return 菜单列表
+     */
+    List<MenuDO> getMenuList(Set<Integer> menuTypes, Set<Integer> menuStatus);
+
+    /**
+     * 获取菜单信息集合
+     *
+     * @param menuIds 菜单编号数组
+     * @return 菜单信息集合
+     */
+    List<MenuDO> getSimpleMenuInfos(Set<Long> menuIds);
 }

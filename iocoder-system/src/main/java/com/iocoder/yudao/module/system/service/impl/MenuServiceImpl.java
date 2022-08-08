@@ -3,6 +3,7 @@ package com.iocoder.yudao.module.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
+import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.enums.menu.MenuIdEnum;
 import com.iocoder.yudao.module.commons.enums.menu.MenuTypeEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
@@ -17,6 +18,7 @@ import com.iocoder.yudao.module.system.vo.permission.menu.MenuCreateReqVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuListReqVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuRespVO;
 import com.iocoder.yudao.module.system.vo.permission.menu.MenuUpdateReqVO;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -132,6 +134,26 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
             }
         }
         return permsSet;
+    }
+
+    @Override
+    public List<MenuDO> getMenuList(Set<Integer> menuTypes, Set<Integer> menuStatus) {
+        return baseMapper.selectList(new LambdaQueryWrapperX<MenuDO>()
+                .inIfPresent(MenuDO::getType,menuTypes)
+                .inIfPresent(MenuDO::getStatus,menuStatus)
+        );
+    }
+
+    @Override
+    public List<MenuDO> getSimpleMenuInfos(Set<Long> menuIds) {
+        List<MenuDO> menuList = baseMapper.selectList(new LambdaQueryWrapperX<MenuDO>()
+                .inIfPresent(MenuDO::getId, menuIds)
+                .eq(MenuDO::getStatus, CommonStatusEnum.ENABLE.getStatus())
+        );
+        if (CollectionUtils.isEmpty(menuList)) {
+            return Collections.emptyList();
+        }
+        return menuList;
     }
 
     /**
