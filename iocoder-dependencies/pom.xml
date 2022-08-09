@@ -67,6 +67,7 @@
         <!-- ===================== pdf 相关 end =======================-->
         <!-- 工作流相关 -->
         <activiti.version>7.1.0.M6</activiti.version>
+        <minio.version>8.0.3</minio.version>
     </properties>
 
 
@@ -329,7 +330,11 @@
                 <version>${activiti.version}</version>
             </dependency>
             <!-- 工作流相关 end -->
-
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
