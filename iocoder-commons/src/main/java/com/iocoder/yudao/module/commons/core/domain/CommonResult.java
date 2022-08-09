@@ -7,7 +7,6 @@ import com.iocoder.yudao.module.commons.constant.GlobalErrorCodeConstants;
 import com.iocoder.yudao.module.commons.exception.ErrorCode;
 import com.iocoder.yudao.module.commons.exception.ServiceException;
 import lombok.Data;
-import org.springframework.util.Assert;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -19,7 +18,7 @@ import java.util.Objects;
  */
 @Data
 @JsonInclude
-public class CommonResult<T> implements Serializable {
+public class CommonResult<T>  implements Serializable {
 
     /**
      * 错误码
@@ -54,7 +53,7 @@ public class CommonResult<T> implements Serializable {
     }
 
     public static <T> CommonResult<T> error(Integer code, String message) {
-        Assert.isTrue(!GlobalErrorCodeConstants.SUCCESS.getCode().equals(code), "code 必须是错误的！");
+//        Assert.isTrue(!GlobalErrorCodeConstants.SUCCESS.getCode().equals(code), "code 必须是错误的！");
         CommonResult<T> result = new CommonResult<>();
         result.flag = 0;
         result.code = code;

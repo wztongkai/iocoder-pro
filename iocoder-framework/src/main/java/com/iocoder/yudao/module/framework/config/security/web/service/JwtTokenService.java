@@ -61,7 +61,7 @@ public class JwtTokenService {
                 LoginUser sysUser = redisCache.getCacheObject(userKey);
                 return sysUser;
             } catch (Exception e) {
-                throw new Exception(StringUtils.format("获取用户身份失败", e));
+//                throw new Exception(StringUtils.format("获取用户身份失败", e));
             }
         }
         return null;

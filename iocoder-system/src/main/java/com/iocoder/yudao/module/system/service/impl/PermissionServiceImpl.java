@@ -3,17 +3,23 @@ package com.iocoder.yudao.module.system.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
+import com.iocoder.yudao.module.commons.core.domain.RoleVO;
+import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.enums.role.RoleCodeEnum;
 import com.iocoder.yudao.module.commons.utils.SecurityUtils;
 import com.iocoder.yudao.module.commons.utils.StringUtils;
+import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.MenuDO;
+import com.iocoder.yudao.module.system.domain.RoleDO;
 import com.iocoder.yudao.module.system.domain.RoleMenuDO;
 import com.iocoder.yudao.module.system.domain.UserRoleDO;
 import com.iocoder.yudao.module.system.mapper.RoleMenuMapper;
 import com.iocoder.yudao.module.system.mapper.UserRoleMapper;
 import com.iocoder.yudao.module.system.service.MenuService;
 import com.iocoder.yudao.module.system.service.PermissionService;
+import com.iocoder.yudao.module.system.service.RoleMenuService;
 import com.iocoder.yudao.module.system.service.RoleService;
 import com.iocoder.yudao.module.system.vo.permission.role.RoleRespVO;
 import org.apache.commons.collections4.CollectionUtils;
@@ -21,9 +27,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils.convertSet;
 
@@ -36,7 +40,9 @@ import static com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils.co
 @Service("ss")
 public class PermissionServiceImpl implements PermissionService {
 
-    /** 所有权限标识 */
+    /**
+     * 所有权限标识
+     */
     private static final String ALL_PERMISSION = "*:*:*";
 
     @Resource
@@ -47,6 +53,9 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Resource
     RoleMenuMapper roleMenuMapper;
+
+    @Resource
+    RoleMenuService roleMenuService;
 
     @Resource
     UserRoleMapper userRoleMapper;
@@ -113,17 +122,85 @@ public class PermissionServiceImpl implements PermissionService {
         }
     }
 
+    @Override
+    public Set<String> getRolePermission(UserDO user) {
+        Set<String> roles = new HashSet<String>();
+        // 管理员拥有所有权限
+        if (user.isAdmin()) {
+            roles.add("admin");
+        } else {
+            roles.addAll(roleService.selectRolePermissionByUserId(user.getId()));
+        }
+        return roles;
+    }
+
+    @Override
+    public Set<String> getMenuPermission(LoginUser loginUser) {
+        List<String> permissions = loginUser.getPermissions();
+        Set<String> permsSet = new HashSet<>();
+        for (String perm : permissions) {
+            if (StringUtils.isNotEmpty(perm)) {
+                permsSet.addAll(Arrays.asList(perm.trim().split(",")));
+            }
+        }
+        return permsSet;
+    }
+
+    @Override
+    public Set<Long> getUserRoleIds(LoginUser loginUser, Set<Integer> roleStatus) {
+        // 获取用户角色列表
+        List<RoleVO> roleVoList = loginUser.getRoleVoList();
+        // 将角色列表根据角色标号转化为set
+        Set<Long> roleIds = convertSet(roleVoList, RoleVO::getId);
+        if (CollUtil.isEmpty(roleIds)) {
+            return Collections.emptySet();
+        }
+        // 过滤掉角色信息为空的
+        if (CollectionUtil.isNotEmpty(roleStatus)) {
+            roleIds.removeIf(roleId -> {
+                RoleDO role = roleService.getOne(new LambdaUpdateWrapper<RoleDO>()
+                        .eq(RoleDO::getStatus, roleStatus)
+                        .orderByDesc(RoleDO::getCreateTime).last("limit 1")
+                );
+                return role == null || !roleStatus.contains(role.getStatus());
+            });
+        }
+        return roleIds;
+    }
+
+    @Override
+    public List<MenuDO> getUserMenusList(Set<Long> roleIds, Set<Integer> menuTypes, Set<Integer> MenuStatus) {
+        if (CollConvertUtils.isAnyEmpty(roleIds, menuTypes, MenuStatus)) {
+            return Collections.emptyList();
+        }
+        // 判断角色中是否包含超级管理员
+        List<RoleDO> roleInfoList = roleService.getRoleInfoList(roleIds);
+        if (roleService.hasAnySuperAdmin(roleInfoList)) {
+            // 获取所有目录、菜单类型，并已开启的menu
+            return menuService.getMenuList(menuTypes, MenuStatus);
+        }
+        // 获取角色拥有的菜单信息
+        List<RoleMenuDO> roleMenuDOS = roleMenuMapper.selectList(new LambdaQueryWrapperX<RoleMenuDO>()
+                .inIfPresent(RoleMenuDO::getRoleId, roleIds)
+        );
+        // 收集菜单编号
+        Set<Long> menuIds = convertSet(roleMenuDOS, RoleMenuDO::getMenuId);
+        // 获取菜单信息
+        return menuService.getSimpleMenuInfos(menuIds);
+    }
+
     /**
      * 验证用户是否具有操作权限
+     *
      * @param hasPermission 权限标识
      * @return 验证结果
      */
-    public boolean hasPermission(String hasPermission){
-        if (StringUtils.isEmpty(hasPermission)){
+    public boolean hasPermission(String hasPermission) {
+        if (StringUtils.isEmpty(hasPermission)) {
             return false;
         }
         LoginUser loginUser = SecurityUtils.getLoginUser();
-        if(ObjectUtils.isEmpty(loginUser) && CollectionUtils.isEmpty(loginUser.getPermissions())){
+        if (ObjectUtils.isEmpty(loginUser) && CollectionUtils.isEmpty(loginUser.getPermissions())) {
             return false;
         }
         List<String> permissions = loginUser.getPermissions();

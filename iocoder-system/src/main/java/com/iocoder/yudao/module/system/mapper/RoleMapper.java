@@ -8,6 +8,8 @@ import com.iocoder.yudao.module.system.domain.RoleDO;
 import com.iocoder.yudao.module.system.vo.permission.role.RolePageReqVO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 角色信息表 Mapper 接口
@@ -19,6 +21,12 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RoleMapper extends BaseMapperX<RoleDO> {
 
+    /**
+     * 分页获取角色列表
+     *
+     * @param reqVO 分页信息
+     * @return 角色列表
+     */
     default PageResult<RoleDO> getRolePage(RolePageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<RoleDO>()
                 .likeIfPresent(RoleDO::getName, reqVO.getName())
