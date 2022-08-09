@@ -2,10 +2,16 @@ package com.iocoder.yudao.module.system.service;
 
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
+import com.iocoder.yudao.module.commons.enums.menu.MenuIdEnum;
+import com.iocoder.yudao.module.commons.utils.BeanUtil;
+import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.MenuDO;
+import com.iocoder.yudao.module.system.vo.auth.AuthMenuRespVO;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
+import org.slf4j.LoggerFactory;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 权限 Service 接口
@@ -70,4 +76,29 @@ public interface PermissionService {
      * @return 用户已开启菜单列表
      */
     List<MenuDO> getUserMenusList(Set<Long> roleIds, Set<Integer> menuTypes, Set<Integer> MenuStatus);
+
+    default List<AuthMenuRespVO> buildMenuTree(List<MenuDO> menuList){
+        // 对菜单进行排序
+        menuList.sort(Comparator.comparing(MenuDO::getSort));
+        // 构建菜单树
+        Map<Long, AuthMenuRespVO> treeMap = new LinkedHashMap<>();
+        menuList.forEach(menu -> {
+            AuthMenuRespVO authMenuRespVO = new AuthMenuRespVO();
+            BeanUtil.copyProperties(menu,authMenuRespVO);
+            treeMap.put(menu.getId(),authMenuRespVO);
+        });
+        treeMap.values().stream().filter(node -> !Objects.equals(node.getParentId(), MenuIdEnum.ROOT.getId())).forEach(childNode -> {
+            AuthMenuRespVO parentNode = treeMap.get(childNode.getParentId());
+            if(ObjectUtils.isEmpty(parentNode)){
+                LoggerFactory.getLogger(getClass()).error("[buildMenuTree]菜单编号为：{},找不到父菜单：{}",childNode.getId(),childNode.getParentId());
+                return;
+            }
+            if(CollectionUtils.isEmpty(parentNode.getChildren())){
+                parentNode.setChildren(Collections.emptyList());
+            }
+            parentNode.getChildren().add(childNode);
+        });
+        // 获取所有根节点
+        return CollConvertUtils.filterList(treeMap.values(), node -> MenuIdEnum.ROOT.getId().equals(node.getParentId()));
+    }
 }

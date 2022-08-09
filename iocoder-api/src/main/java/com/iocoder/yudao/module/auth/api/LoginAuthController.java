@@ -6,13 +6,12 @@ import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.enums.menu.MenuTypeEnum;
 import com.iocoder.yudao.module.commons.utils.SecurityUtils;
 import com.iocoder.yudao.module.framework.config.web.auth.service.LoginAuthService;
-import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
-import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
-import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthMenuRespVO;
 import com.iocoder.yudao.module.system.domain.MenuDO;
-import com.iocoder.yudao.module.system.service.MenuService;
 import com.iocoder.yudao.module.system.service.PermissionService;
 import com.iocoder.yudao.module.system.vo.UserInfoReqsVo;
+import com.iocoder.yudao.module.system.vo.auth.AuthLoginReqVO;
+import com.iocoder.yudao.module.system.vo.auth.AuthLoginRespVO;
+import com.iocoder.yudao.module.system.vo.auth.AuthMenuRespVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,8 +42,6 @@ public class LoginAuthController {
     LoginAuthService loginAuthService;
     @Resource
     PermissionService permissionService;
-    @Resource
-    MenuService menuService;
 
     @PostMapping("/login")
     @ApiOperation("使用账号密码登录")
@@ -66,6 +62,7 @@ public class LoginAuthController {
     }
 
     @GetMapping("/user-menus-list")
+    @ApiOperation("获取登录用户菜单权限")
     public CommonResult<List<AuthMenuRespVO>> getLoginUserMenu() {
         // 获取用户角色编号集合（角色状态为已开启的角色）
         Set<Long> roleIds = permissionService.getUserRoleIds(SecurityUtils.getLoginUser(), singleton(CommonStatusEnum.ENABLE.getStatus()));
@@ -73,8 +70,10 @@ public class LoginAuthController {
         Set<Integer> menuType = new HashSet<>();
         menuType.add(MenuTypeEnum.DIR.getType());
         menuType.add(MenuTypeEnum.MENU.getType());
+        // 获取用户拥有的、并已开启的菜单列表
         List<MenuDO> menuList = permissionService.getUserMenusList(roleIds, menuType, singleton(CommonStatusEnum.ENABLE.getStatus()));
-        return success(new ArrayList<AuthMenuRespVO>());
+        // 转换成 Tree 结构返回
+        return success(permissionService.buildMenuTree(menuList));
     }
 
 }

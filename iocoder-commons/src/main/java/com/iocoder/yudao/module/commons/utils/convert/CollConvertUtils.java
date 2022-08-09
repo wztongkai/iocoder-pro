@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.commons.utils.convert;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -20,6 +21,13 @@ public class CollConvertUtils {
 
     public static boolean isAnyEmpty(Collection<?>... collections) {
         return Arrays.stream(collections).anyMatch(CollectionUtil::isEmpty);
+    }
+
+    public static <T> List<T> filterList(Collection<T> from, Predicate<T> predicate) {
+        if (CollUtil.isEmpty(from)) {
+            return new ArrayList<>();
+        }
+        return from.stream().filter(predicate).collect(Collectors.toList());
     }
 
     public static <T, U> Set<U> convertSet(Collection<T> from, Function<T, U> func) {

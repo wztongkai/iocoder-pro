@@ -1,4 +1,4 @@
-package com.iocoder.yudao.module.framework.config.web.auth.vo;
+package com.iocoder.yudao.module.system.vo.auth;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -2,7 +2,7 @@ package com.iocoder.yudao.module.auth.api;
 
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
 import com.iocoder.yudao.module.framework.config.web.auth.service.CaptchaService;
-import com.iocoder.yudao.module.framework.config.web.auth.vo.CaptchaImageRespVO;
+import com.iocoder.yudao.module.system.vo.auth.CaptchaImageRespVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;

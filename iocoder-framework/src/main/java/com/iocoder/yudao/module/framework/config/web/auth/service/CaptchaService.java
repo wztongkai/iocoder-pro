@@ -1,6 +1,6 @@
 package com.iocoder.yudao.module.framework.config.web.auth.service;
 
-import com.iocoder.yudao.module.framework.config.web.auth.vo.CaptchaImageRespVO;
+import com.iocoder.yudao.module.system.vo.auth.CaptchaImageRespVO;
 
 /**
  * 验证码接口

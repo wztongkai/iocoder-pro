@@ -23,8 +23,8 @@ import com.iocoder.yudao.module.framework.config.web.auth.dto.LoginLogCreateReqD
 import com.iocoder.yudao.module.framework.config.web.auth.service.CaptchaService;
 import com.iocoder.yudao.module.framework.config.web.auth.service.LoginAuthService;
 import com.iocoder.yudao.module.framework.config.web.auth.service.LoginLogService;
-import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginReqVO;
-import com.iocoder.yudao.module.framework.config.web.auth.vo.AuthLoginRespVO;
+import com.iocoder.yudao.module.system.vo.auth.AuthLoginReqVO;
+import com.iocoder.yudao.module.system.vo.auth.AuthLoginRespVO;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.domain.RoleDO;

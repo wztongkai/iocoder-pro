@@ -7,7 +7,7 @@ import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.commons.core.redis.RedisCache;
 import com.iocoder.yudao.module.commons.utils.uuid.IdUtils;
 import com.iocoder.yudao.module.framework.config.web.auth.service.CaptchaService;
-import com.iocoder.yudao.module.framework.config.web.auth.vo.CaptchaImageRespVO;
+import com.iocoder.yudao.module.system.vo.auth.CaptchaImageRespVO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FastByteArrayOutputStream;
