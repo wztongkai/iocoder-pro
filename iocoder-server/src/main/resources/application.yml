@@ -41,6 +41,19 @@ spring:
   application:
     name: iocoder
 
+  # 文件上传大小限制
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 20MB
+
+# 文件服务
+minio:
+  endpoint: http://127.0.0.1:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucketName: test
+
   # thymeleaf 模板配置
   thymeleaf:
     cache: false
