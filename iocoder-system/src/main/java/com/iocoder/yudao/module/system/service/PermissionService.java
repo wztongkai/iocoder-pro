@@ -77,6 +77,11 @@ public interface PermissionService {
      */
     List<MenuDO> getUserMenusList(Set<Long> roleIds, Set<Integer> menuTypes, Set<Integer> MenuStatus);
 
+    /**
+     * 将list类型菜单列表转换为树形
+     * @param menuList 菜单列表
+     * @return 树形菜单列表
+     */
     default List<AuthMenuRespVO> buildMenuTree(List<MenuDO> menuList){
         // 对菜单进行排序
         menuList.sort(Comparator.comparing(MenuDO::getSort));
@@ -89,12 +94,14 @@ public interface PermissionService {
         });
         treeMap.values().stream().filter(node -> !Objects.equals(node.getParentId(), MenuIdEnum.ROOT.getId())).forEach(childNode -> {
             AuthMenuRespVO parentNode = treeMap.get(childNode.getParentId());
-            if(ObjectUtils.isEmpty(parentNode)){
-                LoggerFactory.getLogger(getClass()).error("[buildMenuTree]菜单编号为：{},找不到父菜单：{}",childNode.getId(),childNode.getParentId());
+            if (parentNode == null) {
+                LoggerFactory.getLogger(getClass()).error("[buildMenuTree]节点编号为：{}，父节点为：{}",
+                        childNode.getId(), childNode.getParentId());
                 return;
             }
-            if(CollectionUtils.isEmpty(parentNode.getChildren())){
-                parentNode.setChildren(Collections.emptyList());
+            // 将自己添加到父节点中
+            if (parentNode.getChildren() == null) {
+                parentNode.setChildren(new ArrayList<>());
             }
             parentNode.getChildren().add(childNode);
         });
