@@ -7,8 +7,6 @@ import com.iocoder.yudao.module.commons.core.mapper.BaseMapperX;
 import com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.Set;
-
 /**
  * <p>
  * 用户信息表 Mapper 接口
@@ -23,10 +21,15 @@ public interface UserMapper extends BaseMapperX<UserDO> {
     default PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
 
         return selectPage(requestVo, new LambdaQueryWrapperX<UserDO>()
-                .likeIfPresent(UserDO::getUsername, requestVo.getUsername())
-                .likeIfPresent(UserDO::getMobile, requestVo.getMobile())
+                .likeIfPresent(UserDO::getUsername, requestVo.getSearch())
+                .orIfPresent()
+                .likeIfPresent(UserDO::getMobile, requestVo.getSearch())
+                .orIfPresent()
+                .likeIfPresent(UserDO::getNickname, requestVo.getSearch())
+                .orIfPresent()
+                .eqIfPresent(UserDO::getEmail, requestVo.getSearch())
                 .eqIfPresent(UserDO::getStatus, requestVo.getStatus())
-                .betweenIfPresent(UserDO::getCreateTime, requestVo.getBeginTime(), requestVo.getEndTime())
+                .betweenIfPresent(UserDO::getCreateTime, requestVo.getCreateTime())
                 .orderByDesc(UserDO::getCreateTime)
         );
     }

@@ -1,9 +1,10 @@
 package com.iocoder.yudao.module.commons.core;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.ArrayUtils;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
+import com.iocoder.yudao.module.commons.utils.ArrayUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Collection;
@@ -24,6 +25,10 @@ public class LambdaQueryWrapperX<T> extends LambdaQueryWrapper<T> {
         return this;
     }
 
+    public LambdaQueryWrapperX<T> orIfPresent() {
+        return (LambdaQueryWrapperX<T>) super.or();
+    }
+
     public LambdaQueryWrapperX<T> inIfPresent(SFunction<T, ?> column, Collection<?> values) {
         if (!CollectionUtils.isEmpty(values)) {
             return (LambdaQueryWrapperX<T>) super.in(column, values);
@@ -32,7 +37,7 @@ public class LambdaQueryWrapperX<T> extends LambdaQueryWrapper<T> {
     }
 
     public LambdaQueryWrapperX<T> inIfPresent(SFunction<T, ?> column, Object... values) {
-        if (!ArrayUtils.isEmpty(values)) {
+        if (!ObjectUtils.isEmpty(values)) {
             return (LambdaQueryWrapperX<T>) super.in(column, values);
         }
         return this;
@@ -91,6 +96,12 @@ public class LambdaQueryWrapperX<T> extends LambdaQueryWrapper<T> {
             return (LambdaQueryWrapperX<T>) this.le(column, val2);
         }
         return this;
+    }
+
+    public LambdaQueryWrapperX<T> betweenIfPresent(SFunction<T, ?> column, Object[] values) {
+        Object val1 = ArrayUtils.get(values, 0);
+        Object val2 = ArrayUtils.get(values, 1);
+        return betweenIfPresent(column, val1, val2);
     }
 
     // ========== 重写父类方法，方便链式调用 ==========

@@ -35,7 +35,7 @@ public class UserRespVO extends UserBaseVO {
     private LocalDateTime loginDate;
 
     @ApiModelProperty(value = "创建时间", required = true, example = "时间戳格式")
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 
     @ApiModelProperty(value = "部门信息列表")
