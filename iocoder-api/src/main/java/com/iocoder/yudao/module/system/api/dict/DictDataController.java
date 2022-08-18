@@ -93,4 +93,12 @@ public class DictDataController {
     public CommonResult<DictDataRespVO> getDictData(@RequestParam("id") Long id) {
         return success(dictDataService.getDictData(id));
     }
+
+    @GetMapping(value = "/type/{dictType}")
+    @ApiOperation("根据字典类型查询对应的数据字典列表")
+    @ApiImplicitParam(name = "dictType", value = "字典类型", required = true, example = "system_user_sex", dataTypeClass = String.class)
+    public CommonResult<List<DictDataSimpleRespVO>> getDictDataListByDictType(@PathVariable("dictType") String dictType){
+        List<DictDataSimpleRespVO> list = dictDataService.getDictDataListByDictType(dictType);
+        return success(list);
+    }
 }

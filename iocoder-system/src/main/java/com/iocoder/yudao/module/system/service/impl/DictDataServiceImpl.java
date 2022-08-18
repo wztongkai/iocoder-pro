@@ -103,6 +103,17 @@ public class DictDataServiceImpl extends ServiceImpl<DictDataMapper, DictDataDO>
         return dictDataRespVO;
     }
 
+    @Override
+    public List<DictDataSimpleRespVO> getDictDataListByDictType(String dictType) {
+        List<DictDataDO> dictDataDOSList = baseMapper.selectList(new LambdaQueryWrapperX<DictDataDO>()
+                .eqIfPresent(DictDataDO::getDictType, dictType)
+        );
+        dictDataDOSList.sort(Comparator.comparing(DictDataDO::getDictType).thenComparing(DictDataDO::getSort));
+        List<DictDataSimpleRespVO> voArrayList = new ArrayList<>();
+        BeanUtil.copyListProperties(dictDataDOSList, voArrayList, DictDataSimpleRespVO.class);
+        return voArrayList;
+    }
+
     /**
      * 校验数据
      *

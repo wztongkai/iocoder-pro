@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,6 +70,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     @Resource
     UserService userService;
 
+    @Value("${default.password}")
+    private String password;
+
     @Override
     @DS(DBConstants.DATASOURCE_MASTER)
     public PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
@@ -95,7 +99,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         UserDO userDO = new UserDO();
         BeanUtil.copyProperties(reqVO, userDO);
         userDO.setStatus(CommonStatusEnum.ENABLE.getStatus());
-        userDO.setPassword(passwordEncoder.encode(reqVO.getPassword()));
+        userDO.setPassword(passwordEncoder.encode(password));
         baseMapper.insert(userDO);
         // 插入部门信息
         if (CollectionUtils.isNotEmpty(reqVO.getDeptIds())) {

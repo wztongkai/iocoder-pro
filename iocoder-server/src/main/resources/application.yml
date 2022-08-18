@@ -163,6 +163,11 @@ swagger:
   # 是否开启swagger
   enabled: true
 
+# 系统默认配置
+default:
+  # 默认密码
+  password: 666666
+
 
 # token配置
 token:

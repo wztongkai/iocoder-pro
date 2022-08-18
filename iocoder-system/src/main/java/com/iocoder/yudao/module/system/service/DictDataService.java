@@ -68,4 +68,11 @@ public interface DictDataService extends IService<DictDataDO> {
      * @return 字典详情
      */
     DictDataRespVO getDictData(Long id);
+
+    /**
+     * 根据字典类型查询对应的数据字典列表
+     * @param dictType 字典类型
+     * @return 数据字典列表
+     */
+    List<DictDataSimpleRespVO> getDictDataListByDictType(String dictType);
 }
