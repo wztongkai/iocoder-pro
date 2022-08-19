@@ -1,14 +1,12 @@
 package com.iocoder.yudao.module.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
-import com.iocoder.yudao.module.commons.enums.db.DBConstants;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
@@ -74,7 +72,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     private String password;
 
     @Override
-    @DS(DBConstants.DATASOURCE_MASTER)
     public PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
 
         return baseMapper.selectUserList(requestVo);
