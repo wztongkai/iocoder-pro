@@ -30,6 +30,7 @@ public interface UserMapper extends BaseMapperX<UserDO> {
                 .eqIfPresent(UserDO::getEmail, requestVo.getSearch())
                 .eqIfPresent(UserDO::getStatus, requestVo.getStatus())
                 .betweenIfPresent(UserDO::getCreateTime, requestVo.getCreateTime())
+                .orderByAsc(UserDO::getId)
                 .orderByDesc(UserDO::getCreateTime)
         );
     }
