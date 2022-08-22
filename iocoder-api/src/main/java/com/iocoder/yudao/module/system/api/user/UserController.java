@@ -148,4 +148,12 @@ public class UserController {
         return success(userService.getUserInfo(id));
     }
 
+    @PreAuthorize("@ss.hasPermission('system:user:query')")
+    @GetMapping("/get-user-role-list")
+    @ApiOperation("获取用户拥有的角色列表")
+    @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1540614322441457665", dataTypeClass = Long.class)
+    public CommonResult<UserRoleRespVO> getUserRoleList(@RequestParam("id") Long id){
+        return success(userService.getUserRoleList(id));
+    }
+
 }

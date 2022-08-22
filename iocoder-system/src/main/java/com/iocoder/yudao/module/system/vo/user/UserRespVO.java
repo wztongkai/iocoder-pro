@@ -3,7 +3,6 @@ package com.iocoder.yudao.module.system.vo.user;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
-import com.iocoder.yudao.module.system.domain.RoleDO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -44,7 +43,7 @@ public class UserRespVO extends UserBaseVO {
     @ApiModelProperty(value = "岗位信息列表")
     private List<PostDO> postList;
 
-    @ApiModelProperty(value = "角色信息列表")
-    private List<RoleDO> roleList;
+//    @ApiModelProperty(value = "角色信息列表")
+//    private List<RoleDO> roleList;
 
 }

@@ -129,4 +129,11 @@ public interface UserService extends IService<UserDO> {
      * @return 用户列表
      */
     List<UserDO> selectUserByNickName(String userNickname);
+
+    /**
+     * 根据用户编号查询用户拥有的角色列表
+     * @param userId 用户编号
+     * @return 用户拥有的角色列表
+     */
+    UserRoleRespVO getUserRoleList(Long userId);
 }

@@ -8,8 +8,6 @@ import com.iocoder.yudao.module.system.domain.RoleDO;
 import com.iocoder.yudao.module.system.vo.permission.role.RolePageReqVO;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
-
 /**
  * <p>
  * 角色信息表 Mapper 接口
@@ -33,6 +31,6 @@ public interface RoleMapper extends BaseMapperX<RoleDO> {
                 .likeIfPresent(RoleDO::getCode, reqVO.getCode())
                 .eqIfPresent(RoleDO::getStatus, reqVO.getStatus())
                 .betweenIfPresent(BaseEntity::getCreateTime, reqVO.getBeginTime(), reqVO.getEndTime())
-                .orderByDesc(RoleDO::getId));
+                .orderByAsc(RoleDO::getId));
     }
 }

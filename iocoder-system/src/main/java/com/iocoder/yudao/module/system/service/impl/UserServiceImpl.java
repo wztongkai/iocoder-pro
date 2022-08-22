@@ -221,11 +221,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         if (CollectionUtils.isNotEmpty(userPostInfoList)) {
             userRespVO.setPostList(userPostInfoList);
         }
-        // 查询用户角色信息
-        List<RoleDO> userRoleInfoList = userRoleService.selectRoleInfoByUserId(userId);
-        if (CollectionUtils.isNotEmpty(userRoleInfoList)) {
-            userRespVO.setRoleList(userRoleInfoList);
-        }
+//        // 查询用户角色信息
+//        List<RoleDO> userRoleInfoList = userRoleService.selectRoleInfoByUserId(userId);
+//        if (CollectionUtils.isNotEmpty(userRoleInfoList)) {
+//            userRespVO.setRoleList(userRoleInfoList);
+//        }
         return userRespVO;
     }
 
@@ -260,6 +260,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         return baseMapper.selectList(new LambdaQueryWrapperX<UserDO>()
                 .likeIfPresent(UserDO::getNickname, userNickname)
         );
+    }
+
+    @Override
+    public UserRoleRespVO getUserRoleList(Long userId) {
+        List<RoleDO> userRoleList = userRoleService.selectRoleInfoByUserId(userId);
+        return UserRoleRespVO.builder().userId(userId).userRoleList(userRoleList).build();
     }
 
 
