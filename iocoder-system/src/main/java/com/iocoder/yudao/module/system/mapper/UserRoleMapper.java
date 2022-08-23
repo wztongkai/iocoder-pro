@@ -25,7 +25,7 @@ public interface UserRoleMapper extends BaseMapperX<UserRoleDO> {
      */
     default List<UserRoleDO> selectListByUserId(Long userId) {
         return selectList(new LambdaQueryWrapperX<UserRoleDO>()
-                .eq(UserRoleDO::getRoleId ,userId)
+                .eq(UserRoleDO::getUserId ,userId)
         );
     }
 }
