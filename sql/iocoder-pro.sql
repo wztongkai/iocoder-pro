@@ -11,7 +11,7 @@
  Target Server Version : 50737
  File Encoding         : 65001
 
- Date: 19/08/2022 09:41:10
+ Date: 23/08/2022 18:33:44
 */
 
 SET NAMES utf8mb4;
@@ -382,17 +382,26 @@ INSERT INTO `act_re_deployment`
 VALUES ('0ad41f2b-1d31-11ed-9eb3-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-16 14:59:59.037', NULL,
         28, NULL);
 INSERT INTO `act_re_deployment`
+VALUES ('0ae64e76-1f9f-11ed-be47-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 17:12:26.127', NULL,
+        46, NULL);
+INSERT INTO `act_re_deployment`
 VALUES ('0cff9b0c-1794-11ed-869d-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-09 11:33:35.890', NULL,
         15, NULL);
 INSERT INTO `act_re_deployment`
 VALUES ('16f3b8ca-01d0-11ed-b287-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-07-12 18:47:56.815', NULL,
         7, NULL);
 INSERT INTO `act_re_deployment`
+VALUES ('18484634-21ff-11ed-9f37-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-22 17:45:02.586', NULL,
+        55, NULL);
+INSERT INTO `act_re_deployment`
 VALUES ('23df755d-1d36-11ed-8ba7-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-16 15:36:28.543', NULL,
         30, NULL);
 INSERT INTO `act_re_deployment`
 VALUES ('2529ea5f-17a5-11ed-8e77-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-09 13:35:57.875', NULL,
         18, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('2651ebc8-1f9e-11ed-82dd-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 17:06:02.632', NULL,
+        45, NULL);
 INSERT INTO `act_re_deployment`
 VALUES ('27197a50-16c6-11ed-a119-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-08 10:59:43.350', NULL,
         10, NULL);
@@ -424,8 +433,14 @@ INSERT INTO `act_re_deployment`
 VALUES ('4f67f90b-1c3d-11ed-afa3-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-15 09:55:16.891', NULL,
         26, NULL);
 INSERT INTO `act_re_deployment`
+VALUES ('514a10a3-21bc-11ed-b0eb-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-22 09:47:01.945', NULL,
+        52, NULL);
+INSERT INTO `act_re_deployment`
 VALUES ('54f2fa73-1d37-11ed-becf-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-16 15:45:00.379', NULL,
         31, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('59876593-1f9f-11ed-86a5-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 17:14:38.042', NULL,
+        47, NULL);
 INSERT INTO `act_re_deployment`
 VALUES ('6099a0f7-16c6-11ed-b2ec-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-08 11:01:19.822', NULL,
         11, NULL);
@@ -442,6 +457,12 @@ INSERT INTO `act_re_deployment`
 VALUES ('71ab684d-01cf-11ed-88bf-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-07-12 18:43:19.518', NULL,
         6, NULL);
 INSERT INTO `act_re_deployment`
+VALUES ('73b9adb8-21e1-11ed-82d9-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-22 14:12:51.095', NULL,
+        53, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('7f6af67f-228e-11ed-81b0-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-23 10:51:33.649', NULL,
+        56, NULL);
+INSERT INTO `act_re_deployment`
 VALUES ('8345a1f6-17a3-11ed-a8c8-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-09 13:24:16.769', NULL,
         17, NULL);
 INSERT INTO `act_re_deployment`
@@ -451,11 +472,17 @@ INSERT INTO `act_re_deployment`
 VALUES ('8dc1fa71-17b6-11ed-84ee-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-09 15:40:34.793', NULL,
         21, NULL);
 INSERT INTO `act_re_deployment`
+VALUES ('8df4007f-1fa0-11ed-98c9-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 17:23:15.488', NULL,
+        50, NULL);
+INSERT INTO `act_re_deployment`
 VALUES ('8ec02972-01c0-11ed-92b4-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-07-12 16:56:45.864', NULL,
         1, NULL);
 INSERT INTO `act_re_deployment`
 VALUES ('8ee8b475-1d39-11ed-943d-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-16 16:00:56.608', NULL,
         34, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('978f85b3-1f9f-11ed-bc4f-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 17:16:22.118', NULL,
+        48, NULL);
 INSERT INTO `act_re_deployment`
 VALUES ('9a8eb06e-1d38-11ed-a84e-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-16 15:54:06.657', NULL,
         32, NULL);
@@ -472,8 +499,23 @@ INSERT INTO `act_re_deployment`
 VALUES ('adc438f1-01c0-11ed-b948-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-07-12 16:57:37.894', NULL,
         2, NULL);
 INSERT INTO `act_re_deployment`
+VALUES ('adca2741-21e4-11ed-befb-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-22 14:35:57.002', NULL,
+        54, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('bdf6c165-1f85-11ed-8f45-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 14:11:19.627', NULL,
+        42, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('c181587d-1f99-11ed-aef6-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 16:34:35.505', NULL,
+        43, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('cdd00495-1fa5-11ed-9d3c-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 18:00:50.115', NULL,
+        51, NULL);
+INSERT INTO `act_re_deployment`
 VALUES ('d0613606-1916-11ed-bf9b-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-11 09:42:09.414', NULL,
         24, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('d382f7a2-1f9f-11ed-af15-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 17:18:02.678', NULL,
+        49, NULL);
 INSERT INTO `act_re_deployment`
 VALUES ('d7856457-1ddb-11ed-8d92-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-17 11:22:36.904', NULL,
         38, NULL);
@@ -483,6 +525,9 @@ VALUES ('db432c53-1f5f-11ed-9217-d89ef33ad32f', 'SpringAutoDeployment', NULL, NU
 INSERT INTO `act_re_deployment`
 VALUES ('efee0c3a-1793-11ed-b0e8-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-09 11:32:47.120', NULL,
         14, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('f3d7475d-1f9a-11ed-aad0-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-19 16:43:09.448', NULL,
+        44, NULL);
 INSERT INTO `act_re_deployment`
 VALUES ('fba092e5-1d35-11ed-84f3-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-16 15:35:21.023', NULL,
         29, NULL);
@@ -1063,7 +1108,7 @@ CREATE TABLE `system_login_log`
     `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
     `deleted`     bit(1)                                                        NOT NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1560199963424563203 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1562019591092137987 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_login_log
@@ -1775,6 +1820,102 @@ INSERT INTO `system_login_log`
 VALUES (1560199963424563202, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
         NULL, '2022-08-18 17:40:33', NULL, '2022-08-18 17:40:33', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560443686347513858, 100, '', 1560209795946881026, 1, 'fsfsa', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 09:49:01', NULL, '2022-08-19 09:49:01', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560444331985117185, 100, '', 0, 1, 'admin', 30, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 09:51:35', NULL, '2022-08-19 09:51:35', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560444352969220097, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 09:51:40', NULL, '2022-08-19 09:51:40', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560473147512102914, 100, '', 0, 1, 'admin', 30, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 11:46:05', NULL, '2022-08-19 11:46:05', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560473165778296833, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 11:46:10', NULL, '2022-08-19 11:46:10', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560495265201168385, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 13:13:58', NULL, '2022-08-19 13:13:58', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560541435789254658, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 16:17:26', NULL, '2022-08-19 16:17:26', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560553918398660610, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 17:07:02', NULL, '2022-08-19 17:07:02', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560556347324325890, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 17:16:42', NULL, '2022-08-19 17:16:42', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560566997488451585, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 17:59:01', NULL, '2022-08-19 17:59:01', b'0');
+INSERT INTO `system_login_log`
+VALUES (1560575535011053570, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-19 18:32:56', NULL, '2022-08-19 18:32:56', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561535419382730753, 100, '', 0, 1, 'admin', 30, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-22 10:07:11', NULL, '2022-08-22 10:07:11', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561535436168335361, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-22 10:07:15', NULL, '2022-08-22 10:07:15', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561601584448610305, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-22 14:30:06', NULL, '2022-08-22 14:30:06', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561603160550588418, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-22 14:36:21', NULL, '2022-08-22 14:36:21', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561604158203543554, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-22 14:40:19', NULL, '2022-08-22 14:40:19', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561606067576553473, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-22 14:47:54', NULL, '2022-08-22 14:47:54', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561615010247917570, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-22 15:23:27', NULL, '2022-08-22 15:23:27', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561909062310785025, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-23 10:51:54', NULL, '2022-08-23 10:51:54', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561921334202560514, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-23 11:40:40', NULL, '2022-08-23 11:40:40', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561941959533096961, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-23 13:02:37', NULL, '2022-08-23 13:02:37', b'0');
+INSERT INTO `system_login_log`
+VALUES (1561990162294992898, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-23 16:14:10', NULL, '2022-08-23 16:14:10', b'0');
+INSERT INTO `system_login_log`
+VALUES (1562019436267794434, 100, '', 1561606936288215042, 1, '吴凯', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-23 18:10:29', NULL, '2022-08-23 18:10:29', b'0');
+INSERT INTO `system_login_log`
+VALUES (1562019591092137986, 100, '', 1, 1, 'admin', 0, '127.0.0.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        NULL, '2022-08-23 18:11:06', NULL, '2022-08-23 18:11:06', b'0');
 
 -- ----------------------------
 -- Table structure for system_menu
@@ -1977,21 +2118,6 @@ INSERT INTO `system_menu`
 VALUES (1045, '日志导出', 'system:login-log:export', 3, 3, 501, '#', '#', '', 0, b'1', b'1', 'admin', '2021-01-05 17:03:48',
         '', '2022-04-20 17:03:10', b'0');
 INSERT INTO `system_menu`
-VALUES (1050, '任务新增', 'infra:job:create', 3, 2, 110, '', '', '', 0, b'1', b'1', 'admin', '2021-01-05 17:03:48', '',
-        '2022-04-20 17:03:10', b'0');
-INSERT INTO `system_menu`
-VALUES (1051, '任务修改', 'infra:job:update', 3, 3, 110, '', '', '', 0, b'1', b'1', 'admin', '2021-01-05 17:03:48', '',
-        '2022-04-20 17:03:10', b'0');
-INSERT INTO `system_menu`
-VALUES (1052, '任务删除', 'infra:job:delete', 3, 4, 110, '', '', '', 0, b'1', b'1', 'admin', '2021-01-05 17:03:48', '',
-        '2022-04-20 17:03:10', b'0');
-INSERT INTO `system_menu`
-VALUES (1053, '状态修改', 'infra:job:update', 3, 5, 110, '', '', '', 0, b'1', b'1', 'admin', '2021-01-05 17:03:48', '',
-        '2022-04-20 17:03:10', b'0');
-INSERT INTO `system_menu`
-VALUES (1054, '任务导出', 'infra:job:export', 3, 7, 110, '', '', '', 0, b'1', b'1', 'admin', '2021-01-05 17:03:48', '',
-        '2022-04-20 17:03:10', b'0');
-INSERT INTO `system_menu`
 VALUES (1063, '设置角色菜单权限', 'system:permission:assign-role-menu', 3, 6, 101, '', '', '', 0, b'1', b'1', '',
         '2021-01-06 17:53:44', '', '2022-04-20 17:03:10', b'0');
 INSERT INTO `system_menu`
@@ -2021,9 +2147,6 @@ VALUES (1085, '日志处理', 'infra:api-error-log:update-status', 3, 2, 1084, '
 INSERT INTO `system_menu`
 VALUES (1086, '日志导出', 'infra:api-error-log:export', 3, 3, 1084, '', '', '', 0, b'1', b'1', '', '2021-02-26 07:53:20',
         '1', '2022-04-20 17:03:10', b'0');
-INSERT INTO `system_menu`
-VALUES (1087, '任务查询', 'infra:job:query', 3, 1, 110, '', '', '', 0, b'1', b'1', '1', '2021-03-10 01:26:19', '1',
-        '2022-04-20 17:03:10', b'0');
 INSERT INTO `system_menu`
 VALUES (1088, '日志查询', 'infra:api-access-log:query', 3, 1, 1078, '', '', '', 0, b'1', b'1', '1', '2021-03-10 01:28:04',
         '1', '2022-04-20 17:03:10', b'0');
@@ -2091,7 +2214,7 @@ CREATE TABLE `system_operate_log`
     `update_time`      datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
     `deleted`          bit(1)                                                        NOT NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1560210805960450051 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1562019376507351043 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_operate_log
@@ -2169,6 +2292,291 @@ VALUES (1560210805960450050, 1, 1, '用户管理-新增用户', 'INSERT', 'POST'
         '{\"email\":\"2564@qq.com\",\"mobile\":\"13121022998\",\"nickname\":\"dasdsad\",\"postIds\":[1,2],\"sex\":1,\"username\":\"dasdas\"}',
         '2022-08-18 18:23:38', 99, 200, '成功', '{\"code\":200,\"data\":1560210805914312705,\"flag\":0,\"msg\":\"成功\"}',
         NULL, '1', '2022-08-18 18:23:38', '1', '2022-08-18 18:23:38', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1560509790503772161, 1, 1, '用户管理-新增用户', 'INSERT', 'POST', '/system/user/create', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.createUser()',
+        '{\"email\":\"2580211264@qq.com\",\"mobile\":\"13121022995\",\"nickname\":\"wztongkai\",\"postIds\":[4,2],\"remark\":\"测试新增\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-19 14:11:42', 5989, 200, '成功', '{\"code\":200,\"data\":1560509790235336706,\"flag\":0,\"msg\":\"成功\"}',
+        NULL, '1', '2022-08-19 14:11:42', '1', '2022-08-19 14:11:42', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1560547830777470978, 1, 1, '用户管理-新增用户', 'INSERT', 'POST', '/system/user/create', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.createUser()',
+        '{\"email\":\"2580211264@qq.com\",\"mobile\":\"13121022995\",\"nickname\":\"wztongkai\",\"postIds\":[4,2],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-19 16:42:51', 19898, 200, '成功',
+        '{\"code\":200,\"data\":1560547830647447554,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-19 16:42:51', '1',
+        '2022-08-19 16:42:51', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1560548351017959425, 1, 1, '用户管理-新增用户', 'INSERT', 'POST', '/system/user/create', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.createUser()',
+        '{\"deptIds\":[109,108],\"email\":\"2580211264@qq.com\",\"mobile\":\"13121022995\",\"nickname\":\"wztongkai\",\"postIds\":[2,4,1],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-19 16:44:55', 17, -1, '失败', 'null', '用户账号已经存在', '1', '2022-08-19 16:44:55', '1', '2022-08-19 16:44:55',
+        b'0');
+INSERT INTO `system_operate_log`
+VALUES (1560548745043460098, 1, 1, '用户管理-新增用户', 'INSERT', 'POST', '/system/user/create', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.createUser()',
+        '{\"deptIds\":[100],\"email\":\"25@qq.com\",\"mobile\":\"13121022995\",\"nickname\":\"wzztongkai\",\"postIds\":[2],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-19 16:46:29', 36962, 200, '成功',
+        '{\"code\":200,\"data\":1560548658892455937,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-19 16:46:29', '1',
+        '2022-08-19 16:46:29', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1560574912760889345, 1, 1, '用户管理-修改用户', 'UPDATE', 'PUT', '/system/user/update', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUser()',
+        '{\"avatar\":\"\",\"deptIds\":[100],\"email\":\"25@qq.com\",\"id\":1560548658892455937,\"mobile\":\"13121022995\",\"nickname\":\"wzztongkai\",\"postIds\":[],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-19 18:30:28', 71, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-19 18:30:28', '1', '2022-08-19 18:30:28', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561604267582603265, 1, 1, '用户管理-删除用户', 'DELETE', 'DELETE', '/system/user/delete', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.deleteUser()', '{}', '2022-08-22 14:40:45', 27, 200,
+        '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-22 14:40:45', '1',
+        '2022-08-22 14:40:45', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561606937026412546, 1, 1, '用户管理-新增用户', 'INSERT', 'POST', '/system/user/create', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.createUser()',
+        '{\"deptIds\":[103],\"email\":\"2580211264@qq.com\",\"mobile\":\"13121022995\",\"nickname\":\"wztongkai\",\"postIds\":[4],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-22 14:51:22', 6269, 200, '成功', '{\"code\":200,\"data\":1561606936288215042,\"flag\":0,\"msg\":\"成功\"}',
+        NULL, '1', '2022-08-22 14:51:22', '1', '2022-08-22 14:51:22', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561606981376983041, 1, 1, '用户管理-修改用户', 'UPDATE', 'PUT', '/system/user/update', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUser()',
+        '{\"avatar\":\"\",\"deptIds\":[103],\"email\":\"2580211264@qq.com\",\"id\":1561606936288215042,\"mobile\":\"13121022995\",\"nickname\":\"wztongkai\",\"postIds\":[4],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-22 14:51:32', 43, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-22 14:51:32', '1', '2022-08-22 14:51:32', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561607017171173377, 1, 1, '用户管理-重置用户密码', 'UPDATE', 'PUT', '/system/user/update-password', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUserPassword()',
+        '{\"id\":1561606936288215042,\"password\":\"123456\"}', '2022-08-22 14:51:41', 94, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-22 14:51:41', '1',
+        '2022-08-22 14:51:41', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561643569158995969, 1, 1, '权限管理-给用户分配角色', 'GRANT', 'POST', '/system/permission/allot-user-role', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignUserRole()',
+        '{\"roleIds\":[1],\"userId\":1561606936288215042}', '2022-08-22 17:16:55', 19, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-22 17:16:55', '1',
+        '2022-08-22 17:16:55', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561912777738514433, 1, 1, '权限管理-给用户分配角色', 'GRANT', 'POST', '/system/permission/allot-user-role', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignUserRole()',
+        '{\"roleIds\":[1,2],\"userId\":1561606936288215042}', '2022-08-23 11:06:40', 30, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 11:06:40', '1',
+        '2022-08-23 11:06:40', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561922384951209986, 1, 1, '权限管理-给用户分配角色', 'GRANT', 'POST', '/system/permission/allot-user-role', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignUserRole()',
+        '{\"roleIds\":[1],\"userId\":1561606936288215042}', '2022-08-23 11:44:50', 6, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 11:44:50', '1',
+        '2022-08-23 11:44:50', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561926011963011074, 1, 1, '权限管理-给用户分配角色', 'GRANT', 'POST', '/system/permission/allot-user-role', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignUserRole()',
+        '{\"roleIds\":[1],\"userId\":1561606936288215042}', '2022-08-23 11:59:15', 68945, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 11:59:15', '1',
+        '2022-08-23 11:59:15', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561926240678408193, 1, 1, '权限管理-给用户分配角色', 'GRANT', 'POST', '/system/permission/allot-user-role', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignUserRole()',
+        '{\"roleIds\":[1],\"userId\":1561606936288215042}', '2022-08-23 12:00:10', 8972, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 12:00:10', '1',
+        '2022-08-23 12:00:10', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561926436091031553, 1, 1, '权限管理-给用户分配角色', 'GRANT', 'POST', '/system/permission/allot-user-role', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignUserRole()',
+        '{\"roleIds\":[1,2],\"userId\":1561606936288215042}', '2022-08-23 12:00:56', 3979, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 12:00:56', '1',
+        '2022-08-23 12:00:56', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561942008635813890, 1, 1, '权限管理-给用户分配角色', 'GRANT', 'POST', '/system/permission/allot-user-role', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignUserRole()',
+        '{\"roleIds\":[1],\"userId\":1561606936288215042}', '2022-08-23 13:02:49', 7, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 13:02:49', '1',
+        '2022-08-23 13:02:49', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561942046875283457, 1, 1, '权限管理-给用户分配角色', 'GRANT', 'POST', '/system/permission/allot-user-role', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignUserRole()',
+        '{\"roleIds\":[1,2],\"userId\":1561606936288215042}', '2022-08-23 13:02:58', 6, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 13:02:58', '1',
+        '2022-08-23 13:02:58', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561944130345463810, 1, 1, '用户管理-修改用户状态', 'UPDATE', 'PUT', '/system/user/update-status', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUserStatus()', '{\"id\":1,\"status\":1}',
+        '2022-08-23 13:11:15', 12, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 13:11:15', '1', '2022-08-23 13:11:15', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561944141355511809, 1, 1, '用户管理-修改用户状态', 'UPDATE', 'PUT', '/system/user/update-status', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUserStatus()', '{\"id\":1,\"status\":0}',
+        '2022-08-23 13:11:17', 4, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 13:11:17', '1', '2022-08-23 13:11:17', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561950372719718402, 1, 1, '用户管理-修改用户', 'UPDATE', 'PUT', '/system/user/update', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUser()',
+        '{\"avatar\":\"\",\"deptIds\":[107,105],\"email\":\"2580211264@qq.com\",\"id\":1561606936288215042,\"mobile\":\"13121022995\",\"nickname\":\"wztongkai\",\"postIds\":[2],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-23 13:36:03', 71, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 13:36:03', '1', '2022-08-23 13:36:03', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561950478936272898, 1, 1, '用户管理-修改用户', 'UPDATE', 'PUT', '/system/user/update', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUser()',
+        '{\"avatar\":\"\",\"deptIds\":[105],\"email\":\"2580211264@qq.com\",\"id\":1561606936288215042,\"mobile\":\"13121022995\",\"nickname\":\"wztongkai\",\"postIds\":[2],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-23 13:36:28', 15, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 13:36:28', '1', '2022-08-23 13:36:28', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561950512809472001, 1, 1, '用户管理-修改用户', 'UPDATE', 'PUT', '/system/user/update', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUser()',
+        '{\"avatar\":\"\",\"deptIds\":[105],\"email\":\"2580211264@qq.com\",\"id\":1561606936288215042,\"mobile\":\"13121022995\",\"nickname\":\"wztongkai\",\"postIds\":[1],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-23 13:36:37', 17, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 13:36:37', '1', '2022-08-23 13:36:37', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561950528634580993, 1, 1, '用户管理-修改用户', 'UPDATE', 'PUT', '/system/user/update', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUser()',
+        '{\"avatar\":\"\",\"deptIds\":[105],\"email\":\"2580211264@qq.com\",\"id\":1561606936288215042,\"mobile\":\"13121022995\",\"nickname\":\"wztongkai\",\"postIds\":[1],\"remark\":\"测试\",\"sex\":1,\"username\":\"吴凯\"}',
+        '2022-08-23 13:36:40', 15, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 13:36:40', '1', '2022-08-23 13:36:40', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561950555268411393, 1, 1, '用户管理-修改用户状态', 'UPDATE', 'PUT', '/system/user/update-status', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUserStatus()',
+        '{\"id\":1561606936288215042,\"status\":1}', '2022-08-23 13:36:47', 4, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 13:36:47', '1',
+        '2022-08-23 13:36:47', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1561950568178479105, 1, 1, '用户管理-修改用户状态', 'UPDATE', 'PUT', '/system/user/update-status', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUserStatus()',
+        '{\"id\":1561606936288215042,\"status\":0}', '2022-08-23 13:36:50', 5, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 13:36:50', '1',
+        '2022-08-23 13:36:50', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562017348225822722, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1,1025,1026,1027,1028,1029,1030,1036,1037,1038,1039,1040,1042,1043,1045,1063,1064,1065,100,101,102,103,104,105,1001,1002,107,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023],\"roleId\":2}',
+        '2022-08-23 18:02:11', 154, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562017508787974146, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1,1025,1026,1027,1028,1029,1030,1036,1037,1038,1039,1040,1042,1043,1045,1063,1064,1065,100,101,102,103,104,105,1001,1002,107,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023],\"roleId\":101}',
+        '2022-08-23 18:02:50', 430, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:02:50', '1', '2022-08-23 18:02:50', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562017831237677058, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1025,1026,1027,1028,1029,1030,1040,1042,1043,1045,100,101,102,103,1063,104,1064,105,1065,1001,1002,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023],\"roleId\":2}',
+        '2022-08-23 18:04:07', 24, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:04:07', '1', '2022-08-23 18:04:07', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562018114801987586, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1,1025,1026,1027,1028,1029,1030,1036,1037,1038,1039,1040,1042,1043,1045,1063,1064,1065,100,101,102,103,104,105,1001,1002,107,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023],\"roleId\":101}',
+        '2022-08-23 18:05:14', 5, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:05:14', '1', '2022-08-23 18:05:14', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562018133059792897, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1025,1026,1027,1028,1029,1030,1040,1042,1043,1045,100,101,102,103,1063,104,1064,105,1065,1001,1002,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023],\"roleId\":101}',
+        '2022-08-23 18:05:18', 27, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:05:18', '1', '2022-08-23 18:05:18', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562018401612689409, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1025,1026,1027,1028,1040,1042,1043,1045,100,101,102,103,1063,104,1064,1065,1001,1002,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023],\"roleId\":101}',
+        '2022-08-23 18:06:22', 2107, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:06:22', '1', '2022-08-23 18:06:22', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562018507195904001, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1,1025,1026,1027,1028,1029,1030,1036,1037,1038,1039,1040,1042,1043,1045,1063,1064,1065,100,101,102,103,104,105,1001,1002,107,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023],\"roleId\":101}',
+        '2022-08-23 18:06:48', 2411, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:06:48', '1', '2022-08-23 18:06:48', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562018994842464257, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1,1025,1026,1027,1028,1029,1030,1036,1037,1038,1039,1040,1042,1043,1045,1063,1064,1065,100,101,102,103,104,105,1001,1002,107,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023],\"roleId\":2}',
+        '2022-08-23 18:08:44', 17, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:08:44', '1', '2022-08-23 18:08:44', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562019032494731265, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1025,1026,1027,1028,1029,1030,1036,1037,1038,1039,1040,1042,1043,1045,100,101,103,1063,104,1064,105,1065,1001,1002,107,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1017,1018,1019,1020,1021,1022,1023],\"roleId\":2}',
+        '2022-08-23 18:08:53', 19, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:08:53', '1', '2022-08-23 18:08:53', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562019087750492162, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1024,1,1025,1026,1027,1028,1029,1030,1036,1037,1038,1039,1040,1042,1043,1045,1063,1064,1065,100,101,102,103,104,105,1001,1002,107,1003,108,1004,1005,1006,1007,1008,1009,1010,1011,500,1012,501,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023],\"roleId\":2}',
+        '2022-08-23 18:09:06', 17, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:09:06', '1', '2022-08-23 18:09:06', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562019152879644673, 1, 1, '权限管理-给角色分配菜单', 'GRANT', 'POST', '/system/permission/allot-role-menu', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignRoleMenu()',
+        '{\"menuIds\":[1088,1089,2,1090,1091,1092,1031,1032,1033,1034,1035,1237,1238,1239,1240,1241,1242,1243,106,1076,116,1078,1082,1083,1084,1085,1086],\"roleId\":101}',
+        '2022-08-23 18:09:22', 222, 200, '成功', '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1',
+        '2022-08-23 18:09:22', '1', '2022-08-23 18:09:22', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562019307729154050, 1, 1, '权限管理-给用户分配角色', 'GRANT', 'POST', '/system/permission/allot-user-role', '127.0.0.1',
+        '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.permission.PermissionController.assignUserRole()',
+        '{\"roleIds\":[2],\"userId\":1561606936288215042}', '2022-08-23 18:09:59', 5, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 18:09:59', '1',
+        '2022-08-23 18:09:59', b'0');
+INSERT INTO `system_operate_log`
+VALUES (1562019376507351042, 1, 1, '用户管理-重置用户密码', 'UPDATE', 'PUT', '/system/user/update-password', '127.0.0.1', '内网IP',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+        'com.iocoder.yudao.module.system.api.user.UserController.updateUserPassword()',
+        '{\"id\":1561606936288215042,\"password\":\"123456\"}', '2022-08-23 18:10:15', 96, 200, '成功',
+        '{\"code\":200,\"data\":true,\"flag\":0,\"msg\":\"成功\"}', NULL, '1', '2022-08-23 18:10:15', '1',
+        '2022-08-23 18:10:15', b'0');
 
 -- ----------------------------
 -- Table structure for system_post
@@ -2249,79 +2657,13 @@ CREATE TABLE `system_role_menu`
     `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
     `deleted`     bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1729 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '角色和菜单关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1562019152229527554 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '角色和菜单关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_role_menu
 -- ----------------------------
 INSERT INTO `system_role_menu`
 VALUES (263, 109, 1, '1', '2022-02-22 00:56:14', '1', '2022-02-22 00:56:14', b'0');
-INSERT INTO `system_role_menu`
-VALUES (434, 2, 1, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (454, 2, 1093, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (455, 2, 1094, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (460, 2, 1100, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (467, 2, 1107, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (470, 2, 1110, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (476, 2, 1117, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (477, 2, 100, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (478, 2, 101, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (479, 2, 102, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (480, 2, 1126, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (481, 2, 103, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (483, 2, 104, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (485, 2, 105, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (488, 2, 107, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (490, 2, 108, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (492, 2, 109, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (498, 2, 1138, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (523, 2, 1224, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (524, 2, 1225, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (541, 2, 500, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (543, 2, 501, '1', '2022-02-22 13:09:12', '1', '2022-02-22 13:09:12', b'0');
-INSERT INTO `system_role_menu`
-VALUES (675, 2, 2, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (689, 2, 1077, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (690, 2, 1078, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (692, 2, 1083, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (693, 2, 1084, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (699, 2, 1090, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (703, 2, 106, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (704, 2, 110, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (705, 2, 111, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (706, 2, 112, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
-INSERT INTO `system_role_menu`
-VALUES (707, 2, 113, '1', '2022-02-22 13:16:57', '1', '2022-02-22 13:16:57', b'0');
 INSERT INTO `system_role_menu`
 VALUES (1296, 110, 1, '110', '2022-02-23 00:23:55', '110', '2022-02-23 00:23:55', b'0');
 INSERT INTO `system_role_menu`
@@ -2457,185 +2799,185 @@ VALUES (1602, 111, 1015, '1', '2022-03-19 18:39:13', '1', '2022-03-19 18:39:13',
 INSERT INTO `system_role_menu`
 VALUES (1603, 111, 1016, '1', '2022-03-19 18:39:13', '1', '2022-03-19 18:39:13', b'0');
 INSERT INTO `system_role_menu`
-VALUES (1604, 101, 1216, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1604, 101, 1216, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1605, 101, 1217, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1605, 101, 1217, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1606, 101, 1218, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1606, 101, 1218, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1607, 101, 1219, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1607, 101, 1219, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1608, 101, 1220, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1608, 101, 1220, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1609, 101, 1221, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1609, 101, 1221, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1610, 101, 5, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1610, 101, 5, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1611, 101, 1222, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1611, 101, 1222, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1612, 101, 1118, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1612, 101, 1118, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1613, 101, 1119, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1613, 101, 1119, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1614, 101, 1120, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1614, 101, 1120, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1615, 101, 1185, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1615, 101, 1185, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1616, 101, 1186, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1616, 101, 1186, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1617, 101, 1187, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1617, 101, 1187, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1618, 101, 1188, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1618, 101, 1188, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1619, 101, 1189, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1619, 101, 1189, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1620, 101, 1190, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1620, 101, 1190, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1621, 101, 1191, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1621, 101, 1191, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1622, 101, 1192, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1622, 101, 1192, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1623, 101, 1193, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1623, 101, 1193, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1624, 101, 1194, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1624, 101, 1194, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1625, 101, 1195, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1625, 101, 1195, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1626, 101, 1196, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1626, 101, 1196, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1627, 101, 1197, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1627, 101, 1197, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1628, 101, 1198, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1628, 101, 1198, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1629, 101, 1199, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1629, 101, 1199, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1630, 101, 1200, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1630, 101, 1200, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1631, 101, 1201, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1631, 101, 1201, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1632, 101, 1202, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1632, 101, 1202, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1633, 101, 1207, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1633, 101, 1207, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1634, 101, 1208, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1634, 101, 1208, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1635, 101, 1209, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1635, 101, 1209, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1636, 101, 1210, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1636, 101, 1210, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1637, 101, 1211, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1637, 101, 1211, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1638, 101, 1212, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1638, 101, 1212, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1639, 101, 1213, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1639, 101, 1213, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1640, 101, 1215, '1', '2022-03-19 21:45:52', '1', '2022-03-19 21:45:52', b'0');
+VALUES (1640, 101, 1215, '1', '2022-03-19 21:45:52', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1641, 101, 2, '1', '2022-04-01 22:21:24', '1', '2022-04-01 22:21:24', b'0');
+VALUES (1641, 101, 2, '1', '2022-04-01 22:21:24', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1642, 101, 1031, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1642, 101, 1031, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1643, 101, 1032, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1643, 101, 1032, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1644, 101, 1033, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1644, 101, 1033, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1645, 101, 1034, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1645, 101, 1034, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1646, 101, 1035, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1646, 101, 1035, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1647, 101, 1050, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1647, 101, 1050, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1648, 101, 1051, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1648, 101, 1051, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1649, 101, 1052, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1649, 101, 1052, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1650, 101, 1053, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1650, 101, 1053, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1651, 101, 1054, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1651, 101, 1054, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1652, 101, 1056, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1652, 101, 1056, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1653, 101, 1057, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1653, 101, 1057, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1654, 101, 1058, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1654, 101, 1058, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1655, 101, 1059, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1655, 101, 1059, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1656, 101, 1060, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1656, 101, 1060, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1657, 101, 1066, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1657, 101, 1066, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1658, 101, 1067, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1658, 101, 1067, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1659, 101, 1070, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1659, 101, 1070, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1660, 101, 1071, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1660, 101, 1071, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1661, 101, 1072, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1661, 101, 1072, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1662, 101, 1073, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1662, 101, 1073, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1663, 101, 1074, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1663, 101, 1074, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1664, 101, 1075, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1664, 101, 1075, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1665, 101, 1076, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1665, 101, 1076, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1666, 101, 1077, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1666, 101, 1077, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1667, 101, 1078, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1667, 101, 1078, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1668, 101, 1082, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1668, 101, 1082, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1669, 101, 1083, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1669, 101, 1083, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1670, 101, 1084, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1670, 101, 1084, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1671, 101, 1085, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1671, 101, 1085, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1672, 101, 1086, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1672, 101, 1086, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1673, 101, 1087, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1673, 101, 1087, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1674, 101, 1088, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1674, 101, 1088, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1675, 101, 1089, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1675, 101, 1089, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1676, 101, 1090, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1676, 101, 1090, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1677, 101, 1091, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1677, 101, 1091, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1678, 101, 1092, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1678, 101, 1092, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1679, 101, 1237, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1679, 101, 1237, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1680, 101, 1238, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1680, 101, 1238, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1681, 101, 1239, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1681, 101, 1239, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1682, 101, 1240, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1682, 101, 1240, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1683, 101, 1241, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1683, 101, 1241, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1684, 101, 1242, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1684, 101, 1242, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1685, 101, 1243, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1685, 101, 1243, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1687, 101, 106, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1687, 101, 106, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1688, 101, 110, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1688, 101, 110, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1689, 101, 111, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1689, 101, 111, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1690, 101, 112, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1690, 101, 112, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1691, 101, 113, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1691, 101, 113, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1692, 101, 114, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1692, 101, 114, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1693, 101, 115, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1693, 101, 115, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
-VALUES (1694, 101, 116, '1', '2022-04-01 22:21:37', '1', '2022-04-01 22:21:37', b'0');
+VALUES (1694, 101, 116, '1', '2022-04-01 22:21:37', '1', '2022-08-23 18:02:49', b'1');
 INSERT INTO `system_role_menu`
 VALUES (1712, 113, 1024, '1', '2022-05-17 10:07:10', '1', '2022-05-17 10:07:10', b'0');
 INSERT INTO `system_role_menu`
@@ -2670,6 +3012,310 @@ INSERT INTO `system_role_menu`
 VALUES (1727, 113, 1022, '1', '2022-05-17 10:07:10', '1', '2022-05-17 10:07:10', b'0');
 INSERT INTO `system_role_menu`
 VALUES (1728, 113, 1023, '1', '2022-05-17 10:07:10', '1', '2022-05-17 10:07:10', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347605065730, 2, 1024, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347634425857, 2, 1, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:04:06', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017347642814466, 2, 1025, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347659591681, 2, 1026, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347667980289, 2, 1027, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347684757505, 2, 1028, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347697340417, 2, 1029, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347709923330, 2, 1030, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347722506242, 2, 1036, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:04:06', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017347730894849, 2, 1037, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:04:06', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017347739283458, 2, 1038, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:04:06', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017347756060674, 2, 1039, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:04:06', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017347768643585, 2, 1040, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347777032194, 2, 1042, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347793809410, 2, 1043, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347802198017, 2, 1045, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347814780929, 2, 1063, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347827363841, 2, 1064, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347835752450, 2, 1065, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347848335362, 2, 100, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347856723969, 2, 101, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347869306881, 2, 102, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:08:52', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017347877695490, 2, 103, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347886084098, 2, 104, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347898667009, 2, 105, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347907055618, 2, 1001, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347919638530, 2, 1002, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347928027137, 2, 107, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:04:06', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017347936415746, 2, 1003, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347953192961, 2, 108, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347961581570, 2, 1004, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347969970177, 2, 1005, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347982553090, 2, 1006, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017347999330306, 2, 1007, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348007718914, 2, 1008, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348020301826, 2, 1009, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348028690434, 2, 1010, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348037079041, 2, 1011, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348045467649, 2, 500, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348053856257, 2, 1012, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348070633474, 2, 501, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348079022082, 2, 1013, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:08:52', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017348087410689, 2, 1014, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:08:52', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017348099993602, 2, 1015, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:08:52', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017348112576514, 2, 1016, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:08:52', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017348120965122, 2, 1017, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348137742337, 2, 1018, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348146130946, 2, 1019, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348158713858, 2, 1020, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348167102466, 2, 1021, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348183879681, 2, 1022, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017348192268289, 2, 1023, '1', '2022-08-23 18:02:11', '1', '2022-08-23 18:02:11', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562017507017977857, 101, 1024, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507030560769, 101, 1, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:05:18', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507038949378, 101, 1025, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507055726593, 101, 1026, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507064115202, 101, 1027, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507072503810, 101, 1028, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507080892417, 101, 1029, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:06:22', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507089281026, 101, 1030, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:06:22', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507101863938, 101, 1036, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:05:18', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507110252545, 101, 1037, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:05:18', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507127029761, 101, 1038, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:05:18', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507135418369, 101, 1039, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:05:18', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507143806978, 101, 1040, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507152195586, 101, 1042, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507160584194, 101, 1043, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507168972801, 101, 1045, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507185750018, 101, 1063, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507194138625, 101, 1064, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507202527233, 101, 1065, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507215110145, 101, 100, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507223498753, 101, 101, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507236081666, 101, 102, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507244470273, 101, 103, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507261247490, 101, 104, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507269636098, 101, 105, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:06:22', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507278024706, 101, 1001, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507294801922, 101, 1002, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507303190530, 101, 107, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:05:18', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507311579137, 101, 1003, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507336744961, 101, 108, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507345133569, 101, 1004, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507361910785, 101, 1005, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507374493698, 101, 1006, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507382882305, 101, 1007, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507416436737, 101, 1008, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507424825345, 101, 1009, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507441602562, 101, 1010, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507445796866, 101, 1011, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507462574081, 101, 500, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507475156994, 101, 1012, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507483545602, 101, 501, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507496128514, 101, 1013, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507504517121, 101, 1014, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507512905729, 101, 1015, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507521294338, 101, 1016, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507538071553, 101, 1017, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507546460162, 101, 1018, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507563237378, 101, 1019, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507571625986, 101, 1020, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507580014594, 101, 1021, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507600986113, 101, 1022, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562017507609374722, 101, 1023, '1', '2022-08-23 18:02:49', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018507086852097, 101, 1, '1', '2022-08-23 18:06:48', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018507103629313, 101, 1029, '1', '2022-08-23 18:06:48', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018507112017922, 101, 1030, '1', '2022-08-23 18:06:48', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018507120406529, 101, 1036, '1', '2022-08-23 18:06:48', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018507137183746, 101, 1037, '1', '2022-08-23 18:06:48', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018507145572354, 101, 1038, '1', '2022-08-23 18:06:48', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018507162349569, 101, 1039, '1', '2022-08-23 18:06:48', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018507170738178, 101, 105, '1', '2022-08-23 18:06:48', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018507187515394, 101, 107, '1', '2022-08-23 18:06:48', '1', '2022-08-23 18:09:21', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018994783744001, 2, 1, '1', '2022-08-23 18:08:44', '1', '2022-08-23 18:08:52', b'1');
+INSERT INTO `system_role_menu`
+VALUES (1562018994796326914, 2, 1036, '1', '2022-08-23 18:08:44', '1', '2022-08-23 18:08:44', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562018994808909826, 2, 1037, '1', '2022-08-23 18:08:44', '1', '2022-08-23 18:08:44', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562018994817298434, 2, 1038, '1', '2022-08-23 18:08:44', '1', '2022-08-23 18:08:44', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562018994825687041, 2, 1039, '1', '2022-08-23 18:08:44', '1', '2022-08-23 18:08:44', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562018994838269953, 2, 107, '1', '2022-08-23 18:08:44', '1', '2022-08-23 18:08:44', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019087691771905, 2, 1, '1', '2022-08-23 18:09:06', '1', '2022-08-23 18:09:06', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019087700160513, 2, 102, '1', '2022-08-23 18:09:06', '1', '2022-08-23 18:09:06', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019087712743426, 2, 1013, '1', '2022-08-23 18:09:06', '1', '2022-08-23 18:09:06', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019087721132033, 2, 1014, '1', '2022-08-23 18:09:06', '1', '2022-08-23 18:09:06', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019087729520642, 2, 1015, '1', '2022-08-23 18:09:06', '1', '2022-08-23 18:09:06', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019087742103553, 2, 1016, '1', '2022-08-23 18:09:06', '1', '2022-08-23 18:09:06', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019151961092097, 101, 1088, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019151973675010, 101, 1089, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019151982063617, 101, 2, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019151994646529, 101, 1090, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152003035137, 101, 1091, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152011423745, 101, 1092, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152024006657, 101, 1031, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152032395266, 101, 1032, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152040783874, 101, 1033, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152049172481, 101, 1034, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152061755394, 101, 1035, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152070144001, 101, 1237, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152078532610, 101, 1238, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152095309826, 101, 1239, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152103698433, 101, 1240, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152112087042, 101, 1241, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152120475650, 101, 1242, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152128864258, 101, 1243, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152137252866, 101, 106, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152154030081, 101, 1076, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152158224385, 101, 116, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152166612994, 101, 1078, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152175001602, 101, 1082, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152187584514, 101, 1083, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152200167426, 101, 1084, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152212750338, 101, 1085, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
+INSERT INTO `system_role_menu`
+VALUES (1562019152229527553, 101, 1086, '1', '2022-08-23 18:09:21', '1', '2022-08-23 18:09:21', b'0');
 
 -- ----------------------------
 -- Table structure for system_user
@@ -2695,27 +3341,19 @@ CREATE TABLE `system_user`
     `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
     `deleted`     bit(1)                                                        NOT NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1560210805914312706 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1561606936288215043 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_user
 -- ----------------------------
 INSERT INTO `system_user`
 VALUES (1, 'admin', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '管理员', '管理员', 'aoteman@126.com',
-        '15612345678', 1, '', 0, '127.0.0.1', '2022-08-18 00:00:00', 'admin', '2021-01-05 17:03:47', NULL,
-        '2022-08-18 09:39:23', b'0');
+        '15612345678', 1, '', 0, '127.0.0.1', '2022-08-23 00:00:00', 'admin', '2021-01-05 17:03:47', NULL,
+        '2022-08-23 13:11:17', b'0');
 INSERT INTO `system_user`
-VALUES (2, 'ztongkai', '$2a$10$xv12d3kwznAwrbrhFkKH0upULZDmBPB8sX2IQipxe5msU.4KhTxIy', '吴凯', NULL, '2580211264@qq.com',
-        '13121022995', 1, '', 0, '', NULL, '1', '2022-06-25 16:34:12', '1', '2022-08-16 14:48:48', b'0');
-INSERT INTO `system_user`
-VALUES (1560209166478319618, 'dasds', '$2a$10$AgAvXU4/VR.cAQmGzVH0bOPMgFqptAAd6gvwYvI.0QQ8mgsF/49w2', 'dadas', NULL,
-        '25@qq.com', '13121022994', 1, '', 0, '', NULL, '1', '2022-08-18 18:17:07', '1', '2022-08-18 18:17:07', b'0');
-INSERT INTO `system_user`
-VALUES (1560209795946881026, 'fsfsa', '$2a$10$TinPnd8shJvCmXTC1Yrr9eXY3L/oVYg.xJqNpoATA/IHq5//aBE1i', 'sfasfsa', NULL,
-        '256@QQ.COM', '13121022997', 1, '', 0, '', NULL, '1', '2022-08-18 18:19:37', '1', '2022-08-18 18:19:37', b'0');
-INSERT INTO `system_user`
-VALUES (1560210805914312705, 'dasdas', '$2a$10$LBhXNvbCMFGgP3UtqpZBROL5E6JFH4BVfcJKbuXe9yLxPZQwHhLaC', 'dasdsad', NULL,
-        '2564@qq.com', '13121022998', 1, '', 0, '', NULL, '1', '2022-08-18 18:23:38', '1', '2022-08-18 18:23:38', b'0');
+VALUES (1561606936288215042, '吴凯', '$2a$10$ia9Dq8JJbmLJYsFcNWN1puzrMtw0bYFWT3wYJB0gSDACH0sU3FbnW', 'wztongkai', '测试',
+        '2580211264@qq.com', '13121022995', 1, '', 0, '127.0.0.1', '2022-08-23 00:00:00', '1', '2022-08-22 14:51:22',
+        '1', '2022-08-23 18:10:29', b'0');
 
 -- ----------------------------
 -- Table structure for system_user_dept
@@ -2732,7 +3370,7 @@ CREATE TABLE `system_user_dept`
     `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
     `deleted`     bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1540680272335450115 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户岗位表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1561950372640026626 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户岗位表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_user_dept
@@ -2740,11 +3378,11 @@ CREATE TABLE `system_user_dept`
 INSERT INTO `system_user_dept`
 VALUES (111, 1, 100, 'admin', '2022-06-25 14:51:03', 'admin', '2022-06-25 14:51:21', b'0');
 INSERT INTO `system_user_dept`
-VALUES (1540614322588258305, 1540614322441457665, 100, '1', '2022-06-25 16:34:12', '1', '2022-06-25 23:15:22', b'0');
+VALUES (1561606936443404290, 1561606936288215042, 103, '1', '2022-08-22 14:51:22', '1', '2022-08-23 13:36:03', b'1');
 INSERT INTO `system_user_dept`
-VALUES (1540678067884666881, 1540614322441457665, 101, '1', '2022-06-25 20:47:30', '1', '2022-06-25 23:15:29', b'0');
+VALUES (1561950372631638017, 1561606936288215042, 105, '1', '2022-08-23 13:36:03', '1', '2022-08-23 13:36:03', b'0');
 INSERT INTO `system_user_dept`
-VALUES (1540680272335450114, 1540614322441457665, 102, '1', '2022-06-25 20:56:16', '1', '2022-06-25 23:15:29', b'0');
+VALUES (1561950372640026625, 1561606936288215042, 107, '1', '2022-08-23 13:36:03', '1', '2022-08-23 13:36:28', b'1');
 
 -- ----------------------------
 -- Table structure for system_user_post
@@ -2761,7 +3399,7 @@ CREATE TABLE `system_user_post`
     `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
     `deleted`     bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1560210805935284226 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户岗位表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1561950512792694787 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户岗位表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_user_post
@@ -2769,25 +3407,11 @@ CREATE TABLE `system_user_post`
 INSERT INTO `system_user_post`
 VALUES (112, 1, 1, 'admin', '2022-05-02 07:25:24', 'admin', '2022-05-02 07:25:24', b'0');
 INSERT INTO `system_user_post`
-VALUES (113, 100, 1, 'admin', '2022-05-02 07:25:24', 'admin', '2022-05-02 07:25:24', b'0');
+VALUES (1561606936481153025, 1561606936288215042, 4, '1', '2022-08-22 14:51:22', '1', '2022-08-23 13:36:03', b'1');
 INSERT INTO `system_user_post`
-VALUES (114, 114, 3, 'admin', '2022-05-02 07:25:24', 'admin', '2022-05-02 07:25:24', b'0');
+VALUES (1561950372665192450, 1561606936288215042, 2, '1', '2022-08-23 13:36:03', '1', '2022-08-23 13:36:36', b'1');
 INSERT INTO `system_user_post`
-VALUES (1540614322659561474, 1540614322441457665, 1, '1', '2022-06-25 16:34:12', '1', '2022-06-25 23:15:14', b'0');
-INSERT INTO `system_user_post`
-VALUES (1540678067985330177, 1540614322441457665, 2, '1', '2022-06-25 20:47:30', '1', '2022-06-25 23:15:16', b'0');
-INSERT INTO `system_user_post`
-VALUES (1560209166507679746, 1560209166478319618, 1, '1', '2022-08-18 18:17:07', '1', '2022-08-18 18:17:07', b'0');
-INSERT INTO `system_user_post`
-VALUES (1560209166516068354, 1560209166478319618, 2, '1', '2022-08-18 18:17:07', '1', '2022-08-18 18:17:07', b'0');
-INSERT INTO `system_user_post`
-VALUES (1560209795959463937, 1560209795946881026, 1, '1', '2022-08-18 18:19:37', '1', '2022-08-18 18:19:37', b'0');
-INSERT INTO `system_user_post`
-VALUES (1560209795959463938, 1560209795946881026, 2, '1', '2022-08-18 18:19:37', '1', '2022-08-18 18:19:37', b'0');
-INSERT INTO `system_user_post`
-VALUES (1560210805931089921, 1560210805914312705, 1, '1', '2022-08-18 18:23:38', '1', '2022-08-18 18:23:38', b'0');
-INSERT INTO `system_user_post`
-VALUES (1560210805935284225, 1560210805914312705, 2, '1', '2022-08-18 18:23:38', '1', '2022-08-18 18:23:38', b'0');
+VALUES (1561950512792694786, 1561606936288215042, 1, '1', '2022-08-23 13:36:37', '1', '2022-08-23 13:36:37', b'0');
 
 -- ----------------------------
 -- Table structure for system_user_role
@@ -2804,7 +3428,7 @@ CREATE TABLE `system_user_role`
     `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
     `deleted`     bit(1) NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户和角色关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1561942046858506243 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户和角色关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_user_role
@@ -2812,35 +3436,21 @@ CREATE TABLE `system_user_role`
 INSERT INTO `system_user_role`
 VALUES (1, 1, 1, '', '2022-01-11 13:19:45', '', '2022-06-29 13:51:45', b'0');
 INSERT INTO `system_user_role`
-VALUES (2, 2, 2, '', '2022-01-11 13:19:45', '', '2022-05-12 12:35:13', b'0');
-INSERT INTO `system_user_role`
-VALUES (4, 100, 101, '', '2022-01-11 13:19:45', '', '2022-05-12 12:35:13', b'0');
-INSERT INTO `system_user_role`
-VALUES (5, 100, 1, '', '2022-01-11 13:19:45', '', '2022-05-12 12:35:12', b'0');
-INSERT INTO `system_user_role`
-VALUES (6, 100, 2, '', '2022-01-11 13:19:45', '', '2022-05-12 12:35:11', b'0');
-INSERT INTO `system_user_role`
-VALUES (7, 104, 101, '', '2022-01-11 13:19:45', '', '2022-05-12 12:35:11', b'0');
-INSERT INTO `system_user_role`
-VALUES (10, 103, 1, '1', '2022-01-11 13:19:45', '1', '2022-01-11 13:19:45', b'0');
-INSERT INTO `system_user_role`
-VALUES (11, 107, 106, '1', '2022-02-20 22:59:33', '1', '2022-02-20 22:59:33', b'0');
-INSERT INTO `system_user_role`
-VALUES (12, 108, 107, '1', '2022-02-20 23:00:50', '1', '2022-02-20 23:00:50', b'0');
-INSERT INTO `system_user_role`
-VALUES (13, 109, 108, '1', '2022-02-20 23:11:50', '1', '2022-02-20 23:11:50', b'0');
-INSERT INTO `system_user_role`
-VALUES (14, 110, 109, '1', '2022-02-22 00:56:14', '1', '2022-02-22 00:56:14', b'0');
-INSERT INTO `system_user_role`
-VALUES (15, 111, 110, '110', '2022-02-23 13:14:38', '110', '2022-02-23 13:14:38', b'0');
-INSERT INTO `system_user_role`
-VALUES (16, 113, 111, '1', '2022-03-07 21:37:58', '1', '2022-03-07 21:37:58', b'0');
-INSERT INTO `system_user_role`
-VALUES (17, 114, 101, '1', '2022-03-19 21:51:13', '1', '2022-03-19 21:51:13', b'0');
-INSERT INTO `system_user_role`
 VALUES (18, 1, 2, '1', '2022-05-12 20:39:29', '1', '2022-05-12 20:39:29', b'0');
 INSERT INTO `system_user_role`
-VALUES (19, 116, 113, '1', '2022-05-17 10:07:10', '1', '2022-05-17 10:07:10', b'0');
+VALUES (1561643569100275714, 1561606936288215042, 1, '1', '2022-08-22 17:16:55', '1', '2022-08-23 18:09:58', b'1');
+INSERT INTO `system_user_role`
+VALUES (1561912777658822658, 1561606936288215042, 1, '1', '2022-08-23 11:06:40', '1', '2022-08-23 18:09:58', b'1');
+INSERT INTO `system_user_role`
+VALUES (1561912777671405570, 1561606936288215042, 2, '1', '2022-08-23 11:06:40', '1', '2022-08-23 12:00:09', b'1');
+INSERT INTO `system_user_role`
+VALUES (1561922384926044162, 1561606936288215042, 1, '1', '2022-08-23 11:44:50', '1', '2022-08-23 18:09:58', b'1');
+INSERT INTO `system_user_role`
+VALUES (1561926011937845250, 1561606936288215042, 1, '1', '2022-08-23 11:59:15', '1', '2022-08-23 18:09:58', b'1');
+INSERT INTO `system_user_role`
+VALUES (1561926436074254338, 1561606936288215042, 2, '1', '2022-08-23 12:00:56', '1', '2022-08-23 13:02:48', b'1');
+INSERT INTO `system_user_role`
+VALUES (1561942046858506242, 1561606936288215042, 2, '1', '2022-08-23 13:02:58', '1', '2022-08-23 13:02:58', b'0');
 
 SET
 FOREIGN_KEY_CHECKS = 1;
