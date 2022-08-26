@@ -47,7 +47,7 @@ import static com.iocoder.yudao.module.commons.enums.role.RoleCodeEnum.SUPER_ADM
  * 登录认证接口
  *
  * @author wu kai
- * @since  2022/6/24
+ * @since 2022/6/24
  */
 @Service
 public class LoginAuthServiceImpl implements LoginAuthService {
@@ -180,7 +180,7 @@ public class LoginAuthServiceImpl implements LoginAuthService {
             } else {
                 // 插入失败日志
                 this.createLoginLog(userId, username, LoginLogTypeEnum.LOGIN_USERNAME, LoginResultEnum.UNKNOWN_ERROR);
-                throw new ServiceException(e.getMessage());
+                throw new ServiceException(500, e.getMessage());
             }
         }
         // 插入登陆日志

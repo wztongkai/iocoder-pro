@@ -1,27 +1,24 @@
 package com.iocoder.yudao.module.commons.exception;
 
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
- * 业务异常
- *
- * @author kai wu
+ * 业务逻辑异常 Exception
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public final class ServiceException extends RuntimeException {
-    private static final long serialVersionUID = 1L;
 
     /**
-     * 错误码
+     * 业务错误码
      */
     private Integer code;
-
     /**
      * 错误提示
      */
     private String message;
-
-    /**
-     * 错误明细
-     */
-    private String detailMessage;
 
     /**
      * 空构造方法，避免反序列化问题
@@ -29,31 +26,28 @@ public final class ServiceException extends RuntimeException {
     public ServiceException() {
     }
 
-    public ServiceException(String message) {
-        this.message = message;
+    public ServiceException(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMsg();
     }
 
-    public ServiceException(String message, Integer code) {
-        this.message = message;
+    public ServiceException(Integer code, String message) {
         this.code = code;
-    }
-
-    public ServiceException(String message ,String detailMessage){
         this.message = message;
-        this.detailMessage = detailMessage;
     }
 
-    public String getDetailMessage() {
-        return this.detailMessage;
+    public Integer getCode() {
+        return code;
+    }
+
+    public ServiceException setCode(Integer code) {
+        this.code = code;
+        return this;
     }
 
     @Override
     public String getMessage() {
-        return this.message;
-    }
-
-    public Integer getCode() {
-        return this.code;
+        return message;
     }
 
     public ServiceException setMessage(String message) {
@@ -61,8 +55,4 @@ public final class ServiceException extends RuntimeException {
         return this;
     }
 
-    public ServiceException setDetailMessage(String detailMessage) {
-        this.detailMessage = detailMessage;
-        return this;
-    }
 }

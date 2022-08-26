@@ -24,7 +24,7 @@ public class SecurityUtils {
         try {
             return getLoginUser().getUserId();
         } catch (Exception e) {
-            throw new ServiceException("获取用户ID异常", HttpStatus.UNAUTHORIZED);
+            throw new ServiceException(HttpStatus.UNAUTHORIZED, "获取用户ID异常");
         }
     }
 
@@ -48,7 +48,7 @@ public class SecurityUtils {
         try {
             return getLoginUser().getDeptVoList();
         } catch (Exception e) {
-            throw new ServiceException("获取部门ID异常", HttpStatus.UNAUTHORIZED);
+            throw new ServiceException(HttpStatus.UNAUTHORIZED, "获取部门ID异常");
         }
     }
 
@@ -59,7 +59,7 @@ public class SecurityUtils {
         try {
             return getLoginUser().getUsername();
         } catch (Exception e) {
-            throw new ServiceException("获取用户账户异常", HttpStatus.UNAUTHORIZED);
+            throw new ServiceException(HttpStatus.UNAUTHORIZED, "获取用户账户异常");
         }
     }
 
@@ -70,7 +70,7 @@ public class SecurityUtils {
         try {
             return (LoginUser) getAuthentication().getPrincipal();
         } catch (Exception e) {
-            throw new ServiceException("获取用户信息异常", HttpStatus.UNAUTHORIZED);
+            throw new ServiceException(HttpStatus.UNAUTHORIZED, "获取用户信息异常");
         }
     }
 

@@ -70,7 +70,7 @@ public class ProcessServiceImpl implements ProcessService {
             return null;
         } catch (Exception e) {
             log.error("流程实例启动失败，失败流程定义key:{}，异常信息为:{}", processInstanceDTO.getProcessDefinitionKey(), e.getMessage());
-            throw new ServiceException("流程实例启动失败，异常信息为:{}", e.getMessage());
+            throw new RuntimeException("流程实例启动失败，异常信息为:{}", e);
         }
     }
 

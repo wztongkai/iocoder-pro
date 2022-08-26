@@ -75,7 +75,7 @@ public class ServiceExceptionUtil {
 
     public static ServiceException exception0(Integer code, String messagePattern, Object... params) {
         String message = doFormat(code, messagePattern, params);
-        return new ServiceException(message, code);
+        return new ServiceException(code, message);
     }
 
     // ========== 格式化方法 ==========

@@ -17,6 +17,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.UserErrorCode.USER_IS_DISABLE;
+import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.UserErrorCode.USER_NOT_EXISTS;
+
 /**
  * 用户验证处理
  *
@@ -37,10 +40,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         );
         if (StringUtils.isNull(userDO)) {
             log.info("登录用户：{} 不存在.", username);
-            throw new ServiceException("登录用户：" + username + " 不存在");
+            throw new ServiceException(USER_NOT_EXISTS.getCode(), "登录用户：" + username + " 不存在");
         } else if (UserStatus.DISABLE.getCode().equals(userDO.getStatus())) {
             log.info("登录用户：{} 已被停用.", username);
-            throw new ServiceException("对不起，您的账号：" + username + " 已停用");
+            throw new ServiceException(USER_IS_DISABLE.getCode(), "对不起，您的账号：" + username + " 已停用");
         }
 
         return this.createLoginUser(userDO);

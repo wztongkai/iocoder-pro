@@ -2,7 +2,6 @@ package com.iocoder.yudao.module.activiti.service.impl;
 
 import com.iocoder.yudao.module.activiti.dto.instance.ActProcessInstanceDTO;
 import com.iocoder.yudao.module.activiti.service.ActInstanceService;
-import com.iocoder.yudao.module.commons.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RuntimeService;
@@ -35,7 +34,7 @@ public class ActInstanceServiceImpl implements ActInstanceService {
             return runtimeService.startProcessInstanceById(processDefinitionId, businessKey, variables);
         } catch (Exception e) {
             log.error("流程实例启动失败，异常信息为:{}", e.getMessage());
-            throw new ServiceException("流程实例启动失败，异常信息为:{}", e.getMessage());
+            throw new RuntimeException("流程实例启动失败，异常信息为:{}", e);
         }
     }
 
@@ -44,7 +43,7 @@ public class ActInstanceServiceImpl implements ActInstanceService {
         ActProcessInstanceDTO dto = new ActProcessInstanceDTO();
         // 校验流程是否完成
         boolean processFinished = isProcessFinished(processInstanceId);
-        if(processFinished){
+        if (processFinished) {
             // 获取历史流程实例
             HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
             dto = ActProcessInstanceDTO.builder()
@@ -52,7 +51,7 @@ public class ActInstanceServiceImpl implements ActInstanceService {
                     .processDefinitionId(historicProcessInstance.getProcessDefinitionId())
                     .processDefinitionKey(historicProcessInstance.getProcessDefinitionKey())
                     .build();
-        }else{
+        } else {
             ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
             dto = ActProcessInstanceDTO.builder()
                     .instanceId(processInstance.getId())
@@ -67,10 +66,10 @@ public class ActInstanceServiceImpl implements ActInstanceService {
     public boolean isProcessFinished(String instanceId) {
         // 查询正在运行中的流程实例
         ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
-        if(ObjectUtils.isEmpty(processInstance)){
+        if (ObjectUtils.isEmpty(processInstance)) {
             // 查询历史流程实例
             HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery().processInstanceId(instanceId).singleResult();
-            if(ObjectUtils.isNotEmpty(historicProcessInstance)){
+            if (ObjectUtils.isNotEmpty(historicProcessInstance)) {
                 return true;
             }
             return false;
