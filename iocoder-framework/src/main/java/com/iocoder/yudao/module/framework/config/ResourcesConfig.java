@@ -4,7 +4,6 @@ package com.iocoder.yudao.module.framework.config;
 import com.iocoder.yudao.module.commons.config.iocoderConfig.IocoderConfig;
 import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.framework.config.handle.GlobalExceptionHandler;
-import com.iocoder.yudao.module.framework.config.handle.GlobalResponseBodyHandler;
 import com.iocoder.yudao.module.framework.config.interceptor.RepeatSubmitInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,10 +54,6 @@ public class ResourcesConfig implements WebMvcConfigurer {
         return new GlobalExceptionHandler(applicationName);
     }
 
-    @Bean
-    public GlobalResponseBodyHandler globalResponseBodyHandler() {
-        return new GlobalResponseBodyHandler();
-    }
 
     /**
      * 跨域配置

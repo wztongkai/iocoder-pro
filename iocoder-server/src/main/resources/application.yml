@@ -36,7 +36,9 @@ spring:
       matching-strategy: ant_path_matcher
   # 允许循环依赖
   main:
+    # 设置运行循环依赖
     allow-circular-references: true
+    # 设置是否允许具有相同名称的Bean来覆盖之前的Bean
     allow-bean-definition-overriding: true
 
   application:
