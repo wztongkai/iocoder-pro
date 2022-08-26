@@ -27,10 +27,11 @@ public interface RoleMapper extends BaseMapperX<RoleDO> {
      */
     default PageResult<RoleDO> getRolePage(RolePageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<RoleDO>()
-                .likeIfPresent(RoleDO::getName, reqVO.getName())
-                .likeIfPresent(RoleDO::getCode, reqVO.getCode())
+                .likeIfPresent(RoleDO::getName, reqVO.getSearch())
+                .orIfPresent()
+                .likeIfPresent(RoleDO::getCode, reqVO.getSearch())
                 .eqIfPresent(RoleDO::getStatus, reqVO.getStatus())
-                .betweenIfPresent(BaseEntity::getCreateTime, reqVO.getBeginTime(), reqVO.getEndTime())
+                .betweenIfPresent(BaseEntity::getCreateTime, reqVO.getCreateTime())
                 .orderByAsc(RoleDO::getId));
     }
 }
