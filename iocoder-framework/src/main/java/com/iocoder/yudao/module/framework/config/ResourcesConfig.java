@@ -3,8 +3,11 @@ package com.iocoder.yudao.module.framework.config;
 
 import com.iocoder.yudao.module.commons.config.iocoderConfig.IocoderConfig;
 import com.iocoder.yudao.module.commons.constant.Constants;
+import com.iocoder.yudao.module.framework.config.handle.GlobalExceptionHandler;
+import com.iocoder.yudao.module.framework.config.handle.GlobalResponseBodyHandler;
 import com.iocoder.yudao.module.framework.config.interceptor.RepeatSubmitInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -25,6 +28,9 @@ public class ResourcesConfig implements WebMvcConfigurer {
     @Autowired
     private RepeatSubmitInterceptor repeatSubmitInterceptor;
 
+    @Value("${spring.application.name}")
+    private String applicationName;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         /* 本地文件上传路径 */
@@ -42,6 +48,16 @@ public class ResourcesConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(this.repeatSubmitInterceptor).addPathPatterns("/**");
+    }
+
+    @Bean
+    public GlobalExceptionHandler globalExceptionHandler() {
+        return new GlobalExceptionHandler(applicationName);
+    }
+
+    @Bean
+    public GlobalResponseBodyHandler globalResponseBodyHandler() {
+        return new GlobalResponseBodyHandler();
     }
 
     /**

@@ -37,6 +37,7 @@ spring:
   # 允许循环依赖
   main:
     allow-circular-references: true
+    allow-bean-definition-overriding: true
 
   application:
     name: iocoder
