@@ -70,7 +70,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleDO> implements 
         // 校验是否为系统内置角色
         checkUpdateRoleIsSystem(updateReqVO.getId());
         // 校验参数
-        checkCreateOrUpdate(updateReqVO.getId(), updateReqVO.getName(), updateReqVO.getCode());
+        //checkCreateOrUpdate(updateReqVO.getId(), updateReqVO.getName(), updateReqVO.getCode());
         // 校验通过，执行更新操作
         RoleDO roleDO = new RoleDO();
         BeanUtil.copyProperties(updateReqVO, roleDO);
