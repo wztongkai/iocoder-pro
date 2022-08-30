@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 @ApiModel("管理后台 - 部门列表 Request VO")
 @Data
 public class DeptListReqVO {
@@ -16,5 +18,7 @@ public class DeptListReqVO {
 
     @ApiModelProperty(value = "展示状态", example = "1")
     private Integer status;
+
+    private List<Long> userIds;
 
 }

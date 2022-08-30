@@ -19,11 +19,13 @@ import com.iocoder.yudao.module.system.service.UserDeptService;
 import com.iocoder.yudao.module.system.vo.dept.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.iocoder.yudao.module.commons.constant.ErrorCodeConstants.DeptErrorCode.*;
 
@@ -69,7 +71,17 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
 
     @Override
     public List<DeptRespVO> getSimpleDepts(DeptListReqVO reqVO) {
-
+        String search = reqVO.getSearch();
+        if(StringUtils.isNotBlank(search)){
+            List<UserDO> userDOList = userMapper.selectList(new LambdaQueryWrapperX<UserDO>()
+                    .like(UserDO::getUsername, search)
+            );
+            List<Long> userIds = new ArrayList<>();
+            if(CollectionUtils.isNotEmpty(userDOList)){
+                userIds = userDOList.stream().map(UserDO::getId).filter(Objects::nonNull).collect(Collectors.toList());
+            }
+            reqVO.setUserIds(userIds);
+        }
         List<DeptDO> simpleDepts = baseMapper.getSimpleDepts(reqVO);
         List<DeptRespVO> deptInfoList = new ArrayList<>();
         if(CollectionUtils.isNotEmpty(simpleDepts)){
