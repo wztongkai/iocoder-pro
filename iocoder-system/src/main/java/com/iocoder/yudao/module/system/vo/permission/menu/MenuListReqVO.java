@@ -8,10 +8,10 @@ import lombok.Data;
 @Data
 public class MenuListReqVO {
 
-    @ApiModelProperty(value = "菜单名称", example = "芋道", notes = "模糊匹配")
+    @ApiModelProperty(value = "菜单名称", example = "用户", notes = "模糊匹配")
     private String name;
 
-    @ApiModelProperty(value = "展示状态", example = "1", notes = "参见 CommonStatusEnum 枚举类")
+    @ApiModelProperty(value = "展示状态", example = "1")
     private Integer status;
 
 }
