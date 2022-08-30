@@ -29,6 +29,13 @@ public class LambdaQueryWrapperX<T> extends LambdaQueryWrapper<T> {
         return (LambdaQueryWrapperX<T>) super.or();
     }
 
+    public LambdaQueryWrapperX<T> orIfPresent(Collection<?> values) {
+        if(!CollectionUtils.isEmpty(values)){
+            return (LambdaQueryWrapperX<T>) super.or();
+        }
+        return this;
+    }
+
     public LambdaQueryWrapperX<T> inIfPresent(SFunction<T, ?> column, Collection<?> values) {
         if (!CollectionUtils.isEmpty(values)) {
             return (LambdaQueryWrapperX<T>) super.in(column, values);

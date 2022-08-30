@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
+import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.enums.dept.DeptIdEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
@@ -12,6 +13,7 @@ import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.UserDeptDO;
 import com.iocoder.yudao.module.system.mapper.DeptMapper;
+import com.iocoder.yudao.module.system.mapper.UserMapper;
 import com.iocoder.yudao.module.system.service.DeptService;
 import com.iocoder.yudao.module.system.service.UserDeptService;
 import com.iocoder.yudao.module.system.vo.dept.*;
@@ -39,6 +41,9 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
     @Resource
     UserDeptService userDeptService;
 
+    @Resource
+    UserMapper userMapper;
+
     @Override
     public Set<Long> getDeptCondition(Long deptId) {
         if (Objects.isNull(deptId)) {
@@ -64,9 +69,20 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
 
     @Override
     public List<DeptRespVO> getSimpleDepts(DeptListReqVO reqVO) {
+
         List<DeptDO> simpleDepts = baseMapper.getSimpleDepts(reqVO);
         List<DeptRespVO> deptInfoList = new ArrayList<>();
-        BeanUtil.copyListProperties(simpleDepts, deptInfoList, DeptRespVO.class);
+        if(CollectionUtils.isNotEmpty(simpleDepts)){
+            BeanUtil.copyListProperties(simpleDepts, deptInfoList, DeptRespVO.class);
+            deptInfoList.forEach(deptRespVO -> {
+                Long leaderUserId = deptRespVO.getLeaderUserId();
+                UserDO userDO = userMapper.selectById(leaderUserId);
+                if(ObjectUtils.isNotEmpty(userDO)){
+                    deptRespVO.setLeaderUserName(userDO.getUsername());
+                }
+            });
+        }
+
         return deptInfoList;
     }
 

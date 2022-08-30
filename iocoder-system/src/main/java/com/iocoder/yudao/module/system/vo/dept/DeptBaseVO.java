@@ -29,6 +29,9 @@ public class DeptBaseVO {
     @ApiModelProperty(value = "负责人的用户编号", example = "2048")
     private Long leaderUserId;
 
+    @ApiModelProperty(value = "负责人姓名",example = "吴凯")
+    private String leaderUserName;
+
     @ApiModelProperty(value = "联系电话", example = "15601691000")
     @Size(max = 11, message = "联系电话长度不能超过11个字符")
     private String phone;

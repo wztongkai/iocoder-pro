@@ -26,9 +26,9 @@ public interface DeptMapper extends BaseMapperX<DeptDO> {
      */
     default List<DeptDO> getSimpleDepts(DeptListReqVO reqVO) {
         return selectList(new LambdaQueryWrapperX<DeptDO>()
-                .likeIfPresent(DeptDO::getName, reqVO.getName())
+                .likeIfPresent(DeptDO::getName, reqVO.getSearch())
                 .eqIfPresent(DeptDO::getStatus, reqVO.getStatus())
-                .orderByDesc(DeptDO::getSort)
+                .orderByAsc(DeptDO::getSort)
         );
     }
 

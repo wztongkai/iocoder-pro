@@ -1,11 +1,12 @@
 package com.iocoder.yudao.module.system.vo.dept;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @ApiModel("管理后台 - 部门信息 Response VO")
 @Data
@@ -19,6 +20,7 @@ public class DeptRespVO extends DeptBaseVO {
     private Integer status;
 
     @ApiModelProperty(value = "创建时间", required = true, example = "时间戳格式")
-    private Date createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime createTime;
 
 }
