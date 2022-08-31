@@ -31,6 +31,7 @@ public interface DictDataMapper extends BaseMapperX<DictDataDO> {
                 .likeIfPresent(DictDataDO::getLabel, pageReqVO.getLabel())
                 .likeIfPresent(DictDataDO::getDictType, pageReqVO.getDictType())
                 .eqIfPresent(DictDataDO::getStatus, pageReqVO.getStatus())
-                .orderByDesc(Arrays.asList(DictDataDO::getDictType, DictDataDO::getSort)));
+                .betweenIfPresent(DictDataDO::getCreateTime, pageReqVO.getCreateTime())
+                .orderByAsc(Arrays.asList(DictDataDO::getDictType, DictDataDO::getSort)));
     }
 }

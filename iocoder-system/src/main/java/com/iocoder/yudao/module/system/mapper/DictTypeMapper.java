@@ -26,10 +26,11 @@ public interface DictTypeMapper extends BaseMapperX<DictTypeDO> {
      */
     default PageResult<DictTypeDO> selectDictTypePage(DictTypePageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<DictTypeDO>()
-                .likeIfPresent(DictTypeDO::getName, reqVO.getName())
-                .likeIfPresent(DictTypeDO::getType, reqVO.getType())
+                .likeIfPresent(DictTypeDO::getName, reqVO.getSearch())
+                .orIfPresent()
+                .likeIfPresent(DictTypeDO::getType, reqVO.getSearch())
                 .eqIfPresent(DictTypeDO::getStatus, reqVO.getStatus())
-                .betweenIfPresent(DictTypeDO::getCreateTime, reqVO.getBeginCreateTime(), reqVO.getEndCreateTime())
+                .betweenIfPresent(DictTypeDO::getCreateTime, reqVO.getCreateTime())
                 .orderByDesc(DictTypeDO::getCreateTime));
     }
 }
