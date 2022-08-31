@@ -78,7 +78,7 @@ public class PostController {
     @Log(title = "岗位管理",businessType = BusinessType.DELETE)
     @PreAuthorize("@ss.hasPermission('system:post:delete')")
     @DeleteMapping("/delete-post-batch")
-    @ApiOperation("批量删除用户")
+    @ApiOperation("批量删除岗位")
     public CommonResult<Boolean> deletePostBatch(@Valid @RequestBody PostBatchDeleteReqVO batchDeleteReqVO){
         postService.deletePostBatch(batchDeleteReqVO);
         return success(true);

@@ -26,9 +26,12 @@ public interface PostMapper extends BaseMapperX<PostDO> {
      */
     default List<PostDO> getSimplePosts(PostListReqVO listReqVO) {
         return selectList(new LambdaQueryWrapperX<PostDO>()
-                .likeIfPresent(PostDO::getName, listReqVO.getName())
+                .likeIfPresent(PostDO::getName, listReqVO.getSearch())
+                .orIfPresent()
+                .likeIfPresent(PostDO::getCode, listReqVO.getSearch())
                 .eqIfPresent(PostDO::getStatus, listReqVO.getStatus())
-                .orderByDesc(PostDO::getSort)
+                .betweenIfPresent(PostDO::getCreateTime, listReqVO.getCreateTime())
+                .orderByAsc(PostDO::getSort)
         );
     }
 }

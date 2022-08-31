@@ -30,6 +30,7 @@ public interface DeptMapper extends BaseMapperX<DeptDO> {
                 .orIfPresent(reqVO.getUserIds())
                 .inIfPresent(DeptDO::getLeaderUserId, reqVO.getUserIds())
                 .eqIfPresent(DeptDO::getStatus, reqVO.getStatus())
+                .betweenIfPresent(DeptDO::getCreateTime, reqVO.getCreateTime())
                 .orderByAsc(DeptDO::getSort)
         );
     }
