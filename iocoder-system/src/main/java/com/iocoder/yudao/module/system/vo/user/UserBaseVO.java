@@ -34,7 +34,7 @@ public class UserBaseVO {
     @Mobile
     private String mobile;
 
-    @ApiModelProperty(value = "用户性别", example = "1", notes = "参见 SexEnum 枚举类")
+    @ApiModelProperty(value = "用户性别", example = "1", notes = " SexEnum 枚举类")
     private Integer sex;
 
     @ApiModelProperty(value = "用户头像", example = "https://www.iocoder.cn/xxx.png")

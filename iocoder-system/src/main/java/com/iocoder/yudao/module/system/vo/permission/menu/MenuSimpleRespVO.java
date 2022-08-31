@@ -21,7 +21,7 @@ public class MenuSimpleRespVO {
     @ApiModelProperty(value = "父菜单 ID", required = true, example = "1024")
     private Long parentId;
 
-    @ApiModelProperty(value = "类型", required = true, example = "1", notes = "参见 MenuTypeEnum 枚举类")
+    @ApiModelProperty(value = "类型", required = true, example = "1", notes = " MenuTypeEnum 枚举类")
     private Integer type;
 
 }

@@ -18,7 +18,7 @@ public class DictTypeBaseVO {
     @Size(max = 100, message = "字典类型名称长度不能超过100个字符")
     private String name;
 
-    @ApiModelProperty(value = "状态", required = true, example = "1", notes = "参见 CommonStatusEnum 枚举类")
+    @ApiModelProperty(value = "状态", required = true, example = "1", notes = "CommonStatusEnum 枚举类")
     @NotNull(message = "状态不能为空")
     private Integer status;
 

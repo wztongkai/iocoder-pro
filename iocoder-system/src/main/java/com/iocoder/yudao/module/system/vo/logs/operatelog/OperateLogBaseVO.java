@@ -21,7 +21,7 @@ public class OperateLogBaseVO {
     @NotEmpty(message = "操作模块不能为空")
     private String module;
 
-    @ApiModelProperty(value = "操作分类", required = true, example = "1", notes = "参见 OperateLogTypeEnum 枚举类")
+    @ApiModelProperty(value = "操作分类", required = true, example = "1", notes = " OperateLogTypeEnum 枚举类")
     @NotNull(message = "操作分类不能为空")
     private Integer type;
 

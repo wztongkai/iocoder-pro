@@ -22,7 +22,7 @@ public class DictTypePageReqVO extends PageParam {
     @Size(max = 100, message = "字典类型类型长度不能超过100个字符")
     private String type;
 
-    @ApiModelProperty(value = "展示状态", example = "1", notes = "参见 CommonStatusEnum 枚举类")
+    @ApiModelProperty(value = "展示状态", example = "1", notes = "CommonStatusEnum 枚举类")
     private Integer status;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

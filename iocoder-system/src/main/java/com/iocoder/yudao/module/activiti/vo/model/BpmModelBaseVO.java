@@ -22,11 +22,11 @@ public class BpmModelBaseVO {
     @ApiModelProperty(value = "流程描述", example = "我是描述")
     private String description;
 
-    @ApiModelProperty(value = "流程分类", notes = "参见 bpm_model_category 数据字典", example = "1")
+    @ApiModelProperty(value = "流程分类", notes = " bpm_model_category 数据字典", example = "1")
     @NotEmpty(message = "流程分类不能为空")
     private String category;
 
-    @ApiModelProperty(value = "表单类型", notes = "参见 bpm_model_form_type 数据字典", example = "1")
+    @ApiModelProperty(value = "表单类型", notes = " bpm_model_form_type 数据字典", example = "1")
     private Integer formType;
     @ApiModelProperty(value = "表单编号", example = "1024", notes = "在表单类型为 {@link BpmModelFormTypeEnum#CUSTOM} 时，必须非空")
     private Long formId;

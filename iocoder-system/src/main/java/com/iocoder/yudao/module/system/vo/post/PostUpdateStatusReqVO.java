@@ -14,7 +14,7 @@ public class PostUpdateStatusReqVO {
     @NotNull(message = "岗位编号不能为空")
     private Long id;
 
-    @ApiModelProperty(value = "状态", required = true, example = "1", notes = "见 CommonStatusEnum 枚举")
+    @ApiModelProperty(value = "状态", required = true, example = "1", notes = "CommonStatusEnum 枚举")
     @NotNull(message = "状态不能为空")
     private Integer status;
 
