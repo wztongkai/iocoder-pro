@@ -114,6 +114,15 @@ public class DictDataServiceImpl extends ServiceImpl<DictDataMapper, DictDataDO>
         return voArrayList;
     }
 
+    @Override
+    public void updateDictDataStatus(DictDataUpdateStatusReqVO updateStatusReqVO) {
+        checkDictDataExists(updateStatusReqVO.getId());
+        // 校验通过，执行更新
+        DictDataDO dictDataDO = new DictDataDO();
+        BeanUtil.copyProperties(updateStatusReqVO, dictDataDO);
+        baseMapper.updateById(dictDataDO);
+    }
+
     /**
      * 校验数据
      *

@@ -68,4 +68,10 @@ public interface DictTypeService extends IService<DictTypeDO> {
      * @return 字典类型详情
      */
     DictTypeRespVO getDictType(Long dictTypeId);
+
+    /**
+     * 修改字典类型状态
+     * @param updateStatusReqVO 字典类型删除请求参数
+     */
+    void updateDictTypeStatus(DictTypeUpdateStatusReqVO updateStatusReqVO);
 }

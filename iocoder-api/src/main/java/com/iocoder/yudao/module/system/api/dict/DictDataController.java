@@ -54,6 +54,15 @@ public class DictDataController {
         return success(true);
     }
 
+    @Log(title = "字典数据管理",businessType = BusinessType.UPDATE)
+    @PreAuthorize("@ss.hasPermission('system:dict:update-status')")
+    @PutMapping("/update-status")
+    @ApiOperation("修改字典数据状态")
+    public CommonResult<Boolean> updateDictDataStatus(@Valid @RequestBody DictDataUpdateStatusReqVO updateStatusReqVO) {
+        dictDataService.updateDictDataStatus(updateStatusReqVO);
+        return success(true);
+    }
+
     @Log(title = "字典数据",businessType = BusinessType.DELETE)
     @DeleteMapping("/delete")
     @ApiOperation("删除字典数据")

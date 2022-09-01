@@ -75,4 +75,10 @@ public interface DictDataService extends IService<DictDataDO> {
      * @return 数据字典列表
      */
     List<DictDataSimpleRespVO> getDictDataListByDictType(String dictType);
+
+    /**
+     * 修改字典数据状态
+     * @param updateStatusReqVO 字典数据状态更新信息
+     */
+    void updateDictDataStatus(DictDataUpdateStatusReqVO updateStatusReqVO);
 }

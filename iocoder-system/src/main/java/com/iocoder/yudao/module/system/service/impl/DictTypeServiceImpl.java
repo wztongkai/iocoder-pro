@@ -107,6 +107,16 @@ public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictTypeDO>
         return dictTypeRespVO;
     }
 
+    @Override
+    public void updateDictTypeStatus(DictTypeUpdateStatusReqVO updateStatusReqVO) {
+        // 校验是否存在
+        checkDictTypeExists(updateStatusReqVO.getId());
+        // 校验通过，执行更新
+        DictTypeDO dictTypeDO = new DictTypeDO();
+        BeanUtil.copyProperties(updateStatusReqVO, dictTypeDO);
+        baseMapper.updateById(dictTypeDO);
+    }
+
     private void checkCreateOrUpdate(Long id, String name, String type) {
         // 校验是否存在
         checkDictTypeExists(id);

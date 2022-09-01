@@ -64,6 +64,15 @@ public class DictTypeController {
         return success(true);
     }
 
+    @Log(title = "字典类型",businessType = BusinessType.UPDATE)
+    @PreAuthorize("@ss.hasPermission('system:dict:update-status')")
+    @PutMapping("/update-status")
+    @ApiOperation("修改字典类型状态")
+    public CommonResult<Boolean> updateDictTypeStatus(@Valid @RequestBody DictTypeUpdateStatusReqVO updateStatusReqVO) {
+        dictTypeService.updateDictTypeStatus(updateStatusReqVO);
+        return success(true);
+    }
+
     @Log(title = "字典类型",businessType = BusinessType.DELETE)
     @PreAuthorize("@ss.hasPermission('system:dict:delete')")
     @DeleteMapping("/delete-dict-batch")
