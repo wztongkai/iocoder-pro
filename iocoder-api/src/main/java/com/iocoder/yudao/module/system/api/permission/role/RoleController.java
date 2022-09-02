@@ -81,6 +81,7 @@ public class RoleController {
         return success(true);
     }
 
+    @Log(title = "角色管理", businessType = BusinessType.SELECT)
     @GetMapping("/get-role-info")
     @ApiOperation("获取角色详情")
     @ApiImplicitParam(name = "id", value = "角色编号", required = true, example = "1024", dataTypeClass = Long.class)
@@ -88,12 +89,14 @@ public class RoleController {
         return success(roleService.getRoleInfo(id));
     }
 
+    @Log(title = "角色管理", businessType = BusinessType.SELECT)
     @GetMapping("/get-role-page")
     @ApiOperation("获得角色分页")
     public CommonResult<PageResult<RoleDO>> getRolePage(RolePageReqVO reqVO) {
         return success(roleService.getRolePage(reqVO));
     }
 
+    @Log(title = "角色管理", businessType = BusinessType.SELECT)
     @GetMapping("/list-all-simple")
     @ApiOperation(value = "获取角色精简信息列表", notes = "只包含被开启的角色，主要用于前端的下拉选项")
     public CommonResult<List<RoleSimpleRespVO>> getSimpleRoles() {

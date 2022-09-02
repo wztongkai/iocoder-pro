@@ -11,6 +11,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum BusinessType {
     /**
+     * 查询
+     */
+    SELECT("SELECT","查询"),
+    /**
      * 新增
      */
     INSERT("INSERT","新增"),
@@ -24,6 +28,14 @@ public enum BusinessType {
      * 删除
      */
     DELETE("DELETE","删除"),
+    /**
+     * 导出
+     */
+    EXPORT("EXPORT","导出"),
+    /**
+     * 导入
+     */
+    IMPORT("IMPORT","导入"),
 
     /**
      * 其它

@@ -55,6 +55,12 @@ public class OperateLogServiceImpl extends ServiceImpl<OperateLogMapper, Operate
         PageResult<OperateLogDO> operateLogPage = baseMapper.selectOperateLogPage(logPageReqVO, userIds);
         List<OperateLogRespVO> voArrayList = new ArrayList<>(operateLogPage.getList().size());
         BeanUtil.copyListProperties(operateLogPage.getList(), voArrayList, OperateLogRespVO.class);
+        if(CollectionUtils.isNotEmpty(voArrayList)){
+            voArrayList.forEach(operateLogRespVO -> {
+                UserDO userDO = userService.getById(operateLogRespVO.getUserId());
+                operateLogRespVO.setUserNickname(userDO.getUsername());
+            });
+        }
         return new PageResult<>(voArrayList, operateLogPage.getTotal());
     }
 

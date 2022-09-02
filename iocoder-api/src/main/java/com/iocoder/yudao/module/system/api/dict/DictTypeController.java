@@ -82,6 +82,7 @@ public class DictTypeController {
         return success(true);
     }
 
+    @Log(title = "字典类型",businessType = BusinessType.SELECT)
     @ApiOperation("/获得字典类型的分页列表")
     @GetMapping("/page")
     @PreAuthorize("@ss.hasPermission('system:dict:query')")
@@ -89,6 +90,7 @@ public class DictTypeController {
         return success(dictTypeService.getDictTypePage(reqVO));
     }
 
+    @Log(title = "字典类型",businessType = BusinessType.SELECT)
     @GetMapping("/list-all-simple")
     @ApiOperation(value = "获得全部字典类型列表", notes = "包括开启 + 禁用的字典类型，主要用于前端的下拉选项")
     public CommonResult<List<DictTypeSimpleRespVO>> listSimpleDictTypes() {
@@ -96,6 +98,7 @@ public class DictTypeController {
         return success(list);
     }
 
+    @Log(title = "字典类型",businessType = BusinessType.SELECT)
     @ApiOperation("/查询字典类型详细")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)
     @GetMapping(value = "/get")

@@ -5,7 +5,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 操作日志 Base VO，提供给添加、修改、详细的子 VO 使用
@@ -23,7 +23,7 @@ public class OperateLogBaseVO {
 
     @ApiModelProperty(value = "操作分类", required = true, example = "1", notes = " OperateLogTypeEnum 枚举类")
     @NotNull(message = "操作分类不能为空")
-    private Integer type;
+    private String type;
 
     @ApiModelProperty(value = "请求方法名", required = true, example = "GET")
     @NotEmpty(message = "请求方法名不能为空")
@@ -50,7 +50,7 @@ public class OperateLogBaseVO {
 
     @ApiModelProperty(value = "开始时间", required = true)
     @NotNull(message = "开始时间不能为空")
-    private Date startTime;
+    private LocalDateTime startTime;
 
     @ApiModelProperty(value = "执行时长，单位：毫秒", required = true)
     @NotNull(message = "执行时长不能为空")

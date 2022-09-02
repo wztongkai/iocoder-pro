@@ -21,17 +21,14 @@ public class OperateLogPageReqVO extends PageParam {
     private String userNickname;
 
     @ApiModelProperty(value = "操作分类", example = "1", notes = " OperateLogTypeEnum 枚举类")
-    private Integer type;
+    private String type;
 
     @ApiModelProperty(value = "操作状态", example = "true")
-    private Boolean success;
+    private Boolean status;
 
-    @ApiModelProperty(value = "开始时间", example = "2020-10-24")
+    @ApiModelProperty(value = "创建时间", example = "[2022-07-01 00:00:00,2022-07-01 23:59:59]")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date beginTime;
+    private Date[] createTime;
 
-    @ApiModelProperty(value = "结束时间", example = "2020-10-24")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date endTime;
 
 }

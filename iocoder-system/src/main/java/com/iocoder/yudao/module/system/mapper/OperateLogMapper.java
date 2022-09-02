@@ -35,11 +35,11 @@ public interface OperateLogMapper extends BaseMapperX<OperateLogDO> {
                 .likeIfPresent(OperateLogDO::getModule, logPageReqVO.getModule())
                 .inIfPresent(OperateLogDO::getUserId, userIds)
                 .eqIfPresent(OperateLogDO::getType, logPageReqVO.getType())
-                .betweenIfPresent(OperateLogDO::getStartTime, logPageReqVO.getBeginTime(), logPageReqVO.getEndTime());
-        if (Boolean.TRUE.equals(logPageReqVO.getSuccess())) {
+                .betweenIfPresent(OperateLogDO::getStartTime, logPageReqVO.getCreateTime());
+        if (Boolean.TRUE.equals(logPageReqVO.getStatus())) {
             query.eq(OperateLogDO::getResultCode, ResultsEnum.SUCCEED.getCode());
-        } else if (Boolean.FALSE.equals(logPageReqVO.getSuccess())) {
-            query.gt(OperateLogDO::getResultCode, ResultsEnum.SUCCEED.getCode());
+        } else if (Boolean.FALSE.equals(logPageReqVO.getStatus())) {
+            query.eq(OperateLogDO::getResultCode, ResultsEnum.FAILURE.getCode());
         }
         query.orderByDesc(OperateLogDO::getCreateTime);
         // 执行查询

@@ -75,6 +75,7 @@ public class DeptController {
         return success(true);
     }
 
+    @Log(title = "部门管理",businessType = BusinessType.SELECT)
     @PreAuthorize("@ss.hasPermission('system:dept:list')")
     @GetMapping("/list")
     @ApiOperation("获取部门列表")
@@ -83,6 +84,7 @@ public class DeptController {
         return success(list);
     }
 
+    @Log(title = "部门管理",businessType = BusinessType.SELECT)
     @GetMapping("/list-all-simple")
     @ApiOperation(value = "获取部门精简信息列表", notes = "只包含被开启的部门，主要用于前端的下拉选项")
     public CommonResult<List<DeptSimpleRespVO>> getSimpleDepts() {
@@ -95,6 +97,7 @@ public class DeptController {
         return success(simpleRespList);
     }
 
+    @Log(title = "部门管理",businessType = BusinessType.SELECT)
     @GetMapping("/get-info")
     @ApiOperation("获得部门信息")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)

@@ -31,6 +31,7 @@ public class PermissionController {
     @Resource
     PermissionService permissionService;
 
+    @Log(title = "权限管理", businessType = BusinessType.SELECT)
     @ApiOperation("获得角色拥有的菜单编号")
     @ApiImplicitParam(name = "roleId", value = "角色编号", required = true, dataTypeClass = Long.class)
     @GetMapping("/list-role-resources")

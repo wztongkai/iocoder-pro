@@ -258,6 +258,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     @Override
     public List<UserDO> selectUserByNickName(String userNickname) {
         return baseMapper.selectList(new LambdaQueryWrapperX<UserDO>()
+                .likeIfPresent(UserDO::getUsername, userNickname)
+                .orIfPresent()
                 .likeIfPresent(UserDO::getNickname, userNickname)
         );
     }

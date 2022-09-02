@@ -62,6 +62,7 @@ public class UserProfileController {
     @Resource
     JwtTokenService jwtTokenService;
 
+    @Log(title = "用户中心",businessType = BusinessType.SELECT)
     @GetMapping("/getUserProfile")
     @ApiOperation("获得登录用户信息")
     public CommonResult<UserProfileRespVO> getUserProfile() {
