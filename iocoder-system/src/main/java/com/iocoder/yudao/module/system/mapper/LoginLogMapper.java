@@ -29,9 +29,10 @@ public interface LoginLogMapper extends BaseMapperX<LoginLogDO> {
     default PageResult<LoginLogDO> selectLoginLogPage(LoginLogPageReqVO pageReqVO) {
 
         LambdaQueryWrapperX<LoginLogDO> queryWrapperX = new LambdaQueryWrapperX<LoginLogDO>()
-                .likeIfPresent(LoginLogDO::getUserIp, pageReqVO.getUserIp())
-                .likeIfPresent(LoginLogDO::getUsername, pageReqVO.getUsername())
-                .betweenIfPresent(LoginLogDO::getCreateTime, pageReqVO.getBeginTime(), pageReqVO.getEndTime());
+                .likeIfPresent(LoginLogDO::getUserIp, pageReqVO.getSearch())
+                .orIfPresent()
+                .likeIfPresent(LoginLogDO::getUsername, pageReqVO.getSearch())
+                .betweenIfPresent(LoginLogDO::getCreateTime, pageReqVO.getCreateTime());
         if (Boolean.TRUE.equals(pageReqVO.getStatus())) {
             queryWrapperX.eq(LoginLogDO::getResult, LoginResultEnum.SUCCESS.getResult());
         } else if (Boolean.FALSE.equals(pageReqVO.getStatus())) {
