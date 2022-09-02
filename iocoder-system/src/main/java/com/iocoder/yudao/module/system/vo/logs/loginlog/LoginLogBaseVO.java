@@ -16,7 +16,7 @@ public class LoginLogBaseVO {
 
     @ApiModelProperty(value = "日志类型", required = true, example = "1", notes = " LoginLogTypeEnum 枚举类")
     @NotNull(message = "日志类型不能为空")
-    private Integer logType;
+    private Long logType;
 
     @ApiModelProperty(value = "用户账号", required = true, example = "admin")
     @NotBlank(message = "用户账号不能为空")

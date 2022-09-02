@@ -37,6 +37,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Validator;
 import java.util.*;
 
@@ -93,6 +94,31 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         UserDO userDO = login(reqVO.getUsername(), reqVO.getPassword());
         // 登录成功 生成token
         return createTokenAfterLoginSuccess(userDO.getId(), reqVO.getUsername(), reqVO.getPassword());
+    }
+
+    @Override
+    public void logout(String token, HttpServletRequest request, Long type) throws Exception {
+        // 删除token
+        LoginUser loginUser = jwtTokenService.getLoginUser(request);
+        jwtTokenService.delLoginUser(token);
+        // 创建登出日志
+        if(Objects.nonNull(loginUser)){
+            createLogoutLog(loginUser.getUserId(), UserTypeEnum.MANAGE.getValue(), type);
+        }
+
+    }
+
+    private void createLogoutLog(Long userId, Integer userType, Long logType) {
+        LoginLogCreateReqDTO reqDTO = new LoginLogCreateReqDTO();
+        reqDTO.setLogType(logType);
+        reqDTO.setTraceId(TracerUtils.getTraceId());
+        reqDTO.setUserId(userId);
+        reqDTO.setUserType(userType);
+        reqDTO.setUsername(getUsername(userId));
+        reqDTO.setUserAgent(ServletUtils.getUserAgent());
+        reqDTO.setUserIp(ServletUtils.getClientIP());
+        reqDTO.setResult(LoginResultEnum.SUCCESS.getResult());
+        loginLogService.createLoginLog(reqDTO);
     }
 
     /**
@@ -248,5 +274,13 @@ public class LoginAuthServiceImpl implements LoginAuthService {
         if (userId != null && Objects.equals(LoginResultEnum.SUCCESS.getResult(), loginResult.getResult())) {
             userService.updateUserLogin(userId, ServletUtils.getClientIP());
         }
+    }
+
+    private String getUsername(Long userId) {
+        if (userId == null) {
+            return null;
+        }
+        UserDO user = userService.getById(userId);
+        return user != null ? user.getUsername() : null;
     }
 }

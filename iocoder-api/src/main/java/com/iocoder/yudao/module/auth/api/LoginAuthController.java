@@ -1,10 +1,13 @@
 package com.iocoder.yudao.module.auth.api;
 
+import cn.hutool.core.util.StrUtil;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
+import com.iocoder.yudao.module.commons.enums.login.LoginLogTypeEnum;
 import com.iocoder.yudao.module.commons.enums.menu.MenuTypeEnum;
 import com.iocoder.yudao.module.commons.utils.SecurityUtils;
+import com.iocoder.yudao.module.framework.config.security.web.service.JwtTokenService;
 import com.iocoder.yudao.module.framework.config.web.auth.service.LoginAuthService;
 import com.iocoder.yudao.module.system.domain.MenuDO;
 import com.iocoder.yudao.module.system.service.PermissionService;
@@ -21,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
@@ -42,11 +47,24 @@ public class LoginAuthController {
     LoginAuthService loginAuthService;
     @Resource
     PermissionService permissionService;
+    @Resource
+    JwtTokenService tokenService;
 
     @PostMapping("/login")
     @ApiOperation("使用账号密码登录")
     public CommonResult<AuthLoginRespVO> login(@RequestBody @Valid AuthLoginReqVO reqVO) {
         return success(loginAuthService.login(reqVO));
+    }
+
+    @PostMapping("/auth/logout")
+    @PermitAll
+    @ApiOperation("登出系统")
+    public CommonResult<Boolean> logout(HttpServletRequest request) throws Exception {
+        String token = tokenService.getToken(request);
+        if (StrUtil.isNotBlank(token)) {
+            loginAuthService.logout(token,request, LoginLogTypeEnum.LOGOUT_SELF.getType());
+        }
+        return success(true);
     }
 
     @GetMapping("/getInfo")
