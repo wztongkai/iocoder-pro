@@ -27,6 +27,12 @@
 
         <dependency>
             <groupId>com.iocoder</groupId>
+            <artifactId>iocoder-file</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iocoder</groupId>
             <artifactId>iocoder-activiti</artifactId>
             <version>${revision}</version>
         </dependency>

@@ -1,4 +1,4 @@
-package com.iocoder.yudao.file.utils;
+package com.iocoder.yudao.module.file.infra.utils;
 
 import io.minio.*;
 import io.minio.messages.DeleteError;

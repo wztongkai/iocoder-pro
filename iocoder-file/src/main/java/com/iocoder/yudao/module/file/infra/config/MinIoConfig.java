@@ -1,4 +1,4 @@
-package com.iocoder.yudao.file.config;
+package com.iocoder.yudao.module.file.infra.config;
 
 import io.minio.MinioClient;
 import lombok.Data;

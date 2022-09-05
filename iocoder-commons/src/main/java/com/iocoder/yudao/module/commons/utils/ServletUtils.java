@@ -1,7 +1,9 @@
 package com.iocoder.yudao.module.commons.utils;
 
+import cn.hutool.core.io.IoUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import com.iocoder.yudao.module.commons.core.domain.LoginUser;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +16,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Collections;
 
 /**
@@ -48,6 +51,22 @@ public class ServletUtils {
     public static ServletRequestAttributes getRequestAttributes() {
         RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
         return (ServletRequestAttributes) attributes;
+    }
+
+    /**
+     * 返回附件
+     *
+     * @param response 响应
+     * @param filename 文件名
+     * @param content 附件内容
+     * @throws IOException
+     */
+    public static void writeAttachment(HttpServletResponse response, String filename, byte[] content) throws IOException {
+        // 设置 header 和 contentType
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(filename, "UTF-8"));
+        response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
+        // 输出附件
+        IoUtil.write(response.getOutputStream(), false, content);
     }
 
     /**

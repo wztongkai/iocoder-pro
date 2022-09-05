@@ -65,6 +65,10 @@
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <xmlworker.version>5.5.11</xmlworker.version>
         <!-- ===================== pdf 相关 end =======================-->
+        <!-- 数据库文档 -->
+        <screw.version>1.0.5</screw.version>
+        <!-- 数据库文档 end-->
+        <velocity.version>2.3</velocity.version>
         <!-- 工作流相关 -->
         <activiti.version>7.1.0.M6</activiti.version>
         <minio.version>8.0.3</minio.version>
@@ -317,6 +321,31 @@
                 <version>${xmlworker.version}</version>
             </dependency>
             <!-- ======================= PDF 相关  end ====================== -->
+
+            <!--生成数据库文档 start-->
+            <dependency>
+                <groupId>cn.smallbun.screw</groupId>
+                <artifactId>screw-core</artifactId>
+                <version>${screw.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.freemarker</groupId>
+                        <artifactId>freemarker</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.alibaba</groupId>
+                        <artifactId>fastjson</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+            <!--end-->
+
             <!-- 工作流相关 start -->
             <dependency>
                 <groupId>org.activiti.dependencies</groupId>
