@@ -4,8 +4,11 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ArrayUtil;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import static com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils.convertList;
 
@@ -33,6 +36,18 @@ public class ArrayUtils {
         result[0] = object;
         System.arraycopy(newElements, 0, result, 1, newElements.length);
         return result;
+    }
+
+    /**
+     * 去除指定字段重复数据
+     * @param keyExtractor 字段
+     * @param <T> 实体对象
+     * @return 结果
+     */
+    public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor)
+    {
+        Map<Object, Boolean> map = new ConcurrentHashMap<>();
+        return t -> map.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 
     public static <T, V> V[] toArray(Collection<T> from, Function<T, V> mapper) {

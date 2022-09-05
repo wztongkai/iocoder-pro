@@ -2,4 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iocoder.yudao.module.system.mapper.UserMapper">
 
+    <select id="selectUserList" parameterType="com.iocoder.yudao.module.system.vo.user.UserPageQueryRequestVo" resultType="com.iocoder.yudao.module.commons.core.domain.UserDO">
+        SELECT * FROM system_user su
+            LEFT JOIN system_user_dept sud ON su.id = sud.user_id
+        WHERE su.deleted=0
+        <if test="us.search != null and us.search != '' ">
+            AND su.username like concat('%', #{us.search}, '%')
+            OR su.nickname like concat('%', #{us.search}, '%')
+            OR su.mobile like concat('%', #{us.search}, '%')
+            OR su.email like concat('%', #{us.search}, '%')
+        </if>
+        <if test="us.status != null and us.status != ''">
+            AND su.status = #{us.status}
+        </if>
+        <if test="us.createTime!=null and us.createTime!='' ">
+            AND su.create_time &gt;= concat(#{us.createTime[0]},' 0:0:0')
+            AND su.create_time &lt;= concat(#{us.createTime[1]},' 23:59:59')
+        </if>
+        <if test="deptIds != null and deptIds != ''">
+            <foreach close=")" collection="deptIds" index="index" item="deptId"
+                     open="AND sud.dept_id IN ("
+                     separator=",">
+                #{deptId}
+            </foreach>
+        </if>
+    </select>
 </mapper>

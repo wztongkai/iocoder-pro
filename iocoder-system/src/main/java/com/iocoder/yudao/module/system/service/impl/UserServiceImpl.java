@@ -2,12 +2,14 @@ package com.iocoder.yudao.module.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
+import com.iocoder.yudao.module.commons.utils.ArrayUtils;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.*;
@@ -73,8 +75,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
 
     @Override
     public PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
-
-        return baseMapper.selectUserList(requestVo);
+        Page<UserDO> page = new Page<>(requestVo.getPageNo(), requestVo.getPageSize());
+        List<UserDO> userDOList = baseMapper.selectUserList(requestVo, deptService.getDeptCondition(requestVo.getDeptId()));
+        if(CollectionUtils.isNotEmpty(userDOList)){
+            userDOList = userDOList.stream().filter(ArrayUtils.distinctByKey(UserDO::getId)).collect(Collectors.toList());
+        }
+        page.setRecords(userDOList);
+        page.setTotal(userDOList.size());
+        return new PageResult<>(page.getRecords(), page.getTotal());
     }
 
     @Override
