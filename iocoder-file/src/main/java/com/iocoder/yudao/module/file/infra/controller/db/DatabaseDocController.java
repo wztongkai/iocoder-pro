@@ -56,6 +56,24 @@ public class DatabaseDocController {
         doExportFile(EngineFileType.HTML, deleteFile, response);
     }
 
+    @GetMapping("/export-word")
+    @ApiOperation("导出 word 格式的数据文档")
+    @ApiImplicitParam(name = "deleteFile", value = "是否删除本地生成的数据库文档", example = "true",
+            dataTypeClass = Boolean.class)
+    public void exportWord(@RequestParam(defaultValue = "true") Boolean deleteFile,
+                           HttpServletResponse response) throws IOException {
+        doExportFile(EngineFileType.WORD, deleteFile, response);
+    }
+
+    @GetMapping("/export-markdown")
+    @ApiOperation("导出 markdown 格式的数据文档")
+    @ApiImplicitParam(name = "deleteFile", value = "是否删除本地生成的数据库文档", example = "true",
+            dataTypeClass = Boolean.class)
+    public void exportMarkdown(@RequestParam(defaultValue = "true") Boolean deleteFile,
+                               HttpServletResponse response) throws IOException {
+        doExportFile(EngineFileType.MD, deleteFile, response);
+    }
+
     private void doExportFile(EngineFileType fileOutputType, Boolean deleteFile,
                               HttpServletResponse response) throws IOException {
         String docFileName = DOC_FILE_NAME + "_" + IdUtil.fastSimpleUUID();
