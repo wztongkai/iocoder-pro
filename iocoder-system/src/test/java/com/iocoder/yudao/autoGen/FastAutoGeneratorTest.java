@@ -24,11 +24,11 @@ public class FastAutoGeneratorTest {
         // 实现类模块名
         String GlobalModelName = "iocoder-system";
         // api模块名
-        String ApiModelName = "iocoder-api";
+        String ApiModelName = "iocoder-file";
         // 业务模块名
-        String modelName = "system";
+        String modelName = "file";
         // 表名
-        String[] tableNames = {"system_dict_data","system_dict_type"};
+        String[] tableNames = {"system_annex_historical"};
 
         // 数据库连接信息
         String jdbcUrl = "jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone" +

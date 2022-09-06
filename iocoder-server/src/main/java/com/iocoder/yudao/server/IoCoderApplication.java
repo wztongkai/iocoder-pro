@@ -11,7 +11,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @SuppressWarnings("SpringComponentScan")
 @SpringBootApplication(scanBasePackages={"com.iocoder.yudao"})
-@MapperScan(value = "com.iocoder.yudao.module.system.mapper")
+@MapperScan({"com.iocoder.yudao.module.system.mapper","com.iocoder.yudao.module.file.mapper"})
 @EnableAspectJAutoProxy(exposeProxy = true)
 public class IoCoderApplication {
 

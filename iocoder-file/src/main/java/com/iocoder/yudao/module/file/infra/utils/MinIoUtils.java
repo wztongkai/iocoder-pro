@@ -28,7 +28,7 @@ public class MinIoUtils {
 
     /**
      * 判断bucket是否存在，不存在则创建
-     * @param name
+     * @param name bucket名称
      */
     public void existBucket(String name) {
         try {
@@ -43,8 +43,8 @@ public class MinIoUtils {
 
     /**
      * 创建存储bucket
-     * @param bucketName    存储bucket名称
-     * @return Boolean
+     * @param bucketName  存储bucket名称
+     * @return 创建结果
      */
     public Boolean makeBucket(String bucketName) {
         try {
@@ -61,7 +61,7 @@ public class MinIoUtils {
     /**
      * 删除存储bucket
      * @param bucketName    存储bucket名称
-     * @return Boolean
+     * @return 删除结果
      */
     public Boolean removeBucket(String bucketName) {
         try {
@@ -77,7 +77,7 @@ public class MinIoUtils {
 
     /**
      * 上传文件
-     * @param multipartFile
+     * @param multipartFile 文件
      * @return
      */
     public String upload(MultipartFile multipartFile) {
