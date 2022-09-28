@@ -88,7 +88,7 @@ public class ActInstanceServiceImpl implements ActInstanceService {
                 .createTaskQuery()
                 .taskId(taskId)
                 .singleResult();
-        Assertion.isNull(task,"未查询到指定任务");
+        Assertion.isNull(task, "未查询到指定任务");
         String processInstanceId = task.getProcessInstanceId();
         return this.isSuspendInstance(processInstanceId);
     }

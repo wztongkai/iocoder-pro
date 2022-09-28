@@ -89,7 +89,7 @@ public class ActTaskServiceImpl implements ActTaskService {
                     .set(BusTodoDO::getHandleTime, new Date())
                     .eq(BusTodoDO::getTaskId, processTaskCompleteDTO.getTaskId());
             int row = busTodoMapper.update(null, wrapper);
-            if(row != Constants.ONE){
+            if (row != Constants.ONE) {
                 Assertion.message("更新代办状态失败");
             }
             // 判断流程是否已完成
@@ -114,7 +114,7 @@ public class ActTaskServiceImpl implements ActTaskService {
 
             return resultDTO;
         } catch (Exception e) {
-            log.error("任务id:{} 的流程任务完成失败，错误信息为：{}", taskId,e.getMessage());
+            log.error("任务id:{} 的流程任务完成失败，错误信息为：{}", taskId, e.getMessage());
             throw new BaseException("流程任务完成失败！");
         }
     }

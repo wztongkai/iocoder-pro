@@ -95,17 +95,16 @@ public class ProcessServiceImpl implements ProcessService {
     @Override
     public ProcessResultDTO submit(ProcessSubmitDTO processSubmitDTO) {
         String processDefinitionKey = processSubmitDTO.getProcessDefinitionKey();
-        Assertion.isBlank(processDefinitionKey,"流程定义key不能为空");
+        Assertion.isBlank(processDefinitionKey, "流程定义key不能为空");
         UserDO userDO = userMapper.selectById(processSubmitDTO.getSubmitById());
-        Assertion.isNull(userDO,"获取提交人信息失败");
-        log.info("流程实例提交，流程定义key：{}",processDefinitionKey);
+        Assertion.isNull(userDO, "获取提交人信息失败");
+        log.info("流程实例提交，流程定义key：{}", processDefinitionKey);
 
         try {
             // 启动历程实例
             ProcessInstanceDTO processInstanceDTO = new ProcessInstanceDTO();
             BeanUtils.copyProperties(processSubmitDTO, processInstanceDTO);
             ProcessResultDTO resultDTO = this.startInstance(processInstanceDTO);
-
 
             // 完成任务参数配置
             ProcessTaskCompleteDTO processTaskCompleteDTO = new ProcessTaskCompleteDTO();
@@ -120,7 +119,7 @@ public class ProcessServiceImpl implements ProcessService {
             // 调用完成任务接口
             return actTaskService.completeTask(processTaskCompleteDTO);
         } catch (BeansException e) {
-            log.error("流程定义key为：{} 的流程提交失败，错误信息为：{}！", processDefinitionKey,e.getMessage());
+            log.error("流程定义key为：{} 的流程提交失败，错误信息为：{}！", processDefinitionKey, e.getMessage());
             throw new BaseException("流程提交失败！");
         }
     }
@@ -140,7 +139,7 @@ public class ProcessServiceImpl implements ProcessService {
             List<BusTodoDO> todoList = new ArrayList<>();
             for (ActTaskDTO actTaskDTO : actTaskList) {
                 ProcessResultDTO processResultDTO = todoMap.get(actTaskDTO.getTaskKey());
-                if(Objects.isNull(processResultDTO)){
+                if (Objects.isNull(processResultDTO)) {
                     processResultDTO = new ProcessResultDTO();
                     processResultDTO.setDefinitionKey(actTaskDTO.getProcessDefinitionKey());
                     processResultDTO.setInstanceId(actTaskDTO.getProcessInstanceId());
@@ -150,8 +149,8 @@ public class ProcessServiceImpl implements ProcessService {
                 }
                 // 代办人添加代办
                 List<String> todoUserList = actTaskDTO.getTodoUserList();
-                if(CollectionUtils.isEmpty(todoUserList)){
-                    log.info("流程业务代办调价，任务id:{} 不存在代办人",actTaskDTO.getTaskId());
+                if (CollectionUtils.isEmpty(todoUserList)) {
+                    log.info("流程业务代办调价，任务id:{} 不存在代办人", actTaskDTO.getTaskId());
                     continue;
                 }
 
@@ -160,7 +159,7 @@ public class ProcessServiceImpl implements ProcessService {
                             .eq(BusTodoDO::getTodoUserId, todoUser)
                             .eq(BusTodoDO::getTaskId, actTaskDTO.getTaskId())
                     );
-                    if(count > Constants.ZERO){
+                    if (count > Constants.ZERO) {
                         log.info("流程业务代办添加，代办人：{}，已存在任务id为：{}的代办！", todoUser, actTaskDTO.getTaskId());
                         continue;
                     }
@@ -175,8 +174,8 @@ public class ProcessServiceImpl implements ProcessService {
                     busTodo.setContent("任务代办节点：" + actTaskDTO.getTaskName());
                     busTodo.setBusinessTypeCode(actTaskDTO.getProcessDefinitionKey());
                     busTodo.setProcessNodeCode(actTaskDTO.getTaskKey());
-                    busTodo.setIsView(0);
-                    busTodo.setIsHandle(0);
+                    busTodo.setIsView(Constants.ONE);
+                    busTodo.setIsHandle(Constants.ONE);
                     busTodo.setNotifyTime(LocalDateTime.now());
                     busTodo.setTodoUserId(todoUser);
                     UserDO userDO = userMapper.selectById(todoUser);
