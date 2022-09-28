@@ -38,4 +38,12 @@ public interface ActInstanceService {
      * @return 结果
      */
     boolean isProcessFinished(String instanceId);
+
+    /**
+     * 当前流程是否处于挂起状态
+     *
+     * @param taskId 任务ID
+     * @return 当前流程是否处于挂起状态
+     */
+    boolean isSuspendInstanceByTaskId(String taskId);
 }

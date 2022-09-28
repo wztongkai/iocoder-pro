@@ -11,6 +11,9 @@ import com.iocoder.yudao.module.commons.exception.ErrorCode;
  */
 public interface ErrorCodeConstants {
 
+
+
+    ErrorCode DATA_ERROR = new ErrorCode(5000000, "数据异常");
     ErrorCode REQ_ARGS_NOT_NULL = new ErrorCode(1001001000, "请求参数不能为空");
     /**
      * 用户错误码
@@ -102,6 +105,9 @@ public interface ErrorCodeConstants {
     ErrorCode PROCESS_DEFINITION_NOT_EXISTS = new ErrorCode(1009003002, "流程定义不存在");
     ErrorCode PROCESS_DEFINITION_IS_SUSPENDED = new ErrorCode(1009003003, "流程定义处于挂起状态");
     ErrorCode PROCESS_DEFINITION_BPMN_MODEL_NOT_EXISTS = new ErrorCode(1009003004, "流程定义的模型不存在");
+
+    ErrorCode PROCESS_TODO_USER_NOT_EXISTS = new ErrorCode(1009003005, "流程处理人不能为空");
+
 
 
 }

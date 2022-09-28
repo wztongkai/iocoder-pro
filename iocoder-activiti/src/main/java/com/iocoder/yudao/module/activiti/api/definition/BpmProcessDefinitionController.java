@@ -41,7 +41,7 @@ public class BpmProcessDefinitionController {
         return success(processDefinitionService.getProcessDefinitionList(listReqVO));
     }
 
-    @GetMapping ("/get-bpmn-xml")
+    @GetMapping("/get-bpmn-xml")
     @ApiOperation(value = "获得流程定义的 BPMN XML")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "Process_1657609678148:1:9e9c1167-01c0-11ed-92b4-d89ef33ad32f", dataTypeClass = String.class)
     @PreAuthorize("@ss.hasPermission('bpm:process-definition:query')")

@@ -111,7 +111,7 @@ public class BpmProcessDefinitionServiceImpl implements BpmProcessDefinitionServ
     @Override
     public String getProcessDefinitionBpmnXML(String id) {
         BpmnModel bpmnModel = repositoryService.getBpmnModel(id);
-        if(ObjectUtils.isEmpty(bpmnModel)){
+        if (ObjectUtils.isEmpty(bpmnModel)) {
             return null;
         }
         return StrUtil.utf8Str(getBpmnBytes(bpmnModel));

@@ -129,10 +129,13 @@ public class Constants {
      */
     public static final String FILE_NAME_EXCEL = "test.xlsx";
 
+
+    public static final Integer ZERO = 0;
     public static final Integer ONE = 1;
     public static final Integer TWO = 2;
     public static final Integer THREE = 3;
 
+    public static final String STR_ZERO = "0";
     public static final String STR_ONE = "1";
     public static final String STR_TEO = "2";
     public static final String STR_THREE = "3";

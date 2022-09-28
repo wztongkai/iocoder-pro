@@ -1,8 +1,10 @@
 package com.iocoder.yudao.module.activiti.dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 流程返回结果
@@ -13,6 +15,8 @@ import lombok.Data;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProcessResultDTO {
 
     @ApiModelProperty(value = "流程定义 KEY ")
@@ -26,4 +30,7 @@ public class ProcessResultDTO {
 
     @ApiModelProperty(value = "任务 KEY ")
     private String taskKey;
+
+    @ApiModelProperty(value = "任务 ID")
+    private String taskId;
 }

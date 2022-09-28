@@ -41,6 +41,7 @@ public interface BpmProcessDefinitionService {
 
     /**
      * 根据流程定义 key 获取已激活的流程定义
+     *
      * @param key 流程定义 key
      * @return 流程定义
      */
@@ -49,13 +50,14 @@ public interface BpmProcessDefinitionService {
     /**
      * 更新流程定义状态
      *
-     * @param id 流程定义的编号
+     * @param id    流程定义的编号
      * @param state 状态
      */
     void updateProcessDefinitionState(String id, Integer state);
 
     /**
      * 获取流程定义列表
+     *
      * @param listReqVO 获取条件
      * @return 列表
      */
@@ -63,6 +65,7 @@ public interface BpmProcessDefinitionService {
 
     /**
      * 获取流程定义bpmn
+     *
      * @param id 流程定义编号
      * @return bpmn
      */
