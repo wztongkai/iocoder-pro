@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 
 /**
  * @author wu kai
@@ -28,20 +27,20 @@ public class DatabaseDocController {
 
     @GetMapping("/export-html")
     @ApiOperation("导出 html 格式的数据文档")
-    public String exportHtml() throws IOException {
+    public String exportHtml() {
         return databaseDocService.doExportFile(EngineFileType.HTML, Constants.ONE);
     }
 
 
     @GetMapping("/export-word")
     @ApiOperation("导出 word 格式的数据文档")
-    public String exportWord() throws IOException {
+    public String exportWord() {
         return databaseDocService.doExportFile(EngineFileType.WORD, Constants.TWO);
     }
 
     @GetMapping("/export-markdown")
     @ApiOperation("导出 markdown 格式的数据文档")
-    public String exportMarkdown() throws IOException {
+    public String exportMarkdown() {
         return databaseDocService.doExportFile(EngineFileType.MD, Constants.THREE);
     }
 
