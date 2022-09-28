@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 
 /**
+ * 获取数据库连接信息
+ *
  * @author wu kai
  * @since 2022/9/6
  */
@@ -24,10 +26,10 @@ public class JdbcUtils {
         String[] databaseSplit = portSplit[1].split("\\?");
         String dbName = databaseSplit[0];
         HashMap<String, String> result = new HashMap<>();
-        result.put("url",url);
-        result.put("host",host);
-        result.put("port",port);
-        result.put("dbName",dbName);
+        result.put("url", url);
+        result.put("host", host);
+        result.put("port", port);
+        result.put("dbName", dbName);
 
         return result;
     }
