@@ -35,3 +35,6 @@
 5、修改 ``application.yml`` 配置文件中的 redis 配置信息
 
 6、运行 ``iocoder-server`` 模块中启动类 ``IoCoderApplication.java`` 启动服务 
+
+附加：
+流程图绘制地址：https://miyuesc.github.io/vite-vue-bpmn-process/
