@@ -11,7 +11,7 @@
  Target Server Version : 50737
  File Encoding         : 65001
 
- Date: 06/09/2022 18:27:06
+ Date: 28/09/2022 16:04:41
 */
 
 SET NAMES utf8mb4;
@@ -462,6 +462,9 @@ VALUES ('2a7e187c-2a8f-11ed-ba38-d89ef33ad32f', 'SpringAutoDeployment', NULL, NU
 INSERT INTO `act_re_deployment`
 VALUES ('2a94a530-2dad-11ed-b2cc-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-09-06 14:28:48.496', NULL,
         134, NULL);
+INSERT INTO `act_re_deployment`
+VALUES ('2aa52235-3ef8-11ed-b716-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-09-28 14:38:30.608', NULL,
+        146, NULL);
 INSERT INTO `act_re_deployment`
 VALUES ('2ab7a298-2900-11ed-89fa-d89ef33ad32f', 'SpringAutoDeployment', NULL, NULL, '', '2022-08-31 15:40:21.144', NULL,
         93, NULL);
@@ -1337,6 +1340,41 @@ VALUES (1567069636288008194, '数据库文档.doc', 'DB_ANNEX',
         2, '数据库文档', '1', '2022-09-06 16:38:11', '1', '2022-09-06 16:38:11', b'0');
 
 -- ----------------------------
+-- Table structure for system_bus_todo
+-- ----------------------------
+DROP TABLE IF EXISTS `system_bus_todo`;
+CREATE TABLE `system_bus_todo`
+(
+    `id`                 bigint(20) NOT NULL COMMENT '代办 ID',
+    `bus_id`             varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '业务 ID',
+    `instance_id`        varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '流程实例 ID',
+    `task_id`            varchar(65) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '任务 ID',
+    `name`               varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标题',
+    `content`            varchar(600) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '内容',
+    `business_type_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '业务类型 （关联字典表）',
+    `process_node_code`  varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '流程状态编码 （关联字典表）',
+    `todo_user_id`       varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '代办人 ID',
+    `todo_user_name`     varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '代办人姓名',
+    `notify_time`        datetime(0) NULL DEFAULT NULL COMMENT '通知代办的时间',
+    `handle_user_id`     varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '处理人 ID',
+    `handle_user_name`   varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '处理人姓名',
+    `handle_time`        datetime(0) NULL DEFAULT NULL COMMENT '处理时间',
+    `is_view`            tinyint(4) NULL DEFAULT 0 COMMENT '是否已查看 （0：否 1：是）',
+    `is_handle`          tinyint(4) NULL DEFAULT NULL COMMENT '是否已处理',
+    `remark`             varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '备注',
+    `creator`            varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '创建者',
+    `create_time`        datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) COMMENT '创建时间',
+    `updater`            varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '更新者',
+    `update_time`        datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
+    `deleted`            bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of system_bus_todo
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for system_db_annexs
 -- ----------------------------
 DROP TABLE IF EXISTS `system_db_annexs`;
@@ -1445,7 +1483,7 @@ CREATE TABLE `system_dict_data`
     `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
     `deleted`     bit(1)                                                        NOT NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1564915350758133763 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '字典数据表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '字典数据表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_dict_data
@@ -1532,7 +1570,7 @@ CREATE TABLE `system_dict_type`
     `deleted`     bit(1)                                                        NOT NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE INDEX `dict_type`(`type`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1564903555033108482 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '字典类型表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '字典类型表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_dict_type
@@ -1663,7 +1701,7 @@ CREATE TABLE `system_menu`
     `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP (0) ON UPDATE CURRENT_TIMESTAMP (0) COMMENT '更新时间',
     `deleted`     bit(1)                                                        NOT NULL DEFAULT b'0' COMMENT '是否删除',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1268 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1244 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of system_menu
