@@ -93,11 +93,15 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public ProcessResultDTO submit(ProcessSubmitDTO processSubmitDTO) {
         String processDefinitionKey = processSubmitDTO.getProcessDefinitionKey();
+        String submitById = processSubmitDTO.getSubmitById();
         Assertion.isBlank(processDefinitionKey, "流程定义key不能为空");
-        UserDO userDO = userMapper.selectById(processSubmitDTO.getSubmitById());
-        Assertion.isNull(userDO, "获取提交人信息失败");
+        Assertion.isBlank(submitById, "提交人id不能为空");
+        UserDO userDO = userMapper.selectById(submitById);
+        Assertion.isNull(userDO, "未查询到提交人信息");
+
         log.info("流程实例提交，流程定义key：{}", processDefinitionKey);
 
         try {
@@ -111,7 +115,7 @@ public class ProcessServiceImpl implements ProcessService {
             processTaskCompleteDTO.setBusId(processSubmitDTO.getBusinessKey());
             processTaskCompleteDTO.setTaskId(resultDTO.getTaskId());
             processTaskCompleteDTO.setVariables(processSubmitDTO.getVariables());
-            processTaskCompleteDTO.setHandleUserId(processSubmitDTO.getSubmitById());
+            processTaskCompleteDTO.setHandleUserId(submitById);
             processTaskCompleteDTO.setHandleUserName(userDO.getUsername());
             processTaskCompleteDTO.setHandleResult("提交完成");
             processTaskCompleteDTO.setRemark(processSubmitDTO.getRemark());
@@ -126,11 +130,15 @@ public class ProcessServiceImpl implements ProcessService {
 
     @Override
     public List<ProcessResultDTO> addProcessNextNodeTodo(ProcessTaskTodoDTO processTaskTodoDTO) {
-        log.info("流程任务代办添加，流程实例Id:{}，业务Id:{}", processTaskTodoDTO.getInstanceId(), processTaskTodoDTO.getBusinessId());
+        String instanceId = processTaskTodoDTO.getInstanceId();
+        String businessId = processTaskTodoDTO.getBusinessId();
+        Assertion.isBlank(instanceId, "流程实例id不能为空");
+        Assertion.isBlank(businessId, "业务id不能为空");
+        log.info("流程任务代办添加，流程实例Id:{}，业务Id:{}", instanceId, businessId);
         try {
             Map<String, ProcessResultDTO> todoMap = new HashMap<>();
             // 获取下一节点信息 （当前任务已完成，流程实例中的活跃任务为下一节点信息）
-            List<ActTaskDTO> actTaskList = actTaskService.getCurrentTask(processTaskTodoDTO.getInstanceId());
+            List<ActTaskDTO> actTaskList = actTaskService.getCurrentTask(instanceId);
             if (CollectionUtils.isEmpty(actTaskList)) {
                 log.info("流程业务代办添加，下一节点处理人为空！");
                 return Collections.emptyList();
@@ -167,8 +175,8 @@ public class ProcessServiceImpl implements ProcessService {
 
                     // 代办信息
                     BusTodoDO busTodo = new BusTodoDO();
-                    busTodo.setBusId(processTaskTodoDTO.getBusinessId());
-                    busTodo.setInstanceId(processTaskTodoDTO.getInstanceId());
+                    busTodo.setBusId(businessId);
+                    busTodo.setInstanceId(instanceId);
                     busTodo.setTaskId(actTaskDTO.getTaskId());
                     busTodo.setName(actTaskDTO.getTaskName());
                     busTodo.setContent("任务代办节点：" + actTaskDTO.getTaskName());
@@ -190,7 +198,7 @@ public class ProcessServiceImpl implements ProcessService {
             }
             return new ArrayList<>(todoMap.values());
         } catch (Exception e) {
-            log.error("流程代办添加异常！", e);
+            log.error("流程实例Id为:{} 的代办添加异常，错误信息为：{}！", instanceId, e.getMessage());
             throw new RuntimeException("流程实例启动失败，异常信息为:{}", e);
         }
     }
