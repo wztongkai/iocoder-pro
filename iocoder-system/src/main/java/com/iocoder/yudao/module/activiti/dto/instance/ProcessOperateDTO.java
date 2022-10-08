@@ -14,7 +14,7 @@ public class ProcessOperateDTO {
     @ApiModelProperty(value = "流程实例编号")
     private String instanceId;
 
-    @ApiModelProperty(value = "操作类型",notes = "挂起：suspend 激活：activate 取消：cancel")
+    @ApiModelProperty(value = "操作类型", notes = "挂起：suspend 激活：activate 取消：cancel")
     private String optType;
 
 

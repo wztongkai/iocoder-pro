@@ -35,6 +35,7 @@ public interface ProcessService {
 
     /**
      * 获取流程实例状态
+     *
      * @param instanceId 流程实例id
      * @return 流程实例状态
      */
@@ -58,6 +59,7 @@ public interface ProcessService {
 
     /**
      * 流程实例操作，流程实例的挂起，激活，取消操作
+     *
      * @param operateDTO 操作参数
      * @return 结果
      */

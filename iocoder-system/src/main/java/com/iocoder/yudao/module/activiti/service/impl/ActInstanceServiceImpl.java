@@ -116,7 +116,7 @@ public class ActInstanceServiceImpl implements ActInstanceService {
             runtimeService.activateProcessInstanceById(instanceId);
             return instanceId;
         } catch (Exception e) {
-            log.error("激活流程实例失败，流程实例id：{}，错误信息为：{}", instanceId,e.getMessage());
+            log.error("激活流程实例失败，流程实例id：{}，错误信息为：{}", instanceId, e.getMessage());
             throw new ActivitiException("激活流程实例失败", e);
         }
     }

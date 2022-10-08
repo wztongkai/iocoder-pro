@@ -11,7 +11,7 @@ import java.util.Map;
 @ApiModel(value = "流程提交 DTO")
 public class ProcessSubmitDTO {
 
-    @ApiModelProperty(value = "流程定义 KEY" ,notes = "对应代办表中business_type_code字段")
+    @ApiModelProperty(value = "流程定义 KEY", notes = "对应代办表中business_type_code字段")
     private String processDefinitionKey;
 
     @ApiModelProperty(value = "业务流程 KEY(业务表的id)")
