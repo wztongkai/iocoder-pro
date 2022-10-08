@@ -140,5 +140,8 @@ public class Constants {
     public static final String STR_TEO = "2";
     public static final String STR_THREE = "3";
 
+    public static boolean success = true;
+    public static boolean unSuccess = false;
+
 
 }

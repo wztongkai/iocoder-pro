@@ -1,16 +1,14 @@
 package com.iocoder.yudao.module.activiti.dto.instance;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Map;
 
-/**
- * 流程提交
- * @author wu kai
- * @since 2022/9/28
- */
+
 @Data
+@ApiModel(value = "流程提交 DTO")
 public class ProcessSubmitDTO {
 
     @ApiModelProperty(value = "流程定义 KEY" ,notes = "对应代办表中business_type_code字段")

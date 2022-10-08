@@ -8,6 +8,7 @@ import org.activiti.engine.ActivitiException;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -15,8 +16,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author wu kai
@@ -91,6 +91,53 @@ public class ActInstanceServiceImpl implements ActInstanceService {
         Assertion.isNull(task, "未查询到指定任务");
         String processInstanceId = task.getProcessInstanceId();
         return this.isSuspendInstance(processInstanceId);
+    }
+
+    @Override
+    public String suspendInstance(String instanceId) {
+        if (isSuspendInstance(instanceId)) {
+            return instanceId;
+        }
+        try {
+            runtimeService.suspendProcessInstanceById(instanceId);
+            return instanceId;
+        } catch (Exception e) {
+            log.error("挂起流程实例失败，流程实例id：{}，错误信息为：{}", instanceId, e.toString());
+            throw new ActivitiException("挂起流程实例失败", e);
+        }
+    }
+
+    @Override
+    public String resumeInstance(String instanceId) {
+        if (!isSuspendInstance(instanceId)) {
+            return instanceId;
+        }
+        try {
+            runtimeService.activateProcessInstanceById(instanceId);
+            return instanceId;
+        } catch (Exception e) {
+            log.error("激活流程实例失败，流程实例id：{}，错误信息为：{}", instanceId,e.getMessage());
+            throw new ActivitiException("激活流程实例失败", e);
+        }
+    }
+
+    @Override
+    public void deleteTaskByProcessId(String instanceId) {
+        runtimeService.deleteProcessInstance(instanceId, null);
+    }
+
+    @Override
+    public Set<String> listArrivedNodeCode(String instanceId) {
+        Set<String> arrivedNodes = new HashSet<>();
+        // 获取流程实例 已完成的历史节点
+        List<HistoricActivityInstance> finishedList = historyService.createHistoricActivityInstanceQuery().processInstanceId(instanceId).finished().list();
+        // 收集已完成的历史节点编号
+        finishedList.forEach(historicActivityInstance -> arrivedNodes.add(historicActivityInstance.getActivityId()));
+        // 获取流程实例 待办的历史节点
+        List<HistoricActivityInstance> unfinishedList = historyService.createHistoricActivityInstanceQuery().processInstanceId(instanceId).unfinished().list();
+        // 收集待办的历史节点编号
+        unfinishedList.forEach(historicActivityInstance -> arrivedNodes.add(historicActivityInstance.getActivityId()));
+        return arrivedNodes;
     }
 
     private boolean isSuspendInstance(String processInstanceId) {

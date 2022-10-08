@@ -7,10 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * @author wu kai
- * @since 2022/7/13
- */
+
 @Data
 @Builder
 @AllArgsConstructor

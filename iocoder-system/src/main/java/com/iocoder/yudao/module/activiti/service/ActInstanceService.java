@@ -4,6 +4,7 @@ import com.iocoder.yudao.module.activiti.dto.instance.ActProcessInstanceDTO;
 import org.activiti.engine.runtime.ProcessInstance;
 
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 流程实例接口
@@ -46,4 +47,34 @@ public interface ActInstanceService {
      * @return 当前流程是否处于挂起状态
      */
     boolean isSuspendInstanceByTaskId(String taskId);
+
+    /**
+     * 挂起流程实例
+     *
+     * @param instanceId 流程实例ID
+     * @return 流程实例Id
+     */
+    String suspendInstance(String instanceId);
+
+    /**
+     * 激活重启流程实例
+     *
+     * @param instanceId 流程实例ID
+     * @return 流程实例Id
+     */
+    String resumeInstance(String instanceId);
+
+    /**
+     * 取消子任务
+     * @param instanceId 流程实例ID
+     */
+    void deleteTaskByProcessId(String instanceId);
+
+    /**
+     * 获取当前流程所有已经通过，或目前所在的节点集合
+     *
+     * @param instanceId 流程实例id
+     * @return 节点集合
+     */
+    Set<String> listArrivedNodeCode(String instanceId);
 }

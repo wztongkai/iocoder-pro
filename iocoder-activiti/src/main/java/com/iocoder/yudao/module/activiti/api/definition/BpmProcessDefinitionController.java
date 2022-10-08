@@ -36,8 +36,7 @@ public class BpmProcessDefinitionController {
     @GetMapping("/get-process-definition-list")
     @ApiOperation(value = "获得流程定义列表")
     @PreAuthorize("@ss.hasPermission('bpm:process-definition:query')")
-    public CommonResult<List<BpmProcessDefinitionRespVO>> getProcessDefinitionList(
-            BpmProcessDefinitionListReqVO listReqVO) {
+    public CommonResult<List<BpmProcessDefinitionRespVO>> getProcessDefinitionList(BpmProcessDefinitionListReqVO listReqVO) {
         return success(processDefinitionService.getProcessDefinitionList(listReqVO));
     }
 
@@ -46,7 +45,6 @@ public class BpmProcessDefinitionController {
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "Process_1657609678148:1:9e9c1167-01c0-11ed-92b4-d89ef33ad32f", dataTypeClass = String.class)
     @PreAuthorize("@ss.hasPermission('bpm:process-definition:query')")
     public CommonResult<String> getProcessDefinitionBpmnXML(@RequestParam("id") String id) {
-        String bpmnXML = processDefinitionService.getProcessDefinitionBpmnXML(id);
-        return success(bpmnXML);
+        return success(processDefinitionService.getProcessDefinitionBpmnXML(id));
     }
 }

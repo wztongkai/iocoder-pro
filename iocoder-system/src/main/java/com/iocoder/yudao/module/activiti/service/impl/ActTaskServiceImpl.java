@@ -129,7 +129,9 @@ public class ActTaskServiceImpl implements ActTaskService {
             if (!CollectionUtils.isEmpty(variables)) {
                 taskService.setVariables(taskId, variables);
             }
+            // 获取任务详情
             ActTaskDTO taskDTO = getTaskInfo(task);
+            // 完成任务
             taskService.complete(taskId);
             return taskDTO;
         } catch (Exception e) {

@@ -1,17 +1,14 @@
 package com.iocoder.yudao.module.activiti.dto.instance;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Map;
 
-/**
- * 流程任务
- *
- * @author wu kai
- * @since 2022/9/28
- */
+
 @Data
+@ApiModel(value = "流程任务 DTO")
 public class ProcessTaskCompleteDTO {
 
     @ApiModelProperty(value = "任务id")

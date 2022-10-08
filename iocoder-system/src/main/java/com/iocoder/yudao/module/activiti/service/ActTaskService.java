@@ -23,7 +23,7 @@ public interface ActTaskService {
 
 
     /**
-     * 完成任务
+     * 完成任务，并添加流程下一个节点的代办
      *
      * @param processTaskCompleteDTO 完成任务参数
      * @return 完成结果

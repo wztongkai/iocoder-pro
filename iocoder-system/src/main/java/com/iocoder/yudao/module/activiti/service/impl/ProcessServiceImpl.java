@@ -1,10 +1,9 @@
 package com.iocoder.yudao.module.activiti.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.iocoder.yudao.module.activiti.dto.ProcessResultDTO;
-import com.iocoder.yudao.module.activiti.dto.instance.ProcessInstanceDTO;
-import com.iocoder.yudao.module.activiti.dto.instance.ProcessSubmitDTO;
-import com.iocoder.yudao.module.activiti.dto.instance.ProcessTaskCompleteDTO;
+import com.iocoder.yudao.module.activiti.dto.instance.*;
 import com.iocoder.yudao.module.activiti.dto.task.ActTaskDTO;
 import com.iocoder.yudao.module.activiti.dto.task.ProcessTaskTodoDTO;
 import com.iocoder.yudao.module.activiti.service.ActInstanceService;
@@ -13,8 +12,11 @@ import com.iocoder.yudao.module.activiti.service.BpmProcessDefinitionService;
 import com.iocoder.yudao.module.activiti.service.ProcessService;
 import com.iocoder.yudao.module.commons.config.Assertion;
 import com.iocoder.yudao.module.commons.constant.Constants;
+import com.iocoder.yudao.module.commons.constant.WorkflowConstants;
+import com.iocoder.yudao.module.commons.core.domain.LoginUser;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.exception.base.BaseException;
+import com.iocoder.yudao.module.commons.utils.SecurityUtils;
 import com.iocoder.yudao.module.system.domain.BusTodoDO;
 import com.iocoder.yudao.module.system.mapper.BusTodoMapper;
 import com.iocoder.yudao.module.system.mapper.UserMapper;
@@ -22,10 +24,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.stereotype.Service;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -129,6 +131,45 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     @Override
+    public boolean isSuspendInstanceStatus(String instanceId) {
+        return actInstanceService.isSuspendInstanceByTaskId(instanceId);
+    }
+
+    @Override
+    public List<ProcessCurrentTaskInfoDTO> getProcessCurrentTaskInfo(String instanceId) {
+        log.info("流程实例Id:{}，获取当前任务信息！", instanceId);
+        try {
+            List<ProcessCurrentTaskInfoDTO> processCurrentTaskInfoDTOList = new ArrayList<>();
+            // 根据流程实例编号获取当前任务信息
+            List<ActTaskDTO> currentTask = actTaskService.getCurrentTask(instanceId);
+            if (CollectionUtils.isEmpty(currentTask)) {
+                return processCurrentTaskInfoDTOList;
+            }
+            currentTask.forEach(actTaskDTO -> {
+                // 获取代办人编号集合
+                List<String> todoUserList = actTaskDTO.getTodoUserList();
+                // 根据代办人编号集合，获取代办人信息列表
+                List<UserDO> handleUsers = CollectionUtils.isNotEmpty(todoUserList) ? userMapper.selectList(new LambdaQueryWrapper<UserDO>()
+                        .in(UserDO::getId, todoUserList)
+                ) : Collections.emptyList();
+                processCurrentTaskInfoDTOList.add(ProcessCurrentTaskInfoDTO
+                        .builder()
+                        .definitionKey(actTaskDTO.getProcessDefinitionKey())
+                        .instanceId(actTaskDTO.getProcessInstanceId())
+                        .taskId(actTaskDTO.getTaskId())
+                        .taskKey(actTaskDTO.getTaskKey())
+                        .taskName(actTaskDTO.getTaskName())
+                        .handleUserList(handleUsers).build());
+            });
+            return processCurrentTaskInfoDTOList;
+        } catch (Exception e) {
+            log.error("流程实例Id:{}，获取当前任务信息失败，错误信息为：{}", instanceId, e.getMessage());
+            throw new BaseException("获取流程当前任务信息失败，流程实例编号为：{}", instanceId);
+
+        }
+    }
+
+    @Override
     public List<ProcessResultDTO> addProcessNextNodeTodo(ProcessTaskTodoDTO processTaskTodoDTO) {
         String instanceId = processTaskTodoDTO.getInstanceId();
         String businessId = processTaskTodoDTO.getBusinessId();
@@ -168,7 +209,7 @@ public class ProcessServiceImpl implements ProcessService {
                             .eq(BusTodoDO::getTaskId, actTaskDTO.getTaskId())
                     );
                     if (count > Constants.ZERO) {
-                        log.info("流程业务代办添加，代办人：{}，已存在任务id为：{}的代办！", todoUser, actTaskDTO.getTaskId());
+                        log.info("流程业务代办添加，代办人：{}，已存在任务id为：{} 的代办！", todoUser, actTaskDTO.getTaskId());
                         continue;
                     }
                     processResultDTO.setTaskId(actTaskDTO.getTaskId());
@@ -201,6 +242,54 @@ public class ProcessServiceImpl implements ProcessService {
             log.error("流程实例Id为:{} 的代办添加异常，错误信息为：{}！", instanceId, e.getMessage());
             throw new RuntimeException("流程实例启动失败，异常信息为:{}", e);
         }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean instanceOperate(ProcessOperateDTO operateDTO) {
+        // 校验流程操作参数
+        this.checkProcessOperateParam(operateDTO);
+        String instanceId = operateDTO.getInstanceId();
+        String optType = operateDTO.getOptType();
+        LoginUser loginUser = SecurityUtils.getLoginUser();
+        log.info("流程实例操作，流程实例Id：{}，操作类型为：{}", instanceId, optType);
+        switch (optType) {
+            case WorkflowConstants.BaseConstants.PROCESS_SUSPEND:
+                // 挂起
+                actInstanceService.suspendInstance(instanceId);
+                break;
+            case WorkflowConstants.BaseConstants.PROCESS_ACTIVATE:
+                // 激活
+                actInstanceService.resumeInstance(instanceId);
+                break;
+            case WorkflowConstants.BaseConstants.PROCESS_CANCEL:
+                // 取消
+                actInstanceService.deleteTaskByProcessId(instanceId);
+                // 更新代办信息
+                busTodoMapper.update(null, new LambdaUpdateWrapper<BusTodoDO>()
+                        .set(BusTodoDO::getIsHandle, Constants.ONE)
+                        .set(BusTodoDO::getHandleUserId, loginUser.getUserId())
+                        .set(BusTodoDO::getHandleUserName, loginUser.getUsername())
+                        .set(BusTodoDO::getHandleTime, new Date())
+                        .eq(BusTodoDO::getIsHandle, Constants.ZERO)
+                        .eq(BusTodoDO::getInstanceId, instanceId)
+                );
+                break;
+            default:
+                break;
+        }
+        return Constants.success;
+    }
+
+    /**
+     * 校验流程操作参数
+     *
+     * @param operateDTO 参数
+     */
+    private void checkProcessOperateParam(ProcessOperateDTO operateDTO) {
+        Assertion.isNull(operateDTO, "请求参数不能为空");
+        Assertion.isBlank(operateDTO.getInstanceId(), "流程实例编号不能为空");
+        Assertion.isBlank(operateDTO.getOptType(), "流程操作类型不能为空");
     }
 
     /**
