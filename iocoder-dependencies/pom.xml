@@ -77,6 +77,9 @@
         <commons-compress.version>1.21</commons-compress.version>
         <!-- 中文转拼音 -->
         <pinyin4j.version>2.5.1</pinyin4j.version>
+        <!-- poi -->
+        <poi-tl.version>1.12.0</poi-tl.version>
+        <spire.version>5.2.0</spire.version>
     </properties>
 
 
@@ -384,6 +387,18 @@
                 <groupId>com.belerweb</groupId>
                 <artifactId>pinyin4j</artifactId>
                 <version>${pinyin4j.version}</version>
+            </dependency>
+            <!-- poi -->
+            <dependency>
+                <groupId>com.deepoove</groupId>
+                <artifactId>poi-tl</artifactId>
+                <version>${poi-tl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>e-iceblue</groupId>
+                <artifactId>spire.doc.free</artifactId>
+                <version>${spire.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
