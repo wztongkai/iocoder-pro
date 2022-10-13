@@ -4,6 +4,9 @@ import cn.hutool.core.io.IORuntimeException;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.StrUtil;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 
 /**
@@ -23,6 +26,28 @@ public class IoUtils {
      */
     public static String readUtf8(InputStream in, boolean isClose) throws IORuntimeException {
         return StrUtil.utf8Str(IoUtil.read(in, isClose));
+    }
+
+    /**
+     * 将文件转为字节数组
+     * @param pathStr 文件连接
+     * @return 文件的字节数组
+     */
+    public static byte[] toByteArray(String pathStr){
+        File file = new File(pathStr);
+        byte[] bytes = new byte[0];
+        try (FileInputStream fis = new FileInputStream(file);
+             ByteArrayOutputStream bos = new ByteArrayOutputStream(1000)) {
+            byte[] b = new byte[1000];
+            int n;
+            while ((n = fis.read(b)) != -1) {
+                bos.write(b, 0, n);
+            }
+            bytes = bos.toByteArray();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bytes;
     }
 
 }

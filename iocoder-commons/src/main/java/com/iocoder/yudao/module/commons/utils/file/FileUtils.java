@@ -1,10 +1,12 @@
 package com.iocoder.yudao.module.commons.utils.file;
 
 
+import com.iocoder.yudao.module.commons.config.Assertion;
 import com.iocoder.yudao.module.commons.config.iocoderConfig.IocoderConfig;
 import com.iocoder.yudao.module.commons.utils.DateUtils;
 import com.iocoder.yudao.module.commons.utils.StringUtils;
 import com.iocoder.yudao.module.commons.utils.uuid.IdUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -20,6 +22,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @author wu kai
  */
+@Slf4j
 public class FileUtils {
     public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";
 
@@ -244,4 +247,12 @@ public class FileUtils {
         return baseName;
     }
 
+    public static void createFileDir(String fileDir) {
+        File dir = new File(fileDir);
+        if (!dir.exists()) {
+            log.info("生成pdf时存储文件目录{}不存在,为您创建文件夹!", fileDir);
+            boolean mkdirs = dir.mkdirs();
+            Assertion.isFalse(mkdirs, "创建目录失败:" + fileDir);
+        }
+    }
 }

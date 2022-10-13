@@ -265,6 +265,7 @@ public class FileUploadUtils {
     }
 
     public static void fileUpload(byte[] bytes,String filePath,String fileName){
+        log.info("文件上传  -->  文件：{} 开始上传",fileName);
         OutputStream outputStream;
         try {
             JSch jSch = new JSch();
@@ -307,7 +308,8 @@ public class FileUploadUtils {
             session.disconnect();
             channel.disconnect();
         } catch (JSchException | SftpException | IOException e) {
-            e.printStackTrace();
+            log.error("文件上传失败，失败的文件名称为：{}，错误信息为：{}",fileName,e.getMessage());
+            throw new RuntimeException("文件上传失败！");
         }
 
     }

@@ -52,7 +52,7 @@ public class UserDO extends BaseEntity {
     @TableField("mobile")
     private String mobile;
 
-    @ApiModelProperty("用户性别")
+    @ApiModelProperty("用户性别（1、男 2、女）")
     @TableField("sex")
     private Integer sex;
 
