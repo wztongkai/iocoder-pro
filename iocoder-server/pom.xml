@@ -37,6 +37,11 @@
             <version>${revision}</version>
         </dependency>
         <dependency>
+            <groupId>com.iocoder</groupId>
+            <artifactId>iocoder-weboffice</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>

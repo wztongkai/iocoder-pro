@@ -80,6 +80,7 @@
         <!-- poi -->
         <poi-tl.version>1.12.0</poi-tl.version>
         <spire.version>5.2.0</spire.version>
+        <jsch.version>0.1.55</jsch.version>
     </properties>
 
 
@@ -399,6 +400,12 @@
                 <groupId>e-iceblue</groupId>
                 <artifactId>spire.doc.free</artifactId>
                 <version>${spire.version}</version>
+            </dependency>
+            <!-- jsch实现sftp文件上传 -->
+            <dependency>
+                <groupId>com.jcraft</groupId>
+                <artifactId>jsch</artifactId>
+                <version>${jsch.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

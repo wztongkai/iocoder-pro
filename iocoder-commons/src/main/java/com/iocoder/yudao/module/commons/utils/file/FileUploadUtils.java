@@ -1,6 +1,7 @@
 package com.iocoder.yudao.module.commons.utils.file;
 
 
+import com.iocoder.yudao.module.commons.config.Assertion;
 import com.iocoder.yudao.module.commons.config.iocoderConfig.IocoderConfig;
 import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.commons.exception.file.FileNameLengthLimitExceededException;
@@ -9,20 +10,75 @@ import com.iocoder.yudao.module.commons.exception.file.InvalidExtensionException
 import com.iocoder.yudao.module.commons.utils.DateUtils;
 import com.iocoder.yudao.module.commons.utils.StringUtils;
 import com.iocoder.yudao.module.commons.utils.uuid.Seq;
+import com.jcraft.jsch.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Paths;
 import java.util.Objects;
+
+import static com.iocoder.yudao.module.commons.constant.Constants.FILE_SEPARATOR;
 
 /**
  * 文件上传工具类
  *
  * @author wu kai
  */
+@Configuration
+@Component
+@Slf4j
 public class FileUploadUtils {
+
+    static public String ip;
+
+    /**
+     * 指定的资源服务器ip
+     */
+    @Value("${resourceServer.ip}")
+    public void setIp(String ip) {
+        FileUploadUtils.ip = ip;
+    }
+
+    static public Integer port;
+
+    /**
+     * 指定的资源服务器端口号
+     */
+    @Value("${resourceServer.port}")
+    public void setPort(Integer port) {
+        FileUploadUtils.port = port;
+    }
+
+    static public String user;
+
+    /**
+     * 指定的资源服务器用户名
+     */
+    @Value("${resourceServer.user}")
+    public void setUser(String user) {
+        FileUploadUtils.user = user;
+    }
+
+    static public String password;
+
+    /**
+     * 指定的资源服务器用户名
+     */
+    @Value("${resourceServer.password}")
+    public void setPassword(String password) {
+        FileUploadUtils.password = password;
+    }
+
     /**
      * 默认大小 50M
      */
@@ -196,5 +252,118 @@ public class FileUploadUtils {
             extension = MimeTypeUtils.getExtension(Objects.requireNonNull(file.getContentType()));
         }
         return extension;
+    }
+
+    /**
+     * 获取文件流
+     * @param path 文件链接
+     */
+    public static InputStream getInputStream(String path) throws Exception {
+        URL url = new URL(path);
+        URLConnection conn = url.openConnection();
+        return conn.getInputStream();
+    }
+
+    public static void fileUpload(byte[] bytes,String filePath,String fileName){
+        OutputStream outputStream;
+        try {
+            JSch jSch = new JSch();
+            Session session;
+            if(port <= Constants.ZERO){
+                // 采用默认端口连接服务器
+                session = jSch.getSession(user, ip);
+            }else{
+                // 采用指定端口连接服务器
+                session = jSch.getSession(user,ip,port);
+            }
+            Assertion.isNull(session,"服务器连接异常，SSH session 为空");
+            //设置登陆主机的密码
+            session.setPassword(password);
+            //设置第一次登陆时的提示，可选值：(ask | yes | no)
+            session.setConfig("StrictHostKeyChecking", "no");
+            //设置登陆超时时间
+            session.connect(30000);
+            session.setTimeout(60000);
+            // 获取sftp通道
+            Channel channel = session.openChannel("sftp");
+            channel.connect(60*1000);
+            ChannelSftp channelSftp = (ChannelSftp) channel;
+            if (!isDirExist(filePath, channelSftp)) {
+                String[] dirs = filePath.split(FILE_SEPARATOR);
+                String tempPath = "";
+                int index = 0;
+                // 不存在，创建目录
+                mkdirDir(dirs, tempPath, dirs.length, index, channelSftp);
+            }
+            //进入服务器指定的文件夹
+            channelSftp.cd(filePath);
+
+            //以下代码实现从本地上传一个文件到服务器，如果要实现下载，对换以下流就可以了
+            outputStream = channelSftp.put(fileName);
+            outputStream.write(bytes);
+
+            // 关闭流
+            outputStream.close();
+            session.disconnect();
+            channel.disconnect();
+        } catch (JSchException | SftpException | IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 判断目录是否存在
+     */
+    public static boolean isDirExist(String directory, ChannelSftp sftp) {
+        boolean isDirExistFlag = false;
+        try {
+            SftpATTRS sftpATTRS = sftp.lstat(directory);
+            isDirExistFlag = true;
+            return sftpATTRS.isDir();
+        } catch (Exception e) {
+            if (e.getMessage().toLowerCase().equals("no such file")) {
+                isDirExistFlag = false;
+            }
+        }
+        return isDirExistFlag;
+    }
+
+    /**
+     * 递归根据路径创建文件夹
+     *
+     * @param dirs     根据 / 分隔后的数组文件夹名称
+     * @param tempPath 拼接路径
+     * @param length   文件夹的格式长度
+     * @param index    数组下标
+     * @return
+     */
+    public static void mkdirDir(String[] dirs, String tempPath, int length, int index, ChannelSftp sftp) {
+        // 以"/a/b/c/d"为例按"/"分隔后,第0位是"";顾下标从1开始
+
+        index++;
+        if (index < length) {
+            // 目录不存在，则创建文件夹
+            tempPath += "/" + dirs[index];
+        }
+        try {
+            log.info("检测目录[" + tempPath + "]");
+            sftp.cd(tempPath);
+            if (index < length) {
+                mkdirDir(dirs, tempPath, length, index, sftp);
+            }
+        } catch (SftpException ex) {
+            log.warn("创建目录[" + tempPath + "]");
+            try {
+                sftp.mkdir(tempPath);
+                sftp.cd(tempPath);
+            } catch (SftpException e) {
+                e.printStackTrace();
+                log.error("创建目录[" + tempPath + "]失败,异常信息[" + e.getMessage() + "]");
+                throw new RuntimeException("创建目录[" + tempPath + "]失败,异常信息[" + e.getMessage() + "]");
+            }
+            log.info("进入目录[" + tempPath + "]");
+            mkdirDir(dirs, tempPath, length, index, sftp);
+        }
     }
 }

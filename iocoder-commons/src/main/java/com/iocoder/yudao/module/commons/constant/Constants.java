@@ -143,5 +143,7 @@ public class Constants {
     public static boolean success = true;
     public static boolean unSuccess = false;
 
+    public static final String FILE_SEPARATOR = "/";
+
 
 }

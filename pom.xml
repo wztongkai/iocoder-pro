@@ -17,6 +17,7 @@
         <module>iocoder-api</module>
         <module>iocoder-activiti</module>
         <module>iocoder-file</module>
+        <module>iocoder-weboffice</module>
     </modules>
 
     <properties>

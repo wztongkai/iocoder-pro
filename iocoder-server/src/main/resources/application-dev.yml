@@ -32,5 +32,13 @@ iocoder:
   captcha:
     enable: true
 
+resourceServer:
+  ip: 10.7.142.160
+  port: 22
+  user: root
+  password: 123aa-4567
+  url: http://10.7.142.160/image
+  absoluteURL: /data/image
+
 
 
