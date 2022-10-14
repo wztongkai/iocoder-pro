@@ -101,7 +101,7 @@ public class UserController {
     @DeleteMapping("/delete")
     @ApiOperation("删除用户")
     @ApiImplicitParam(name = "id", value = "用户", required = true, example = "1540614322441457665", dataTypeClass = Long.class)
-    public CommonResult<Boolean> deleteUser(@RequestParam("id") Long id) {
+        public CommonResult<Boolean> deleteUser(@RequestParam("id") Long id) {
         userService.deleteUser(id);
         return success(true);
     }
