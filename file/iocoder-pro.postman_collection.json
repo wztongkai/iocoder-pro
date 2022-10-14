@@ -34,7 +34,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin123\",\r\n    \"code\":\"1\",\r\n    \"uuid\":\"0ed381d8dc334c1681dab826351ebd70\"\r\n}",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin123\",\r\n    \"code\":\"7\",\r\n    \"uuid\":\"d1e1610d68754380bf27aab3b3ad6152\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -321,6 +321,102 @@
 								{
 									"key": "id",
 									"value": "1540614322441457665"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户名的拼音",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImQxMDJhMzJlLTZiNGItNDYwMC05YjYyLWI3ZTg4NzVmYTAyMyJ9.P_cL0isuW3hYmQJ_7LcbYFzUe-BOBEGZGUX6kDpKYH2nyy2mv2SU2qqEiOZk5SX3FrHewArQH3If_zd_n_9-Tg",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/system/user/get-username-pinyin?username=吴凯",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"get-username-pinyin"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "吴凯"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户名的姓氏和姓名",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImQxMDJhMzJlLTZiNGItNDYwMC05YjYyLWI3ZTg4NzVmYTAyMyJ9.P_cL0isuW3hYmQJ_7LcbYFzUe-BOBEGZGUX6kDpKYH2nyy2mv2SU2qqEiOZk5SX3FrHewArQH3If_zd_n_9-Tg",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/system/user/getUserLastNameAndFirstName?username=吴凯",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"getUserLastNameAndFirstName"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "吴凯"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户姓名电码",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImQxMDJhMzJlLTZiNGItNDYwMC05YjYyLWI3ZTg4NzVmYTAyMyJ9.P_cL0isuW3hYmQJ_7LcbYFzUe-BOBEGZGUX6kDpKYH2nyy2mv2SU2qqEiOZk5SX3FrHewArQH3If_zd_n_9-Tg",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/system/user/getUserNameElectronicCode?username=吴凯",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"user",
+								"getUserNameElectronicCode"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "吴凯"
 								}
 							]
 						}
@@ -797,6 +893,43 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "城市管理",
+			"item": [
+				{
+					"name": "获取次城市信息列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijg5MmM2Y2IyLTk5OWYtNGFlOS1hZjg0LTkzNzgyNTc2NDQ2ZiJ9.tpIbdWXZ5XY6K6uY9kX80zQsvrFwDo0bEOnFFKXp4H_vfeH9v1fHrQPhluQw8RnTs-m7X6uzybkLqp8F2yxfMA",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/system/city/list-all-simple?id=140000",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"system",
+								"city",
+								"list-all-simple"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "140000"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
