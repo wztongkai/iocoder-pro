@@ -53,7 +53,7 @@ public class UserController {
     UserDeptService userDeptService;
 
 
-    @Log(title = "用户管理",businessType = BusinessType.SELECT)
+    @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @PreAuthorize("@ss.hasPermission('system:user:list')")
     @GetMapping("/getUserPage")
     @ApiOperation("获得用户分页列表")
@@ -79,7 +79,7 @@ public class UserController {
         return success(new PageResult<>(userList, pageResult.getTotal()));
     }
 
-    @Log(title = "用户管理",businessType = BusinessType.INSERT)
+    @Log(title = "用户管理", businessType = BusinessType.INSERT)
     @PreAuthorize("@ss.hasPermission('system:user:create')")
     @PostMapping("/create")
     @ApiOperation("新增用户")
@@ -87,7 +87,7 @@ public class UserController {
         return success(userService.createUser(reqVO));
     }
 
-    @Log(title = "用户管理",businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermission('system:user:update')")
     @PutMapping("update")
     @ApiOperation("修改用户")
@@ -96,7 +96,7 @@ public class UserController {
         return success(true);
     }
 
-    @Log(title = "用户管理",businessType = BusinessType.DELETE)
+    @Log(title = "用户管理", businessType = BusinessType.DELETE)
     @PreAuthorize("@ss.hasPermission('system:user:delete')")
     @DeleteMapping("/delete")
     @ApiOperation("删除用户")
@@ -106,16 +106,16 @@ public class UserController {
         return success(true);
     }
 
-    @Log(title = "用户管理",businessType = BusinessType.DELETE)
+    @Log(title = "用户管理", businessType = BusinessType.DELETE)
     @PreAuthorize("@ss.hasPermission('system:user:delete')")
     @DeleteMapping("/delete-user-batch")
     @ApiOperation("批量删除用户")
-    public CommonResult<Boolean> deleteUserBatch(@Valid @RequestBody UserBatchDeleteReqVO batchDeleteReqVO){
+    public CommonResult<Boolean> deleteUserBatch(@Valid @RequestBody UserBatchDeleteReqVO batchDeleteReqVO) {
         userService.deleteUserBatch(batchDeleteReqVO);
         return success(true);
     }
 
-    @Log(title = "用户管理",businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermission('system:user:update-password')")
     @PutMapping("/update-password")
     @ApiOperation("重置用户密码")
@@ -124,7 +124,7 @@ public class UserController {
         return success(true);
     }
 
-    @Log(title = "用户管理",businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermission('system:user:update')")
     @PutMapping("/update-status")
     @ApiOperation("修改用户状态")
@@ -133,7 +133,7 @@ public class UserController {
         return success(true);
     }
 
-    @Log(title = "用户管理",businessType = BusinessType.SELECT)
+    @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @GetMapping("/list-all-simple")
     @ApiOperation(value = "获取用户精简信息列表", notes = "只包含被开启的用户，主要用于前端的下拉选项")
     public CommonResult<List<UserSimpleRespVO>> getSimpleUsers() {
@@ -142,7 +142,7 @@ public class UserController {
         return success(list);
     }
 
-    @Log(title = "用户管理",businessType = BusinessType.SELECT)
+    @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @PreAuthorize("@ss.hasPermission('system:user:query')")
     @GetMapping("/getUserInfo")
     @ApiOperation("获得用户详情")
@@ -151,13 +151,34 @@ public class UserController {
         return success(userService.getUserInfo(id));
     }
 
-    @Log(title = "用户管理",businessType = BusinessType.SELECT)
+    @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @PreAuthorize("@ss.hasPermission('system:user:query')")
     @GetMapping("/get-user-role-list")
     @ApiOperation("获取用户拥有的角色列表")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1540614322441457665", dataTypeClass = Long.class)
-    public CommonResult<UserRoleRespVO> getUserRoleList(@RequestParam("id") Long id){
+    public CommonResult<UserRoleRespVO> getUserRoleList(@RequestParam("id") Long id) {
         return success(userService.getUserRoleList(id));
+    }
+
+    @GetMapping("/get-username-pinyin")
+    @ApiOperation("获取用户名的拼音")
+    @ApiImplicitParam(name = "username", value = "姓名", required = true, example = "吴凯", dataTypeClass = String.class)
+    public CommonResult<String[]> getUserNamePinyin(@RequestParam("username") String username) {
+        return success(userService.getUserNamePinyin(username));
+    }
+
+    @GetMapping("/getUserLastNameAndFirstName")
+    @ApiOperation(value = "获取用户名的姓氏和姓名", notes = "将用户姓名查分成姓和名")
+    @ApiImplicitParam(name = "username", value = "姓名", required = true, example = "吴凯", dataTypeClass = String.class)
+    public CommonResult<UserNameSplitRespVO> getUserLastNameAndFirstName(@RequestParam("username") String username) {
+        return success(userService.getUserLastNameAndFirstName(username));
+    }
+
+    @GetMapping("/getUserNameElectronicCode")
+    @ApiOperation(value = "获取用户姓名电码")
+    @ApiImplicitParam(name = "username", value = "姓名", required = true, example = "吴凯", dataTypeClass = String.class)
+    public CommonResult<String> getUserNameElectronicCode(@RequestParam("username") String username) {
+        return success(userService.getUserNameElectronicCode(username));
     }
 
 }

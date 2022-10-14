@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.iocoder.yudao.module.commons.config.Assertion;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.PageResult;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
@@ -11,6 +12,8 @@ import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
 import com.iocoder.yudao.module.commons.utils.ArrayUtils;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
+import com.iocoder.yudao.module.commons.utils.ChineseCharConvertUtil;
+import com.iocoder.yudao.module.commons.utils.NameSplitUtils;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.*;
 import com.iocoder.yudao.module.system.mapper.UserMapper;
@@ -70,6 +73,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     @Resource
     UserService userService;
 
+    @Resource
+    NameCodeService nameCodeService;
+
     @Value("${default.password}")
     private String password;
 
@@ -77,7 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     public PageResult<UserDO> selectUserList(UserPageQueryRequestVo requestVo) {
         Page<UserDO> page = new Page<>(requestVo.getPageNo(), requestVo.getPageSize());
         List<UserDO> userDOList = baseMapper.selectUserList(requestVo, deptService.getDeptCondition(requestVo.getDeptId()));
-        if(CollectionUtils.isNotEmpty(userDOList)){
+        if (CollectionUtils.isNotEmpty(userDOList)) {
             userDOList = userDOList.stream().filter(ArrayUtils.distinctByKey(UserDO::getId)).collect(Collectors.toList());
         }
         page.setRecords(userDOList);
@@ -276,6 +282,40 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     public UserRoleRespVO getUserRoleList(Long userId) {
         List<RoleDO> userRoleList = userRoleService.selectRoleInfoByUserId(userId);
         return UserRoleRespVO.builder().userId(userId).userRoleList(userRoleList).build();
+    }
+
+    @Override
+    public String[] getUserNamePinyin(String username) {
+        Assertion.isBlank(username, "用户名不能为空");
+        return ChineseCharConvertUtil.chineseConversionPinyin(username);
+    }
+
+    @Override
+    public UserNameSplitRespVO getUserLastNameAndFirstName(String username) {
+        Assertion.isBlank(username, "用户名不能为空");
+        List<String> nameSplitList = NameSplitUtils.nameSplit(username);
+        if (CollectionUtils.isEmpty(nameSplitList)) {
+            return null;
+        }
+        return UserNameSplitRespVO.builder().lastName(nameSplitList.get(0)).firstName(nameSplitList.get(1)).build();
+    }
+
+    @Override
+    public String getUserNameElectronicCode(String username) {
+        String nameElectronicCode = StringUtils.EMPTY;
+        // 获取名称字符
+        String[] usernames = username.split("");
+        for (String character : usernames) {
+            // 获取电码
+            String code = nameCodeService.getCodeByName(character);
+            if (StringUtils.isNotEmpty(code)) {
+                nameElectronicCode = nameElectronicCode.concat(code).concat(" ");
+            } else {
+                // 其中一个电码为空，直接返回空
+                return StringUtils.EMPTY;
+            }
+        }
+        return nameElectronicCode.trim();
     }
 
 

@@ -132,8 +132,33 @@ public interface UserService extends IService<UserDO> {
 
     /**
      * 根据用户编号查询用户拥有的角色列表
+     *
      * @param userId 用户编号
      * @return 用户拥有的角色列表
      */
     UserRoleRespVO getUserRoleList(Long userId);
+
+    /**
+     * 获取用户名的拼音
+     *
+     * @param username 用户名
+     * @return 用户名拼音
+     */
+    String[] getUserNamePinyin(String username);
+
+    /**
+     * 根据用户名获取 姓氏 和 姓名
+     *
+     * @param username 用户名
+     * @return 姓氏、姓名
+     */
+    UserNameSplitRespVO getUserLastNameAndFirstName(String username);
+
+    /**
+     * 获取用户姓名电码
+     *
+     * @param username 用户名
+     * @return 姓名电码
+     */
+    String getUserNameElectronicCode(String username);
 }
