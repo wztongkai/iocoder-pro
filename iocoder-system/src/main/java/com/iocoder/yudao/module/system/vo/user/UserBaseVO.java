@@ -1,5 +1,6 @@
 package com.iocoder.yudao.module.system.vo.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.iocoder.yudao.module.commons.annotation.Mobile;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.Data;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 /**
  * 用户 Base VO，提供给添加、修改、详细的子 VO 使用
@@ -35,7 +37,8 @@ public class UserBaseVO {
     private String birthProvince;
 
     @ApiModelProperty("出生日期")
-    private String birthday;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime birthday;
 
     @ApiModelProperty(value = "备注")
     private String remark;

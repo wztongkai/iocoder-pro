@@ -4,6 +4,7 @@ import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.enums.user.UserStatus;
+import com.iocoder.yudao.module.commons.utils.DateUtils;
 import com.iocoder.yudao.module.commons.utils.file.FileUploadUtils;
 import com.iocoder.yudao.module.commons.utils.file.FileUtils;
 import com.iocoder.yudao.module.commons.utils.generate.WordUtils;
@@ -87,7 +88,7 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
             onlineGenUserDocBO.setXh(i + 1);
             onlineGenUserDocBO.setXm(userDO.getUsername());
             onlineGenUserDocBO.setXb(Objects.equals(userDO.getSex(), ONE) ? "男" : "女");
-            onlineGenUserDocBO.setCsrq(userDO.getBirthday());
+            onlineGenUserDocBO.setCsrq(Objects.nonNull(userDO.getBirthday())? DateUtils.dataStr(DateUtils.toDate(userDO.getBirthday()),"yyyy年M月d日"):"");
             onlineGenUserDocBO.setCsd(userDO.getBirthProvince());
             onlineGenUserDocBO.setYx(userDO.getEmail());
             onlineGenUserDocBO.setDh(userDO.getMobile());

@@ -58,7 +58,7 @@ public class UserDO extends BaseEntity {
 
     @ApiModelProperty("出生日期")
     @TableField("birthday")
-    private String birthday;
+    private LocalDateTime birthday;
 
     @ApiModelProperty("用户邮箱")
     @TableField("email")
