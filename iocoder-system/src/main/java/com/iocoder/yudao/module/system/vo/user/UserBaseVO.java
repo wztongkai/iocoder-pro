@@ -22,6 +22,21 @@ public class UserBaseVO {
     @Size(min = 4, max = 30, message = "用户昵称长度为 4-30 个字符")
     private String nickname;
 
+    @ApiModelProperty("英文姓")
+    private String lastName;
+
+    @ApiModelProperty("英文名")
+    private String firstName;
+
+    @ApiModelProperty("姓名电码")
+    private String nameCode;
+
+    @ApiModelProperty("出生地")
+    private String birthProvince;
+
+    @ApiModelProperty("出生日期")
+    private String birthday;
+
     @ApiModelProperty(value = "备注")
     private String remark;
 

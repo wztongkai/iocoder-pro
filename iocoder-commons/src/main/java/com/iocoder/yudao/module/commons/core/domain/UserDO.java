@@ -40,9 +40,25 @@ public class UserDO extends BaseEntity {
     @TableField("nickname")
     private String nickname;
 
-    @ApiModelProperty("备注")
-    @TableField("remark")
-    private String remark;
+    @ApiModelProperty("英文姓")
+    @TableField("last_name")
+    private String lastName;
+
+    @ApiModelProperty("英文名")
+    @TableField("first_name")
+    private String firstName;
+
+    @ApiModelProperty("姓名电码")
+    @TableField("name_code")
+    private String nameCode;
+
+    @ApiModelProperty("出生地")
+    @TableField("birth_province")
+    private String birthProvince;
+
+    @ApiModelProperty("出生日期")
+    @TableField("birthday")
+    private String birthday;
 
     @ApiModelProperty("用户邮箱")
     @TableField("email")
@@ -59,6 +75,10 @@ public class UserDO extends BaseEntity {
     @ApiModelProperty("头像地址")
     @TableField("avatar")
     private String avatar;
+
+    @ApiModelProperty("备注")
+    @TableField("remark")
+    private String remark;
 
     @ApiModelProperty("帐号状态（0正常 1停用）")
     @TableField("status")
