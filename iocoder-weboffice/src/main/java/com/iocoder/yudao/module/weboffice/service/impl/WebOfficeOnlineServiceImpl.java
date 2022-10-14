@@ -86,8 +86,9 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
             OnlineGenUserDocBO onlineGenUserDocBO = new OnlineGenUserDocBO();
             onlineGenUserDocBO.setXh(i + 1);
             onlineGenUserDocBO.setXm(userDO.getUsername());
-            onlineGenUserDocBO.setNc(userDO.getNickname());
             onlineGenUserDocBO.setXb(Objects.equals(userDO.getSex(), ONE) ? "男" : "女");
+            onlineGenUserDocBO.setCsrq(userDO.getBirthday());
+            onlineGenUserDocBO.setCsd(userDO.getBirthProvince());
             onlineGenUserDocBO.setYx(userDO.getEmail());
             onlineGenUserDocBO.setDh(userDO.getMobile());
             onlineGenUserDocList.add(onlineGenUserDocBO);

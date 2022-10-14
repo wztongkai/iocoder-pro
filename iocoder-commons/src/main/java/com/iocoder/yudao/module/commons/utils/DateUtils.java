@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * 时间工具类
@@ -169,6 +170,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 判断时间是否在当前时间之前
+     *
      * @param time date
      * @return boolean
      */
@@ -186,7 +188,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 计算时间差
-     * @param endTime 结束时间
+     *
+     * @param endTime   结束时间
      * @param startTime 开始时间
      * @return 时间差
      */
@@ -197,9 +200,9 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 根据年月日创建指定时间
      *
-     * @param year        年
-     * @param mouth       月
-     * @param day         日
+     * @param year  年
+     * @param mouth 月
+     * @param day   日
      * @return 指定时间
      */
     public static Date buildTime(int year, int mouth, int day) {
@@ -209,12 +212,12 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 创建指定时间
      *
-     * @param year        年
-     * @param mouth       月
-     * @param day         日
-     * @param hour        小时
-     * @param minute      分钟
-     * @param second      秒
+     * @param year   年
+     * @param mouth  月
+     * @param day    日
+     * @param hour   小时
+     * @param minute 分钟
+     * @param second 秒
      * @return 指定时间
      */
     public static Date buildTime(int year, int mouth, int day,
@@ -232,6 +235,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 时间比较获取最大值
+     *
      * @param a 时间一
      * @param b 时间二
      * @return 时间最大值
@@ -277,6 +281,23 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         return c.getTime();
     }
 
+    /**
+     * date 转 String
+     */
+    public static String dataStr(Date date, String format) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        return simpleDateFormat.format(date);
+    }
+
+    /**
+     * date类型转为  Oct 9， 2022
+     *
+     * @return Oct 9， 2022
+     */
+    public static String englishDateConvert(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d,yyyy", Locale.ENGLISH);
+        return sdf.format(date);
+    }
 
 
 }
