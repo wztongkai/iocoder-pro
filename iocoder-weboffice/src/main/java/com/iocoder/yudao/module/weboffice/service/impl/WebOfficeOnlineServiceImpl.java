@@ -69,7 +69,7 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         // 删除生成的临时文件
         FileUtils.deleteFile(temporaryFile);
         // 生成后文件的存储地址
-        String dataAddress = uploadPath + fileName;
+        String dataAddress = RESOURCE_SERVER_URL + uploadPath + fileName + GENERATE_WORD_SUFFIX;
         // 组装返回数据并返回
         return OnlineGenerateBaseBO.builder().fileName(dataName).filePath(dataAddress).build();
     }
