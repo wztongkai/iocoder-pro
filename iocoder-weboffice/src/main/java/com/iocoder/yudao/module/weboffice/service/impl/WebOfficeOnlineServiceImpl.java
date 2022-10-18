@@ -16,6 +16,7 @@ import com.iocoder.yudao.module.weboffice.bo.OnlineGenUserDocBO;
 import com.iocoder.yudao.module.weboffice.bo.OnlineGenerateBaseBO;
 import com.iocoder.yudao.module.weboffice.service.WebOfficeOnlineService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -77,8 +78,11 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         FileUtils.deleteFile(temporaryFile);
         // 生成后文件的存储地址
         String dataAddress = RESOURCE_SERVER_URL + uploadPath + fileName + GENERATE_WORD_SUFFIX;
-        AnnexsDO annexsDO = AnnexsDO.builder().annexName(dataName).annexType(TWO).annexCode(USER_INFO_ANNEX.getCode()).annexAddress(uploadPath + fileName + GENERATE_WORD_SUFFIX).build();
-        annexsService.insertAnnex(annexsDO);
+        AnnexsDO annexByDictCode = annexsService.getAnnexByDictCode(USER_INFO_ANNEX.getCode());
+        if (ObjectUtils.isEmpty(annexByDictCode)) {
+            AnnexsDO annexsDO = AnnexsDO.builder().annexName(dataName).annexType(TWO).annexCode(USER_INFO_ANNEX.getCode()).annexAddress(uploadPath + fileName + GENERATE_WORD_SUFFIX).build();
+            annexsService.insertAnnex(annexsDO);
+        }
         // 组装返回数据并返回
         return OnlineGenerateBaseBO.builder().fileName(dataName).filePath(dataAddress).build();
     }
@@ -97,7 +101,7 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
             onlineGenUserDocBO.setXh(i + 1);
             onlineGenUserDocBO.setXm(userDO.getUsername());
             onlineGenUserDocBO.setXb(Objects.equals(userDO.getSex(), ONE) ? "男" : "女");
-            onlineGenUserDocBO.setCsrq(Objects.nonNull(userDO.getBirthday())? DateUtils.dataStr(DateUtils.toDate(userDO.getBirthday()),"yyyy年M月d日"):"");
+            onlineGenUserDocBO.setCsrq(Objects.nonNull(userDO.getBirthday()) ? DateUtils.dataStr(DateUtils.toDate(userDO.getBirthday()), "yyyy年M月d日") : "");
             onlineGenUserDocBO.setCsd(userDO.getBirthProvince());
             onlineGenUserDocBO.setYx(userDO.getEmail());
             onlineGenUserDocBO.setDh(userDO.getMobile());
