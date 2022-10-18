@@ -83,7 +83,7 @@ public class WebOfficeBasicServiceImpl implements WebOfficeBasicService {
             Assertion.isBlank(fileUrl, "需要保存的文件链接不能为空");
             log.info("在线编辑 -- 保存文件至资源服务器，文件链接为：{}", fileUrl);
             // 拼接完整的资源服务器路径
-            String filePath = resourceServerAbsoluteURL + fileUrl.replace("/resources", "");
+            String filePath = resourceServerAbsoluteURL + fileUrl.replace(RESOURCE_SERVER_URL, "");
 
             File file = new File(filePath);
             String fileName = file.getName();
