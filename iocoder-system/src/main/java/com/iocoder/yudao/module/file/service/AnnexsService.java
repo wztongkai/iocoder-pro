@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wu kai
@@ -13,4 +13,18 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AnnexsService extends IService<AnnexsDO> {
 
+    /**
+     * 新增附件
+     *
+     * @param annexsDO 附件信息
+     */
+    void insertAnnex(AnnexsDO annexsDO);
+
+    /**
+     * 根据附件code 查询附件信息
+     *
+     * @param code 附件code
+     * @return 附件信息
+     */
+    AnnexsDO getAnnexByDictCode(String code);
 }

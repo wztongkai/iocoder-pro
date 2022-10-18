@@ -8,6 +8,8 @@ import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
+import com.iocoder.yudao.module.file.domain.AnnexsDO;
+import com.iocoder.yudao.module.file.service.AnnexsService;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.service.UserDeptService;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.iocoder.yudao.module.commons.core.domain.CommonResult.success;
+import static com.iocoder.yudao.module.commons.enums.db.DBMenuType.USER_INFO_ANNEX;
 
 /**
  * <p>
@@ -51,6 +54,9 @@ public class UserController {
 
     @Resource
     UserDeptService userDeptService;
+
+    @Resource
+    AnnexsService annexsService;
 
 
     @Log(title = "用户管理", businessType = BusinessType.SELECT)
@@ -101,7 +107,7 @@ public class UserController {
     @DeleteMapping("/delete")
     @ApiOperation("删除用户")
     @ApiImplicitParam(name = "id", value = "用户", required = true, example = "1540614322441457665", dataTypeClass = Long.class)
-        public CommonResult<Boolean> deleteUser(@RequestParam("id") Long id) {
+    public CommonResult<Boolean> deleteUser(@RequestParam("id") Long id) {
         userService.deleteUser(id);
         return success(true);
     }
@@ -179,6 +185,12 @@ public class UserController {
     @ApiImplicitParam(name = "username", value = "姓名", required = true, example = "吴凯", dataTypeClass = String.class)
     public CommonResult<String> getUserNameElectronicCode(@RequestParam("username") String username) {
         return success(userService.getUserNameElectronicCode(username));
+    }
+
+    @GetMapping("/getUsersAnnex")
+    @ApiOperation(value = "获取用户信息附件")
+    public CommonResult<AnnexsDO> getUsersAnnex() {
+        return success(annexsService.getAnnexByDictCode(USER_INFO_ANNEX.getCode()));
     }
 
 }

@@ -9,6 +9,8 @@ import com.iocoder.yudao.module.commons.utils.file.FileUploadUtils;
 import com.iocoder.yudao.module.commons.utils.file.FileUtils;
 import com.iocoder.yudao.module.commons.utils.generate.WordUtils;
 import com.iocoder.yudao.module.commons.utils.io.IoUtils;
+import com.iocoder.yudao.module.file.domain.AnnexsDO;
+import com.iocoder.yudao.module.file.service.AnnexsService;
 import com.iocoder.yudao.module.system.mapper.UserMapper;
 import com.iocoder.yudao.module.weboffice.bo.OnlineGenUserDocBO;
 import com.iocoder.yudao.module.weboffice.bo.OnlineGenerateBaseBO;
@@ -22,6 +24,8 @@ import javax.annotation.Resource;
 import java.util.*;
 
 import static com.iocoder.yudao.module.commons.constant.Constants.ONE;
+import static com.iocoder.yudao.module.commons.constant.Constants.TWO;
+import static com.iocoder.yudao.module.commons.enums.db.DBMenuType.USER_INFO_ANNEX;
 
 /**
  * @author wu kai
@@ -45,6 +49,9 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
 
     @Resource
     UserMapper userMapper;
+
+    @Resource
+    AnnexsService annexsService;
 
 
     @Override
@@ -70,6 +77,8 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         FileUtils.deleteFile(temporaryFile);
         // 生成后文件的存储地址
         String dataAddress = RESOURCE_SERVER_URL + uploadPath + fileName + GENERATE_WORD_SUFFIX;
+        AnnexsDO annexsDO = AnnexsDO.builder().annexName(dataName).annexType(TWO).annexCode(USER_INFO_ANNEX.getCode()).annexAddress(uploadPath + fileName + GENERATE_WORD_SUFFIX).build();
+        annexsService.insertAnnex(annexsDO);
         // 组装返回数据并返回
         return OnlineGenerateBaseBO.builder().fileName(dataName).filePath(dataAddress).build();
     }

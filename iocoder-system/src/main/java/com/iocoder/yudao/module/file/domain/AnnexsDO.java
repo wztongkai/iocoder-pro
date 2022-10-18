@@ -26,6 +26,10 @@ public class AnnexsDO extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty("业务编号")
+    @TableField("bus_id")
+    private Long busId;
+
     @ApiModelProperty("附件名")
     @TableField("annex_name")
     private String annexName;

@@ -6,7 +6,8 @@ package com.iocoder.yudao.module.commons.enums.db;
  */
 
 public enum DBMenuType {
-    DB_FILE_ANNEX("DB_ANNEX", "数据库附件");
+    DB_FILE_ANNEX("DB_ANNEX", "数据库附件"),
+    USER_INFO_ANNEX("USER_INFO-ANNEX", "数据库附件");
 
     private final String code;
     private final String info;
