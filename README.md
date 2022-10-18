@@ -14,6 +14,9 @@
 | `iocoder-system`       | 系统功能的 Module 模块 |
 | `iocoder-api`          | 系统接口模块          |
 | `iocoder-commons`      | 公共模块            |
+| `iocoder-activiti`     | activiti工作流     |
+| `iocoder-file`         | 附件文件            |
+| `iocoder-webOffce`     | 在线编辑            |
 
 
 
