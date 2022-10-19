@@ -82,6 +82,9 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         if (ObjectUtils.isEmpty(annexByDictCode)) {
             AnnexsDO annexsDO = AnnexsDO.builder().annexName(dataName).annexType(TWO).annexCode(USER_INFO_ANNEX.getCode()).annexAddress(uploadPath + fileName + GENERATE_WORD_SUFFIX).build();
             annexsService.insertAnnex(annexsDO);
+        }else{
+            annexByDictCode.setAnnexAddress(uploadPath + fileName + GENERATE_WORD_SUFFIX);
+            annexsService.updateById(annexByDictCode);
         }
         // 组装返回数据并返回
         return OnlineGenerateBaseBO.builder().fileName(dataName).filePath(dataAddress).build();

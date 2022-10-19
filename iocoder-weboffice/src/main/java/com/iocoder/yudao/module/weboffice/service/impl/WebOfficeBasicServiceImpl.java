@@ -68,6 +68,7 @@ public class WebOfficeBasicServiceImpl implements WebOfficeBasicService {
     @Override
     public Boolean onlineSaveFile(HttpServletRequest request) {
         try {
+            log.info("在线编辑 -- 保存word文件至服务器-----开始");
             // 从请求中获取参数
             Map<String, String[]> parameterMap = request.getParameterMap();
             // 获取文件
@@ -101,6 +102,45 @@ public class WebOfficeBasicServiceImpl implements WebOfficeBasicService {
         } catch (IOException e) {
             log.error("在线编辑word --> 保存，保存文件至服务器失败，错误信息为：{}", e.getMessage());
             throw new RuntimeException("在线编辑word --> 保存，保存文件至服务器失败！");
+        }
+        return Constants.success;
+    }
+
+    @Override
+    public Boolean onlineSaveFilePDF(HttpServletRequest request) {
+        try {
+            log.info("在线编辑 -- word文件保存为PDF文件开始");
+            // 从请求中获取参数
+            Map<String, String[]> parameterMap = request.getParameterMap();
+            // 获取文件
+            MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+            Map<String, MultipartFile> fileMap = multipartHttpServletRequest.getFileMap();
+            Collection<MultipartFile> fileList = fileMap.values();
+            Assertion.isNull(fileList, "文件不能为空");
+            // 获取表单数据
+            String[] formData = parameterMap.get("FormData");
+            JSONObject jsonObject = JSONObject.parseObject(formData[0]);
+            // 从表单数据中获取文件链接
+            String fileUrl = jsonObject.getString("fileUrl");
+            Assertion.isBlank(fileUrl, "需要保存的文件链接不能为空");
+            log.info("在线编辑 -- 保存PDF文件至资源服务器，文件链接为：{}", fileUrl);
+            // 拼接完整的资源服务器路径
+            String filePath = resourceServerAbsoluteURL + fileUrl.replace(RESOURCE_SERVER_URL, "");
+            File file = new File(filePath);
+            String fileName = file.getName();
+            // 去掉路径中的文件名
+            filePath = filePath.replace(fileName, "");
+            fileName = fileName.replace(".docx", ".pdf").replace(".doc", ".pdf");
+            // 获取文件byte数组
+            byte[] bytes = null;
+
+            for (MultipartFile multipartFile : fileList) {
+                bytes = multipartFile.getBytes();
+            }
+            FileUploadUtils.fileUpload(bytes, filePath, fileName);
+            log.info("在线编辑word --> word转化为PDF成功，存放地址为：{}", filePath);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return Constants.success;
     }

@@ -43,4 +43,10 @@ public class WebOfficeBasicController {
     public CommonResult<Boolean> onlineSaveFile(HttpServletRequest request) {
         return success(webOfficeBasicService.onlineSaveFile(request));
     }
+
+    @PostMapping("/onlineSaveFilePDF")
+    @ApiOperation(value = "保存文件为PDF", notes = "通过在线编辑插件，将word保存为pdf")
+    public CommonResult<Boolean> onlineSaveFilePDF(HttpServletRequest request) {
+        return success(webOfficeBasicService.onlineSaveFilePDF(request));
+    }
 }

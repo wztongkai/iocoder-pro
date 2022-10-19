@@ -24,4 +24,11 @@ public interface WebOfficeBasicService {
      * @return 保存结果（成功/失败）
      */
     Boolean onlineSaveFile(HttpServletRequest request);
+
+    /**
+     * 在线编辑，保存文件为pdf
+     * @param request 请求信息
+     * @return 保存结果
+     */
+    Boolean onlineSaveFilePDF(HttpServletRequest request);
 }
