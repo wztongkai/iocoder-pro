@@ -140,7 +140,8 @@ public class WebOfficeBasicServiceImpl implements WebOfficeBasicService {
             FileUploadUtils.fileUpload(bytes, filePath, fileName);
             log.info("在线编辑word --> word转化为PDF成功，存放地址为：{}", filePath);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("在线编辑word --> word转化为PDF失败，错误信息为：{}", e.getMessage());
+            throw new RuntimeException("在线编辑word --> word转化为PDF失败！");
         }
         return Constants.success;
     }
