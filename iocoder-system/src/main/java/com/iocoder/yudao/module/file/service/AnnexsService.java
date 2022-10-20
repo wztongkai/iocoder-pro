@@ -2,6 +2,9 @@ package com.iocoder.yudao.module.file.service;
 
 import com.iocoder.yudao.module.file.domain.AnnexsDO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.iocoder.yudao.module.system.vo.annex.AnnexsSimpleRespVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -26,5 +29,13 @@ public interface AnnexsService extends IService<AnnexsDO> {
      * @param code 附件code
      * @return 附件信息
      */
-    AnnexsDO getAnnexByDictCode(String code);
+    List<AnnexsSimpleRespVO> getAnnexByDictCode(String code);
+
+    /**
+     * 根据附件code 和 附件格式类型查询附件
+     * @param code 附件code
+     * @param type 附件格式类型 1、html 2、word 3、md 4、pdf
+     * @return 附件信息
+     */
+    AnnexsDO getAnnexByDictCodeAndAnnexType(String code, Integer type);
 }

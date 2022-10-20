@@ -3,6 +3,7 @@ package com.iocoder.yudao.module.weboffice.service.impl;
 import com.iocoder.yudao.module.commons.constant.Constants;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
 import com.iocoder.yudao.module.commons.core.domain.UserDO;
+import com.iocoder.yudao.module.commons.enums.FileTypeEnum;
 import com.iocoder.yudao.module.commons.enums.user.UserStatus;
 import com.iocoder.yudao.module.commons.utils.DateUtils;
 import com.iocoder.yudao.module.commons.utils.file.FileUploadUtils;
@@ -78,11 +79,11 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         FileUtils.deleteFile(temporaryFile);
         // 生成后文件的存储地址
         String dataAddress = RESOURCE_SERVER_URL + uploadPath + fileName + GENERATE_WORD_SUFFIX;
-        AnnexsDO annexByDictCode = annexsService.getAnnexByDictCode(USER_INFO_ANNEX.getCode());
+        AnnexsDO annexByDictCode = annexsService.getAnnexByDictCodeAndAnnexType(USER_INFO_ANNEX.getCode(), FileTypeEnum.WORD.getCode());
         if (ObjectUtils.isEmpty(annexByDictCode)) {
             AnnexsDO annexsDO = AnnexsDO.builder().annexName(dataName).annexType(TWO).annexCode(USER_INFO_ANNEX.getCode()).annexAddress(uploadPath + fileName + GENERATE_WORD_SUFFIX).build();
             annexsService.insertAnnex(annexsDO);
-        }else{
+        } else {
             annexByDictCode.setAnnexAddress(uploadPath + fileName + GENERATE_WORD_SUFFIX);
             annexsService.updateById(annexByDictCode);
         }

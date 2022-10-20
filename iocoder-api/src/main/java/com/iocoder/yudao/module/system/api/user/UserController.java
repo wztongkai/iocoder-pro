@@ -8,13 +8,13 @@ import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
-import com.iocoder.yudao.module.file.domain.AnnexsDO;
 import com.iocoder.yudao.module.file.service.AnnexsService;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.PostDO;
 import com.iocoder.yudao.module.system.service.UserDeptService;
 import com.iocoder.yudao.module.system.service.UserPostService;
 import com.iocoder.yudao.module.system.service.UserService;
+import com.iocoder.yudao.module.system.vo.annex.AnnexsSimpleRespVO;
 import com.iocoder.yudao.module.system.vo.user.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -189,7 +189,7 @@ public class UserController {
 
     @GetMapping("/getUsersAnnex")
     @ApiOperation(value = "获取用户信息附件")
-    public CommonResult<AnnexsDO> getUsersAnnex() {
+    public CommonResult<List<AnnexsSimpleRespVO>> getUsersAnnex() {
         return success(annexsService.getAnnexByDictCode(USER_INFO_ANNEX.getCode()));
     }
 

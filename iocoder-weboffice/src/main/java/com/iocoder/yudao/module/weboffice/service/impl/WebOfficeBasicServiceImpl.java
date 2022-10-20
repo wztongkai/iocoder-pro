@@ -3,16 +3,21 @@ package com.iocoder.yudao.module.weboffice.service.impl;
 import com.alibaba.fastjson2.JSONObject;
 import com.iocoder.yudao.module.commons.config.Assertion;
 import com.iocoder.yudao.module.commons.constant.Constants;
+import com.iocoder.yudao.module.commons.enums.FileTypeEnum;
 import com.iocoder.yudao.module.commons.utils.file.FileUploadUtils;
+import com.iocoder.yudao.module.file.domain.AnnexsDO;
+import com.iocoder.yudao.module.file.service.AnnexsService;
 import com.iocoder.yudao.module.weboffice.service.WebOfficeBasicService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -22,6 +27,8 @@ import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.Map;
+
+import static com.iocoder.yudao.module.commons.enums.db.DBMenuType.USER_INFO_ANNEX;
 
 /**
  * @author wu kai
@@ -36,6 +43,9 @@ public class WebOfficeBasicServiceImpl implements WebOfficeBasicService {
 
     @Value("${resourceServer.absoluteURL}")
     private String resourceServerAbsoluteURL;
+
+    @Resource
+    AnnexsService annexsService;
 
     @Override
     public Boolean onlineOpenFile(String fileUrl, HttpServletResponse response) {
@@ -122,6 +132,9 @@ public class WebOfficeBasicServiceImpl implements WebOfficeBasicService {
             JSONObject jsonObject = JSONObject.parseObject(formData[0]);
             // 从表单数据中获取文件链接
             String fileUrl = jsonObject.getString("fileUrl");
+            // 字典编码
+            String dictCode = jsonObject.getString("dictCode");
+            String dataName = jsonObject.getString("dataName");
             Assertion.isBlank(fileUrl, "需要保存的文件链接不能为空");
             log.info("在线编辑 -- 保存PDF文件至资源服务器，文件链接为：{}", fileUrl);
             // 拼接完整的资源服务器路径
@@ -139,6 +152,13 @@ public class WebOfficeBasicServiceImpl implements WebOfficeBasicService {
             }
             FileUploadUtils.fileUpload(bytes, filePath, fileName);
             log.info("在线编辑word --> word转化为PDF成功，存放地址为：{}", filePath);
+            AnnexsDO annexsDO = annexsService.getAnnexByDictCodeAndAnnexType(dictCode, FileTypeEnum.PDF.getCode());
+            if (ObjectUtils.isEmpty(annexsDO)) {
+                annexsService.insertAnnex(AnnexsDO.builder().annexName(dataName+".pdf").annexType(FileTypeEnum.PDF.getCode()).annexCode(USER_INFO_ANNEX.getCode()).annexAddress(filePath.replace(resourceServerAbsoluteURL, "")+fileName).build());
+            } else {
+                annexsDO.setAnnexAddress(filePath.replace(resourceServerAbsoluteURL, "")+fileName);
+                annexsService.updateById(annexsDO);
+            }
         } catch (Exception e) {
             log.error("在线编辑word --> word转化为PDF失败，错误信息为：{}", e.getMessage());
             throw new RuntimeException("在线编辑word --> word转化为PDF失败！");
