@@ -86,5 +86,5 @@ public interface MenuService extends IService<MenuDO> {
      * @param menuIds 菜单编号数组
      * @return 菜单信息集合
      */
-    List<MenuDO> getSimpleMenuInfos(Set<Long> menuIds);
+    List<MenuDO> getSimpleMenuInfos(Set<Long> menuIds, Set<Integer> menuTypes, Set<Integer> menuStatus);
 }

@@ -186,7 +186,7 @@ public class PermissionServiceImpl implements PermissionService {
         // 收集菜单编号
         Set<Long> menuIds = convertSet(roleMenuDOS, RoleMenuDO::getMenuId);
         // 获取菜单信息
-        return menuService.getSimpleMenuInfos(menuIds);
+        return menuService.getSimpleMenuInfos(menuIds, menuTypes, MenuStatus);
     }
 
     /**

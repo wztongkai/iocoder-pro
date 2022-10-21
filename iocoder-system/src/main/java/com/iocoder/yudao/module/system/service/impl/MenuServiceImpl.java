@@ -3,7 +3,6 @@ package com.iocoder.yudao.module.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iocoder.yudao.module.commons.core.LambdaQueryWrapperX;
-import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.enums.menu.MenuIdEnum;
 import com.iocoder.yudao.module.commons.enums.menu.MenuTypeEnum;
 import com.iocoder.yudao.module.commons.exception.ServiceExceptionUtil;
@@ -145,10 +144,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
     }
 
     @Override
-    public List<MenuDO> getSimpleMenuInfos(Set<Long> menuIds) {
+    public List<MenuDO> getSimpleMenuInfos(Set<Long> menuIds, Set<Integer> menuTypes, Set<Integer> menuStatus) {
         List<MenuDO> menuList = baseMapper.selectList(new LambdaQueryWrapperX<MenuDO>()
                 .inIfPresent(MenuDO::getId, menuIds)
-                .eq(MenuDO::getStatus, CommonStatusEnum.ENABLE.getStatus())
+                .inIfPresent(MenuDO::getType,menuTypes)
+                .inIfPresent(MenuDO::getStatus,menuStatus)
         );
         if (CollectionUtils.isEmpty(menuList)) {
             return Collections.emptyList();
