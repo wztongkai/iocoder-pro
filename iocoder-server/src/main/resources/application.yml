@@ -102,7 +102,7 @@ swagger:
 
 # 系统默认配置
 default:
-  # 默认密码
+  # 新增用户时的初始密码
   password: 666666
 
 
