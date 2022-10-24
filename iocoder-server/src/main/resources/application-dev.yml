@@ -1,21 +1,73 @@
 spring:
   datasource:
+    druid:
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        allow: # 设置白名单，不填则允许所有访问
+        url-pattern: /druid/*
+        login-username: # 控制台管理用户名和密码
+        login-password:
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true # 慢 SQL 记录
+          slow-sql-millis: 100
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
     dynamic:
+      druid: # Druid 【连接池】相关的全局配置
+        initial-size: 5 # 初始连接数
+        min-idle: 10 # 最小连接池数量
+        max-active: 20 # 最大连接池数量
+        max-wait: 600000 # 配置获取连接等待超时的时间，单位：毫秒
+        time-between-eviction-runs-millis: 60000 # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位：毫秒
+        min-evictable-idle-time-millis: 300000 # 配置一个连接在池中最小生存的时间，单位：毫秒
+        max-evictable-idle-time-millis: 900000 # 配置一个连接在池中最大生存的时间，单位：毫秒
+        validation-query: SELECT 1 # 配置检测连接是否有效
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
       primary: master  # 设置默认数据源
       strict: false
       datasource: # 配置动态数据源
         master:
-          url: jdbc:mysql://localhost:3306/iocoder-pro?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
+          name: iocoder-pro
+          url: jdbc:mysql://localhost:3306/${spring.datasource.dynamic.datasource.master.name}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
           username: JASYPT_WK(sIOzfZPQ1XC22k07YeGBm+02f7Q/k0AM9l7z+LuGhzn4rk15dmSVpD3LSAhp1GT9)
           password: JASYPT_WK(QK8gNe3sVYBlbJGA+fHIyhipaNNlPZFT7Xt0/9TPZOcbw2yv3+wH4FF/OcmSXQgS)
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
         slave:
-          url: jdbc:mysql://localhost:3306/iocoder-pro-slave?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
+          name: iocoder-pro-slave
+          url: jdbc:mysql://localhost:3306/${spring.datasource.dynamic.datasource.slave.name}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
           username: JASYPT_WK(sIOzfZPQ1XC22k07YeGBm+02f7Q/k0AM9l7z+LuGhzn4rk15dmSVpD3LSAhp1GT9)
           password: JASYPT_WK(QK8gNe3sVYBlbJGA+fHIyhipaNNlPZFT7Xt0/9TPZOcbw2yv3+wH4FF/OcmSXQgS)
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
+
+  # redis 配置
+  redis:
+    # 地址
+    host: localhost
+    # 端口，默认为6379
+    port: 6379
+    # 数据库索引
+    database: 1
+    # 密码
+    password:
+    # 连接超时时间
+    timeout: 10s
+    jedis:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+
   activiti:
     # activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建
     database-schema-update: false
@@ -39,6 +91,14 @@ resourceServer:
   password: 123aa-4567
   url: http://10.7.142.160/image
   absoluteURL: /data/image
+
+logging:
+  level:
+    org.springframework.web: INFO
+    com.iocoder: DEBUG
+  file:
+    # path: ${iocoder.logfile}/${spring.application.name}
+    path: ${user.home}/logs/${spring.application.name}
 
 
 
