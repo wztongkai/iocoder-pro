@@ -121,10 +121,10 @@ public class ChineseCharConvertUtil {
         return matcher.find();
     }
 
-    public static void main(String[] args) {
-        String str = "得报";
-        String[] strings = chineseConversionPinyin(str);
-        System.out.println(Arrays.toString(strings));
-
-    }
+//    public static void main(String[] args) {
+//        String str = "得报";
+//        String[] strings = chineseConversionPinyin(str);
+//        System.out.println(Arrays.toString(strings));
+//
+//    }
 }

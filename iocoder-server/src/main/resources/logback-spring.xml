@@ -4,19 +4,19 @@
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
     <!-- 日志输出格式 -->
     <property name="CONSOLE_LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [${springAppName}] [%thread] %-5level %logger{128} - [%method,%line] - %msg%n"/>
+              value="%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([${springAppName}]) %clr([%thread]){blue} %highlight(%-5level) %boldMagenta(%logger{128}) - %yellow([%method,%line]) - %cyan(%msg%n)"/>
 
     <!-- 控制台输出 -->
     <appender name="stdout"
               class="ch.qos.logback.core.ConsoleAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
-        <encoder>
+        <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
                 ${CONSOLE_LOG_PATTERN}
             </pattern>
-        </encoder>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
     </appender>
     <!-- 时间滚动输出 level为 INFO 日志 -->
     <appender name="file—info"
@@ -33,11 +33,11 @@
             </FileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
-        <encoder>
+        <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
                 ${CONSOLE_LOG_PATTERN}
             </pattern>
-        </encoder>
+        </layout>
     </appender>
 
     <!-- 时间滚动输出 level为 WARN 日志 -->
@@ -55,11 +55,11 @@
             </FileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
-        <encoder>
+        <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
                 ${CONSOLE_LOG_PATTERN}
             </pattern>
-        </encoder>
+        </layout>
     </appender>
 
     <!-- 时间滚动输出 level为 ERROR 日志 -->
@@ -77,12 +77,11 @@
             </FileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
-        <encoder>
+        <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
-                <!-- %X{sessionId} - %date [%thread] %-5level %logger{80} - %msg%n -->
                 ${CONSOLE_LOG_PATTERN}
             </pattern>
-        </encoder>
+        </layout>
     </appender>
 
     <logger name="springfox.documentation" additivity="false">
@@ -91,7 +90,7 @@
 
     <!-- 开发环境下的日志配置 -->
     <springProfile name="dev">
-        <root level="INFO">
+        <root level="DEBUG">
             <appender-ref ref="stdout"/>
             <appender-ref ref="file—info"/>
             <appender-ref ref="file—warn"/>

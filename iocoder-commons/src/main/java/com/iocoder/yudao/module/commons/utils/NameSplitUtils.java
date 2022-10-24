@@ -44,10 +44,10 @@ public class NameSplitUtils {
         return names;
     }
 
-    public static void main(String[] args) {
-        String str = "张廖未";
-        List<String> list = nameSplit(str);
-        System.out.println(list.get(0));
-        System.out.println(list.get(1));
-    }
+//    public static void main(String[] args) {
+//        String str = "张廖未";
+//        List<String> list = nameSplit(str);
+//        System.out.println(list.get(0));
+//        System.out.println(list.get(1));
+//    }
 }
