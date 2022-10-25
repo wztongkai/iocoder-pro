@@ -37,15 +37,15 @@ spring:
         master:
           name: iocoder-pro
           url: jdbc:mysql://localhost:3306/${spring.datasource.dynamic.datasource.master.name}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
-          username: ${jasypt.encryptor.property.prefix}sIOzfZPQ1XC22k07YeGBm+02f7Q/k0AM9l7z+LuGhzn4rk15dmSVpD3LSAhp1GT9${jasypt.encryptor.property.suffix}
-          password: ${jasypt.encryptor.property.prefix}QK8gNe3sVYBlbJGA+fHIyhipaNNlPZFT7Xt0/9TPZOcbw2yv3+wH4FF/OcmSXQgS${jasypt.encryptor.property.suffix}
+          username: ENC(3fkzSJUqEDxs4sUeN4Hlkg==)
+          password: ENC(YbPhKDhMZlKGTllQv8EgaQ==)
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
         slave:
           name: iocoder-pro-slave
           url: jdbc:mysql://localhost:3306/${spring.datasource.dynamic.datasource.slave.name}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
-          username: ${jasypt.encryptor.property.prefix}sIOzfZPQ1XC22k07YeGBm+02f7Q/k0AM9l7z+LuGhzn4rk15dmSVpD3LSAhp1GT9${jasypt.encryptor.property.suffix}
-          password: ${jasypt.encryptor.property.prefix}QK8gNe3sVYBlbJGA+fHIyhipaNNlPZFT7Xt0/9TPZOcbw2yv3+wH4FF/OcmSXQgS${jasypt.encryptor.property.suffix}
+          username: ENC(3fkzSJUqEDxs4sUeN4Hlkg==)
+          password: ENC(YbPhKDhMZlKGTllQv8EgaQ==)
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
 

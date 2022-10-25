@@ -1,8 +1,7 @@
 server:
   port: 8888
-  tomcat:
-    uri-encoding: UTF-8
-
+#  tomcat:
+#    uri-encoding: UTF-8
 
 iocoder:
   # 名称
@@ -93,10 +92,12 @@ mybatis-plus:
 # 配置加密密钥
 jasypt:
   encryptor:
-    property:
-      prefix: JASYPT_WK(    # 加密前缀
-      suffix: )             # 加密后缀
-    password: strangegirl   # 加密秘钥
+#    password: WkZuiShuai  #将秘钥作为启动时的命令行变量带入 java -jar iocoder-server.jar --jasypt.encryptor.password=WkZuiShuai
+#    password 将秘钥作为启动时的应用环境变量带入  java -Djasypt.encryptor.password=WkZuiShuai -jar iocoder-server.jar
+#    password: ${JASYPT_ENCRYPTOR_PASSWORD:}  #将加密秘钥设置为系统环境变量带入
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
 
 # Swagger配置
 swagger:
