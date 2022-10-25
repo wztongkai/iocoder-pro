@@ -58,7 +58,7 @@ spring:
     # 数据库索引
     database: 1
     # 密码
-    password:
+    password: ENC(Pd70Io7T8s/ShvjGXFvTVQ==)
     # 连接超时时间
     timeout: 10s
     jedis:
@@ -88,7 +88,7 @@ resourceServer:
   ip: 10.7.142.160
   port: 22
   user: root
-  password: 123aa-4567
+  password: ENC(6S8h7so9YDKBLy2OVUi+iR2KFx6Thl5U)
   url: http://10.7.142.160/image
   absoluteURL: /data/image
 
