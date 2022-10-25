@@ -97,8 +97,8 @@ logging:
     org.springframework.web: INFO
     com.iocoder: DEBUG
   file:
-    # path: ${iocoder.logfile}/${spring.application.name}
-    path: ${user.home}/logs/${spring.application.name}
+#     path: ${iocoder.logfile}/${spring.application.name}
+    name: ${user.home}/logs/${spring.application.name}
 
 
 

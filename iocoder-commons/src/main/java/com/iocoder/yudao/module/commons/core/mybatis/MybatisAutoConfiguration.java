@@ -3,7 +3,6 @@ package com.iocoder.yudao.module.commons.core.mybatis;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
  * @Date: 2022/6/3 14:57
  */
 @Configuration
-@MapperScan("com.wkboot.mapper")
 public class MybatisAutoConfiguration {
 
     /**

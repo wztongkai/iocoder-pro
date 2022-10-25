@@ -2,9 +2,13 @@
 <configuration scan="false" scanPeriod="10 seconds">
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
-    <!-- 日志输出格式 -->
+    <springProperty scope="context" name="LOG_PATH" source="logging.file.name"/>
+    <!-- 控制台日志输出格式 -->
     <property name="CONSOLE_LOG_PATTERN"
               value="%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([${springAppName}]) %clr([%thread]){blue} %highlight(%-5level) %boldMagenta(%logger{128}) - %yellow([%method,%line]) - %cyan(%msg%n)"/>
+    <!-- 日志文件日志输出格式 控制台输出格式中添加了日志颜色，在文件中无法识别，会出现大量ESC，重新定义日志文件的日志输出格式  -->
+    <property name="FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [${springAppName}] [%thread] %-5level %logger{128} - [%method,%line] - %msg%n"/>
 
     <!-- 控制台输出 -->
     <appender name="stdout"
@@ -23,7 +27,9 @@
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
+            <!-- 匹配时的操作：接收（记录） -->
             <onMatch>ACCEPT</onMatch>
+            <!-- 不匹配时的操作：拒绝（不记录） -->
             <onMismatch>NEUTRAL</onMismatch>
         </filter>
         <rollingPolicy
@@ -35,7 +41,7 @@
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
-                ${CONSOLE_LOG_PATTERN}
+                ${FILE_LOG_PATTERN}
             </pattern>
         </layout>
     </appender>
@@ -45,7 +51,9 @@
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>WARN</level>
+            <!-- 匹配时的操作：接收（记录） -->
             <onMatch>ACCEPT</onMatch>
+            <!-- 不匹配时的操作：拒绝（不记录） -->
             <onMismatch>NEUTRAL</onMismatch>
         </filter>
         <rollingPolicy
@@ -57,7 +65,7 @@
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
-                ${CONSOLE_LOG_PATTERN}
+                ${FILE_LOG_PATTERN}
             </pattern>
         </layout>
     </appender>
@@ -67,7 +75,9 @@
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
+            <!-- 匹配时的操作：接收（记录） -->
             <onMatch>ACCEPT</onMatch>
+            <!-- 不匹配时的操作：拒绝（不记录） -->
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy
@@ -79,7 +89,7 @@
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
-                ${CONSOLE_LOG_PATTERN}
+                ${FILE_LOG_PATTERN}
             </pattern>
         </layout>
     </appender>
