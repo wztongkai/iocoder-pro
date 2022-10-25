@@ -29,15 +29,20 @@
 2、初始化MySQL
     创建名为 ``iocoder-pro`` 数据库，并执行 ``sql`` 目录下的 ``iocoder-pro.sql`` 文件
 
-3、修改 [jasypt](http://www.jasypt.org/) 加密配置信息 (修改前缀、后缀以及加密秘钥)
+3、 为启动类 ``IoCoderApplication.java``,``JasyptTest``设置启动参数 : ``-Djasypt.encryptor.password=WkZuiShuai``
+    ![img.png](img.png)
+    执行 ``iocoder-server`` 模块 ``test`` 下的 ``JasyptTest`` 文件 中的 test()方法，生成明文的加密字符串
 
-3、执行 ``iocoder-server`` 模块 ``test`` 下的 ``JasyptTest`` 文件 中的 test()方法，生成数据库账号密码的加密字符串
+4、修改 ``application-dev.yml`` 配置文件中明文密码和用户名 (使用第三步生成的加密字符串替换  ENC() 中的字符串)
 
-4、修改 ``application-dev.yml`` 配置文件中用户名、密码 (使用第三步生成的加密字符串替换 username、password  JASYPT_WK() 中的字符串)
+5、运行 ``iocoder-server`` 模块中启动类 ``IoCoderApplication.java`` 启动服务 
 
-5、修改 ``application.yml`` 配置文件中的 redis 配置信息
-
-6、运行 ``iocoder-server`` 模块中启动类 ``IoCoderApplication.java`` 启动服务 
+### 部署
+1、执行maven中Lifecycle下的 clean、install/package 将项目打包
+2、将 ``iocoder-server``模块下 target中的 iocoder-server.jar 部署在服务器中
+3、执行 
+    java -jar iocoder-server.jar --jasypt.encryptor.password=WkZuiShuai 或
+    java -Djasypt.encryptor.password=WkZuiShuai -jar iocoder-server.jar 启动项目
 
 附加：
 流程图绘制地址：https://miyuesc.github.io/vite-vue-bpmn-process/
