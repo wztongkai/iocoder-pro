@@ -34,8 +34,8 @@ public class EncryptResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
     @Resource
     IocoderConfig iocoderConfig;
-
-    private final static String[] NEED_RELEASE_METHOD = {"getCaptchaImage"};
+    // 不需要加密的接口
+    private final static String[] NEED_RELEASE_METHOD = {"getCaptchaImage","swaggerResources","getDocumentation"};
 
     @Override
     public boolean supports(MethodParameter returnType, @Nonnull Class<? extends HttpMessageConverter<?>> converterType) {
