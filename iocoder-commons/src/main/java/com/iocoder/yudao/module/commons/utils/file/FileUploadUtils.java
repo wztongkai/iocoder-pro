@@ -18,6 +18,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,6 +73,9 @@ public class FileUploadUtils {
 
     static public String password;
 
+    @Resource
+    IocoderConfig iocoderConfig;
+
     /**
      * 指定的资源服务器用户名
      */
@@ -92,10 +97,11 @@ public class FileUploadUtils {
     /**
      * 默认上传的地址
      */
-    private static String defaultBaseDir = IocoderConfig.getProfile();
+    private static String defaultBaseDir;
 
-    public static void setDefaultBaseDir(String defaultBaseDir) {
-        FileUploadUtils.defaultBaseDir = defaultBaseDir;
+    @PostConstruct
+    public void getYmlParam() {
+        defaultBaseDir = iocoderConfig.getProfile();
     }
 
     public static String getDefaultBaseDir() {
@@ -182,7 +188,7 @@ public class FileUploadUtils {
     }
 
     public static final String getPathFileName(String uploadDir, String fileName) throws IOException {
-        int dirLastIndex = IocoderConfig.getProfile().length() + 1;
+        int dirLastIndex = getDefaultBaseDir().length() + 1;
         String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
         return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
     }
@@ -256,6 +262,7 @@ public class FileUploadUtils {
 
     /**
      * 获取文件流
+     *
      * @param path 文件链接
      */
     public static InputStream getInputStream(String path) throws Exception {
@@ -264,20 +271,20 @@ public class FileUploadUtils {
         return conn.getInputStream();
     }
 
-    public static void fileUpload(byte[] bytes,String filePath,String fileName){
-        log.info("文件上传  -->  文件：{} 开始上传",fileName);
+    public static void fileUpload(byte[] bytes, String filePath, String fileName) {
+        log.info("文件上传  -->  文件：{} 开始上传", fileName);
         OutputStream outputStream;
         try {
             JSch jSch = new JSch();
             Session session;
-            if(port <= Constants.ZERO){
+            if (port <= Constants.ZERO) {
                 // 采用默认端口连接服务器
                 session = jSch.getSession(user, ip);
-            }else{
+            } else {
                 // 采用指定端口连接服务器
-                session = jSch.getSession(user,ip,port);
+                session = jSch.getSession(user, ip, port);
             }
-            Assertion.isNull(session,"服务器连接异常，SSH session 为空");
+            Assertion.isNull(session, "服务器连接异常，SSH session 为空");
             //设置登陆主机的密码
             session.setPassword(password);
             //设置第一次登陆时的提示，可选值：(ask | yes | no)
@@ -287,7 +294,7 @@ public class FileUploadUtils {
             session.setTimeout(60000);
             // 获取sftp通道
             Channel channel = session.openChannel("sftp");
-            channel.connect(60*1000);
+            channel.connect(60 * 1000);
             ChannelSftp channelSftp = (ChannelSftp) channel;
             if (!isDirExist(filePath, channelSftp)) {
                 String[] dirs = filePath.split(FILE_SEPARATOR);
@@ -308,7 +315,7 @@ public class FileUploadUtils {
             session.disconnect();
             channel.disconnect();
         } catch (JSchException | SftpException | IOException e) {
-            log.error("文件上传失败，失败的文件名称为：{}，错误信息为：{}",fileName,e.getMessage());
+            log.error("文件上传失败，失败的文件名称为：{}，错误信息为：{}", fileName, e.getMessage());
             throw new RuntimeException("文件上传失败！");
         }
 

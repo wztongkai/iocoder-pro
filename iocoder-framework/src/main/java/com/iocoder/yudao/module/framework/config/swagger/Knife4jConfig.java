@@ -12,6 +12,7 @@ import org.springframework.boot.actuate.endpoint.web.*;
 import org.springframework.boot.actuate.endpoint.web.annotation.ControllerEndpointsSupplier;
 import org.springframework.boot.actuate.endpoint.web.annotation.ServletEndpointsSupplier;
 import org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandlerMapping;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -32,6 +33,7 @@ import java.util.List;
  * @author kai wu
  */
 @Configuration
+@EnableConfigurationProperties(IocoderConfig.class)
 public class Knife4jConfig {
     /**
      * 是否开启swagger
@@ -46,12 +48,12 @@ public class Knife4jConfig {
      * 创建API
      */
     @Bean
-    public Docket createRestApi() {
+    public Docket createRestApi(IocoderConfig iocoderConfig) {
         return new Docket(DocumentationType.SWAGGER_2)
                 // 是否启用Swagger
                 .enable(this.enabled)
                 // 用来创建该API的基本信息，展示在文档的页面中（自定义展示的信息）
-                .apiInfo(this.createApiInfo())
+                .apiInfo(this.createApiInfo(iocoderConfig))
                 // 设置哪些接口暴露给Swagger展示
                 .select()
                 // 只扫描带有ApiOperation注解的方法
@@ -64,18 +66,18 @@ public class Knife4jConfig {
     /**
      * 添加摘要信息
      */
-    private ApiInfo createApiInfo() {
+    private ApiInfo createApiInfo(IocoderConfig iocoderConfig) {
         return new ApiInfoBuilder()
                 // api文档的标题属性:会在api文档中相应显示
                 .title("iocoder系统在线接口文档")
                 // api文档描述属性:会在api文档中相应显示
                 .description("描述:展示系统中的接口信息")
                 // 作者信息
-                .contact(new Contact(IocoderConfig.getName(), null, null))
+                .contact(new Contact(iocoderConfig.getName(), null, null))
                 // 服务url属性:会在api文档中相应显示
                 .termsOfServiceUrl("http://localhost:" + this.port + "/")
                 // 版本
-                .version("版本号:" + IocoderConfig.getVersion())
+                .version("版本号:" + iocoderConfig.getVersion())
                 .build();
     }
 

@@ -62,6 +62,9 @@ public class UserProfileController {
     @Resource
     JwtTokenService jwtTokenService;
 
+    @Resource
+    IocoderConfig iocoderConfig;
+
     @Log(title = "用户中心",businessType = BusinessType.SELECT)
     @GetMapping("/getUserProfile")
     @ApiOperation("获得登录用户信息")
@@ -109,7 +112,7 @@ public class UserProfileController {
         if (file.isEmpty()) {
             throw ServiceExceptionUtil.exception(FILE_IS_EMPTY);
         }
-        String avatar = FileUploadUtils.upload(IocoderConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION);
+        String avatar = FileUploadUtils.upload(iocoderConfig.getProfile()+"/avatar", file, MimeTypeUtils.IMAGE_EXTENSION);
         LoginUser loginUser = getLoginUser();
         if (userService.updateUserAvatar(loginUser.getUserId(), avatar)) {
             // 更新缓存用户头像

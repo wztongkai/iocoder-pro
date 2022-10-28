@@ -59,6 +59,8 @@ public class UserController {
     AnnexsService annexsService;
 
 
+//    @Encrypt
+//    @Decrypt
     @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @PreAuthorize("@ss.hasPermission('system:user:list')")
     @GetMapping("/getUserPage")
@@ -112,6 +114,7 @@ public class UserController {
         return success(true);
     }
 
+
     @Log(title = "用户管理", businessType = BusinessType.DELETE)
     @PreAuthorize("@ss.hasPermission('system:user:delete')")
     @DeleteMapping("/delete-user-batch")
@@ -139,6 +142,7 @@ public class UserController {
         return success(true);
     }
 
+//    @Encrypt
     @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @GetMapping("/list-all-simple")
     @ApiOperation(value = "获取用户精简信息列表", notes = "只包含被开启的用户，主要用于前端的下拉选项")

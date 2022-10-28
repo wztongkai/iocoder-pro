@@ -83,6 +83,10 @@ iocoder:
   # 图片验证码
   captcha:
     enable: true
+  # true-->加密
+  isEncrypt: true
+  # 加密秘钥
+  aesDataKey: 4%YkW!@g5LGcf9Ut
 
 resourceServer:
   ip: 10.7.142.160

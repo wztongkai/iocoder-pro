@@ -30,11 +30,14 @@ public class ResourcesConfig implements WebMvcConfigurer {
     @Value("${spring.application.name}")
     private String applicationName;
 
+    @Autowired
+    IocoderConfig iocoderConfig;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         /* 本地文件上传路径 */
         registry.addResourceHandler(Constants.RESOURCE_PREFIX + "/**")
-                .addResourceLocations("file:" + IocoderConfig.getProfile() + "/");
+                .addResourceLocations("file:" + iocoderConfig.getProfile() + "/");
 
         /* swagger配置 */
         registry.addResourceHandler("/swagger-ui/**")

@@ -50,6 +50,7 @@ public class LoginAuthController {
     @Resource
     JwtTokenService tokenService;
 
+//    @Encrypt
     @PostMapping("/login")
     @ApiOperation("使用账号密码登录")
     public CommonResult<AuthLoginRespVO> login(@RequestBody @Valid AuthLoginReqVO reqVO) {

@@ -40,6 +40,9 @@ public class CaptchaServiceImpl implements CaptchaService {
     @Resource
     RedisCache redisCache;
 
+    @Resource
+    IocoderConfig iocoderConfig;
+
     @Override
     public Boolean isCaptchaEnable() {
         return this.enable;
@@ -64,7 +67,7 @@ public class CaptchaServiceImpl implements CaptchaService {
         BufferedImage image = null;
 
         // 生成验证码
-        String captchaType = IocoderConfig.getCaptchaType();
+        String captchaType = iocoderConfig.getCaptchaType();
         if ("math".equals(captchaType)) {
             String capText = captchaProducerMath.createText();
             capStr = capText.substring(0, capText.lastIndexOf("@"));

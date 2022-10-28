@@ -11,6 +11,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -25,6 +27,20 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class FileUtils {
     public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";
+
+    @Resource
+    IocoderConfig iocoderConfig;
+
+    private static String defaultBaseDir;
+
+    @PostConstruct
+    public void getYmlParam() {
+        defaultBaseDir = iocoderConfig.getProfile();
+    }
+
+    public static String getDefaultBaseDir() {
+        return defaultBaseDir;
+    }
 
     /**
      * 输出指定文件的byte数组
@@ -62,7 +78,7 @@ public class FileUtils {
      * @throws IOException IO异常
      */
     public static String writeImportBytes(byte[] data) throws IOException {
-        return writeBytes(data, IocoderConfig.getImportPath());
+        return writeBytes(data, getDefaultBaseDir() + "/import");
     }
 
     /**

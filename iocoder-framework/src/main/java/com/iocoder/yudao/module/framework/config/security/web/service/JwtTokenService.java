@@ -13,10 +13,13 @@ import eu.bitwalker.useragentutils.UserAgent;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -58,8 +61,29 @@ public class JwtTokenService {
                 // 解析对应的权限以及用户信息
                 String uuid = (String) claims.get(Constants.LOGIN_USER_KEY);
                 String userKey = this.getTokenKey(uuid);
-                LoginUser sysUser = redisCache.getCacheObject(userKey);
-                return sysUser;
+                return redisCache.getCacheObject(userKey);
+            } catch (Exception e) {
+//                throw new Exception(StringUtils.format("获取用户身份失败", e));
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 从请求头中获取用户信息
+     * @param httpHeaders 请求头
+     * @return 用户信息
+     */
+    public LoginUser getLoginUser(HttpHeaders httpHeaders) {
+        // 获取请求携带的令牌
+        String token = this.getToken(httpHeaders);
+        if (StringUtils.isNotEmpty(token)) {
+            try {
+                Claims claims = this.parseToken(token);
+                // 解析对应的权限以及用户信息
+                String uuid = (String) claims.get(Constants.LOGIN_USER_KEY);
+                String userKey = this.getTokenKey(uuid);
+                return redisCache.getCacheObject(userKey);
             } catch (Exception e) {
 //                throw new Exception(StringUtils.format("获取用户身份失败", e));
             }
@@ -139,6 +163,21 @@ public class JwtTokenService {
         String token = request.getHeader(this.jwtSecurityProperties.getHeader());
         if (StringUtils.isNotEmpty(token) && token.startsWith(this.jwtSecurityProperties.getTokenStartWith())) {
             token = token.replace(this.jwtSecurityProperties.getTokenStartWith(), "");
+        }
+        return token;
+    }
+
+    /**
+     * 从请求头中获取token
+     * @param httpHeaders 请求头信息
+     * @return token
+     */
+    public String getToken(HttpHeaders httpHeaders) {
+        // 获取请求头信息authorization信息
+        List<String> list = httpHeaders.get(this.jwtSecurityProperties.getHeader());
+        final String token = CollectionUtils.isEmpty(list) ? null : list.get(0);
+        if (StringUtils.isBlank(token) || !token.startsWith(this.jwtSecurityProperties.getTokenStartWith())) {
+            return null;
         }
         return token;
     }
