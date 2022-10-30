@@ -36,29 +36,31 @@ spring:
       datasource: # 配置动态数据源
         master:
           name: iocoder-pro
-          url: jdbc:mysql://localhost:3306/${spring.datasource.dynamic.datasource.master.name}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
-          username: ENC(3fkzSJUqEDxs4sUeN4Hlkg==)
-          password: ENC(YbPhKDhMZlKGTllQv8EgaQ==)
+          url: jdbc:mysql://43.138.41.193:3306/${spring.datasource.dynamic.datasource.master.name}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
+          username: ENC(BYp/YQqsrNpPRuZ/cunCcA==)
+          #password: 123456aaa-789
+          password: ENC(Dq8EQmeI8WJ6/2Tzg0VzLEpC3xrT6C3T)
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
-        slave:
-          name: iocoder-pro-slave
-          url: jdbc:mysql://localhost:3306/${spring.datasource.dynamic.datasource.slave.name}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
-          username: ENC(3fkzSJUqEDxs4sUeN4Hlkg==)
-          password: ENC(YbPhKDhMZlKGTllQv8EgaQ==)
-          driver-class-name: com.mysql.cj.jdbc.Driver
-          type: com.alibaba.druid.pool.DruidDataSource
+#        slave:
+#          name: iocoder-pro-slave
+#          url: jdbc:mysql://localhost:3306/${spring.datasource.dynamic.datasource.slave.name}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&nullCatalogMeansCurrent=true
+#          username: ENC(3fkzSJUqEDxs4sUeN4Hlkg==)
+#          password:
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          type: com.alibaba.druid.pool.DruidDataSource
 
   # redis 配置
   redis:
     # 地址
-    host: localhost
+    host: 43.138.41.193
     # 端口，默认为6379
     port: 6379
     # 数据库索引
     database: 1
     # 密码
-    password: ENC(Pd70Io7T8s/ShvjGXFvTVQ==)
+#    password: wukai971022
+    password: ENC(p7HywqtMKyzRaq8WSWS5gIaImShK0Gl+)
     # 连接超时时间
     timeout: 10s
     jedis:
@@ -89,12 +91,13 @@ iocoder:
   aesDataKey: 4%YkW!@g5LGcf9Ut
 
 resourceServer:
-  ip: 10.7.142.160
+  ip: 43.138.41.193
   port: 22
   user: root
-  password: ENC(6S8h7so9YDKBLy2OVUi+iR2KFx6Thl5U)
-  url: http://10.7.142.160/image
-  absoluteURL: /data/image
+  password: Wukai971022
+#  password: ENC(If3GJRzdUL44wdcAS4rhH9g+wfUjog2B)
+  url: http://43.138.41.193/image
+  absoluteURL: /mnt/labour/data/image
 
 logging:
   level:

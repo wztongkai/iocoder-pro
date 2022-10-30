@@ -92,7 +92,7 @@ mybatis-plus:
 # 配置加密密钥
 jasypt:
   encryptor:
-#    password: WkZuiShuai  #将秘钥作为启动时的命令行变量带入 java -jar iocoder-server.jar --jasypt.encryptor.password=WkZuiShuai
+    password: WkZuiShuai  #将秘钥作为启动时的命令行变量带入 java -jar iocoder-server.jar --jasypt.encryptor.password=WkZuiShuai
 #    password 将秘钥作为启动时的应用环境变量带入  java -Djasypt.encryptor.password=WkZuiShuai -jar iocoder-server.jar
 #    password: ${JASYPT_ENCRYPTOR_PASSWORD:}  #将加密秘钥设置为系统环境变量带入
     algorithm: PBEWithMD5AndDES

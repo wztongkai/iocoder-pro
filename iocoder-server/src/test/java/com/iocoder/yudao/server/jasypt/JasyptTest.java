@@ -31,7 +31,7 @@ public class JasyptTest {
         BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
         textEncryptor.setPassword("WkZuiShuai");
         String username = textEncryptor.encrypt("root");
-        String password = textEncryptor.encrypt("123aa-4567");
+        String password = textEncryptor.encrypt("Wukai971022");
         System.out.println("username: " + username);
         System.out.println("password:" + password);
     }

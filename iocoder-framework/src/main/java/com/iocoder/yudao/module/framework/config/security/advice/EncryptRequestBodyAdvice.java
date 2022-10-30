@@ -29,7 +29,6 @@ public class EncryptRequestBodyAdvice implements RequestBodyAdvice {
 
     @Resource
     IocoderConfig iocoderConfig;
-
     private final static String[] NEED_RELEASE_METHOD = {"login"};
 
     @Override

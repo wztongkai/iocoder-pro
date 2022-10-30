@@ -127,7 +127,7 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         String templatePath = "";
         switch (type) {
             case 1:
-                templatePath = "/GroupData/template/" + "guoji" + Constants.FILE_SEPARATOR;
+                templatePath = "/UserInfo/template/" + Constants.FILE_SEPARATOR;
                 break;
             default:
                 break;
@@ -145,14 +145,14 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         String temporaryPath = "";
         switch (type) {
             case 1:
-                temporaryPath = "/GroupData/template/temporary/" + "guoji" + Constants.FILE_SEPARATOR;
+                temporaryPath = "/UserInfo/template/temporary" + Constants.FILE_SEPARATOR;
                 break;
             default:
                 break;
         }
-        if (StringUtils.isNotEmpty(temporaryPath)) {
-            FileUtils.createFileDir(resourceServerAbsoluteURL + temporaryPath);
-        }
+//        if (StringUtils.isNotEmpty(temporaryPath)) {
+//            FileUtils.createFileDir(resourceServerAbsoluteURL + temporaryPath);
+//        }
         return temporaryPath;
     }
 
@@ -166,14 +166,14 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         String filePath = "";
         switch (type) {
             case 1:
-                filePath = "/GroupData/" + "guoji" + Constants.FILE_SEPARATOR;
+                filePath = "/UserInfo/" + Constants.FILE_SEPARATOR;
                 break;
             default:
                 break;
         }
-        if (StringUtils.isNotEmpty(filePath)) {
-            FileUtils.createFileDir(resourceServerAbsoluteURL + filePath);
-        }
+//        if (StringUtils.isNotEmpty(filePath)) {
+//            FileUtils.createFileDir(resourceServerAbsoluteURL + filePath);
+//        }
         return filePath;
     }
 }
