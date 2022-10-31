@@ -59,8 +59,8 @@ spring:
     # 数据库索引
     database: 1
     # 密码
-    password: wukai971022
-#    password: ENC(p7HywqtMKyzRaq8WSWS5gIaImShK0Gl+)
+#    password: wukai971022
+    password: ENC(p7HywqtMKyzRaq8WSWS5gIaImShK0Gl+)
     # 连接超时时间
     timeout: 10s
     jedis:
@@ -85,6 +85,8 @@ iocoder:
   # 图片验证码
   captcha:
     enable: true
+
+  # 接口加密
   # true-->加密
   isEncrypt: true
   # 加密秘钥
@@ -94,8 +96,8 @@ resourceServer:
   ip: 43.138.41.193
   port: 22
   user: root
-  password: Wukai971022
-#  password: ENC(If3GJRzdUL44wdcAS4rhH9g+wfUjog2B)
+#  password: Wukai971022
+  password: ENC(If3GJRzdUL44wdcAS4rhH9g+wfUjog2B)
   url: http://43.138.41.193/image
   absoluteURL: /data/image
 
