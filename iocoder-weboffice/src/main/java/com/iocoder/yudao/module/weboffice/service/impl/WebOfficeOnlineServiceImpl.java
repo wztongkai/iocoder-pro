@@ -6,6 +6,7 @@ import com.iocoder.yudao.module.commons.core.domain.UserDO;
 import com.iocoder.yudao.module.commons.enums.FileTypeEnum;
 import com.iocoder.yudao.module.commons.enums.user.UserStatus;
 import com.iocoder.yudao.module.commons.utils.DateUtils;
+import com.iocoder.yudao.module.commons.utils.StringUtils;
 import com.iocoder.yudao.module.commons.utils.file.FileUploadUtils;
 import com.iocoder.yudao.module.commons.utils.file.FileUtils;
 import com.iocoder.yudao.module.commons.utils.generate.WordUtils;
@@ -18,7 +19,6 @@ import com.iocoder.yudao.module.weboffice.bo.OnlineGenerateBaseBO;
 import com.iocoder.yudao.module.weboffice.service.WebOfficeOnlineService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +62,7 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         Map<String, Object> dataMap = assemblyGenerateData();
         // 获取模板文件地址
         String templatePath = RESOURCE_SERVER_URL + this.getTemplatePath(ONE) + "用户信息导出模板.docx";
+        log.info("用户信息模板文件地址：{}",templatePath);
         // 生成的临时文件存储路径
         String temporaryPath = this.getTemporaryPath(ONE) + Constants.FILE_SEPARATOR;
         // 生成的文件名称
@@ -127,7 +128,7 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         String templatePath = "";
         switch (type) {
             case 1:
-                templatePath = "/UserInfo/template/" + Constants.FILE_SEPARATOR;
+                templatePath = "/UserInfo/template" + Constants.FILE_SEPARATOR;
                 break;
             default:
                 break;
@@ -150,9 +151,9 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
             default:
                 break;
         }
-//        if (StringUtils.isNotEmpty(temporaryPath)) {
-//            FileUtils.createFileDir(resourceServerAbsoluteURL + temporaryPath);
-//        }
+        if (StringUtils.isNotEmpty(temporaryPath)) {
+            FileUtils.createFileDir(resourceServerAbsoluteURL + temporaryPath);
+        }
         return temporaryPath;
     }
 
@@ -166,14 +167,14 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         String filePath = "";
         switch (type) {
             case 1:
-                filePath = "/UserInfo/" + Constants.FILE_SEPARATOR;
+                filePath = "/UserInfo" + Constants.FILE_SEPARATOR;
                 break;
             default:
                 break;
         }
-//        if (StringUtils.isNotEmpty(filePath)) {
-//            FileUtils.createFileDir(resourceServerAbsoluteURL + filePath);
-//        }
+        if (StringUtils.isNotEmpty(filePath)) {
+            FileUtils.createFileDir(resourceServerAbsoluteURL + filePath);
+        }
         return filePath;
     }
 }

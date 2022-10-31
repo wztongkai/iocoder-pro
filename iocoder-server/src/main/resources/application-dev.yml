@@ -59,8 +59,8 @@ spring:
     # 数据库索引
     database: 1
     # 密码
-#    password: wukai971022
-    password: ENC(p7HywqtMKyzRaq8WSWS5gIaImShK0Gl+)
+    password: wukai971022
+#    password: ENC(p7HywqtMKyzRaq8WSWS5gIaImShK0Gl+)
     # 连接超时时间
     timeout: 10s
     jedis:
@@ -97,7 +97,7 @@ resourceServer:
   password: Wukai971022
 #  password: ENC(If3GJRzdUL44wdcAS4rhH9g+wfUjog2B)
   url: http://43.138.41.193/image
-  absoluteURL: /mnt/labour/data/image
+  absoluteURL: /data/image
 
 logging:
   level:
