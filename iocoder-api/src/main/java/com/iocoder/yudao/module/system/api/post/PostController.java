@@ -84,7 +84,6 @@ public class PostController {
         return success(true);
     }
 
-    @Log(title = "岗位管理", businessType = BusinessType.SELECT)
     @PreAuthorize("@ss.hasPermission('system:post:list')")
     @GetMapping("/list")
     @ApiOperation("获取岗位列表")
@@ -93,7 +92,6 @@ public class PostController {
         return success(list);
     }
 
-    @Log(title = "岗位管理", businessType = BusinessType.SELECT)
     @GetMapping("/list-all-simple")
     @ApiOperation(value = "获取岗位精简信息列表", notes = "只包含被开启的岗位，主要用于前端的下拉选项")
     public CommonResult<List<PostSimpleRespVO>> getSimplePost() {
@@ -106,7 +104,6 @@ public class PostController {
         return success(simpleRespList);
     }
 
-    @Log(title = "岗位管理", businessType = BusinessType.SELECT)
     @GetMapping("/get-info")
     @ApiOperation("获得岗位信息")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)

@@ -62,7 +62,6 @@ public class MenuController {
         return success(true);
     }
 
-    @Log(title = "菜单管理", businessType = BusinessType.SELECT)
     @GetMapping("/list")
     @ApiOperation(value = "获取菜单列表", notes = "用于【菜单管理】界面")
     public CommonResult<List<MenuRespVO>> getMenus(MenuListReqVO reqVO) {
@@ -70,7 +69,6 @@ public class MenuController {
         return success(list);
     }
 
-    @Log(title = "菜单管理", businessType = BusinessType.SELECT)
     @GetMapping("/list-all-simple")
     @ApiOperation(value = "获取菜单精简信息列表", notes = "只包含被开启的菜单")
     public CommonResult<List<MenuSimpleRespVO>> getSimpleMenus() {
@@ -83,7 +81,6 @@ public class MenuController {
         return success(menuSimpleRespList);
     }
 
-    @Log(title = "菜单管理", businessType = BusinessType.SELECT)
     @GetMapping("/get-menu-info")
     @ApiOperation("获取菜单信息")
     public CommonResult<MenuRespVO> getMenuInfo(Long id) {

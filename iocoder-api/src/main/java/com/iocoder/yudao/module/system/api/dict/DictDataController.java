@@ -81,7 +81,6 @@ public class DictDataController {
         return success(true);
     }
 
-    @Log(title = "字典数据",businessType = BusinessType.SELECT)
     @GetMapping("/list-all-simple")
     @ApiOperation(value = "获得全部字典数据列表", notes = "一般用于管理后台缓存字典数据在本地")
     public CommonResult<List<DictDataSimpleRespVO>> getSimpleDictDatas() {
@@ -89,7 +88,6 @@ public class DictDataController {
         return success(list);
     }
 
-    @Log(title = "字典数据",businessType = BusinessType.SELECT)
     @GetMapping("/page")
     @ApiOperation("/获得字典类型的分页列表")
     @PreAuthorize("@ss.hasPermission('system:dict:query')")
@@ -97,7 +95,6 @@ public class DictDataController {
         return success(dictDataService.getDictDataPage(pageReqVO));
     }
 
-    @Log(title = "字典数据",businessType = BusinessType.SELECT)
     @GetMapping(value = "/get-info")
     @ApiOperation("/查询字典数据详细")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)
@@ -106,7 +103,6 @@ public class DictDataController {
         return success(dictDataService.getDictData(id));
     }
 
-    @Log(title = "字典数据",businessType = BusinessType.SELECT)
     @GetMapping(value = "/type/{dictType}")
     @ApiOperation("根据字典类型查询对应的数据字典列表")
     @ApiImplicitParam(name = "dictType", value = "字典类型", required = true, example = "system_user_sex", dataTypeClass = String.class)

@@ -97,7 +97,9 @@ public class AESUtils {
             cipher.init(Cipher.ENCRYPT_MODE, keySpec);
             byte[] encrypted = cipher.doFinal(contextBytes);
             // 使用BASE64做转码，相当于两次加密效果
-            return new Base64().encodeToString(encrypted);
+            String encryptStr = new Base64().encodeToString(encrypted);
+            log.info("AES加密完成，加密结果为：{}",encryptStr);
+            return encryptStr;
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
             log.error("AES加密失败，加密秘钥为：{}，加密失败的内容为：{}，错误信息为：{}", aesDataKey, context, e.getMessage());
             throw new BaseException("加密失败，加密数据为：{}", context);
@@ -132,7 +134,9 @@ public class AESUtils {
             byte[] decrypted = new Base64().decode(context);
             // aes解密
             byte[] doFinal = cipher.doFinal(decrypted);
-            return new String(doFinal, StandardCharsets.UTF_8);
+            String decryptStr = new String(doFinal, StandardCharsets.UTF_8);
+            log.info("AES解密完成，解密结果为：{}",decryptStr);
+            return decryptStr;
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
             log.error("AES解密失败，解密秘钥为：{}，解密失败的内容为：{}，错误信息为：{}", aesDataKey, context, e.getMessage());
             throw new BaseException("解密失败，解密数据为：{}", context);

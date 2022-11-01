@@ -59,9 +59,6 @@ public class UserController {
     AnnexsService annexsService;
 
 
-//    @Encrypt
-//    @Decrypt
-    @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @PreAuthorize("@ss.hasPermission('system:user:list')")
     @GetMapping("/getUserPage")
     @ApiOperation("获得用户分页列表")
@@ -142,8 +139,6 @@ public class UserController {
         return success(true);
     }
 
-//    @Encrypt
-    @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @GetMapping("/list-all-simple")
     @ApiOperation(value = "获取用户精简信息列表", notes = "只包含被开启的用户，主要用于前端的下拉选项")
     public CommonResult<List<UserSimpleRespVO>> getSimpleUsers() {
@@ -152,7 +147,6 @@ public class UserController {
         return success(list);
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @PreAuthorize("@ss.hasPermission('system:user:query')")
     @GetMapping("/getUserInfo")
     @ApiOperation("获得用户详情")
@@ -161,7 +155,6 @@ public class UserController {
         return success(userService.getUserInfo(id));
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.SELECT)
     @PreAuthorize("@ss.hasPermission('system:user:query')")
     @GetMapping("/get-user-role-list")
     @ApiOperation("获取用户拥有的角色列表")
