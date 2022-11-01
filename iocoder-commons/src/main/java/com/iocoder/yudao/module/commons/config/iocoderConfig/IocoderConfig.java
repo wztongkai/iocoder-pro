@@ -37,7 +37,7 @@ public class IocoderConfig {
     /**
      * 获取地址开关
      */
-    private boolean addressEnabled;
+    private Boolean addressEnabled;
 
     /**
      * 验证码类型

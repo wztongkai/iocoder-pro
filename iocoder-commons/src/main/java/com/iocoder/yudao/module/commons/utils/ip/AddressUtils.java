@@ -8,13 +8,19 @@ import com.iocoder.yudao.module.commons.utils.StringUtils;
 import com.iocoder.yudao.module.commons.utils.http.HttpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 /**
  * 获取地址类
  *
  * @author kai wu
  */
+@Configuration
+@Component
 public class AddressUtils {
     private static final Logger log = LoggerFactory.getLogger(AddressUtils.class);
 
@@ -24,18 +30,26 @@ public class AddressUtils {
     // 未知地址
     public static final String UNKNOWN = "XX XX";
 
-    @Autowired
-    static
+    @Resource
     IocoderConfig iocoderConfig;
 
     private static Boolean defaultBaseDir;
+
+    @PostConstruct
+    public void getYmlParam() {
+        defaultBaseDir = iocoderConfig.getAddressEnabled();
+    }
+
+    public static Boolean getAddressEnabled() {
+        return defaultBaseDir;
+    }
 
     public static String getRealAddressByIP(String ip) {
         // 内网不查询
         if (IpUtils.internalIp(ip)) {
             return "内网IP";
         }
-        if (defaultBaseDir) {
+        if (getAddressEnabled()) {
             try {
                 String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true", Constants.GBK);
                 if (StringUtils.isEmpty(rspStr)) {
