@@ -24,10 +24,7 @@ import org.apache.xmlbeans.XmlException;
 import org.apache.xmlbeans.XmlOptions;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTBody;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 
@@ -72,7 +69,7 @@ public class WordUtils {
         // 读取模板，并将dataMap中的数据填充进模板文件中
         try {
             URL url = new URL(templatePath);
-            BufferedInputStream bis = new BufferedInputStream(url.openStream());
+            InputStream bis = new BufferedInputStream(url.openStream());
             LoopRowTableRenderPolicy loopRowTableRenderPolicy = new LoopRowTableRenderPolicy();
             Configure configure = Configure.builder().bind(dataList, loopRowTableRenderPolicy).build();
             XWPFTemplate xwpfTemplate = XWPFTemplate.compile(bis, configure).render(dataMap);

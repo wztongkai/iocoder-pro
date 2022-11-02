@@ -62,7 +62,7 @@ public class WebOfficeOnlineServiceImpl implements WebOfficeOnlineService {
         Map<String, Object> dataMap = assemblyGenerateData();
         // 获取模板文件地址
         String templatePath = RESOURCE_SERVER_URL + this.getTemplatePath(ONE) + "用户信息导出模板.docx";
-        log.info("用户信息模板文件地址：{}",templatePath);
+        log.info("用户信息模板文件地址：{}", templatePath);
         // 生成的临时文件存储路径
         String temporaryPath = this.getTemporaryPath(ONE) + Constants.FILE_SEPARATOR;
         // 生成的文件名称
