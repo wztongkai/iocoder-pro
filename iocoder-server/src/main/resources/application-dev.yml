@@ -92,6 +92,9 @@ iocoder:
   # 加密秘钥
   aesDataKey: 4%YkW!@g5LGcf9Ut
 
+  onlinePlugin: /Plugins/WebOffice/iWebOffice2015.zip
+  singPlugin: /Plugins/WebOffice/iSignature.zip
+
 resourceServer:
   ip: 43.138.41.193
   port: 22

@@ -54,87 +54,14 @@ public class IocoderConfig {
      */
     private String aesDataKey;
 
-//    public static String getName() {
-//        return name;
-//    }
-//
-//    public static Boolean getIsEncrypt() {
-//        return isEncrypt;
-//    }
-//
-//    public void setIsEncrypt(Boolean isEncrypt) {
-//        IocoderConfig.isEncrypt = isEncrypt;
-//    }
-//
-//    public void setName(String name) {
-//        IocoderConfig.name = name;
-//    }
-//
-//    public static String getVersion() {
-//        return version;
-//    }
-//
-//    public void setVersion(String version) {
-//        IocoderConfig.version = version;
-//    }
-//
-//    public static String getCopyrightYear() {
-//        return copyrightYear;
-//    }
-//
-//    public void setCopyrightYear(String copyrightYear) {
-//        IocoderConfig.copyrightYear = copyrightYear;
-//    }
-//
-//    public static String getProfile() {
-//        return profile;
-//    }
-//
-//    public void setProfile(String profile) {
-//        IocoderConfig.profile = profile;
-//    }
-//
-//    public static boolean isAddressEnabled() {
-//        return addressEnabled;
-//    }
-//
-//    public void setAddressEnabled(boolean addressEnabled) {
-//        IocoderConfig.addressEnabled = addressEnabled;
-//    }
-//
-//    /**
-//     * 获取导入上传路径
-//     */
-//    public static String getImportPath() {
-//        return getProfile() + "/import";
-//    }
-//
-//    /**
-//     * 获取头像上传路径
-//     */
-//    public static String getAvatarPath() {
-//        return getProfile() + "/avatar";
-//    }
-//
-//    /**
-//     * 获取下载路径
-//     */
-//    public static String getDownloadPath() {
-//        return getProfile() + "/download/";
-//    }
-//
-//    /**
-//     * 获取上传路径
-//     */
-//    public static String getUploadPath() {
-//        return getProfile() + "/upload";
-//    }
-//
-//    public static String getCaptchaType() {
-//        return captchaType;
-//    }
-//
-//    public void setCaptchaType(String captchaType) {
-//        IocoderConfig.captchaType = captchaType;
-//    }
+    /**
+     * 在线编辑插件地址
+     */
+    private String onlinePlugin;
+
+    /**
+     * 签章插件地址
+     */
+    private String singPlugin;
+
 }
