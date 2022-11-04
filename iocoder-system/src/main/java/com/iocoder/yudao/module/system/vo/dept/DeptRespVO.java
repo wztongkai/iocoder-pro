@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @ApiModel("管理后台 - 部门信息 Response VO")
 @Data
@@ -22,5 +24,8 @@ public class DeptRespVO extends DeptBaseVO {
     @ApiModelProperty(value = "创建时间", required = true, example = "时间戳格式")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
+
+    @ApiModelProperty(value = "子部门")
+    private List<DeptRespVO> children = new ArrayList<>();
 
 }

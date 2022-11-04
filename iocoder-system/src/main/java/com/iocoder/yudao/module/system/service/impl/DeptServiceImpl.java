@@ -12,6 +12,7 @@ import com.iocoder.yudao.module.commons.utils.BeanUtil;
 import com.iocoder.yudao.module.commons.utils.convert.CollConvertUtils;
 import com.iocoder.yudao.module.system.domain.DeptDO;
 import com.iocoder.yudao.module.system.domain.UserDeptDO;
+import com.iocoder.yudao.module.system.domain.core.DataTree;
 import com.iocoder.yudao.module.system.mapper.DeptMapper;
 import com.iocoder.yudao.module.system.mapper.UserMapper;
 import com.iocoder.yudao.module.system.service.DeptService;
@@ -52,7 +53,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
             return Collections.emptySet();
         }
         // 获取子部门
-        List<DeptDO> deptDOList = this.getDeptsByParentId(deptId, true);
+        List<DeptDO> deptDOList = this.getDeptsByParentId(deptId);
         // 将获取的子部门信息中的 子部门编号转为 set集合
         Set<Long> deptIds = CollConvertUtils.convertSet(deptDOList, DeptDO::getId);
         // 将父部门编号添加进行部门编号集合中
@@ -72,24 +73,24 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
     @Override
     public List<DeptRespVO> getSimpleDepts(DeptListReqVO reqVO) {
         String search = reqVO.getSearch();
-        if(StringUtils.isNotBlank(search)){
+        if (StringUtils.isNotBlank(search)) {
             List<UserDO> userDOList = userMapper.selectList(new LambdaQueryWrapperX<UserDO>()
                     .like(UserDO::getUsername, search)
             );
             List<Long> userIds = new ArrayList<>();
-            if(CollectionUtils.isNotEmpty(userDOList)){
+            if (CollectionUtils.isNotEmpty(userDOList)) {
                 userIds = userDOList.stream().map(UserDO::getId).filter(Objects::nonNull).collect(Collectors.toList());
             }
             reqVO.setUserIds(userIds);
         }
         List<DeptDO> simpleDepts = baseMapper.getSimpleDepts(reqVO);
         List<DeptRespVO> deptInfoList = new ArrayList<>();
-        if(CollectionUtils.isNotEmpty(simpleDepts)){
+        if (CollectionUtils.isNotEmpty(simpleDepts)) {
             BeanUtil.copyListProperties(simpleDepts, deptInfoList, DeptRespVO.class);
             deptInfoList.forEach(deptRespVO -> {
                 Long leaderUserId = deptRespVO.getLeaderUserId();
                 UserDO userDO = userMapper.selectById(leaderUserId);
-                if(ObjectUtils.isNotEmpty(userDO)){
+                if (ObjectUtils.isNotEmpty(userDO)) {
                     deptRespVO.setLeaderUserName(userDO.getUsername());
                 }
             });
@@ -188,19 +189,75 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         baseMapper.updateById(deptDO);
     }
 
+    @Override
+    public List<DataTree> getDeptTree(DeptListReqVO listReqVO) {
+        // 获取部门数据列表
+        List<DeptRespVO> deptRespVOS = this.getSimpleDepts(listReqVO);
+
+        List<DeptRespVO> returnList = new ArrayList<>();
+        // 构建下拉树结构
+        List<Long> deptId = deptRespVOS.stream().map(DeptRespVO::getId).filter(Objects::nonNull).collect(Collectors.toList());
+
+        for (DeptRespVO deptRespVO : deptRespVOS) {
+            if (!deptId.contains(deptRespVO.getParentId())) {
+                recursionFn(deptRespVOS, deptRespVO);
+                returnList.add(deptRespVO);
+            }
+        }
+        if (CollectionUtils.isEmpty(returnList)) {
+            returnList = deptRespVOS;
+        }
+        return returnList.stream().filter(Objects::nonNull).map(DataTree::new).collect(Collectors.toList());
+    }
+
+    private void recursionFn(List<DeptRespVO> deptRespVOS, DeptRespVO deptRespVO) {
+        // 获取子节点列表
+        List<DeptRespVO> childList = getChildList(deptRespVOS, deptRespVO);
+        deptRespVO.setChildren(childList);
+
+        for (DeptRespVO respVO : childList) {
+            if (hasChild(deptRespVOS, respVO)) {
+                recursionFn(deptRespVOS, respVO);
+            }
+        }
+
+    }
+
+    /**
+     * 判断是否有子节点
+     */
+    private boolean hasChild(List<DeptRespVO> deptRespVOS, DeptRespVO deptRespVO1) {
+        return getChildList(deptRespVOS, deptRespVO1).size() > 0;
+    }
+
+    /**
+     * 获取子节点列表
+     */
+    private List<DeptRespVO> getChildList(List<DeptRespVO> deptRespVOS, DeptRespVO deptRespVO) {
+        // 获取子节点列表
+        Iterator<DeptRespVO> voIterator = deptRespVOS.iterator();
+        List<DeptRespVO> childList = new ArrayList<>();
+        while (voIterator.hasNext()) {
+            DeptRespVO next = voIterator.next();
+            if (Objects.nonNull(next.getParentId()) && next.getParentId().longValue() == deptRespVO.getId().longValue()) {
+                childList.add(next);
+            }
+        }
+        return childList;
+    }
+
     /**
      * 获得所有子部门
      *
      * @param parentId  部门编号
-     * @param recursive 是否递归获取所有
      * @return 子部门列表
      */
-    private List<DeptDO> getDeptsByParentId(Long parentId, boolean recursive) {
+    private List<DeptDO> getDeptsByParentId(Long parentId) {
         if (parentId == null) {
             return Collections.emptyList();
         }
         List<DeptDO> result = new ArrayList<>();
-        this.getDeptsByParentIdFromTable(result, parentId, recursive ? Integer.MAX_VALUE : 1);
+        this.getDeptsByParentIdFromTable(result, parentId, Integer.MAX_VALUE);
         return result;
     }
 
@@ -226,7 +283,9 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         result.addAll(depts);
 
         // 继续递归
-        depts.forEach(dept -> this.getDeptsByParentIdFromTable(result, dept.getId(), recursiveCount - 1));
+        for (DeptDO dept : depts) {
+            this.getDeptsByParentIdFromTable(result, dept.getId(), recursiveCount - 1);
+        }
     }
 
     /**

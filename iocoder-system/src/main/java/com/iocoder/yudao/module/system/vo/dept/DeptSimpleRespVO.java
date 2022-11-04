@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DeptSimpleRespVO {
 
-    @ApiModelProperty(value = "部门编号", required = true, example = "1024")
+    @ApiModelProperty(value = "部门编号", required = true, example = "100")
     private Long id;
 
-    @ApiModelProperty(value = "部门名称", required = true, example = "芋道")
+    @ApiModelProperty(value = "部门名称", required = true, example = "开发部")
     private String name;
 
-    @ApiModelProperty(value = "父部门 ID", required = true, example = "1024")
+    @ApiModelProperty(value = "父部门 ID", required = true, example = "1")
     private Long parentId;
 
 }

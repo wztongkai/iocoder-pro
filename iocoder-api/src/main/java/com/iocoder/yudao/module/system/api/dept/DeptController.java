@@ -3,6 +3,7 @@ package com.iocoder.yudao.module.system.api.dept;
 
 import com.iocoder.yudao.module.commons.annotation.Log;
 import com.iocoder.yudao.module.commons.core.domain.CommonResult;
+import com.iocoder.yudao.module.system.domain.core.DataTree;
 import com.iocoder.yudao.module.commons.enums.BusinessType;
 import com.iocoder.yudao.module.commons.enums.common.CommonStatusEnum;
 import com.iocoder.yudao.module.commons.utils.BeanUtil;
@@ -39,7 +40,7 @@ public class DeptController {
     @Resource
     DeptService deptService;
 
-    @Log(title = "部门管理",businessType = BusinessType.INSERT)
+    @Log(title = "部门管理", businessType = BusinessType.INSERT)
     @PreAuthorize("@ss.hasPermission('system:dept:create')")
     @PostMapping("create")
     @ApiOperation("创建部门")
@@ -47,7 +48,7 @@ public class DeptController {
         return success(deptService.createDept(reqVO));
     }
 
-    @Log(title = "部门管理",businessType = BusinessType.UPDATE)
+    @Log(title = "部门管理", businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermission('system:dept:update')")
     @PutMapping("update")
     @ApiOperation("更新部门")
@@ -56,7 +57,7 @@ public class DeptController {
         return success(true);
     }
 
-    @Log(title = "部门管理",businessType = BusinessType.UPDATE)
+    @Log(title = "部门管理", businessType = BusinessType.UPDATE)
     @PreAuthorize("@ss.hasPermission('system:dept:update-status')")
     @PutMapping("/update-status")
     @ApiOperation("修改部门状态")
@@ -65,7 +66,7 @@ public class DeptController {
         return success(true);
     }
 
-    @Log(title = "部门管理",businessType = BusinessType.DELETE)
+    @Log(title = "部门管理", businessType = BusinessType.DELETE)
     @PreAuthorize("@ss.hasPermission('system:dept:delete')")
     @DeleteMapping("delete")
     @ApiOperation("删除部门")
@@ -93,6 +94,12 @@ public class DeptController {
         List<DeptSimpleRespVO> simpleRespList = new ArrayList<>();
         BeanUtil.copyListProperties(list, simpleRespList, DeptSimpleRespVO.class);
         return success(simpleRespList);
+    }
+
+    @GetMapping("/dept-tree")
+    @ApiOperation(value = "获取部门树", notes = "获取部门树")
+    public CommonResult<List<DataTree>> getDeptTree(DeptListReqVO reqVO) {
+        return success(deptService.getDeptTree(reqVO));
     }
 
     @GetMapping("/get-info")

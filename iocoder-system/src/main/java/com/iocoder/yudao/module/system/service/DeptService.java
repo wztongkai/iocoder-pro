@@ -2,6 +2,7 @@ package com.iocoder.yudao.module.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.iocoder.yudao.module.system.domain.DeptDO;
+import com.iocoder.yudao.module.system.domain.core.DataTree;
 import com.iocoder.yudao.module.system.vo.dept.*;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -99,4 +100,6 @@ public interface DeptService extends IService<DeptDO> {
      * @param updateStatusReqVO 部门状态更新信息
      */
     void updateDeptStatus(DeptUpdateStatusReqVO updateStatusReqVO);
+
+    List<DataTree> getDeptTree(DeptListReqVO listReqVO);
 }
