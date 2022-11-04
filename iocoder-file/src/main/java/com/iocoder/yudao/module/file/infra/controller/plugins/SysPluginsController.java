@@ -2,6 +2,7 @@ package com.iocoder.yudao.module.file.infra.controller.plugins;
 
 import com.iocoder.yudao.module.file.infra.service.SysPluginsService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ public class SysPluginsController {
 
     @GetMapping("/JGPluginsDownload")
     @ApiOperation(value = "金格插件下载")
+    @ApiImplicitParam(name = "pluginsType", value = "插件类型  1:在线编辑插件  2：签章插件",required = true, example = "1", dataTypeClass = Long.class)
     public void JGPluginsDownload(@RequestParam("pluginsType") Integer pluginsType, HttpServletResponse response) {
         pluginsService.JGPluginsDownload(pluginsType, response);
     }
