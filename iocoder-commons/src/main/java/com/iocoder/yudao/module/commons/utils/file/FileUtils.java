@@ -275,4 +275,47 @@ public class FileUtils {
             Assertion.isFalse(mkdirs, "创建目录失败:" + fileDir);
         }
     }
+
+    public static void main(String[] args)
+    {
+        String filePath = "C:\\Users\\dull\\Desktop\\操作vbs.vbs";
+        try
+        {
+            File file = new File(filePath);
+            if (!file.exists())
+            {
+                file.createNewFile();
+            }
+            BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "gb2312"));
+//            bw.write("Dim wsh\n");
+//            bw.write("Set app = CreateObject(\"WScript.Shell\")\n");
+//            bw.write("app.Run \"C:\\Users\\dull\\Desktop\\111.docx\"\n");
+//            bw.write("Set app = Nothing");
+            bw.write("On Error Goto 0\n");
+            bw.write("Dim oApp,oDoc,ws\n");
+            bw.write("Set oApp = CreateObject(\"Word.Application\")\n");
+            bw.write("Set oDoc = oApp.Documents.Open (\"C:\\Users\\dull\\Desktop\\111.docx\")\n");
+            bw.write("set ws=createobject(\"wscript.shell\")\n");
+            bw.write("oText = oDoc.Bookmarks(\"bbb\").Range.Sentences(1).Text\n");
+            bw.write("msgbox \"bbb \" & oText,,\"萨达\"\n");
+            bw.write("oDoc.Close\n");
+            bw.write("ws.run \"cmd /c taskkill /f /im WINWORD.EXE\",0\n");
+            bw.write("set oApp = nothing\n");
+            bw.write("set oDoc = nothing");
+            bw.close();
+
+            Runtime.getRuntime().exec("wscript C:\\Users\\dull\\Desktop\\操作vbs.vbs");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+
+        }
+
+
+
+    }
 }
